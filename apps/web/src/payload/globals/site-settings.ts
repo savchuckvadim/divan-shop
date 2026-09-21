@@ -1,6 +1,6 @@
 import type { GlobalConfig } from "payload";
 
-import { CURRENCIES, DEFAULT_CURRENCY } from "@/modules/shared/config";
+import { CURRENCIES, DEFAULT_CURRENCY, SITE } from "@/modules/shared/config";
 
 import { createRevalidateGlobalHook } from "../hooks";
 
@@ -22,6 +22,14 @@ export const SiteSettings: GlobalConfig = {
                             required: true,
                             defaultValue: DEFAULT_CURRENCY,
                             options: CURRENCIES.map((code) => ({ label: code, value: code })),
+                        },
+                        {
+                            name: "showroomDiscountPercent",
+                            type: "number",
+                            min: 0,
+                            max: 100,
+                            defaultValue: SITE.showroomDiscountPercent,
+                            admin: { description: "Discount for customers with a showroom code" },
                         },
                         { name: "logo", type: "upload", relationTo: "media" },
                         { name: "defaultOgImage", type: "upload", relationTo: "media" },

@@ -6,7 +6,15 @@ import { fileURLToPath } from "url";
 
 import { getServerSideURL } from "@/modules/shared/lib";
 
-import { Categories, Media, Pages, Products, Users } from "./payload/collections";
+import {
+    Categories,
+    Customers,
+    Media,
+    Pages,
+    Products,
+    ShowroomVisits,
+    Users,
+} from "./payload/collections";
 import { defaultLexical } from "./payload/fields";
 import { Footer, Header, SiteSettings } from "./payload/globals";
 import { localization } from "./payload/localization";
@@ -31,7 +39,7 @@ export default buildConfig({
     db: postgresAdapter({
         pool: { connectionString: process.env.DATABASE_URL || "" },
     }),
-    collections: [Products, Categories, Pages, Media, Users],
+    collections: [Products, Categories, Pages, Media, Users, Customers, ShowroomVisits],
     globals: [Header, Footer, SiteSettings],
     cors: [getServerSideURL()].filter(Boolean),
     plugins,
@@ -41,7 +49,7 @@ export default buildConfig({
     jobs: {
         access: {
             run: ({ req }: { req: PayloadRequest }): boolean => {
-                if (req.user) return true;
+                if (req.user?.collection === "users") return true;
                 const secret = process.env.CRON_SECRET;
                 if (!secret) return false;
                 return req.headers.get("authorization") === `Bearer ${secret}`;

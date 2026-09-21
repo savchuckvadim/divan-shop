@@ -64,6 +64,7 @@ export type SupportedTimezones =
 export interface Config {
   auth: {
     users: UserAuthOperations;
+    customers: CustomerAuthOperations;
   };
   blocks: {};
   collections: {
@@ -72,6 +73,8 @@ export interface Config {
     pages: Page;
     media: Media;
     users: User;
+    customers: Customer;
+    'showroom-visits': ShowroomVisit;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -93,6 +96,8 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    customers: CustomersSelect<false> | CustomersSelect<true>;
+    'showroom-visits': ShowroomVisitsSelect<false> | ShowroomVisitsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -122,7 +127,7 @@ export interface Config {
   widgets: {
     collections: CollectionsWidget;
   };
-  user: User;
+  user: User | Customer;
   jobs: {
     tasks: {
       schedulePublish: TaskSchedulePublish;
@@ -135,6 +140,24 @@ export interface Config {
   };
 }
 export interface UserAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
+  };
+}
+export interface CustomerAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -780,6 +803,65 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers".
+ */
+export interface Customer {
+  id: number;
+  name: string;
+  phone?: string | null;
+  locale: 'ru' | 'en' | 'es' | 'uk';
+  /**
+   * Generated on registration, shown at the showroom
+   */
+  discountCode?: string | null;
+  discountPercent?: number | null;
+  consentPrivacyAt: string;
+  consentMarketing?: boolean | null;
+  /**
+   * Page or product slug the customer registered from
+   */
+  source?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'customers';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "showroom-visits".
+ */
+export interface ShowroomVisit {
+  id: number;
+  customer: number | Customer;
+  preferredDate: string;
+  preferredTime?: ('morning' | 'afternoon' | 'evening') | null;
+  note?: string | null;
+  product?: (number | null) | Product;
+  status: 'requested' | 'confirmed' | 'visited' | 'cancelled';
+  /**
+   * Copied from the customer discount code
+   */
+  code?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -958,6 +1040,14 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'customers';
+        value: number | Customer;
+      } | null)
+    | ({
+        relationTo: 'showroom-visits';
+        value: number | ShowroomVisit;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -974,10 +1064,15 @@ export interface PayloadLockedDocument {
         value: number | FolderInterface;
       } | null);
   globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'customers';
+        value: number | Customer;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -987,10 +1082,15 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: number;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'customers';
+        value: number | Customer;
+      };
   key?: string | null;
   value?:
     | {
@@ -1334,6 +1434,52 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers_select".
+ */
+export interface CustomersSelect<T extends boolean = true> {
+  name?: T;
+  phone?: T;
+  locale?: T;
+  discountCode?: T;
+  discountPercent?: T;
+  consentPrivacyAt?: T;
+  consentMarketing?: T;
+  source?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  resetPasswordRequestedAt?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "showroom-visits_select".
+ */
+export interface ShowroomVisitsSelect<T extends boolean = true> {
+  customer?: T;
+  preferredDate?: T;
+  preferredTime?: T;
+  note?: T;
+  product?: T;
+  status?: T;
+  code?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -1635,6 +1781,10 @@ export interface SiteSetting {
   id: number;
   siteName?: string | null;
   currency: 'RUB' | 'USD' | 'EUR' | 'UAH';
+  /**
+   * Discount for customers with a showroom code
+   */
+  showroomDiscountPercent?: number | null;
   logo?: (number | null) | Media;
   defaultOgImage?: (number | null) | Media;
   contacts?: {
@@ -1707,6 +1857,7 @@ export interface FooterSelect<T extends boolean = true> {
 export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
   currency?: T;
+  showroomDiscountPercent?: T;
   logo?: T;
   defaultOgImage?: T;
   contacts?:
@@ -1756,10 +1907,15 @@ export interface TaskSchedulePublish {
           value: number | Page;
         } | null);
     global?: string | null;
-    user?: {
-      relationTo: 'users';
-      value: number | User;
-    } | null;
+    user?:
+      | ({
+          relationTo: 'users';
+          value: number | User;
+        } | null)
+      | ({
+          relationTo: 'customers';
+          value: number | Customer;
+        } | null);
   };
   output?: unknown;
 }

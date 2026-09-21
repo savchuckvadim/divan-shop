@@ -4,6 +4,7 @@ export const SITE = {
     twitterHandle: "",
     homeSlug: "home",
     catalogPageSize: 24,
+    showroomDiscountPercent: 5,
 } as const;
 
 export const CURRENCIES = ["RUB", "USD", "EUR", "UAH"] as const;

@@ -3,3 +3,5 @@ export * from "./media";
 export * from "./pages";
 export * from "./products";
 export * from "./users";
+export * from "./customers";
+export * from "./showroom-visits";
