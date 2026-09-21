@@ -30,6 +30,8 @@ export default buildConfig({
     editor: defaultLexical,
     db: postgresAdapter({
         pool: { connectionString: process.env.DATABASE_URL || "" },
+        // Dev pushes the schema automatically; production uses migrations unless PAYLOAD_DB_PUSH=true.
+        push: process.env.PAYLOAD_DB_PUSH ? process.env.PAYLOAD_DB_PUSH === "true" : undefined,
     }),
     collections: [Products, Categories, Pages, Media, Users],
     globals: [Header, Footer, SiteSettings],
