@@ -362,6 +362,24 @@ Acceptance:
 
 ## Done
 
+### T-031 · Дизайн-проход: бренд-шапка и подвал, hero, карточки, страница товара, блог, ЛК
+
+- status: done
+- priority: high
+- area: ui
+- source: chat
+- created: 2026-09-21
+- estimate: M
+- done: 2026-09-21
+- commit: 25dfe8b
+
+Направление «linen, clay, olive, sea»: палитра на токенах, Playfair 500 с курсивным акцентом в заголовках, CSS-логотип-арка, hero-полоса с трастовыми фактами, карточки с подъёмом и тенью, билет-карточка кода скидки в ЛК, FAQ-аккордеон, CTA-баннер с градиентом; reduced-motion и focus-visible глобально. Подробности в docs/features/design-system.md.
+
+Acceptance:
+
+- typecheck/lint/format зелёные; dev smoke /ru, /ru/catalog, /ru/blog, /ru/about, /ru/contacts, /ru/account/register → 200
+- никаких hex-цветов в приложении, все строки в словарях на 4 локалях
+
 ### T-002 · Страница «Контакты» с формой заявки
 
 - status: done
