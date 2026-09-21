@@ -6,6 +6,7 @@ dist
 .env
 .env.*
 !.env.example
+!.env.automation.example
 apps/web/public/media
 .DS_Store
 
@@ -15,3 +16,4 @@ logs/
 .claude/worktrees/
 deploy/.env.prod
 backups/
+tasks/.b24-map.json

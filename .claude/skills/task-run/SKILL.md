@@ -48,7 +48,11 @@ All must pass. If `apps/web/.env` exists and Postgres answers, additionally star
 - Move the block to **Done** (top), `status: done`, add `- done: YYYY-MM-DD`, `- commit: <short hash>`, `- branch: task/T-NNN-…`.
 - Not green / blocked: commit whatever is safe on the branch, `git switch main`, return the block to the top of **Queue** with `status: blocked` and `- blocked: <one-line reason + what a human should decide>`.
 
-## 6. Report
+## 6. Docs sync
+
+Run the protocol in `.claude/skills/docs-sync/SKILL.md` for every area the diff touched (path → area map in `docs/features/README.md`): move the T-ID from **Planned** to **Implemented** in `docs/features/<area>.md` with today's date and the commit hash, prepend a `docs/HISTORY.md` entry if a trap cost you time, fix pointers (`tasks/README.md`, `docs/README.md`, `CLAUDE.md`, `docs/ops/crons.md`) if structure changed, and reconcile the "Known drift" list in `.claude/skills/project-checkin/SKILL.md`. Do it on the task branch before the merge when the task is green (then merge); on `main` as a docs-only commit when the task ended `blocked` but shipped something. Commit: `docs(features): sync <area> after T-NNN`. Put the ≤10-line summary into the report under `## Docs`.
+
+## 7. Report
 
 Write `tasks/reports/YYYY-MM-DD.md`:
 
@@ -66,6 +70,10 @@ Write `tasks/reports/YYYY-MM-DD.md`:
 
 - typecheck ✓ · lint ✓ · format ✓ · dev smoke: /ru/contacts 200
 
+## Docs
+
+- docs/features/cms-pages.md: T-NNN → Implemented · HISTORY: нет · drift: —
+
 ## Не сделано / вопросы к человеку
 
 - …
@@ -78,7 +86,15 @@ Write `tasks/reports/YYYY-MM-DD.md`:
 
 Commit: `chore(tasks): report YYYY-MM-DD (T-NNN)`.
 
-## 7. Notify
+## 8. Mirror
+
+```
+node scripts/pm/b24-tasks-sync.mjs --push
+```
+
+Pushes the task's new status (done → completed with a comment linking the report and commit; blocked → deferred with the reason) to the Bitrix24 project. It is a no-op without `B24_*` in `.env.automation`; never edit that file. If it fails, mention it in the final output and move on.
+
+## 9. Notify
 
 ```
 node scripts/telegram-notify.mjs --file tasks/reports/YYYY-MM-DD.md
