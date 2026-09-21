@@ -21,14 +21,14 @@
 
 **Симптом.** `pnpm web seed` печатал только заголовок скрипта, exit 0, таблиц в базе не появлялось.
 **Причина.** `payload run` делает `await import(script)` и затем `process.exit(0)`. Наш `run.ts` вызывал `main().catch(...)` без await — промис оставался висеть, процесс убивался до первой записи.
-**Фикс.** Top-level `await main()` в `apps/web/src/payload/seed/run.ts` (COMMIT_PLACEHOLDER).
+**Фикс.** Top-level `await main()` в `apps/web/src/payload/seed/run.ts` (1a02a01).
 **Ловушка на будущее.** Любой скрипт под `payload run` должен ждать свою работу на верхнем уровне модуля; `main().catch()` без await молча теряет результат.
 
 ## 2026-09-21 · drizzle push вешает dev-сервер вопросом «create or rename»
 
 **Симптом.** `pnpm dev` после изменения схемы (новые таблицы `pages_blocks_faq_*`, локализованные поля форм) остановился на интерактивном вопросе `Is pages_blocks_faq_items table created or renamed…`; все запросы висели, curl отдавал 000.
 **Причина.** Push-режим Payload/drizzle в dev не может отличить новую таблицу от переименованной и ждёт ответа в терминале, которого у фонового процесса нет.
-**Фикс.** `node scripts/ops/reset-dev-db.mjs` (дроп и создание схемы `public` только для localhost) и повторный `pnpm web seed` (COMMIT_PLACEHOLDER). В проде push отключён — миграции (`docs/ops/deployment.md`).
+**Фикс.** `node scripts/ops/reset-dev-db.mjs` (дроп и создание схемы `public` только для localhost) и повторный `pnpm web seed` (1a02a01). В проде push отключён — миграции (`docs/ops/deployment.md`).
 **Ловушка на будущее.** После изменения коллекций проверяй, что dev-сервер реально ответил на запрос, а не завис на промпте; локальную базу без ценных данных проще сбросить.
 
 ## 2026-09-21 · `git add -A` закоммитил worktree агентов как gitlink
