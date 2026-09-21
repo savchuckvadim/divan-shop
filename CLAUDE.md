@@ -85,6 +85,20 @@ Showroom in Alicante, market Alicante + Torrevieja + Costa Blanca; audience 52% 
 - Weekly SEO research: `/seo-research` (skill in `.claude/skills/seo-research`) writes `research/seo/*` and appends `draft` tasks to the queue; a human flips them to `ready`.
 - Scheduling: `scripts/install-schedule.ps1` registers both Windows Scheduled Tasks. Secrets in `.env.automation` (git-ignored, see `.env.automation.example`).
 - Headless permissions are the allowlist in `.claude/settings.json`; do not widen it from an autonomous run.
+- Skills registry: `.claude/skills/README.md`. Bitrix24 mirror of the queue: `scripts/pm/b24-tasks-sync.mjs` (no-op without env).
+
+## Project management rules
+
+Полное описание: `docs/ops/project-management.md`.
+
+- Документация — источник истины. `docs/features/<area>.md` = что реализовано (проверено по коду, с датой) и что запланировано (ссылки на T-ID); `docs/HISTORY.md` = ловушки (симптом → причина → фикс); `docs/decisions/` = ADR.
+- Перед тем как предлагать работу, прочитай `docs/features/README.md` (+ файл области) и `tasks/TASKS.md`. Не предлагай то, что уже в Planned — ссылайся на T-ID.
+- Любая идея из чата идёт через `/idea`: файл в `docs/ideas/` (статусы new → discussed → accepted/rejected → converted) → задачи через `/task-add` → зеркало Bitrix24 через `scripts/pm/b24-tasks-sync.mjs --push`.
+- Любая завершённая задача идёт через `/docs-sync`: Planned → Implemented в `docs/features/<area>.md` с датой и коммитом, запись в `docs/HISTORY.md`, если была ловушка, обновление указателей (tasks/README, docs/README, этот файл), список "Known drift" в `.claude/skills/project-checkin/SKILL.md`.
+- Тронул область кода — обнови её `docs/features/<area>.md` в том же коммите/ветке.
+- Разделение файлов: `<topic>.md` = справочник (как устроено), `<topic>.tasks.md` = план и статус. Не смешивать.
+- Никогда не пиши в репозиторий ID, URL, токены Bitrix24 / Notion / Telegram — только `.env.automation` (пример `.env.automation.example`). Карта задач `tasks/.b24-map.json` git-ignored.
+- Новый крон — сначала строка в `docs/ops/crons.md`, потом скрипт/скилл.
 
 ## Do NOT
 

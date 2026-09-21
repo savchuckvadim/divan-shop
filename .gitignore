@@ -6,9 +6,11 @@ dist
 .env
 .env.*
 !.env.example
+!.env.automation.example
 apps/web/public/media
 .DS_Store
 
 # automation
 .env.automation
 logs/
+tasks/.b24-map.json
