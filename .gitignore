@@ -12,3 +12,4 @@ apps/web/public/media
 # automation
 .env.automation
 logs/
+.claude/worktrees/
