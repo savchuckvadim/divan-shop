@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 
 import { getServerSideURL } from "@/modules/shared/lib";
 
-import { Categories, Media, Pages, Products, Users } from "./payload/collections";
+import { Articles, Categories, Media, Pages, Products, Users } from "./payload/collections";
 import { defaultLexical } from "./payload/fields";
 import { Footer, Header, SiteSettings } from "./payload/globals";
 import { localization } from "./payload/localization";
@@ -31,7 +31,7 @@ export default buildConfig({
     db: postgresAdapter({
         pool: { connectionString: process.env.DATABASE_URL || "" },
     }),
-    collections: [Products, Categories, Pages, Media, Users],
+    collections: [Products, Categories, Pages, Articles, Media, Users],
     globals: [Header, Footer, SiteSettings],
     cors: [getServerSideURL()].filter(Boolean),
     plugins,

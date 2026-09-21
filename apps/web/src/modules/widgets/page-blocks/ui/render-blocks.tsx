@@ -3,6 +3,7 @@ import type { Page } from "@/payload-types";
 
 import { CallToActionBlock } from "./call-to-action-block";
 import { ContentBlock } from "./content-block";
+import { FaqBlock } from "./faq-block";
 import { FormBlock } from "./form-block";
 import { MediaBlock } from "./media-block";
 import { ProductArchiveBlock } from "./product-archive-block";
@@ -26,6 +27,8 @@ const renderBlock = (block: LayoutBlock, locale: Locale) => {
             return <ProductArchiveBlock {...block} id={block.id ?? undefined} locale={locale} />;
         case "formBlock":
             return <FormBlock {...block} />;
+        case "faq":
+            return <FaqBlock {...block} />;
         default:
             return null;
     }

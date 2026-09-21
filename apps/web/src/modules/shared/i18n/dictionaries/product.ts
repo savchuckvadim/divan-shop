@@ -35,6 +35,7 @@ export interface ProductDictionary {
     description: string;
     related: string;
     requestQuote: string;
+    contactManager: string;
 }
 
 export const PRODUCT: Record<Locale, ProductDictionary> = {
@@ -64,6 +65,7 @@ export const PRODUCT: Record<Locale, ProductDictionary> = {
         description: "Описание",
         related: "Похожие модели",
         requestQuote: "Узнать цену и сроки",
+        contactManager: "Связаться с менеджером",
     },
     en: {
         price: "Price",
@@ -100,6 +102,7 @@ export const PRODUCT: Record<Locale, ProductDictionary> = {
         description: "Description",
         related: "Similar models",
         requestQuote: "Get price and lead time",
+        contactManager: "Contact a manager",
     },
     es: {
         price: "Precio",
@@ -132,6 +135,7 @@ export const PRODUCT: Record<Locale, ProductDictionary> = {
         description: "Descripción",
         related: "Modelos similares",
         requestQuote: "Consultar precio y plazo",
+        contactManager: "Contactar con un asesor",
     },
     uk: {
         price: "Ціна",
@@ -163,5 +167,6 @@ export const PRODUCT: Record<Locale, ProductDictionary> = {
         description: "Опис",
         related: "Схожі моделі",
         requestQuote: "Дізнатися ціну та терміни",
+        contactManager: "Зв'язатися з менеджером",
     },
 };

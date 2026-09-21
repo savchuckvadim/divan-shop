@@ -35,6 +35,20 @@ export const HeaderClient = ({ navItems, siteName, phone }: HeaderClientProps) =
                 appearance="link"
                 className="text-base"
             />
+            <CmsLink
+                type="custom"
+                url={ROUTES.blog(locale)}
+                label={dictionary.common.blog}
+                appearance="link"
+                className="text-base"
+            />
+            <CmsLink
+                type="custom"
+                url={ROUTES.contacts(locale)}
+                label={dictionary.common.contacts}
+                appearance="link"
+                className="text-base"
+            />
             {navItems.map(({ link }, index) => (
                 <CmsLink key={index} {...link} appearance="link" className="text-base" />
             ))}

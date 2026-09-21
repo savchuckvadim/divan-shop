@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
+import Link from "next/link";
 
 import { Button } from "@workspace/ui/components/button";
 import { Container } from "@workspace/ui/components/container";
@@ -130,13 +131,25 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
                         />
                     </div>
 
-                    {phone && (
+                    <div className="flex flex-col gap-3 sm:flex-row">
                         <Button asChild size="lg" className="w-full sm:w-auto">
-                            <a href={`tel:${phone.replace(/\s+/g, "")}`}>
-                                {dictionary.product.requestQuote}
-                            </a>
+                            <Link href={ROUTES.contacts(locale, slug)}>
+                                {dictionary.product.contactManager}
+                            </Link>
                         </Button>
-                    )}
+                        {phone && (
+                            <Button
+                                asChild
+                                size="lg"
+                                variant="outline"
+                                className="w-full sm:w-auto"
+                            >
+                                <a href={`tel:${phone.replace(/\s+/g, "")}`}>
+                                    {dictionary.product.requestQuote}
+                                </a>
+                            </Button>
+                        )}
+                    </div>
 
                     <div className="flex flex-col gap-3">
                         <Heading as="h2" size="sm">

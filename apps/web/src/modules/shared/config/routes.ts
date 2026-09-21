@@ -8,6 +8,13 @@ export const ROUTES = {
     catalog: (locale: Locale) => `/${locale}/catalog`,
     category: (locale: Locale, slug: string) => `/${locale}/catalog/${slug}`,
     product: (locale: Locale, slug: string) => `/${locale}/product/${slug}`,
+    blog: (locale: Locale) => `/${locale}/blog`,
+    article: (locale: Locale, slug: string) => `/${locale}/blog/${slug}`,
+    about: (locale: Locale) => `/${locale}/about`,
+    contacts: (locale: Locale, productSlug?: string) =>
+        productSlug
+            ? `/${locale}/contacts?product=${encodeURIComponent(productSlug)}#form`
+            : `/${locale}/contacts`,
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;

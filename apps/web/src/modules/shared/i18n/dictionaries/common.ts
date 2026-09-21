@@ -11,6 +11,8 @@ export interface CommonDictionary {
     error: string;
     home: string;
     catalog: string;
+    blog: string;
+    contacts: string;
     allRightsReserved: string;
     skipToContent: string;
     language: string;
@@ -28,6 +30,8 @@ export const COMMON: Record<Locale, CommonDictionary> = {
         error: "Что-то пошло не так",
         home: "Главная",
         catalog: "Каталог",
+        blog: "Блог",
+        contacts: "Контакты",
         allRightsReserved: "Все права защищены",
         skipToContent: "Перейти к содержимому",
         language: "Язык",
@@ -43,6 +47,8 @@ export const COMMON: Record<Locale, CommonDictionary> = {
         error: "Something went wrong",
         home: "Home",
         catalog: "Catalog",
+        blog: "Blog",
+        contacts: "Contacts",
         allRightsReserved: "All rights reserved",
         skipToContent: "Skip to content",
         language: "Language",
@@ -58,6 +64,8 @@ export const COMMON: Record<Locale, CommonDictionary> = {
         error: "Algo salió mal",
         home: "Inicio",
         catalog: "Catálogo",
+        blog: "Blog",
+        contacts: "Contacto",
         allRightsReserved: "Todos los derechos reservados",
         skipToContent: "Ir al contenido",
         language: "Idioma",
@@ -73,6 +81,8 @@ export const COMMON: Record<Locale, CommonDictionary> = {
         error: "Щось пішло не так",
         home: "Головна",
         catalog: "Каталог",
+        blog: "Блог",
+        contacts: "Контакти",
         allRightsReserved: "Всі права захищені",
         skipToContent: "Перейти до вмісту",
         language: "Мова",

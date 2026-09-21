@@ -1,6 +1,12 @@
 import type { MetadataRoute } from "next";
 
-import { getCategorySlugs, getPageSlugs, getProductSlugs, isHomeSlug } from "@/modules/entities";
+import {
+    getArticleSlugs,
+    getCategorySlugs,
+    getPageSlugs,
+    getProductSlugs,
+    isHomeSlug,
+} from "@/modules/entities";
 import { type Locale, LOCALES, ROUTES } from "@/modules/shared/config";
 import { absoluteUrl } from "@/modules/shared/lib";
 
@@ -21,16 +27,18 @@ const entry = (
     }));
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const [pages, categories, products] = await Promise.all([
+    const [pages, categories, products, articles] = await Promise.all([
         getPageSlugs(),
         getCategorySlugs(),
         getProductSlugs(),
+        getArticleSlugs(),
     ]);
     const now = new Date();
 
     return [
         ...entry((l) => ROUTES.home(l), now, 1),
         ...entry((l) => ROUTES.catalog(l), now, 0.9),
+        ...entry((l) => ROUTES.blog(l), now, 0.6),
         ...pages
             .filter(({ slug }) => !isHomeSlug(slug))
             .flatMap(({ slug, updatedAt }) => entry((l) => ROUTES.page(l, slug), updatedAt, 0.6)),
@@ -39,6 +47,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ),
         ...products.flatMap(({ slug, updatedAt }) =>
             entry((l) => ROUTES.product(l, slug), updatedAt, 0.7)
+        ),
+        ...articles.flatMap(({ slug, updatedAt }) =>
+            entry((l) => ROUTES.article(l, slug), updatedAt, 0.5)
         ),
     ];
 }

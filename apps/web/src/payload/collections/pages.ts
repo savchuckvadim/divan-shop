@@ -3,7 +3,7 @@ import { type CollectionConfig, slugField } from "payload";
 import { ROUTES } from "@/modules/shared/config";
 
 import { authenticated, authenticatedOrPublished } from "../access";
-import { CallToAction, Content, FormBlock, MediaBlock, ProductArchive } from "../blocks";
+import { CallToAction, Content, Faq, FormBlock, MediaBlock, ProductArchive } from "../blocks";
 import { hero, seoTab } from "../fields";
 import { createRevalidateHooks, populatePublishedAt } from "../hooks";
 import { generatePreviewPath } from "../lib/generate-preview-path";
@@ -45,7 +45,14 @@ export const Pages: CollectionConfig<"pages"> = {
                             type: "blocks",
                             required: true,
                             localized: true,
-                            blocks: [CallToAction, Content, MediaBlock, ProductArchive, FormBlock],
+                            blocks: [
+                                CallToAction,
+                                Content,
+                                MediaBlock,
+                                ProductArchive,
+                                FormBlock,
+                                Faq,
+                            ],
                             admin: { initCollapsed: true },
                         },
                     ],
