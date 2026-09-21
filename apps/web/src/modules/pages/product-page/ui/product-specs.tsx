@@ -1,3 +1,4 @@
+import { Card } from "@workspace/ui/composites/card";
 import { type KeyValueItem, KeyValueList } from "@workspace/ui/composites/key-value";
 
 import type { ProductSpecs as ProductSpecsType } from "@/modules/entities";
@@ -37,5 +38,9 @@ export const ProductSpecs = ({ specs, locale }: ProductSpecsProps) => {
 
     if (!items.length) return null;
 
-    return <KeyValueList items={items} />;
+    return (
+        <Card padding="sm" eyebrow={product.specsTitle} className="bg-card/60">
+            <KeyValueList items={items} bordered={false} />
+        </Card>
+    );
 };

@@ -30,10 +30,10 @@ export const CmsPage = async ({ locale, slug = SITE.homeSlug }: CmsPageProps) =>
     }
 
     return (
-        <article className="pb-24">
+        <article className="pb-16 md:pb-24">
             <PayloadRedirects disableNotFound url={url} locale={locale} />
             {draft && <LivePreviewListener />}
-            <RenderHero {...page.hero} />
+            <RenderHero {...page.hero} locale={locale} />
             <RenderBlocks blocks={page.layout} locale={locale} />
         </article>
     );

@@ -53,7 +53,8 @@ export const RichText = ({
                 {
                     container: enableGutter,
                     "max-w-none": !enableGutter,
-                    "prose md:prose-md dark:prose-invert mx-auto": enableProse,
+                    "prose md:prose-md dark:prose-invert mx-auto prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-[-0.02em] prose-headings:text-balance prose-a:text-primary prose-a:underline-offset-4 prose-img:rounded-2xl prose-blockquote:border-primary/40 prose-blockquote:font-serif prose-blockquote:text-lg prose-blockquote:not-italic":
+                        enableProse,
                 },
                 className
             )}

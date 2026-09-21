@@ -2,17 +2,10 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@workspace/ui/components/card";
 import { Container } from "@workspace/ui/components/container";
 
 import { getCurrentCustomer } from "@/modules/entities";
-import { RegisterForm } from "@/modules/features";
+import { AuthCard, RegisterForm } from "@/modules/features";
 import { type Locale, ROUTES } from "@/modules/shared/config";
 import { getDictionary } from "@/modules/shared/i18n";
 import { generateMeta } from "@/modules/shared/seo";
@@ -29,16 +22,10 @@ export const RegisterPage = async ({ locale, source }: RegisterPageProps) => {
     const { account } = getDictionary(locale);
 
     return (
-        <Container className="py-16">
-            <Card className="mx-auto w-full max-w-md">
-                <CardHeader>
-                    <CardTitle>{account.register}</CardTitle>
-                    <CardDescription>{account.registerIntro}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <RegisterForm source={source} />
-                </CardContent>
-            </Card>
+        <Container className="py-16 md:py-24">
+            <AuthCard title={account.register} description={account.registerIntro}>
+                <RegisterForm source={source} />
+            </AuthCard>
         </Container>
     );
 };

@@ -1,4 +1,5 @@
-import { cn } from "@workspace/ui/lib/utils";
+import { CardGrid } from "@workspace/ui/composites/card";
+import { EmptyState } from "@workspace/ui/composites/empty-state";
 
 import { type Article, ArticleCard } from "@/modules/entities";
 import type { Locale } from "@/modules/shared/config";
@@ -14,19 +15,21 @@ interface ArticleListProps {
 export const ArticleList = ({ articles, locale, className, emptyText }: ArticleListProps) => {
     if (!articles.length) {
         return (
-            <p className="rounded-xl border border-dashed border-border p-10 text-center text-muted-foreground">
-                {emptyText ?? getDictionary(locale).blog.empty}
-            </p>
+            <EmptyState
+                as="p"
+                className={className}
+                title={emptyText ?? getDictionary(locale).blog.empty}
+            />
         );
     }
 
     return (
-        <ul className={cn("grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3", className)}>
+        <CardGrid as="ul" cols={3} className={className}>
             {articles.map((article, index) => (
                 <li key={article.id}>
                     <ArticleCard article={article} locale={locale} priority={index < 3} />
                 </li>
             ))}
-        </ul>
+        </CardGrid>
     );
 };

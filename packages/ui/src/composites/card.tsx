@@ -12,7 +12,7 @@ import {
 } from "@workspace/ui/components/card";
 import { cn } from "@workspace/ui/lib/utils";
 
-const cardVariants = cva("flex flex-col overflow-hidden p-0", {
+const cardVariants = cva("flex flex-col overflow-hidden rounded-xl p-0 shadow-card", {
     variants: {
         padding: {
             none: "[--card-padding:0px]",
@@ -20,7 +20,7 @@ const cardVariants = cva("flex flex-col overflow-hidden p-0", {
             md: "[--card-padding:1.5rem]",
         },
         interactive: {
-            true: "group transition-shadow hover:shadow-md focus-within:shadow-md",
+            true: "group transition-[transform,box-shadow,border-color] duration-300 ease-soft hover:-translate-y-0.5 hover:border-border/40 hover:shadow-lift focus-within:-translate-y-0.5 focus-within:shadow-lift",
             false: "",
         },
     },
@@ -74,17 +74,21 @@ function Card({
                         {eyebrow && (
                             <div
                                 data-slot="card-eyebrow"
-                                className="text-xs uppercase tracking-wide text-muted-foreground"
+                                className="text-[0.7rem] font-medium uppercase leading-none tracking-[0.18em] text-muted-foreground"
                             >
                                 {eyebrow}
                             </div>
                         )}
                         {title && (
-                            <CardTitle className="font-serif text-lg font-medium leading-snug tracking-normal">
+                            <CardTitle className="font-serif text-[1.2rem] font-medium leading-snug tracking-[-0.01em] text-balance">
                                 {title}
                             </CardTitle>
                         )}
-                        {description && <CardDescription>{description}</CardDescription>}
+                        {description && (
+                            <CardDescription className="leading-relaxed">
+                                {description}
+                            </CardDescription>
+                        )}
                     </div>
                     {actions && (
                         <div data-slot="card-actions" className="flex shrink-0 items-center gap-2">
@@ -97,7 +101,7 @@ function Card({
                 <CardContent
                     className={cn(
                         "flex flex-1 flex-col gap-2 p-[var(--card-padding)]",
-                        hasHeader && "pt-2"
+                        hasHeader && "pt-3"
                     )}
                 >
                     {children}
@@ -107,7 +111,7 @@ function Card({
                 <CardFooter
                     className={cn(
                         "mt-auto justify-between gap-2 p-[var(--card-padding)]",
-                        (hasHeader || children) && "pt-2"
+                        (hasHeader || children) && "pt-3"
                     )}
                 >
                     {footer}
@@ -126,8 +130,8 @@ const cardGridVariants = cva("grid grid-cols-1", {
         },
         gap: {
             sm: "gap-3",
-            md: "gap-6",
-            lg: "gap-8",
+            md: "gap-5 md:gap-6",
+            lg: "gap-6 md:gap-8",
         },
     },
     defaultVariants: {

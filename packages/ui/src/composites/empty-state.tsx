@@ -25,7 +25,7 @@ function EmptyState({
         <div
             data-slot="empty-state"
             className={cn(
-                "flex flex-col items-center gap-4 rounded-xl border border-dashed border-border px-6 py-12 text-center",
+                "flex flex-col items-center gap-4 rounded-2xl border border-dashed border-border bg-muted/30 px-6 py-14 text-center",
                 className
             )}
             {...props}
@@ -33,14 +33,14 @@ function EmptyState({
             {icon && (
                 <div
                     data-slot="empty-state-icon"
-                    className="flex size-12 items-center justify-center rounded-full bg-muted text-muted-foreground [&_svg]:size-6"
+                    className="flex size-12 items-center justify-center rounded-full bg-secondary text-primary [&_svg]:size-6"
                 >
                     {icon}
                 </div>
             )}
             <div className="flex max-w-[36rem] flex-col gap-2">
                 {as === "p" ? (
-                    <Text className="font-medium text-foreground">{title}</Text>
+                    <Text className="font-serif text-lg font-medium text-foreground">{title}</Text>
                 ) : (
                     <Heading as={as} size={as === "h1" ? "lg" : "sm"}>
                         {title}

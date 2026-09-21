@@ -40,7 +40,11 @@ export const RenderBlocks = ({ blocks, locale }: RenderBlocksProps) => {
     return (
         <>
             {blocks.map((block, index) => (
-                <section key={block.id ?? index} className="my-16">
+                <section
+                    key={block.id ?? index}
+                    data-block={block.blockType}
+                    className="py-8 md:py-12"
+                >
                     {renderBlock(block, locale)}
                 </section>
             ))}

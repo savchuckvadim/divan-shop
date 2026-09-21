@@ -2,17 +2,10 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@workspace/ui/components/card";
 import { Container } from "@workspace/ui/components/container";
 
 import { getCurrentCustomer } from "@/modules/entities";
-import { LoginForm } from "@/modules/features";
+import { AuthCard, LoginForm } from "@/modules/features";
 import { type Locale, ROUTES } from "@/modules/shared/config";
 import { getDictionary } from "@/modules/shared/i18n";
 import { generateMeta } from "@/modules/shared/seo";
@@ -28,16 +21,10 @@ export const LoginPage = async ({ locale }: LoginPageProps) => {
     const { account } = getDictionary(locale);
 
     return (
-        <Container className="py-16">
-            <Card className="mx-auto w-full max-w-md">
-                <CardHeader>
-                    <CardTitle>{account.login}</CardTitle>
-                    <CardDescription>{account.loginIntro}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <LoginForm />
-                </CardContent>
-            </Card>
+        <Container className="py-16 md:py-24">
+            <AuthCard title={account.login} description={account.loginIntro}>
+                <LoginForm />
+            </AuthCard>
         </Container>
     );
 };

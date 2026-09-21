@@ -3,6 +3,8 @@ import { draftMode } from "next/headers";
 
 import { Container } from "@workspace/ui/components/container";
 import { Heading } from "@workspace/ui/components/heading";
+import { Text } from "@workspace/ui/components/text";
+import { Section } from "@workspace/ui/composites/section";
 
 import {
     getArticleAuthorName,
@@ -51,7 +53,7 @@ export const ArticlePage = async ({ locale, slug }: ArticlePageProps) => {
     ];
 
     return (
-        <Container className="py-10">
+        <Container className="py-8 md:py-12">
             <PayloadRedirects disableNotFound url={url} locale={locale} />
             {draft && <LivePreviewListener />}
 
@@ -74,13 +76,10 @@ export const ArticlePage = async ({ locale, slug }: ArticlePageProps) => {
 
             <Breadcrumbs items={crumbs} />
 
-            <article className="mx-auto mt-8 max-w-[48rem]">
-                <header className="flex flex-col gap-4">
-                    <Heading as="h1" size="xl">
-                        {article.title}
-                    </Heading>
+            <article className="mt-8 md:mt-12">
+                <header className="mx-auto flex max-w-[65ch] flex-col gap-5">
                     {(article.publishedAt || authorName) && (
-                        <p className="text-sm text-muted-foreground">
+                        <Text as="p" eyebrow className="text-primary">
                             {authorName && <span>{authorName}</span>}
                             {authorName && article.publishedAt && <span> · </span>}
                             {article.publishedAt && (
@@ -90,37 +89,49 @@ export const ArticlePage = async ({ locale, slug }: ArticlePageProps) => {
                                     })}
                                 </time>
                             )}
-                        </p>
+                        </Text>
                     )}
+                    <Heading as="h1" size="xl">
+                        {article.title}
+                    </Heading>
                     {article.excerpt && (
-                        <p className="text-lg text-muted-foreground">{article.excerpt}</p>
+                        <Text className="font-serif text-xl italic leading-relaxed text-muted-foreground md:text-2xl">
+                            {article.excerpt}
+                        </Text>
                     )}
                 </header>
 
                 {cover && (
-                    <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-2xl border border-border bg-muted">
+                    <div className="relative mx-auto mt-10 aspect-[16/9] max-w-[64rem] overflow-hidden rounded-2xl bg-muted shadow-card md:mt-14">
                         <Media
                             resource={cover}
                             fill
                             priority
-                            sizes="(max-width: 1024px) 100vw, 48rem"
+                            sizes="(max-width: 1024px) 100vw, 64rem"
                             imgClassName="object-cover"
                         />
                     </div>
                 )}
 
                 {article.content && (
-                    <RichText className="mt-10" data={article.content} enableGutter={false} />
+                    <RichText
+                        className="mx-auto mt-10 max-w-[65ch] md:mt-14"
+                        data={article.content}
+                        enableGutter={false}
+                    />
                 )}
             </article>
 
             {related.length > 0 && (
-                <section className="mt-20">
-                    <Heading as="h2" size="md" className="mb-6">
-                        {blog.related}
-                    </Heading>
+                <Section
+                    contained={false}
+                    padding="md"
+                    eyebrow={blog.title}
+                    title={blog.related}
+                    className="mt-12 border-t border-border/70"
+                >
                     <ArticleList articles={related} locale={locale} />
-                </section>
+                </Section>
             )}
         </Container>
     );

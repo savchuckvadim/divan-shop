@@ -13,10 +13,10 @@ export const CategoryChip = ({ href, label, active }: CategoryChipProps) => (
         href={href}
         aria-current={active ? "page" : undefined}
         className={cn(
-            "rounded-full border px-4 py-1.5 text-sm transition-colors",
+            "inline-flex shrink-0 snap-start items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-[color,background-color,border-color,box-shadow] duration-200",
             active
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-border bg-background hover:bg-secondary"
+                ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                : "border-border bg-background text-foreground/80 hover:border-foreground/30 hover:bg-secondary/60 hover:text-foreground"
         )}
     >
         {label}

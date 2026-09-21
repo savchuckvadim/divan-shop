@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { CardGrid } from "@workspace/ui/composites/card";
 import { EmptyState } from "@workspace/ui/composites/empty-state";
 
@@ -11,6 +13,8 @@ interface ProductGridProps {
     locale: Locale;
     className?: string;
     emptyText?: string;
+    emptyDescription?: ReactNode;
+    emptyAction?: ReactNode;
 }
 
 export const ProductGrid = ({
@@ -19,6 +23,8 @@ export const ProductGrid = ({
     locale,
     className,
     emptyText,
+    emptyDescription,
+    emptyAction,
 }: ProductGridProps) => {
     if (!products.length) {
         return (
@@ -26,6 +32,8 @@ export const ProductGrid = ({
                 as="p"
                 className={className}
                 title={emptyText ?? getDictionary(locale).catalog.empty}
+                description={emptyDescription}
+                action={emptyAction}
             />
         );
     }

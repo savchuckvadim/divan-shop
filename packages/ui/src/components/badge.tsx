@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@workspace/ui/lib/utils";
 
 const badgeVariants = cva(
-    "inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border px-2 py-0.5 text-xs font-medium transition-[color,box-shadow] focus-visible:ring-4 focus-visible:outline-1 ring-ring/10 outline-ring/50 [&>svg]:pointer-events-none [&>svg]:size-3",
+    "inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-medium tracking-wide transition-[color,box-shadow] focus-visible:ring-4 focus-visible:outline-1 ring-ring/15 outline-ring/50 [&>svg]:pointer-events-none [&>svg]:size-3",
     {
         variants: {
             variant: {
@@ -14,7 +14,8 @@ const badgeVariants = cva(
                     "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
                 secondary:
                     "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/80",
-                outline: "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+                outline:
+                    "border-border/80 bg-background/70 text-muted-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
                 success: "border-transparent bg-success text-foreground [a&]:hover:bg-success/80",
             },
         },

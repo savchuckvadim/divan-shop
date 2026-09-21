@@ -15,6 +15,7 @@ export interface AccountDictionary {
     consentMarketing: string;
     yourCode: string;
     codeHint: string;
+    showAtShowroom: string;
     requestVisit: string;
     requestVisitIntro: string;
     preferredDate: string;
@@ -66,6 +67,7 @@ export const ACCOUNT: Record<Locale, AccountDictionary> = {
         consentPrivacy: "Я согласен(на) на обработку персональных данных",
         consentMarketing: "Хочу получать новости и предложения",
         yourCode: "Ваш код на скидку",
+        showAtShowroom: "Предъявите на кассе шоурума",
         codeHint: "Покажите этот код в шоуруме и получите скидку {percent}% на покупку.",
         requestVisit: "Записаться в шоурум",
         requestVisitIntro: "Выберите удобный день, и менеджер подтвердит визит.",
@@ -116,6 +118,7 @@ export const ACCOUNT: Record<Locale, AccountDictionary> = {
         consentPrivacy: "I agree to the processing of my personal data",
         consentMarketing: "Send me news and offers",
         yourCode: "Your discount code",
+        showAtShowroom: "Show it at the showroom desk",
         codeHint: "Show this code at the showroom to get {percent}% off your purchase.",
         requestVisit: "Book a showroom visit",
         requestVisitIntro: "Pick a convenient day and our manager will confirm the visit.",
@@ -166,6 +169,7 @@ export const ACCOUNT: Record<Locale, AccountDictionary> = {
         consentPrivacy: "Acepto el tratamiento de mis datos personales",
         consentMarketing: "Quiero recibir novedades y ofertas",
         yourCode: "Tu código de descuento",
+        showAtShowroom: "Muéstralo en el mostrador del showroom",
         codeHint:
             "Muestra este código en el showroom y obtén un {percent}% de descuento en tu compra.",
         requestVisit: "Reservar visita al showroom",
@@ -217,6 +221,7 @@ export const ACCOUNT: Record<Locale, AccountDictionary> = {
         consentPrivacy: "Я погоджуюся на обробку персональних даних",
         consentMarketing: "Хочу отримувати новини та пропозиції",
         yourCode: "Ваш код на знижку",
+        showAtShowroom: "Пред'явіть на касі шоуруму",
         codeHint: "Покажіть цей код у шоурумі та отримайте знижку {percent}% на покупку.",
         requestVisit: "Записатися до шоуруму",
         requestVisitIntro: "Оберіть зручний день, і менеджер підтвердить візит.",

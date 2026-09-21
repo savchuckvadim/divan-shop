@@ -3,6 +3,8 @@ import type { Locale } from "@/modules/shared/config";
 export interface ProductDictionary {
     price: string;
     oldPrice: string;
+    discount: string;
+    gallery: string;
     availability: {
         inStock: string;
         onRequest: string;
@@ -43,6 +45,8 @@ export const PRODUCT: Record<Locale, ProductDictionary> = {
     ru: {
         price: "Цена",
         oldPrice: "Старая цена",
+        discount: "Скидка",
+        gallery: "Фотографии модели",
         availability: { inStock: "В наличии", onRequest: "Под заказ", outOfStock: "Нет в наличии" },
         specsTitle: "Характеристики",
         specs: {
@@ -72,6 +76,8 @@ export const PRODUCT: Record<Locale, ProductDictionary> = {
     en: {
         price: "Price",
         oldPrice: "Old price",
+        discount: "Sale",
+        gallery: "Product photos",
         availability: {
             inStock: "In stock",
             onRequest: "Made to order",
@@ -110,6 +116,8 @@ export const PRODUCT: Record<Locale, ProductDictionary> = {
     es: {
         price: "Precio",
         oldPrice: "Precio anterior",
+        discount: "Oferta",
+        gallery: "Fotos del modelo",
         availability: { inStock: "En stock", onRequest: "Bajo pedido", outOfStock: "Agotado" },
         specsTitle: "Características",
         specs: {
@@ -144,6 +152,8 @@ export const PRODUCT: Record<Locale, ProductDictionary> = {
     uk: {
         price: "Ціна",
         oldPrice: "Стара ціна",
+        discount: "Знижка",
+        gallery: "Фотографії моделі",
         availability: {
             inStock: "В наявності",
             onRequest: "Під замовлення",
