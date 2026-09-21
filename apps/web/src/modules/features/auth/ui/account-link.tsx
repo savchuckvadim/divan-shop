@@ -2,26 +2,36 @@
 
 import Link from "next/link";
 
-import { UserIcon } from "lucide-react";
+import { UserRoundIcon } from "lucide-react";
 
+import { Button } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
 
 import { ROUTES } from "@/modules/shared/config";
 import { useI18n } from "@/modules/shared/i18n";
 
-export const AccountLink = ({ className }: { className?: string }) => {
+interface AccountLinkProps {
+    className?: string;
+    showLabel?: boolean;
+}
+
+export const AccountLink = ({ className, showLabel = false }: AccountLinkProps) => {
     const { locale, dictionary } = useI18n();
 
     return (
-        <Link
-            href={ROUTES.account(locale)}
-            className={cn(
-                "inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary",
-                className
-            )}
+        <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            shape="pill"
+            className={cn("text-foreground/80 hover:text-foreground", className)}
         >
-            <UserIcon className="size-4" aria-hidden />
-            {dictionary.account.title}
-        </Link>
+            <Link href={ROUTES.account(locale)} aria-label={dictionary.account.title}>
+                <UserRoundIcon aria-hidden />
+                <span className={cn(!showLabel && "hidden xl:inline")}>
+                    {dictionary.account.title}
+                </span>
+            </Link>
+        </Button>
     );
 };

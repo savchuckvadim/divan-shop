@@ -13,18 +13,32 @@ const COLUMN_SPAN = {
 
 export const ContentBlock = ({ columns }: ContentBlockProps) => (
     <Container>
-        <div className="grid grid-cols-4 gap-x-16 gap-y-8 lg:grid-cols-12">
+        <div className="grid grid-cols-4 gap-x-12 gap-y-10 lg:grid-cols-12">
             {columns?.map((column, index) => {
                 const { enableLink, link, richText, size } = column;
                 return (
                     <div
                         key={index}
-                        className={cn("col-span-4", COLUMN_SPAN[size ?? "oneThird"], {
-                            "md:col-span-2": size !== "full",
-                        })}
+                        className={cn(
+                            "col-span-4 flex flex-col gap-5",
+                            COLUMN_SPAN[size ?? "oneThird"],
+                            {
+                                "md:col-span-2": size !== "full",
+                            }
+                        )}
                     >
-                        {richText && <RichText data={richText} enableGutter={false} />}
-                        {enableLink && link && <CmsLink {...link} />}
+                        {richText && (
+                            <RichText
+                                data={richText}
+                                enableGutter={false}
+                                className={cn(size === "full" && "max-w-[65ch]")}
+                            />
+                        )}
+                        {enableLink && link && (
+                            <div>
+                                <CmsLink {...link} className="rounded-full" />
+                            </div>
+                        )}
                     </div>
                 );
             })}

@@ -4,19 +4,23 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@workspace/ui/lib/utils";
 
-const headingVariants = cva("font-serif font-semibold tracking-tight text-balance", {
-    variants: {
-        size: {
-            xl: "text-4xl leading-[1.1] md:text-5xl lg:text-6xl",
-            lg: "text-3xl leading-[1.15] md:text-4xl",
-            md: "text-2xl leading-tight md:text-3xl",
-            sm: "text-xl leading-snug md:text-2xl",
+const headingVariants = cva(
+    "font-serif font-medium tracking-[-0.02em] text-balance [&_em]:font-normal [&_em]:italic [&_em]:text-primary",
+    {
+        variants: {
+            size: {
+                xl: "text-[2.5rem] leading-[1.02] md:text-[3.25rem] lg:text-[4rem]",
+                lg: "text-[2rem] leading-[1.08] md:text-[2.5rem] lg:text-[3rem]",
+                md: "text-[1.625rem] leading-[1.15] md:text-[2rem]",
+                sm: "text-xl leading-snug md:text-2xl",
+                xs: "text-lg leading-snug",
+            },
         },
-    },
-    defaultVariants: {
-        size: "lg",
-    },
-});
+        defaultVariants: {
+            size: "lg",
+        },
+    }
+);
 
 type HeadingTag = "h1" | "h2" | "h3" | "h4";
 

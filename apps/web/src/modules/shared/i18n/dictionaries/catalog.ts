@@ -5,6 +5,7 @@ export interface CatalogDictionary {
     description: string;
     allCategories: string;
     empty: string;
+    emptyHint: string;
     productsCount: string;
     categories: string;
     featured: string;
@@ -16,6 +17,8 @@ export const CATALOG: Record<Locale, CatalogDictionary> = {
         description: "Прямые, угловые и модульные диваны с доставкой и гарантией.",
         allCategories: "Все категории",
         empty: "В этой категории пока нет товаров",
+        emptyHint:
+            "Загляните в другую категорию или напишите нам — подберём модель под ваш интерьер.",
         productsCount: "{count} товаров",
         categories: "Категории",
         featured: "Популярные модели",
@@ -25,6 +28,7 @@ export const CATALOG: Record<Locale, CatalogDictionary> = {
         description: "Straight, corner and modular sofas with delivery and warranty.",
         allCategories: "All categories",
         empty: "There are no products in this category yet",
+        emptyHint: "Try another category or get in touch — we will find a model for your home.",
         productsCount: "{count} products",
         categories: "Categories",
         featured: "Popular models",
@@ -34,6 +38,7 @@ export const CATALOG: Record<Locale, CatalogDictionary> = {
         description: "Sofás rectos, de esquina y modulares con entrega y garantía.",
         allCategories: "Todas las categorías",
         empty: "Todavía no hay productos en esta categoría",
+        emptyHint: "Prueba otra categoría o escríbenos: buscaremos un modelo para tu casa.",
         productsCount: "{count} productos",
         categories: "Categorías",
         featured: "Modelos populares",
@@ -43,6 +48,8 @@ export const CATALOG: Record<Locale, CatalogDictionary> = {
         description: "Прямі, кутові та модульні дивани з доставкою та гарантією.",
         allCategories: "Всі категорії",
         empty: "У цій категорії поки немає товарів",
+        emptyHint:
+            "Загляньте в іншу категорію або напишіть нам — підберемо модель під ваш інтер'єр.",
         productsCount: "{count} товарів",
         categories: "Категорії",
         featured: "Популярні моделі",

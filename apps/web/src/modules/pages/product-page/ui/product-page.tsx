@@ -2,13 +2,20 @@ import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import Link from "next/link";
 
+import { PhoneIcon } from "lucide-react";
+
+import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
 import { Container } from "@workspace/ui/components/container";
 import { Heading } from "@workspace/ui/components/heading";
+import { Text } from "@workspace/ui/components/text";
 import { Section } from "@workspace/ui/composites/section";
+import { Stack } from "@workspace/ui/composites/stack";
+import { cn } from "@workspace/ui/lib/utils";
 
 import {
     getCurrency,
+    getDiscountPercent,
     getProductBySlug,
     getProductCategory,
     getProductImages,
@@ -47,7 +54,8 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
     const currency = getCurrency(settings);
     const category = getProductCategory(product);
     const images = getProductImages(product);
-    const [cover, ...thumbnails] = images;
+    const cover = images[0];
+    const discount = getDiscountPercent(product);
     const phone = settings.contacts?.phone;
 
     const related = category
@@ -66,7 +74,7 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
     ];
 
     return (
-        <Container className="py-10">
+        <Container className="py-8 md:py-12">
             <PayloadRedirects disableNotFound url={`/product/${slug}`} locale={locale} />
             {draft && <LivePreviewListener />}
 
@@ -86,25 +94,46 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
 
             <Breadcrumbs items={crumbs} />
 
-            <div className="mt-8 grid gap-10 lg:grid-cols-2">
+            <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-14">
                 <div className="flex flex-col gap-3">
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted">
-                        {cover && (
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted shadow-card">
+                        {cover ? (
                             <Media
                                 resource={cover}
                                 fill
                                 priority
-                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                sizes="(max-width: 1024px) 100vw, 58vw"
                                 imgClassName="object-cover"
                             />
+                        ) : (
+                            <span
+                                aria-hidden
+                                className="flex h-full items-center justify-center bg-hero font-serif text-7xl italic text-primary/40"
+                            >
+                                {product.title.charAt(0)}
+                            </span>
+                        )}
+                        {discount && (
+                            <Badge className="absolute left-4 top-4 shadow-sm">
+                                <span className="sr-only">{dictionary.product.discount} </span>−
+                                {discount}%
+                            </Badge>
                         )}
                     </div>
-                    {thumbnails.length > 0 && (
-                        <ul className="grid grid-cols-4 gap-3">
-                            {thumbnails.map((image) => (
+                    {images.length > 1 && (
+                        <ul
+                            className="grid grid-cols-4 gap-3 sm:grid-cols-5"
+                            aria-label={dictionary.product.gallery}
+                        >
+                            {images.map((image, index) => (
                                 <li
                                     key={image.id}
-                                    className="relative aspect-square overflow-hidden rounded-lg border border-border bg-muted"
+                                    className={cn(
+                                        "relative aspect-square overflow-hidden rounded-xl border-2 bg-muted transition-colors duration-200",
+                                        index === 0
+                                            ? "border-primary"
+                                            : "border-transparent ring-1 ring-border hover:border-primary/50"
+                                    )}
                                 >
                                     <Media
                                         resource={image}
@@ -118,10 +147,22 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
                     )}
                 </div>
 
-                <div className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-3">
-                        <ProductAvailabilityBadge availability={product.availability} />
-                        <Heading as="h1" size="xl">
+                <div className="flex flex-col gap-7 lg:sticky lg:top-24 lg:self-start">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-wrap items-center gap-3">
+                            {category && (
+                                <Text as="span" eyebrow className="text-primary">
+                                    <Link
+                                        href={ROUTES.category(locale, category.slug ?? "")}
+                                        className="underline-offset-4 hover:underline"
+                                    >
+                                        {category.title}
+                                    </Link>
+                                </Text>
+                            )}
+                            <ProductAvailabilityBadge availability={product.availability} />
+                        </div>
+                        <Heading as="h1" size="lg">
                             {product.title}
                         </Heading>
                         <ProductPrice
@@ -132,42 +173,44 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
                         />
                     </div>
 
-                    <div className="flex flex-col gap-3 sm:flex-row">
-                        <Button asChild size="lg" className="w-full sm:w-auto">
+                    <Stack gap="sm">
+                        <Button asChild size="lg" shape="pill" className="w-full">
                             <Link href={ROUTES.contacts(locale, slug)}>
                                 {dictionary.product.contactManager}
                             </Link>
                         </Button>
-                        <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+                        <Button
+                            asChild
+                            size="lg"
+                            variant="outline"
+                            shape="pill"
+                            className="h-auto min-h-12 w-full whitespace-normal py-3 text-center"
+                        >
                             <Link href={ROUTES.register(locale, `product-${slug}`)}>
                                 {dictionary.product.showroomCode}
                             </Link>
                         </Button>
-                    </div>
-                    {phone && (
-                        <a
-                            href={`tel:${phone.replace(/\s+/g, "")}`}
-                            className="text-sm text-muted-foreground underline-offset-4 hover:underline"
-                        >
-                            {dictionary.product.requestQuote}: {phone}
-                        </a>
-                    )}
+                        {phone && (
+                            <a
+                                href={`tel:${phone.replace(/\s+/g, "")}`}
+                                className="mt-1 inline-flex items-center gap-2 self-center text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                            >
+                                <PhoneIcon className="size-4" aria-hidden />
+                                {dictionary.product.requestQuote}: {phone}
+                            </a>
+                        )}
+                    </Stack>
 
-                    <div className="flex flex-col gap-3">
-                        <Heading as="h2" size="sm">
-                            {dictionary.product.specsTitle}
-                        </Heading>
-                        <ProductSpecs specs={product.specs} locale={locale} />
-                    </div>
+                    <ProductSpecs specs={product.specs} locale={locale} />
                 </div>
             </div>
 
             {product.description && (
                 <Section
                     contained={false}
-                    padding="sm"
+                    padding="md"
                     title={dictionary.product.description}
-                    className="mt-8 max-w-[48rem]"
+                    className="max-w-[65ch]"
                 >
                     <RichText data={product.description} enableGutter={false} />
                 </Section>
@@ -176,9 +219,10 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
             {related.length > 0 && (
                 <Section
                     contained={false}
-                    padding="sm"
+                    padding="md"
+                    eyebrow={category?.title}
                     title={dictionary.product.related}
-                    className="mt-4"
+                    className="border-t border-border/70"
                 >
                     <ProductGrid products={related} currency={currency} locale={locale} />
                 </Section>

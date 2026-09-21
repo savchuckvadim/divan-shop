@@ -4,9 +4,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@workspace/ui/lib/utils";
 
-const textVariants = cva("font-sans", {
+const textVariants = cva("font-sans text-pretty", {
     variants: {
         size: {
+            xs: "text-xs leading-relaxed",
             sm: "text-sm leading-relaxed",
             md: "text-base leading-relaxed",
             lg: "text-lg leading-relaxed md:text-xl",
@@ -15,10 +16,20 @@ const textVariants = cva("font-sans", {
             true: "text-muted-foreground",
             false: "text-foreground",
         },
+        eyebrow: {
+            true: "text-[0.7rem] font-medium uppercase leading-none tracking-[0.18em]",
+            false: "",
+        },
+        measure: {
+            true: "max-w-[65ch]",
+            false: "",
+        },
     },
     defaultVariants: {
         size: "md",
         muted: false,
+        eyebrow: false,
+        measure: false,
     },
 });
 
@@ -28,14 +39,15 @@ export interface TextProps extends React.ComponentProps<"p">, VariantProps<typeo
     as?: TextTag;
 }
 
-function Text({ as = "p", className, muted, size, ...props }: TextProps) {
+function Text({ as = "p", className, muted, size, eyebrow, measure, ...props }: TextProps) {
     const Comp = as;
 
     return (
         <Comp
             data-slot="text"
             data-size={size ?? "md"}
-            className={cn(textVariants({ size, muted }), className)}
+            data-eyebrow={eyebrow ? "true" : undefined}
+            className={cn(textVariants({ size, muted, eyebrow, measure }), className)}
             {...props}
         />
     );

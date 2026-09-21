@@ -9,20 +9,22 @@ export const MediaBlock = ({ media }: MediaBlockProps) => {
 
     return (
         <Container>
-            <Media
-                resource={media}
-                sizes="(max-width: 1280px) 100vw, 1280px"
-                imgClassName="w-full rounded-2xl border border-border"
-            />
-            {caption && (
-                <div className="mt-4">
-                    <RichText
-                        data={caption}
-                        enableGutter={false}
-                        className="text-sm text-muted-foreground"
-                    />
-                </div>
-            )}
+            <figure className="flex flex-col gap-4">
+                <Media
+                    resource={media}
+                    sizes="(max-width: 1280px) 100vw, 1280px"
+                    imgClassName="w-full rounded-2xl shadow-card"
+                />
+                {caption && (
+                    <figcaption className="max-w-[65ch]">
+                        <RichText
+                            data={caption}
+                            enableGutter={false}
+                            className="max-w-none text-sm text-muted-foreground"
+                        />
+                    </figcaption>
+                )}
+            </figure>
         </Container>
     );
 };

@@ -24,3 +24,9 @@ export const getProductCategory = (product: Product) =>
 
 export const hasDiscount = (product: Product): boolean =>
     typeof product.oldPrice === "number" && product.oldPrice > product.price;
+
+export const getDiscountPercent = (product: Product): number | null => {
+    if (!hasDiscount(product) || !product.oldPrice) return null;
+    const percent = Math.round((1 - product.price / product.oldPrice) * 100);
+    return percent > 0 ? percent : null;
+};

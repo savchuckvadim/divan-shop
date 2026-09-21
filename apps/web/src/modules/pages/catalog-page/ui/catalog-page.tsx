@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+
 import { Button } from "@workspace/ui/components/button";
 import { Container } from "@workspace/ui/components/container";
 import { PageHeader } from "@workspace/ui/composites/page-header";
@@ -54,17 +56,26 @@ export const CatalogPage = async ({ locale, categorySlug, page = 1 }: CatalogPag
         ...(category ? [{ label: category.title, href: basePath }] : []),
     ];
 
+    const pageLabel = interpolate(common.pageOf, {
+        page: products.page ?? page,
+        total: products.totalPages,
+    });
+
     return (
-        <Container className="py-10">
+        <Container className="py-8 md:py-12">
             <Breadcrumbs items={crumbs} />
 
             <PageHeader
                 className="mt-6"
+                eyebrow={interpolate(catalog.productsCount, { count: products.totalDocs })}
                 title={category?.title ?? catalog.title}
                 description={category?.description || catalog.description}
             />
 
-            <nav aria-label={catalog.categories} className="mt-8 flex flex-wrap gap-2">
+            <nav
+                aria-label={catalog.categories}
+                className="-mx-4 mt-8 flex snap-x gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:-mx-6 sm:px-6 md:mx-0 md:flex-wrap md:overflow-visible md:px-0"
+            >
                 <CategoryChip
                     href={ROUTES.catalog(locale)}
                     label={catalog.allCategories}
@@ -80,36 +91,46 @@ export const CatalogPage = async ({ locale, categorySlug, page = 1 }: CatalogPag
                 ))}
             </nav>
 
-            <p className="mt-8 text-sm text-muted-foreground">
-                {interpolate(catalog.productsCount, { count: products.totalDocs })}
-            </p>
-
             <ProductGrid
-                className="mt-4"
+                className="mt-8"
                 products={products.docs}
                 currency={getCurrency(settings)}
                 locale={locale}
+                emptyDescription={catalog.emptyHint}
+                emptyAction={
+                    category && (
+                        <Button asChild variant="outline" shape="pill">
+                            <Link href={ROUTES.catalog(locale)}>{catalog.allCategories}</Link>
+                        </Button>
+                    )
+                }
             />
 
             {products.totalPages > 1 && (
                 <nav
                     className="mt-12 flex items-center justify-center gap-3"
-                    aria-label="Pagination"
+                    aria-label={pageLabel}
                 >
                     {products.hasPrevPage && products.prevPage && (
-                        <Button asChild variant="outline">
-                            <Link href={pageHref(basePath, products.prevPage)} rel="prev">
-                                ←
+                        <Button asChild variant="outline" size="icon" shape="pill">
+                            <Link
+                                href={pageHref(basePath, products.prevPage)}
+                                rel="prev"
+                                aria-label={common.previousPage}
+                            >
+                                <ChevronLeftIcon aria-hidden />
                             </Link>
                         </Button>
                     )}
-                    <span className="text-sm text-muted-foreground">
-                        {products.page} / {products.totalPages}
-                    </span>
+                    <span className="text-sm tabular-nums text-muted-foreground">{pageLabel}</span>
                     {products.hasNextPage && products.nextPage && (
-                        <Button asChild variant="outline">
-                            <Link href={pageHref(basePath, products.nextPage)} rel="next">
-                                →
+                        <Button asChild variant="outline" size="icon" shape="pill">
+                            <Link
+                                href={pageHref(basePath, products.nextPage)}
+                                rel="next"
+                                aria-label={common.nextPage}
+                            >
+                                <ChevronRightIcon aria-hidden />
                             </Link>
                         </Button>
                     )}

@@ -29,23 +29,22 @@ function PageHeader({
             )}
             {...props}
         >
-            <div className="flex min-w-0 flex-col gap-3">
+            <div className="flex min-w-0 flex-col gap-4">
                 {eyebrow && (
                     <Text
                         as="span"
-                        size="sm"
-                        muted
+                        eyebrow
                         data-slot="page-header-eyebrow"
-                        className="uppercase tracking-wide"
+                        className="text-primary"
                     >
                         {eyebrow}
                     </Text>
                 )}
-                <Heading as="h1" size="xl" className="max-w-[40rem]">
+                <Heading as="h1" size="xl" className="max-w-[16ch]">
                     {title}
                 </Heading>
                 {description && (
-                    <Text size="lg" muted className="max-w-[36rem]">
+                    <Text size="lg" muted className="max-w-[40rem]">
                         {description}
                     </Text>
                 )}

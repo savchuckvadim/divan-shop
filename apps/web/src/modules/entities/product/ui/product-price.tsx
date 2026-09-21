@@ -25,13 +25,25 @@ export const ProductPrice = ({
     const showOld = typeof oldPrice === "number" && oldPrice > price;
 
     return (
-        <p className={cn("flex flex-wrap items-baseline gap-x-3", className)}>
-            <span className={cn("font-semibold", size === "lg" ? "text-3xl" : "text-lg")}>
+        <p className={cn("flex flex-wrap items-baseline gap-x-3 gap-y-1", className)}>
+            <span
+                className={cn(
+                    "tabular-nums tracking-tight",
+                    size === "lg"
+                        ? "font-serif text-4xl font-medium md:text-5xl"
+                        : "text-lg font-semibold"
+                )}
+            >
                 <span className="sr-only">{dictionary.product.price}: </span>
                 {formatPrice(price, currency, locale)}
             </span>
             {showOld && (
-                <span className="text-muted-foreground line-through">
+                <span
+                    className={cn(
+                        "tabular-nums text-muted-foreground line-through decoration-primary/60",
+                        size === "lg" ? "text-lg" : "text-sm"
+                    )}
+                >
                     <span className="sr-only">{dictionary.product.oldPrice}: </span>
                     {formatPrice(oldPrice, currency, locale)}
                 </span>

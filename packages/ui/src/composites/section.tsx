@@ -14,6 +14,7 @@ type SectionHeadingTag = "h1" | "h2" | "h3";
 export interface SectionProps extends Omit<SectionRootProps, "title"> {
     title?: React.ReactNode;
     description?: React.ReactNode;
+    eyebrow?: React.ReactNode;
     actions?: React.ReactNode;
     as?: SectionHeadingTag;
     contained?: boolean;
@@ -29,6 +30,7 @@ const headingSize: Record<SectionHeadingTag, "xl" | "md" | "sm"> = {
 function Section({
     title,
     description,
+    eyebrow,
     actions,
     as = "h2",
     contained = true,
@@ -38,7 +40,7 @@ function Section({
     children,
     ...props
 }: SectionProps) {
-    const hasHeader = Boolean(title || description || actions);
+    const hasHeader = Boolean(title || description || eyebrow || actions);
     const Wrapper = contained ? Container : React.Fragment;
 
     return (
@@ -53,16 +55,26 @@ function Section({
                 {hasHeader && (
                     <div
                         data-slot="section-header"
-                        className="mb-6 flex flex-col gap-3 md:mb-8 md:flex-row md:items-end md:justify-between"
+                        className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between"
                     >
-                        <div className="flex min-w-0 flex-col gap-2">
+                        <div className="flex min-w-0 flex-col gap-3">
+                            {eyebrow && (
+                                <Text
+                                    as="span"
+                                    eyebrow
+                                    data-slot="section-eyebrow"
+                                    className="text-primary"
+                                >
+                                    {eyebrow}
+                                </Text>
+                            )}
                             {title && (
                                 <Heading as={as} size={headingSize[as]}>
                                     {title}
                                 </Heading>
                             )}
                             {description && (
-                                <Text muted className="max-w-[48rem]">
+                                <Text muted measure>
                                     {description}
                                 </Text>
                             )}
@@ -70,7 +82,7 @@ function Section({
                         {actions && (
                             <div
                                 data-slot="section-actions"
-                                className="flex shrink-0 items-center gap-2"
+                                className="flex shrink-0 items-center gap-2 md:pb-1"
                             >
                                 {actions}
                             </div>

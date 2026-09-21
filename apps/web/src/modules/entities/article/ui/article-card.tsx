@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-import { Card, CardContent } from "@workspace/ui/components/card";
+import { ArrowRightIcon } from "lucide-react";
+
+import { Text } from "@workspace/ui/components/text";
+import { Card } from "@workspace/ui/composites/card";
 import { cn } from "@workspace/ui/lib/utils";
 
 import { type Locale, ROUTES } from "@/modules/shared/config";
@@ -24,44 +27,65 @@ export const ArticleCard = ({ article, locale, className, priority }: ArticleCar
     const href = ROUTES.article(locale, article.slug ?? "");
 
     return (
-        <Card className={cn("group flex h-full flex-col overflow-hidden p-0", className)}>
-            {cover && (
-                <Link href={href} className="block" aria-label={article.title} tabIndex={-1}>
-                    <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+        <Card
+            interactive
+            padding="sm"
+            className={cn("h-full", className)}
+            media={
+                <Link
+                    href={href}
+                    className="relative block aspect-[16/10]"
+                    aria-label={article.title}
+                    tabIndex={-1}
+                >
+                    {cover ? (
                         <Media
                             resource={cover}
                             fill
                             priority={priority}
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            imgClassName="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                            imgClassName="object-cover transition-transform duration-700 ease-soft group-hover:scale-[1.04]"
                         />
-                    </div>
+                    ) : (
+                        <span
+                            aria-hidden
+                            className="flex h-full items-center justify-center bg-hero font-serif text-6xl italic text-primary/40"
+                        >
+                            {article.title.charAt(0)}
+                        </span>
+                    )}
                 </Link>
-            )}
-            <CardContent className="flex flex-1 flex-col gap-3 p-5">
-                {article.publishedAt && (
-                    <time
-                        dateTime={article.publishedAt}
-                        className="text-xs uppercase tracking-wide text-muted-foreground"
-                    >
+            }
+            eyebrow={
+                article.publishedAt && (
+                    <time dateTime={article.publishedAt}>
                         {formatDate(article.publishedAt, locale)}
                     </time>
-                )}
-                <h3 className="font-serif text-xl font-medium leading-snug">
-                    <Link href={href} className="hover:underline">
-                        {article.title}
-                    </Link>
-                </h3>
-                {article.excerpt && (
-                    <p className="line-clamp-3 text-sm text-muted-foreground">{article.excerpt}</p>
-                )}
+                )
+            }
+            title={
+                <Link href={href} className="transition-colors hover:text-primary">
+                    {article.title}
+                </Link>
+            }
+            footer={
                 <Link
                     href={href}
-                    className="mt-auto text-sm font-medium underline-offset-4 hover:underline"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
                 >
-                    {blog.readMore} →
+                    {blog.readMore}
+                    <ArrowRightIcon
+                        className="size-4 transition-transform duration-300 ease-soft group-hover:translate-x-0.5"
+                        aria-hidden
+                    />
                 </Link>
-            </CardContent>
+            }
+        >
+            {article.excerpt && (
+                <Text size="sm" muted className="line-clamp-3">
+                    {article.excerpt}
+                </Text>
+            )}
         </Card>
     );
 };

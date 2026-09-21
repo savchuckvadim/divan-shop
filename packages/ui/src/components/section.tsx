@@ -7,9 +7,10 @@ import { cn } from "@workspace/ui/lib/utils";
 const sectionVariants = cva("w-full", {
     variants: {
         padding: {
-            sm: "py-8 md:py-10",
-            md: "py-12 md:py-16",
-            lg: "py-16 md:py-24",
+            none: "py-0",
+            sm: "py-10 md:py-12",
+            md: "py-14 md:py-20",
+            lg: "py-20 md:py-28",
         },
     },
     defaultVariants: {

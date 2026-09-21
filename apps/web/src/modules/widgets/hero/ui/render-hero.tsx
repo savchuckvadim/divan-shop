@@ -1,10 +1,11 @@
+import type { Locale } from "@/modules/shared/config";
 import type { Page } from "@/payload-types";
 
 import { HighImpactHero } from "./high-impact-hero";
 import { LowImpactHero } from "./low-impact-hero";
 import { MediumImpactHero } from "./medium-impact-hero";
 
-export type HeroProps = Page["hero"];
+export type HeroProps = Page["hero"] & { locale: Locale };
 
 const heroes = {
     highImpact: HighImpactHero,
