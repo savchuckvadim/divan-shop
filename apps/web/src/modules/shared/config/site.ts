@@ -5,6 +5,7 @@ export const SITE = {
     homeSlug: "home",
     catalogPageSize: 24,
     blogPageSize: 12,
+    showroomDiscountPercent: 5,
 } as const;
 
 export const CURRENCIES = ["RUB", "USD", "EUR", "UAH"] as const;

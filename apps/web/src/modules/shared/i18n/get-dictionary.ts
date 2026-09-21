@@ -1,6 +1,6 @@
 import type { Locale } from "@/modules/shared/config";
 
-import { BLOG, CATALOG, COMMON, FORM, NOT_FOUND, PRODUCT, SEO } from "./dictionaries";
+import { ACCOUNT, BLOG, CATALOG, COMMON, FORM, NOT_FOUND, PRODUCT, SEO } from "./dictionaries";
 
 export const getDictionary = (locale: Locale) => ({
     common: COMMON[locale],
@@ -10,6 +10,7 @@ export const getDictionary = (locale: Locale) => ({
     seo: SEO[locale],
     notFound: NOT_FOUND[locale],
     blog: BLOG[locale],
+    account: ACCOUNT[locale],
 });
 
 export type Dictionary = ReturnType<typeof getDictionary>;

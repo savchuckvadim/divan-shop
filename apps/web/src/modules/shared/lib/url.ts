@@ -21,3 +21,5 @@ export const getClientSideURL = (): string => {
 };
 
 export const absoluteUrl = (path: string): string => `${getServerSideURL()}${path}`;
+
+export const isSecureServerURL = (): boolean => getServerSideURL().startsWith("https://");

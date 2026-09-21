@@ -15,6 +15,9 @@ export const ROUTES = {
         productSlug
             ? `/${locale}/contacts?product=${encodeURIComponent(productSlug)}#form`
             : `/${locale}/contacts`,
+    account: (locale: Locale) => `/${locale}/account`,
+    login: (locale: Locale) => `/${locale}/account/login`,
+    register: (locale: Locale) => `/${locale}/account/register`,
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;

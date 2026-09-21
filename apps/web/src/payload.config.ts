@@ -6,7 +6,16 @@ import { fileURLToPath } from "url";
 
 import { getServerSideURL } from "@/modules/shared/lib";
 
-import { Articles, Categories, Media, Pages, Products, Users } from "./payload/collections";
+import {
+    Articles,
+    Categories,
+    Customers,
+    Media,
+    Pages,
+    Products,
+    ShowroomVisits,
+    Users,
+} from "./payload/collections";
 import { defaultLexical } from "./payload/fields";
 import { Footer, Header, SiteSettings } from "./payload/globals";
 import { localization } from "./payload/localization";
@@ -33,7 +42,7 @@ export default buildConfig({
         // Dev pushes the schema automatically; production uses migrations unless PAYLOAD_DB_PUSH=true.
         push: process.env.PAYLOAD_DB_PUSH ? process.env.PAYLOAD_DB_PUSH === "true" : undefined,
     }),
-    collections: [Products, Categories, Pages, Articles, Media, Users],
+    collections: [Products, Categories, Pages, Articles, Media, Users, Customers, ShowroomVisits],
     globals: [Header, Footer, SiteSettings],
     cors: [getServerSideURL()].filter(Boolean),
     plugins,
@@ -43,7 +52,7 @@ export default buildConfig({
     jobs: {
         access: {
             run: ({ req }: { req: PayloadRequest }): boolean => {
-                if (req.user) return true;
+                if (req.user?.collection === "users") return true;
                 const secret = process.env.CRON_SECRET;
                 if (!secret) return false;
                 return req.headers.get("authorization") === `Bearer ${secret}`;
