@@ -29,6 +29,8 @@ export const Footer = async ({ locale }: { locale: Locale }) => {
 
                 <nav className="flex flex-col gap-2" aria-label="Footer">
                     <CmsLink type="custom" url={ROUTES.catalog(locale)} label={common.catalog} />
+                    <CmsLink type="custom" url={ROUTES.blog(locale)} label={common.blog} />
+                    <CmsLink type="custom" url={ROUTES.contacts(locale)} label={common.contacts} />
                     {(footer.navItems ?? []).map(({ link }, index) => (
                         <CmsLink key={index} {...link} />
                     ))}

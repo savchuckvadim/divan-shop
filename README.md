@@ -11,13 +11,17 @@ pnpm db:up                                 # PostgreSQL 16 in docker
 pnpm dev                                   # http://localhost:3000, admin at /admin
 ```
 
-On first visit to `/admin` create the first user. Then:
+On first visit to `/admin` create the first user. Then seed the starter content:
 
-1. **Site Settings** → site name, currency, phone, email.
-2. **Categories** → e.g. "Straight sofas", "Corner sofas" (fill titles per locale with the switcher in the top right).
-3. **Products** → title, price, gallery, specs, category. Publish.
-4. **Pages** → create a page with slug `home`, add a hero and a _Product Archive_ block. Publish.
-5. **Header / Footer** → nav links.
+```bash
+pnpm web seed    # site settings, 9 categories, home/about/contacts pages, contact form, 2 articles — in all 4 locales
+```
+
+The seed is idempotent: it skips anything that already exists (by slug / form title) and logs what it created. After that:
+
+1. **Products** → title, price, gallery, specs, category. Publish.
+2. **Site Settings** → replace the placeholder phone, email and address.
+3. **Pages / Articles** → edit the seeded texts, add media.
 
 ## Scripts
 
@@ -26,6 +30,7 @@ On first visit to `/admin` create the first user. Then:
 | `pnpm dev`          | run all apps via turbo                                         |
 | `pnpm web dev`      | run only the web app                                           |
 | `pnpm web generate` | regenerate Payload types + admin import map after schema edits |
+| `pnpm web seed`     | create starter content in the CMS (idempotent)                 |
 | `pnpm typecheck`    | `tsc --noEmit` in every package                                |
 | `pnpm lint`         | eslint in every package                                        |
 | `pnpm format`       | prettier                                                       |

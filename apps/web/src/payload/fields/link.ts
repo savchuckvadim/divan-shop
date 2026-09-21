@@ -13,7 +13,7 @@ interface LinkOptions {
     overrides?: Partial<Omit<GroupField, "fields" | "type">>;
 }
 
-export const LINK_COLLECTIONS = ["pages", "categories", "products"] as const;
+export const LINK_COLLECTIONS = ["pages", "categories", "products", "articles"] as const;
 
 export const link = ({
     appearances,

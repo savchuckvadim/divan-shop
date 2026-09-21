@@ -1,14 +1,14 @@
 import { type Locale, ROUTES } from "@/modules/shared/config";
-import type { Category, Page, Product } from "@/payload-types";
+import type { Article, Category, Page, Product } from "@/payload-types";
 
-export type CmsLinkCollection = "pages" | "categories" | "products";
+export type CmsLinkCollection = "pages" | "categories" | "products" | "articles";
 
 export interface CmsLinkTarget {
     type?: "custom" | "reference" | null;
     url?: string | null;
     reference?: {
         relationTo: CmsLinkCollection;
-        value: Page | Category | Product | string | number;
+        value: Page | Category | Product | Article | string | number;
     } | null;
 }
 
@@ -18,6 +18,8 @@ export const hrefForDoc = (collection: CmsLinkCollection, slug: string, locale: 
             return ROUTES.product(locale, slug);
         case "categories":
             return ROUTES.category(locale, slug);
+        case "articles":
+            return ROUTES.article(locale, slug);
         default:
             return ROUTES.page(locale, slug);
     }

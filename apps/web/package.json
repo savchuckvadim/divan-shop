@@ -13,7 +13,8 @@
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-    "generate": "pnpm generate:types && pnpm generate:importmap"
+    "generate": "pnpm generate:types && pnpm generate:importmap",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run src/payload/seed/run.ts"
   },
   "dependencies": {
     "@payloadcms/admin-bar": "3.90.1",

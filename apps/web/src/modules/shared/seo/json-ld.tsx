@@ -54,6 +54,66 @@ export const organizationJsonLd = ({
     ...(sameAs?.length ? { sameAs } : {}),
 });
 
+export interface ArticleJsonLdArgs {
+    headline: string;
+    description?: string;
+    url: string;
+    image?: string;
+    datePublished?: string | null;
+    dateModified?: string | null;
+    authorName?: string | null;
+    publisherName: string;
+    publisherLogo?: string;
+    inLanguage: string;
+}
+
+export const articleJsonLd = ({
+    headline,
+    description,
+    url,
+    image,
+    datePublished,
+    dateModified,
+    authorName,
+    publisherName,
+    publisherLogo,
+    inLanguage,
+}: ArticleJsonLdArgs): JsonLdData => ({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    ...(description ? { description } : {}),
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    ...(image ? { image: [image] } : {}),
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
+    inLanguage,
+    author: authorName
+        ? { "@type": "Person", name: authorName }
+        : { "@type": "Organization", name: publisherName },
+    publisher: {
+        "@type": "Organization",
+        name: publisherName,
+        ...(publisherLogo ? { logo: { "@type": "ImageObject", url: publisherLogo } } : {}),
+    },
+});
+
+export interface FaqJsonLdItem {
+    question: string;
+    answer: string;
+}
+
+export const faqJsonLd = (items: FaqJsonLdItem[]): JsonLdData => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+});
+
 export interface ProductJsonLdArgs {
     name: string;
     description?: string;

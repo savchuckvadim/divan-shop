@@ -1,6 +1,6 @@
 import { DEFAULT_LOCALE, isLocale, type Locale, ROUTES } from "@/modules/shared/config";
 
-export type PreviewCollection = "pages" | "products" | "categories";
+export type PreviewCollection = "pages" | "products" | "categories" | "articles";
 
 export interface PreviewSearchParams {
     path: string;
@@ -27,6 +27,8 @@ const pathFor = (collection: PreviewCollection, locale: Locale, slug: string): s
             return ROUTES.product(locale, slug);
         case "categories":
             return ROUTES.category(locale, slug);
+        case "articles":
+            return ROUTES.article(locale, slug);
         default:
             return ROUTES.page(locale, slug);
     }
