@@ -1,4 +1,4 @@
-import type { Currency, Locale } from "@/modules/shared/config";
+import { BRAND_NAME, type Currency, type Locale } from "@/modules/shared/config";
 
 export type Localized<T> = Record<Locale, T>;
 
