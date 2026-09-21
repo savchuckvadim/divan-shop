@@ -4,8 +4,7 @@ import { notFound } from "next/navigation";
 
 import { Button } from "@workspace/ui/components/button";
 import { Container } from "@workspace/ui/components/container";
-import { Heading } from "@workspace/ui/components/heading";
-import { Text } from "@workspace/ui/components/text";
+import { PageHeader } from "@workspace/ui/composites/page-header";
 
 import {
     CategoryChip,
@@ -59,14 +58,11 @@ export const CatalogPage = async ({ locale, categorySlug, page = 1 }: CatalogPag
         <Container className="py-10">
             <Breadcrumbs items={crumbs} />
 
-            <div className="mt-6 flex flex-col gap-3">
-                <Heading as="h1" size="xl">
-                    {category?.title ?? catalog.title}
-                </Heading>
-                <Text muted className="max-w-[48rem]">
-                    {category?.description || catalog.description}
-                </Text>
-            </div>
+            <PageHeader
+                className="mt-6"
+                title={category?.title ?? catalog.title}
+                description={category?.description || catalog.description}
+            />
 
             <nav aria-label={catalog.categories} className="mt-8 flex flex-wrap gap-2">
                 <CategoryChip

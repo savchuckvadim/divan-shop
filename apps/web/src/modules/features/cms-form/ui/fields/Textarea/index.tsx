@@ -3,10 +3,10 @@ import React from "react";
 import type { TextField } from "@payloadcms/plugin-form-builder/types";
 import type { FieldErrorsImpl, FieldValues, UseFormRegister } from "react-hook-form";
 
-import { Label } from "@workspace/ui/components/label";
 import { Textarea as TextAreaComponent } from "@workspace/ui/components/textarea";
+import { FormField } from "@workspace/ui/composites/form-field";
 
-import { Error } from "../Error";
+import { useFieldState } from "../../../lib/use-field-state";
 import { Width } from "../Width";
 
 export const Textarea: React.FC<
@@ -15,27 +15,26 @@ export const Textarea: React.FC<
         register: UseFormRegister<FieldValues>;
         rows?: number;
     }
-> = ({ name, defaultValue, errors, label, register, required, rows = 3, width }) => {
+> = ({ name, defaultValue, label, register, required, rows = 3, width }) => {
+    const { error, requiredLabel } = useFieldState(name);
+
     return (
         <Width width={width}>
-            <Label htmlFor={name}>
-                {label}
-
-                {required && (
-                    <span className="required">
-                        * <span className="sr-only">(required)</span>
-                    </span>
-                )}
-            </Label>
-
-            <TextAreaComponent
-                defaultValue={defaultValue}
-                id={name}
-                rows={rows}
-                {...register(name, { required: required })}
-            />
-
-            {errors[name] && <Error name={name} />}
+            <FormField
+                label={label}
+                htmlFor={name}
+                required={required}
+                requiredLabel={requiredLabel}
+                error={error}
+            >
+                <TextAreaComponent
+                    defaultValue={defaultValue}
+                    id={name}
+                    rows={rows}
+                    aria-invalid={Boolean(error)}
+                    {...register(name, { required })}
+                />
+            </FormField>
         </Width>
     );
 };

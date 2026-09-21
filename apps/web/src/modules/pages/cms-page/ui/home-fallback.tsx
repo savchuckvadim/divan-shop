@@ -1,9 +1,8 @@
 import Link from "next/link";
 
 import { Button } from "@workspace/ui/components/button";
-import { Container } from "@workspace/ui/components/container";
-import { Heading } from "@workspace/ui/components/heading";
-import { Text } from "@workspace/ui/components/text";
+import { PageHeader } from "@workspace/ui/composites/page-header";
+import { Section } from "@workspace/ui/composites/section";
 
 import { getCurrency, getProducts, getSiteSettings } from "@/modules/entities";
 import { type Locale, ROUTES } from "@/modules/shared/config";
@@ -23,31 +22,22 @@ export const HomeFallback = async ({ locale }: { locale: Locale }) => {
 
     return (
         <>
-            <section className="bg-secondary/40">
-                <Container className="flex flex-col gap-6 py-20 md:py-28">
-                    <Heading as="h1" size="xl" className="max-w-[40rem]">
-                        {common.tagline}
-                    </Heading>
-                    <Text size="lg" muted className="max-w-[36rem]">
-                        {seo.defaultDescription}
-                    </Text>
-                    <div>
+            <Section padding="lg" className="bg-secondary/40">
+                <PageHeader title={common.tagline} description={seo.defaultDescription}>
+                    <div className="mt-3">
                         <Button asChild size="lg">
                             <Link href={ROUTES.catalog(locale)}>{common.catalog}</Link>
                         </Button>
                     </div>
-                </Container>
-            </section>
-            <Container className="py-16">
-                <Heading as="h2" size="md" className="mb-8">
-                    {catalog.featured}
-                </Heading>
+                </PageHeader>
+            </Section>
+            <Section title={catalog.featured}>
                 <ProductGrid
                     products={products.docs}
                     currency={getCurrency(settings)}
                     locale={locale}
                 />
-            </Container>
+            </Section>
         </>
     );
 };

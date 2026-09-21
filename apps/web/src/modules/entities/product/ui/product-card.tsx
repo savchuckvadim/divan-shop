@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 
-import { Card, CardContent } from "@workspace/ui/components/card";
-import { cn } from "@workspace/ui/lib/utils";
+import { Card } from "@workspace/ui/composites/card";
 
 import { type Currency, ROUTES } from "@/modules/shared/config";
 import { useI18n } from "@/modules/shared/i18n";
@@ -28,9 +27,16 @@ export const ProductCard = ({ product, currency, className, priority }: ProductC
     const href = ROUTES.product(locale, product.slug ?? "");
 
     return (
-        <Card className={cn("group overflow-hidden p-0", className)}>
-            <Link href={href} className="block" aria-label={product.title}>
-                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+        <Card
+            interactive
+            padding="sm"
+            className={className}
+            media={
+                <Link
+                    href={href}
+                    className="relative block aspect-[4/3]"
+                    aria-label={product.title}
+                >
                     {cover && (
                         <Media
                             resource={cover}
@@ -40,31 +46,33 @@ export const ProductCard = ({ product, currency, className, priority }: ProductC
                             imgClassName="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                     )}
-                </div>
-            </Link>
-            <CardContent className="flex flex-col gap-2 p-4">
-                {category && (
+                </Link>
+            }
+            eyebrow={
+                category && (
                     <Link
                         href={ROUTES.category(locale, category.slug ?? "")}
-                        className="text-xs uppercase tracking-wide text-muted-foreground hover:text-foreground"
+                        className="hover:text-foreground"
                     >
                         {category.title}
                     </Link>
-                )}
-                <h3 className="font-serif text-lg font-medium leading-snug">
-                    <Link href={href} className="hover:underline">
-                        {product.title}
-                    </Link>
-                </h3>
-                <div className="mt-auto flex items-center justify-between gap-2">
+                )
+            }
+            title={
+                <Link href={href} className="hover:underline">
+                    {product.title}
+                </Link>
+            }
+            footer={
+                <>
                     <ProductPrice
                         price={product.price}
                         oldPrice={product.oldPrice}
                         currency={currency}
                     />
                     <ProductAvailabilityBadge availability={product.availability} />
-                </div>
-            </CardContent>
-        </Card>
+                </>
+            }
+        />
     );
 };

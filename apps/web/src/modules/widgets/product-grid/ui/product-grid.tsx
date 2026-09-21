@@ -1,4 +1,5 @@
-import { cn } from "@workspace/ui/lib/utils";
+import { CardGrid } from "@workspace/ui/composites/card";
+import { EmptyState } from "@workspace/ui/composites/empty-state";
 
 import { type Product, ProductCard } from "@/modules/entities";
 import type { Currency, Locale } from "@/modules/shared/config";
@@ -21,24 +22,20 @@ export const ProductGrid = ({
 }: ProductGridProps) => {
     if (!products.length) {
         return (
-            <p className="rounded-xl border border-dashed border-border p-10 text-center text-muted-foreground">
-                {emptyText ?? getDictionary(locale).catalog.empty}
-            </p>
+            <EmptyState
+                className={className}
+                title={emptyText ?? getDictionary(locale).catalog.empty}
+            />
         );
     }
 
     return (
-        <ul
-            className={cn(
-                "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
-                className
-            )}
-        >
+        <CardGrid as="ul" cols={4} className={className}>
             {products.map((product, index) => (
                 <li key={product.id}>
                     <ProductCard product={product} currency={currency} priority={index < 4} />
                 </li>
             ))}
-        </ul>
+        </CardGrid>
     );
 };

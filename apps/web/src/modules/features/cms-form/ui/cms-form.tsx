@@ -9,6 +9,7 @@ import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { Button } from "@workspace/ui/components/button";
+import { FormMessage } from "@workspace/ui/composites/form-field";
 
 import { useI18n } from "@/modules/shared/i18n";
 import { getClientSideURL } from "@/modules/shared/lib";
@@ -93,10 +94,10 @@ export const CmsForm = ({ form, enableIntro, introContent }: CmsFormProps) => {
                         <RichText data={confirmationMessage} />
                     )}
                     {error && (
-                        <p className="mb-4 text-sm text-destructive">
+                        <FormMessage variant="error" className="mb-4">
                             {error.status ? `${error.status}: ` : ""}
                             {error.message}
-                        </p>
+                        </FormMessage>
                     )}
                     {!hasSubmitted && (
                         <form id={String(formId)} onSubmit={handleSubmit(onSubmit)}>
