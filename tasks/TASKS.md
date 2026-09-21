@@ -6,6 +6,146 @@
 
 ## Queue
 
+### T-022 · Обёртка над shadcn: composites в @workspace/ui и рефакторинг приложения
+
+- status: in-progress
+- priority: high
+- area: ui
+- source: chat
+- created: 2026-09-21
+- started: 2026-09-21
+- estimate: M
+
+Слой `packages/ui/src/composites` (Card, CardGrid, Section, PageHeader, Stack, Grid, FormField, FormMessage, EmptyState, KeyValueList, Stat) с простым внутренним синтаксисом поверх shadcn-примитивов; приложение использует composites, а не деревья CardHeader/CardTitle/… Пакет A.
+
+Acceptance:
+
+- экспорт `@workspace/ui/composites/*`, README с правилом «composites first»
+- product-card, product-specs, catalog header, not-found, home-fallback, cms-form fields переведены на composites
+- typecheck/lint/format зелёные
+
+### T-023 · Статьи (blog), FAQ-блок, страницы home/about/contacts, seed, CTA «связаться с менеджером»
+
+- status: in-progress
+- priority: high
+- area: cms
+- source: chat
+- created: 2026-09-21
+- started: 2026-09-21
+- estimate: L
+
+Коллекция `articles` + `/{locale}/blog`, FAQ-блок с FAQPage JSON-LD (закрывает T-003), CMS-страницы home/about/contacts и форма «contact-manager» через `pnpm web seed` (закрывает T-002), CTA на товаре ведёт на контакты. Пакет B.
+
+Acceptance:
+
+- `pnpm web seed` идемпотентно создаёт настройки, навигацию, 9 категорий, 3 страницы, форму, 2 статьи на 4 локалях
+- `/es/blog`, `/es/blog/{slug}`, `/es/about`, `/es/contacts` отвечают 200; sitemap включает статьи
+- FAQ-блок валиден в Rich Results Test
+
+### T-024 · Личный кабинет: регистрация, код скидки, запись в шоурум (ADR-0007)
+
+- status: in-progress
+- priority: high
+- area: cms
+- source: chat
+- created: 2026-09-21
+- started: 2026-09-21
+- estimate: L
+
+Auth-коллекция `customers` с персональным кодом `SHOW-XXXX`, коллекция `showroom-visits`, server actions регистрации/входа/выхода, страницы `/account`, `/account/login`, `/account/register`, форма записи на визит. Пакет C.
+
+Acceptance:
+
+- регистрация создаёт клиента с кодом и согласием, вход ставит httpOnly cookie
+- клиент видит свой код, процент и список визитов; может запросить визит
+- доступы: клиент читает только своё, админ всё; страницы noindex
+
+### T-025 · Подсистема управления проектом через документацию
+
+- status: in-progress
+- priority: high
+- area: dx
+- source: chat
+- created: 2026-09-21
+- started: 2026-09-21
+- estimate: L
+
+`docs/ops/project-management.md`, реестр фич `docs/features/*` (Implemented/Planned по коду), `docs/HISTORY.md`, `docs/ideas/`, скиллы `/idea`, `/docs-sync`, `/project-checkin`, доработка `/task-run` и `/task-add`, зеркало задач в Bitrix24 `scripts/pm/b24-tasks-sync.mjs` (только через env), правила в CLAUDE.md. Пакет D.
+
+Acceptance:
+
+- реестр фич совпадает с кодом на дату проверки
+- `node scripts/pm/b24-tasks-sync.mjs --status` без env завершается с exit 0
+- CLAUDE.md содержит правила «всегда актуализировать доку и задачи», «идеи из чата → /idea»
+
+### T-026 · Интеграция пакетов A–D: слияние, header-ссылки (blog, contacts, ЛК), CTA «код на скидку» на товаре, smoke-тест
+
+- status: ready
+- priority: high
+- area: dx
+- source: chat
+- created: 2026-09-21
+- estimate: M
+
+После слияния веток: регенерировать payload-types и importMap, добавить в header ссылки blog/contacts/account (AccountLink из features/auth), на странице товара второй CTA «Посмотреть в шоуруме и получить код» → ROUTES.account, прогнать seed на dev-базе, curl всех новых страниц, обновить docs/features через /docs-sync.
+
+Acceptance:
+
+- typecheck/lint/format зелёные; dev smoke: /es, /es/catalog, /es/blog, /es/about, /es/contacts, /es/account/login → 200
+- T-002, T-003, T-022–T-025 переведены в Done с коммитами
+
+### T-027 · Проект «Divan Shop» в Bitrix24 и первичный push задач (владелец + агент)
+
+- status: draft
+- priority: high
+- area: dx
+- source: chat
+- created: 2026-09-21
+- estimate: S
+
+Владелец создаёт группу/проект в портале и кладёт `B24_WEBHOOK_URL`, `B24_TASKS_GROUP_ID`, `B24_RESPONSIBLE_ID` в `.env.automation`; агент выполняет `--push` и проверяет `--status`. В чате задачи можно открывать/закрывать через MCP b24-portal.
+
+Questions:
+
+- какой портал: april-dev? ID группы; кто ответственный по умолчанию
+
+### T-028 · Email-адаптер (Resend) для писем ЛК и лидов + SPF/DKIM
+
+- status: draft
+- priority: medium
+- area: infra
+- source: chat
+- created: 2026-09-21
+- estimate: S
+
+`@payloadcms/email-resend` (или nodemailer) через env; письма: код скидки после регистрации, подтверждение записи в шоурум, авто-ответ лиду. Ждёт домен.
+
+### T-029 · Веб-версия базы знаний
+
+- status: draft
+- priority: low
+- area: dx
+- source: chat
+- created: 2026-09-21
+- estimate: M
+
+По рекомендации из `docs/ops/project-management.md` (статический экспорт `docs/` в приватный раздел или коллекция в Payload). Решить после накопления 20+ документов.
+
+### T-030 · GA4-события для ЛК и CTA (sign_up, showroom_visit_request, contact_manager_click)
+
+- status: ready
+- priority: medium
+- area: seo
+- source: chat
+- created: 2026-09-21
+- estimate: S
+
+Расширить спецификацию событий из T-006 событиями ЛК; dataLayer.push в формах регистрации и записи.
+
+Acceptance:
+
+- `docs/analytics-events.md` дополнен; события уходят в dataLayer
+
 ### T-004 · Дефолтная локаль es (ADR-0001)
 
 - status: ready
