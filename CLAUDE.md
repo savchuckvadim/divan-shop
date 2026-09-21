@@ -74,6 +74,10 @@ Env: copy `apps/web/.env.example` to `apps/web/.env`.
 - Data on the server via Payload Local API (`getPayloadClient()`), always passing `locale` and `fallbackLocale`. No client-side fetching for catalog pages.
 - No comments unless the WHY is non-obvious.
 
+## Business context & docs
+
+Showroom in Alicante, market Alicante + Torrevieja + Costa Blanca; audience 52% expats (uk/ru/en) + locals (es). Start with `docs/strategy/operating-model.md`; query clusters in `docs/marketing/query-portfolio.md`; decisions (ADR) in `docs/decisions/` — respect them (default locale es per ADR-0001 once T-004 is done, city pages scheme per ADR-0002, leads source of truth per ADR-0004). Cron registry `docs/ops/crons.md` is the only place to add schedules. Raw research with sources: `research/market/`.
+
 ## Task workflow & automation
 
 - Queue: `tasks/TASKS.md` (format in `tasks/README.md`). Add tasks from chat with `/task-add`.
