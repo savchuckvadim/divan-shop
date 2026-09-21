@@ -6,6 +6,40 @@
 
 ## Queue
 
+### T-032 · Визуальный аудит конкурентов и мудборд
+
+- status: ready
+- priority: medium
+- area: ui
+- source: chat
+- idea: docs/ideas/2026-09-21-design-direction.md
+- created: 2026-09-21
+- estimate: M
+
+Открыть через WebFetch 6–8 сайтов из `research/seo/competitors.md` (sofasalicante.com, donbaraton.es, mueblesjbrinas.com, famaliving.com/alicante, natuzzi, kave home, article.com или castlery как DTC-эталон) и для каждого зафиксировать: сетка и ширина, плотность информации на главной и карточке, типы фото, свотчи тканей, блоки доставки/гарантии/FAQ/отзывов, CTA, что выглядит дёшево, что премиально. Свести в `research/design/2026-09-competitor-visual-audit.md`: таблица «есть / нет» по 12 признакам, 5 вещей копировать, 5 вещей избегать, и как это ложится на решение из идеи (A + B + C).
+
+Acceptance:
+
+- файл аудита с таблицей по ≥6 конкурентам и выводами
+- обновлён раздел «Договорённости» в `docs/features/design-system.md` принципами 1–3 из идеи
+- при необходимости 1–3 draft-задачи на конкретные блоки (например, страница тканей, блок «доставка в ваш город» на карточке)
+
+### T-033 · Тест с 5 пользователями после фотосессии hero-моделей
+
+- status: draft
+- priority: medium
+- area: ui
+- source: chat
+- idea: docs/ideas/2026-09-21-design-direction.md
+- created: 2026-09-21
+- estimate: S
+
+Когда есть фото 2–3 hero-моделей и они загружены в CMS: протокол из `docs/playbooks/usability-test.md` (T-019), 3 сценария (найти диван-кровать до 1500 €, узнать доставку в Торревьеху, записаться в шоурум), 3 испаноязычных + 2 экспата, 20 минут каждый. Находки → задачи.
+
+Questions:
+
+- когда будут фото hero-моделей (задача владельца, см. launch-checklist §3)
+
 ### T-027 · Проект «Divan Shop» в Bitrix24 и первичный push задач (владелец + агент)
 
 - status: draft

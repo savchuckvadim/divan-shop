@@ -1,5 +1,8 @@
+/** Brand name: CMS Site Settings → NEXT_PUBLIC_BRAND_NAME → placeholder. Rename = change the env, rebuild. */
+export const BRAND_NAME = process.env.NEXT_PUBLIC_BRAND_NAME?.trim() || "Divan Shop";
+
 export const SITE = {
-    name: "Divan Shop",
+    name: BRAND_NAME,
     defaultOgImage: "/og-default.webp",
     twitterHandle: "",
     homeSlug: "home",

@@ -24,7 +24,8 @@ COPY --from=deps /repo/apps/web/node_modules ./apps/web/node_modules
 COPY --from=deps /repo/packages/ui/node_modules ./packages/ui/node_modules
 COPY . .
 ARG NEXT_PUBLIC_SERVER_URL=http://localhost:3000
-ENV NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL
+ARG NEXT_PUBLIC_BRAND_NAME="Divan Shop"
+ENV NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL NEXT_PUBLIC_BRAND_NAME=$NEXT_PUBLIC_BRAND_NAME
 # Build does not need the database: generateStaticParams fall back to [] when it is unreachable.
 ENV PAYLOAD_SECRET=build-time-placeholder DATABASE_URL=postgres://build:build@localhost:5432/build
 RUN pnpm --filter web build

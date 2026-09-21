@@ -30,11 +30,13 @@ services:
       target: runner
       args:
         NEXT_PUBLIC_SERVER_URL: https://${DOMAIN:?set in deploy/.env.prod}
+        NEXT_PUBLIC_BRAND_NAME: ${BRAND_NAME:-Divan Shop}
     image: divan-web:latest
     restart: unless-stopped
     env_file: apps/web/.env
     environment:
       NEXT_PUBLIC_SERVER_URL: https://${DOMAIN}
+      NEXT_PUBLIC_BRAND_NAME: ${BRAND_NAME:-Divan Shop}
     volumes:
       - media:/app/apps/web/public/media
     depends_on:

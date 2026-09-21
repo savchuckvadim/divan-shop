@@ -6,10 +6,11 @@
 
 1. **Домен** (после нейминга, T-010) с A-записью на VPS; `www` → редирект в Caddyfile.
 2. **VPS** 2 vCPU / 4 GB (Hetzner CX22 ~4 €/мес хватит): Ubuntu 24.04, Docker + compose plugin, `ufw` 22/80/443, пользователь без root.
-3. **Секреты** на сервере, не в репо: `apps/web/.env` (из `.env.example`: `DATABASE_URL=postgres://postgres:<pw>@postgres:5432/divan`, `PAYLOAD_SECRET` 32+ символа, `NEXT_PUBLIC_SERVER_URL=https://домен`, `PREVIEW_SECRET`, `CRON_SECRET`) и `deploy/.env.prod` (`DOMAIN`, `POSTGRES_PASSWORD`).
-4. **Миграции** вместо push-режима: в проде Payload не синхронизирует схему автоматически. Перед релизом локально `pnpm web payload migrate:create` (создаёт `apps/web/src/migrations/`), коммит; на сервере `run --rm tools pnpm payload migrate`. Для самого первого запуска можно временно поставить `PAYLOAD_DB_PUSH=true` в `apps/web/.env` (см. `payload.config.ts`), затем выключить и перейти на миграции.
-5. **Медиа** живут в volume `media` (`/app/apps/web/public/media`). Позже — S3/Backblaze через `@payloadcms/storage-s3`, тогда volume не нужен.
-6. **Email** (T-028): без адаптера письма пишутся в лог контейнера.
+3. **Бренд** задаётся переменной `NEXT_PUBLIC_BRAND_NAME` (build-arg, `BRAND_NAME` в `deploy/.env.prod`); после нейминга меняем значение и пересобираем образ, название в CMS Site Settings правится в админке.
+4. **Секреты** на сервере, не в репо: `apps/web/.env` (из `.env.example`: `DATABASE_URL=postgres://postgres:<pw>@postgres:5432/divan`, `PAYLOAD_SECRET` 32+ символа, `NEXT_PUBLIC_SERVER_URL=https://домен`, `PREVIEW_SECRET`, `CRON_SECRET`) и `deploy/.env.prod` (`DOMAIN`, `POSTGRES_PASSWORD`).
+5. **Миграции** вместо push-режима: в проде Payload не синхронизирует схему автоматически. Перед релизом локально `pnpm web payload migrate:create` (создаёт `apps/web/src/migrations/`), коммит; на сервере `run --rm tools pnpm payload migrate`. Для самого первого запуска можно временно поставить `PAYLOAD_DB_PUSH=true` в `apps/web/.env` (см. `payload.config.ts`), затем выключить и перейти на миграции.
+6. **Медиа** живут в volume `media` (`/app/apps/web/public/media`). Позже — S3/Backblaze через `@payloadcms/storage-s3`, тогда volume не нужен.
+7. **Email** (T-028): без адаптера письма пишутся в лог контейнера.
 
 ## Команды на сервере
 

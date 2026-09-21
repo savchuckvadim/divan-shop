@@ -1,4 +1,4 @@
-import type { Locale } from "@/modules/shared/config";
+import { BRAND_NAME, type Locale } from "@/modules/shared/config";
 
 export interface SeoDictionary {
     defaultTitle: string;
@@ -13,10 +13,10 @@ export interface SeoDictionary {
 
 export const SEO: Record<Locale, SeoDictionary> = {
     ru: {
-        defaultTitle: "Divan Shop — диваны с доставкой",
+        defaultTitle: `${BRAND_NAME} — диваны с доставкой`,
         defaultDescription:
             "Магазин диванов: прямые, угловые и модульные модели. Доставка, гарантия, помощь в подборе.",
-        titleTemplate: "{title} | Divan Shop",
+        titleTemplate: `{title} | ${BRAND_NAME}`,
         catalogTitle: "Каталог диванов — купить диван с доставкой",
         catalogDescription:
             "Все модели диванов в одном каталоге: цены, размеры, материалы. Выберите свой диван.",
@@ -25,10 +25,10 @@ export const SEO: Record<Locale, SeoDictionary> = {
         categoryTitle: "{title} — каталог диванов",
     },
     en: {
-        defaultTitle: "Divan Shop — sofas with delivery",
+        defaultTitle: `${BRAND_NAME} — sofas with delivery`,
         defaultDescription:
             "Sofa store: straight, corner and modular models. Delivery, warranty, help choosing.",
-        titleTemplate: "{title} | Divan Shop",
+        titleTemplate: `{title} | ${BRAND_NAME}`,
         catalogTitle: "Sofa catalog — buy a sofa with delivery",
         catalogDescription: "All sofa models in one catalog: prices, sizes, materials. Pick yours.",
         productTitle: "{title} — buy sofa",
@@ -37,10 +37,10 @@ export const SEO: Record<Locale, SeoDictionary> = {
         categoryTitle: "{title} — sofa catalog",
     },
     es: {
-        defaultTitle: "Divan Shop — sofás con entrega",
+        defaultTitle: `${BRAND_NAME} — sofás con entrega`,
         defaultDescription:
             "Tienda de sofás: modelos rectos, de esquina y modulares. Entrega, garantía, asesoramiento.",
-        titleTemplate: "{title} | Divan Shop",
+        titleTemplate: `{title} | ${BRAND_NAME}`,
         catalogTitle: "Catálogo de sofás — comprar sofá con entrega",
         catalogDescription:
             "Todos los modelos de sofás en un catálogo: precios, medidas, materiales. Elige el tuyo.",
@@ -49,10 +49,10 @@ export const SEO: Record<Locale, SeoDictionary> = {
         categoryTitle: "{title} — catálogo de sofás",
     },
     uk: {
-        defaultTitle: "Divan Shop — дивани з доставкою",
+        defaultTitle: `${BRAND_NAME} — дивани з доставкою`,
         defaultDescription:
             "Магазин диванів: прямі, кутові та модульні моделі. Доставка, гарантія, допомога з вибором.",
-        titleTemplate: "{title} | Divan Shop",
+        titleTemplate: `{title} | ${BRAND_NAME}`,
         catalogTitle: "Каталог диванів — купити диван з доставкою",
         catalogDescription:
             "Усі моделі диванів в одному каталозі: ціни, розміри, матеріали. Оберіть свій диван.",

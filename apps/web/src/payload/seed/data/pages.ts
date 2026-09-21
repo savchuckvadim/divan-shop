@@ -1,4 +1,4 @@
-import { type Locale, ROUTES } from "@/modules/shared/config";
+import { BRAND_NAME, type Locale, ROUTES } from "@/modules/shared/config";
 import type { Page } from "@/payload-types";
 
 import { richText, type RichTextInput } from "../lexical";
@@ -201,10 +201,10 @@ const CONTACTS = {
         uk: "Розкажіть, який диван вас цікавить, і менеджер зв'яжеться з вами в робочий час.",
     },
     metaDescription: {
-        es: "Contacta con Divan Shop: exposición en Alicante, teléfono, WhatsApp y formulario para consultar precio y plazo de cualquier sofá.",
-        en: "Contact Divan Shop: showroom in Alicante, phone, WhatsApp and a form to ask for the price and lead time of any sofa.",
-        ru: "Контакты Divan Shop: шоурум в Аликанте, телефон, WhatsApp и форма, чтобы узнать цену и сроки на любой диван.",
-        uk: "Контакти Divan Shop: шоурум в Аліканте, телефон, WhatsApp і форма, щоб дізнатися ціну та терміни на будь-який диван.",
+        es: `Contacta con ${BRAND_NAME}: exposición en Alicante, teléfono, WhatsApp y formulario para consultar precio y plazo de cualquier sofá.`,
+        en: `Contact ${BRAND_NAME}: showroom in Alicante, phone, WhatsApp and a form to ask for the price and lead time of any sofa.`,
+        ru: `Контакты ${BRAND_NAME}: шоурум в Аликанте, телефон, WhatsApp и форма, чтобы узнать цену и сроки на любой диван.`,
+        uk: `Контакти ${BRAND_NAME}: шоурум в Аліканте, телефон, WhatsApp і форма, щоб дізнатися ціну та терміни на будь-який диван.`,
     },
 };
 

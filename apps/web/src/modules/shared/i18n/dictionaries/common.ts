@@ -1,4 +1,4 @@
-import type { Locale } from "@/modules/shared/config";
+import { BRAND_NAME, type Locale } from "@/modules/shared/config";
 
 export interface CommonDictionary {
     siteName: string;
@@ -28,7 +28,7 @@ export interface CommonDictionary {
 
 export const COMMON: Record<Locale, CommonDictionary> = {
     ru: {
-        siteName: "Divan Shop",
+        siteName: BRAND_NAME,
         tagline: "Диваны, в которых хочется жить",
         cityLine: "Аликанте · Коста-Бланка",
         callUs: "Позвонить",
@@ -53,7 +53,7 @@ export const COMMON: Record<Locale, CommonDictionary> = {
         language: "Язык",
     },
     en: {
-        siteName: "Divan Shop",
+        siteName: BRAND_NAME,
         tagline: "Sofas you want to live in",
         cityLine: "Alicante · Costa Blanca",
         callUs: "Call us",
@@ -78,7 +78,7 @@ export const COMMON: Record<Locale, CommonDictionary> = {
         language: "Language",
     },
     es: {
-        siteName: "Divan Shop",
+        siteName: BRAND_NAME,
         tagline: "Sofás en los que apetece vivir",
         cityLine: "Alicante · Costa Blanca",
         callUs: "Llámanos",
@@ -103,7 +103,7 @@ export const COMMON: Record<Locale, CommonDictionary> = {
         language: "Idioma",
     },
     uk: {
-        siteName: "Divan Shop",
+        siteName: BRAND_NAME,
         tagline: "Дивани, в яких хочеться жити",
         cityLine: "Аліканте · Коста-Бланка",
         callUs: "Зателефонувати",

@@ -8,7 +8,8 @@
     "CRON_SECRET",
     "PREVIEW_SECRET",
     "VERCEL_PROJECT_PRODUCTION_URL",
-    "PAYLOAD_DB_PUSH"
+    "PAYLOAD_DB_PUSH",
+    "NEXT_PUBLIC_BRAND_NAME"
   ],
   "tasks": {
     "build": {

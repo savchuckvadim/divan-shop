@@ -3,7 +3,7 @@ import type { Currency, Locale } from "@/modules/shared/config";
 export type Localized<T> = Record<Locale, T>;
 
 export const SITE_SEED = {
-    siteName: "Divan Shop",
+    siteName: BRAND_NAME,
     currency: "EUR" as Currency,
     phone: "+34 600 000 000",
     email: "hola@divan-shop.es",
