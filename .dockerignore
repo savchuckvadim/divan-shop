@@ -1,0 +1,16 @@
+**/node_modules
+**/.next
+**/.turbo
+.git
+.claude/worktrees
+logs
+data
+research
+docs
+tasks
+content
+apps/web/public/media
+**/.env
+**/.env.*
+!**/.env.example
+*.log

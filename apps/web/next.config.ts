@@ -14,6 +14,7 @@ const serverUrl = new URL(SERVER_URL);
 
 const nextConfig: NextConfig = {
     reactStrictMode: true,
+    output: "standalone",
     agentRules: false,
     transpilePackages: ["@workspace/ui"],
     sassOptions: {

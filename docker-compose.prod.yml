@@ -1,0 +1,81 @@
+# Production stack on one VPS: Caddy (auto-TLS) -> web (Next + Payload) -> postgres.
+# Usage on the server (repo cloned to /srv/divan-shop):
+#   cp apps/web/.env.example apps/web/.env && edit it (DATABASE_URL=postgres://postgres:<pw>@postgres:5432/divan)
+#   cp deploy/.env.prod.example deploy/.env.prod && edit DOMAIN, POSTGRES_PASSWORD
+#   docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml up -d --build
+#   docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml run --rm tools pnpm payload migrate
+#   docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml run --rm tools pnpm seed
+# See docs/ops/deployment.md.
+
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in deploy/.env.prod}
+      POSTGRES_DB: divan
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d divan"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      target: runner
+      args:
+        NEXT_PUBLIC_SERVER_URL: https://${DOMAIN:?set in deploy/.env.prod}
+    image: divan-web:latest
+    restart: unless-stopped
+    env_file: apps/web/.env
+    environment:
+      NEXT_PUBLIC_SERVER_URL: https://${DOMAIN}
+    volumes:
+      - media:/app/apps/web/public/media
+    depends_on:
+      postgres:
+        condition: service_healthy
+    expose:
+      - "3000"
+
+  tools:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      target: tools
+    image: divan-web-tools:latest
+    profiles: ["tools"]
+    env_file: apps/web/.env
+    environment:
+      NEXT_PUBLIC_SERVER_URL: https://${DOMAIN}
+    volumes:
+      - media:/repo/apps/web/public/media
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - web
+
+volumes:
+  pg-data:
+  media:
+  caddy-data:
+  caddy-config:

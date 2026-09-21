@@ -13,3 +13,5 @@ apps/web/public/media
 .env.automation
 logs/
 .claude/worktrees/
+deploy/.env.prod
+backups/
