@@ -1,0 +1,14 @@
+node_modules
+.next
+.turbo
+dist
+*.log
+.env
+.env.*
+!.env.example
+apps/web/public/media
+.DS_Store
+
+# automation
+.env.automation
+logs/

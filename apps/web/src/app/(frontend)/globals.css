@@ -1,0 +1,12 @@
+@import "@workspace/ui/globals.css";
+
+@plugin "@tailwindcss/typography";
+@config "../../../tailwind.config.mjs";
+
+.payload-richtext > :first-child {
+    margin-top: 0;
+}
+
+.payload-richtext > :last-child {
+    margin-bottom: 0;
+}

@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: divan-pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: divan
+    ports:
+      - "5432:5432"
+    volumes:
+      - divan-pg-data:/var/lib/postgresql/data
+
+volumes:
+  divan-pg-data:
