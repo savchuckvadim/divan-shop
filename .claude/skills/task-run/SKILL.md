@@ -50,7 +50,7 @@ All must pass. If `apps/web/.env` exists and Postgres answers, additionally star
 
 ## 6. Docs sync
 
-Run the protocol in `.claude/skills/docs-sync/SKILL.md` for every area the diff touched (path → area map in `docs/features/README.md`): move the T-ID from **Planned** to **Implemented** in `docs/features/<area>.md` with today's date and the commit hash, prepend a `docs/HISTORY.md` entry if a trap cost you time, fix pointers (`tasks/README.md`, `docs/README.md`, `CLAUDE.md`, `docs/ops/crons.md`) if structure changed, and reconcile the "Known drift" list in `.claude/skills/project-checkin/SKILL.md`. Do it on the task branch before the merge when the task is green (then merge); on `main` as a docs-only commit when the task ended `blocked` but shipped something. Commit: `docs(features): sync <area> after T-NNN`. Put the ≤10-line summary into the report under `## Docs`.
+Run the protocol in `.claude/skills/docs-sync/SKILL.md` for every area the diff touched (path → area map in `docs/features/README.md`): move the T-ID from **Planned** to **Implemented** in `docs/features/<area>.md` with today's date and the commit hash, prepend a `docs/HISTORY.md` entry if a trap cost you time, fix pointers (`tasks/README.md`, `docs/README.md`, `CLAUDE.md`, `docs/ops/crons.md`) if structure changed, and reconcile the "Known drift" list in `.claude/skills/project-checkin/SKILL.md`. Run it on `main` right after the merge as a docs-only commit (also when the task ended `blocked` but shipped something); the `commit:` hash recorded in step 5 stays the feature commit. Commit: `docs(features): sync <area> after T-NNN`. Put the ≤10-line summary into the report under `## Docs`.
 
 ## 7. Report
 

@@ -14,7 +14,10 @@ const main = async () => {
     }
 };
 
-main().catch((error: unknown) => {
+// Top-level await: `payload run` awaits the module import, so the process must not exit before seeding ends.
+try {
+    await main();
+} catch (error) {
     console.error(error);
     process.exit(1);
-});
+}

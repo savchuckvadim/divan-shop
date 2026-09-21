@@ -15,7 +15,7 @@ import {
 } from "@workspace/ui/components/select";
 import { Textarea } from "@workspace/ui/components/textarea";
 
-import { VISIT_TIME_OPTIONS } from "@/modules/entities/customer/lib/visit-helpers";
+import { VISIT_TIMES } from "@/modules/shared/config";
 import { useI18n } from "@/modules/shared/i18n";
 import { FormField } from "@/modules/shared/ui/form-field";
 
@@ -62,7 +62,7 @@ export const RequestVisitForm = ({ minDate, productId }: RequestVisitFormProps) 
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                            {VISIT_TIME_OPTIONS.map((time) => (
+                            {VISIT_TIMES.map((time) => (
                                 <SelectItem key={time} value={time}>
                                     {account[time]}
                                 </SelectItem>

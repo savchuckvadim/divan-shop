@@ -15,7 +15,8 @@ if (-not $pwsh) { $pwsh = (Get-Command powershell).Source }
 
 $tasks = @(
     @{ Name = "DivanShop Daily Agent";  Args = "-Skill task-run";     Trigger = New-ScheduledTaskTrigger -Daily -At $DailyAt },
-    @{ Name = "DivanShop SEO Research"; Args = "-Skill seo-research"; Trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At $WeeklyAt }
+    @{ Name = "DivanShop SEO Research"; Args = "-Skill seo-research"; Trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At $WeeklyAt },
+    @{ Name = "DivanShop Project Checkin"; Args = "-Skill project-checkin"; Trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Friday -At $WeeklyAt }
 )
 
 foreach ($task in $tasks) {

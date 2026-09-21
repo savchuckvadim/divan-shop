@@ -17,3 +17,4 @@ logs/
 deploy/.env.prod
 backups/
 tasks/.b24-map.json
+**/tsconfig.tsbuildinfo

@@ -9,7 +9,7 @@ export interface EmptyStateProps extends Omit<React.ComponentProps<"div">, "titl
     description?: React.ReactNode;
     icon?: React.ReactNode;
     action?: React.ReactNode;
-    as?: "h1" | "h2" | "h3";
+    as?: "h1" | "h2" | "h3" | "p";
 }
 
 function EmptyState({
@@ -39,9 +39,13 @@ function EmptyState({
                 </div>
             )}
             <div className="flex max-w-[36rem] flex-col gap-2">
-                <Heading as={as} size={as === "h1" ? "lg" : "sm"}>
-                    {title}
-                </Heading>
+                {as === "p" ? (
+                    <Text className="font-medium text-foreground">{title}</Text>
+                ) : (
+                    <Heading as={as} size={as === "h1" ? "lg" : "sm"}>
+                        {title}
+                    </Heading>
+                )}
                 {description && <Text muted>{description}</Text>}
             </div>
             {action && (

@@ -11,6 +11,9 @@
 - Блоки (`payload/blocks`): `content.ts` (колонки с richText + link), `call-to-action.ts` (richText + links), `media-block.ts`, `product-archive.ts` (`populateBy` collection/selection, `categories`, `limit`, `selectedDocs`), `form-block.ts` (`form` relationship → `forms`, `enableIntro`, `introContent`).
 - Поля: `fields/link.ts` (`type` reference/custom, `newTab`, `appearance`), `link-group.ts`, `default-lexical.ts` (`defaultLexical`, `richTextEditor(headings)`), `seo-tab.ts`.
 - Плагины (`payload/plugins/index.ts`): `redirects` (для `pages`, `products`; afterChange → `revalidateRedirects`), `seo`, `form-builder` (без payment/country/state; `confirmationMessage` с редактором h1–h4).
+- **Статьи** (T-023, 2026-09-21, COMMIT_PLACEHOLDER): `collections/articles.ts` (slug `articles`; `title`/`excerpt`/`content` localized, `cover`, `author` → users, `publishedAt`, SEO-таб, drafts + autosave + live preview, ревалидация `ROUTES.article` + индекса блога только при публичных изменениях); `articles` добавлены в `LINK_COLLECTIONS`, redirects, seo `generateURL`, `hrefForDoc`, preview paths.
+- **FAQ-блок** (T-003 через T-023): `blocks/faq.ts` (`title`, `items[] {question, answer richText}`, localized) в `pages.layout`; рендер `widgets/page-blocks/ui/faq-block.tsx` (`<details>`) + JSON-LD `FAQPage` (`faqJsonLd`, `lexicalToPlainText` в `shared/lib`).
+- **Seed** (`pnpm web seed` → `payload run src/payload/seed/run.ts`, идемпотентно по slug/title, пишет default-локаль и затем остальные): Site Settings, форма `contact-manager` (имя, телефон, email, сообщение, согласие), 9 категорий кластера B, страницы `home` (hero + productArchive + faq + cta), `about`, `contacts` (hero + formBlock), навигация header/footer, 2 статьи на es. Плагин form-builder: `fields`, `submitButtonLabel`, `confirmationMessage` localized. Локальную БД при смене схемы сбрасывает `scripts/ops/reset-dev-db.mjs`.
 - Preview: `app/(frontend)/next/preview/route.ts` (проверка `PREVIEW_SECRET` + авторизации Payload, `draftMode().enable()`, safe redirect), `next/exit-preview/route.ts`.
 
 ### Рендер (`apps/web/src/modules`)
@@ -22,16 +25,16 @@
 - `widgets/header` (server `Header` → client `HeaderClient`: логотип, `navItems` через `CmsLink`, ссылка в каталог, телефон из Site Settings, `LocaleSwitcher`, мобильное меню), `widgets/footer` (nav, соцсети, copyright).
 - `shared/ui`: `Media` (`ImageMedia` с `next/image` + `sizes`, `VideoMedia`), `RichText` (Lexical → React, `enableGutter`, prose-классы), `CmsLink` (`appearance` inline / button variants, `newTab`, `hrefForDoc` для reference-ссылок), `AdminBar` (`@payloadcms/admin-bar`, только в preview), `LivePreviewListener` (`@payloadcms/live-preview-react`).
 - `pages/not-found-page`: 404 из словаря `not-found`.
+- **Блог** (T-023): `entities/article` (`getArticles` с `draft`/`overrideAccess`, `getArticleBySlug`, `getArticleSlugs`, `ArticleCard`), `widgets/article-list`, `pages/blog-page` (пагинация, noindex для page>1) и `pages/article-page` (обложка, автор/дата, RichText, JSON-LD `Article`, 3 связанных), роуты `/[locale]/blog` и `/[locale]/blog/[slug]`, sitemap; словарь `blog`; ссылки «Блог», «Контакты» в header/footer из словаря `common`; `ROUTES.blog/article/about/contacts(locale, productSlug?)`.
+- `generateStaticParams` всех динамических роутов обёрнуты в `safeStaticParams` (`shared/lib/static-params.ts`): без БД (Docker build) возвращают `[]`.
 
 ## Planned
 
-- **T-002** · страница «Контакты» (`contacts`): hero low impact с адресом/телефоном из Site Settings + `formBlock` «Заявка»; `ROUTES.contacts`; CTA товара → `/{locale}/contacts#form`; `pnpm web seed:contacts`.
-- **T-003** · блок `faq` (вопрос/ответ, localized) + `faq-block.tsx` с `<details>` и JSON-LD `FAQPage` — в работе, пакет B.
 - **T-007** · страница шоурума `/{locale}/showroom` (slug по локали из `ROUTES`), расширение Site Settings (адрес структурно, geo, openingHours, mapsUrl, sameAs[]), JSON-LD `FurnitureStore` с `@id` и `areaServed`, ссылка в header/footer.
 - **T-011** · городские страницы из коллекции `locations` (ADR-0002) — см. также [catalog.md](./catalog.md).
 - **T-014a** · юридические страницы (Aviso legal, Privacidad, Cookies, Envíos/devoluciones/garantía, Condiciones) как seed на 4 локалях, реквизиты из Site Settings (`razón social`, `NIF`, `Registro Mercantil`), ссылки в футере.
-- **T-016** · коллекция `articles` или pages с тегом blog, `/{locale}/blog`, `/{locale}/blog/{slug}`, sitemap; ADR-0009 — в работе, пакет B (articles/blog/seed).
-- Сид базовых страниц («О нас», главная `home`, «Статьи») с блоками на 4 локалях — в работе, пакет B; после — T-ID здесь.
+- **T-016** · контент-операции поверх готового блога: `docs/content/content-plan.md`, `editorial-policy.md`, шаблон брифа, скилл `/content-brief`, `llms.txt`.
+- Медиа для seed (обложки статей, hero, OG) — загружает редактор; seed медиа не создаёт.
 - **T-021** · партнёрская страница `/en/partners-real-estate` + коллекция `partners` (draft, ждёт решения о комиссии).
 
 ## Договорённости

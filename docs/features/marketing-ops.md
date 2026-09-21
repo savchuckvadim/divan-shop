@@ -22,7 +22,7 @@
 
 - **T-001** · владелец: секция Market в `competitors.md`, hero-модели и цифры в `targets.md`.
 - **T-010** · нейминг-спринт: скилл `/naming`, `scripts/check-name.mjs`, `research/naming/candidates.md` (50 кандидатов, шортлист 5).
-- **T-016** · `docs/content/content-plan.md` (12 недель кластера F), `docs/content/editorial-policy.md` (E-E-A-T, llms.txt), `content/briefs/_template.md`, скилл `/content-brief`, первая статья «cómo elegir sofá» draft на es; ADR-0009 (articles vs pages) — в работе, пакет B (articles/blog/seed/FAQ).
+- **T-016** · `docs/content/content-plan.md` (12 недель кластера F), `docs/content/editorial-policy.md` (E-E-A-T, llms.txt), `content/briefs/_template.md`, скилл `/content-brief`, первая статья «cómo elegir sofá» draft на es; решение articles vs pages закрыто: коллекция `articles` и `/blog` реализованы в T-023 (см. cms-pages.md).
 - **T-019** · `research/feedback/README.md`, плейбуки `docs/playbooks/{weekly-growth-review,usability-test,jtbd-interview,review-reply}.md`, `docs/experiments/log.md`.
 - **T-013** · `/weekly-growth-review` → `reports/weekly/`, `docs/kpi/dashboard.md`.
 - **T-012** · метрики `data/metrics/*` + `config/metrics/targets.json` (пороги из `targets.md`).

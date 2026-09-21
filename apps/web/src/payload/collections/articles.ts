@@ -14,8 +14,9 @@ export const ARTICLES_CACHE_TAG = "articles";
 
 const { afterChange, afterDelete } = createRevalidateHooks(ROUTES.article, ARTICLES_CACHE_TAG);
 
-const revalidateBlogIndex: CollectionAfterChangeHook<Article> = ({ doc, req }) => {
-    if (!req.context.disableRevalidate) {
+const revalidateBlogIndex: CollectionAfterChangeHook<Article> = ({ doc, previousDoc, req }) => {
+    const wasPublic = doc._status === "published" || previousDoc?._status === "published";
+    if (!req.context.disableRevalidate && wasPublic) {
         for (const locale of LOCALES) {
             revalidatePath(ROUTES.blog(locale));
         }

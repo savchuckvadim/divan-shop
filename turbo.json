@@ -7,7 +7,8 @@
     "NEXT_PUBLIC_SERVER_URL",
     "CRON_SECRET",
     "PREVIEW_SECRET",
-    "VERCEL_PROJECT_PRODUCTION_URL"
+    "VERCEL_PROJECT_PRODUCTION_URL",
+    "PAYLOAD_DB_PUSH"
   ],
   "tasks": {
     "build": {

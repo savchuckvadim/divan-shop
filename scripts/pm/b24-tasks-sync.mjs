@@ -250,12 +250,14 @@ const createClient = ({ webhookUrl, groupId, responsibleId }) => {
 
     const completeTask = (taskId) => call("tasks.task.complete", { taskId });
 
+    const renewTask = (taskId) => call("tasks.task.renew", { taskId });
+
     const addComment = (taskId, message) =>
         call("task.commentitem.add", { TASKID: taskId, FIELDS: { POST_MESSAGE: message } });
 
     const taskUrl = (taskId) => `${origin}/workgroups/group/${groupId}/tasks/task/view/${taskId}/`;
 
-    return { listGroupTasks, addTask, updateTask, completeTask, addComment, taskUrl };
+    return { listGroupTasks, addTask, updateTask, completeTask, renewTask, addComment, taskUrl };
 };
 
 const rebuildMap = async (client, map) => {
@@ -368,14 +370,16 @@ const pushCommand = async ({ client, tasks, map, dryRun }) => {
         }
 
         const fields = {};
-        if (remote.status !== status) fields.STATUS = status;
+        const needsRenew = isRemoteDone(remote.status);
+        if (!needsRenew && remote.status !== status) fields.STATUS = status;
         if (remote.priority !== priority) fields.PRIORITY = priority;
         if (remote.title !== b24Title(task)) fields.TITLE = b24Title(task);
-        if (Object.keys(fields).length > 0) {
+        if (needsRenew || Object.keys(fields).length > 0) {
             actions.push({
                 type: "update",
                 task,
                 b24Id,
+                renew: needsRenew,
                 fields,
                 comment:
                     fields.STATUS === B24_STATUS.deferred
@@ -407,7 +411,13 @@ const pushCommand = async ({ client, tasks, map, dryRun }) => {
             map.tasks[action.task.id] = id;
             console.log(`- ${label}: ${client.taskUrl(id)}`);
         } else if (action.type === "update") {
-            await client.updateTask(action.b24Id, action.fields);
+            if (action.renew) {
+                await client.renewTask(action.b24Id);
+                await sleep(REQUEST_GAP_MS);
+            }
+            if (Object.keys(action.fields).length > 0) {
+                await client.updateTask(action.b24Id, action.fields);
+            }
             if (action.comment) {
                 await sleep(REQUEST_GAP_MS);
                 await client.addComment(action.b24Id, action.comment);

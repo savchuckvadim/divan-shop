@@ -12,6 +12,7 @@ export interface GetArticlesArgs {
     page?: number;
     limit?: number;
     excludeIds?: (string | number)[];
+    draft?: boolean;
 }
 
 export const getArticles = cache(
@@ -20,12 +21,15 @@ export const getArticles = cache(
         page = 1,
         limit = SITE.blogPageSize,
         excludeIds,
+        draft = false,
     }: GetArticlesArgs): Promise<PaginatedDocs<Article>> => {
         const payload = await getPayloadClient();
         return payload.find({
             collection: "articles",
             locale,
             fallbackLocale: DEFAULT_LOCALE,
+            draft,
+            overrideAccess: draft,
             depth: 1,
             limit,
             page,

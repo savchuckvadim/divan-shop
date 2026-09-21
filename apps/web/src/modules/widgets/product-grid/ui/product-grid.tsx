@@ -23,6 +23,7 @@ export const ProductGrid = ({
     if (!products.length) {
         return (
             <EmptyState
+                as="p"
                 className={className}
                 title={emptyText ?? getDictionary(locale).catalog.empty}
             />

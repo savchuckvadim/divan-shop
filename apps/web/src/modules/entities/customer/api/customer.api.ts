@@ -1,5 +1,7 @@
 import { cache } from "react";
 
+import "server-only";
+
 import { getPayloadClient } from "@/modules/shared/api";
 
 import type { Customer, ShowroomVisit } from "../type/customer.type";

@@ -22,7 +22,9 @@
 ### Скрипты (`scripts/`)
 
 - `daily-agent.ps1 [-Skill task-run|seo-research] [-MaxTurns 200]` — грузит `.env.automation` в process env, запускает `claude -p "/<skill>" --permission-mode acceptEdits`, лог в `logs/<skill>-<stamp>.log`, при ненулевом выходе шлёт Telegram.
-- `install-schedule.ps1 [-DailyAt "09:00"] [-Remove]` — регистрирует Windows Scheduled Tasks «DivanShop Daily Agent» (ежедневно 09:00, task-run) и «DivanShop SEO Research» (пн 08:00).
+- `install-schedule.ps1 [-DailyAt "09:00"] [-Remove]` — регистрирует Windows Scheduled Tasks «DivanShop Daily Agent» (ежедневно 09:00, task-run), «DivanShop SEO Research» (пн 08:00) и «DivanShop Project Checkin» (пт 08:00); `daily-agent.ps1` принимает `-Skill task-run|seo-research|project-checkin` (2026-09-21).
+- `ops/reset-dev-db.mjs` — сброс схемы `public` ЛОКАЛЬНОЙ базы (отказ для нелокальных хостов), когда drizzle push задаёт интерактивный вопрос «create or rename». `ops/backup.sh` — ночной дамп БД + медиа для прод-сервера.
+- Деплой (2026-09-21): `apps/web/Dockerfile` (multi-stage, `output: "standalone"`, target `tools` для миграций/seed), `docker-compose.prod.yml` (postgres + web + caddy), `deploy/Caddyfile`, `docs/ops/deployment.md`; `PAYLOAD_DB_PUSH` переключает push-режим в проде.
 - `telegram-notify.mjs --text | --file` — Bot API `sendMessage`, обрезка до 3900 символов; `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` из env или `.env.automation`; без токена exit 2.
 - `pm/b24-tasks-sync.mjs --status | --push [--dry-run] | --close T-NNN [--comment file]` — парсит `TASKS.md` (id, title, section, status, priority, area, estimate, description, acceptance, markdown), карта `tasks/.b24-map.json` (git-ignored) пересобирается через `tasks.task.list` (`GROUP_ID` + `%TITLE` = `[T-`), создаёт `tasks.task.add` `[T-NNN] title` с описанием-блоком, синхронизирует `STATUS` (draft/ready → 2, in-progress → 3, blocked → 6 + комментарий, done → `tasks.task.complete` + комментарий с отчётом/коммитом) и `PRIORITY` (high → 2); комментарии `task.commentitem.add`; пауза 550 мс между вызовами; без `B24_WEBHOOK_URL` / `B24_TASKS_GROUP_ID` / `B24_RESPONSIBLE_ID` печатает `B24 not configured, skipping`, exit 0. Документация `scripts/pm/README.md`.
 - Env-контракт: `.env.automation.example` (Telegram + B24), реальный `.env.automation` git-ignored.
@@ -40,7 +42,8 @@
 - **T-016** · скилл `/content-brief`.
 - **T-020** · `/social-pack` + `scripts/pinterest-publish.mjs` (draft, фаза 1).
 - **T-017** · IndexNow-хук (см. site-core).
-- `project-checkin` в расписание: строка в `docs/ops/crons.md` (еженедельно, claude-слой в рамках лимита ADR-0008) и регистрация в `install-schedule.ps1` — `.ps1` редактирует человек (deny для агента); задачи нет, завести через `/task-add` после первого ручного прогона.
+- **T-027** · проект в Bitrix24 и первый `--push` (владелец даёт `B24_*` в `.env.automation`).
+- **T-029** · веб-версия базы знаний (рекомендация A из `project-management.md`).
 - `cron-registry-lint` (вс 04:00) — сверка `crons.md` с планировщиком; скрипта нет.
 - Перенос node-кронов с Windows Task Scheduler на VPS/GitHub Actions (ADR-0008) — после T-018.
 - Лиды → Bitrix24 (`crm.item.add`, ретраи) — T-005d, см. [leads-and-account.md](./leads-and-account.md).

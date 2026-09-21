@@ -17,7 +17,10 @@ export const ROUTES = {
             : `/${locale}/contacts`,
     account: (locale: Locale) => `/${locale}/account`,
     login: (locale: Locale) => `/${locale}/account/login`,
-    register: (locale: Locale) => `/${locale}/account/register`,
+    register: (locale: Locale, from?: string) =>
+        from
+            ? `/${locale}/account/register?from=${encodeURIComponent(from)}`
+            : `/${locale}/account/register`,
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;

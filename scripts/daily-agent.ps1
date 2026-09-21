@@ -2,7 +2,7 @@
 # Registered in Windows Task Scheduler by scripts/install-schedule.ps1.
 # Usage: pwsh scripts/daily-agent.ps1 [-Skill task-run|seo-research] [-MaxTurns 200]
 param(
-    [ValidateSet("task-run", "seo-research")]
+    [ValidateSet("task-run", "seo-research", "project-checkin")]
     [string]$Skill = "task-run",
     [int]$MaxTurns = 200
 )

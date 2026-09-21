@@ -10,7 +10,7 @@
 - `apps/web` — Next 16.3 (App Router) + Payload 3.90 в одном приложении: сайт на `/`, админка `/admin`, REST `/api`, GraphQL `/api/graphql` (`apps/web/src/app/(payload)/**` — сгенерировано, не редактируется).
 - Пакеты: `@workspace/ui` (дизайн-система, см. [design-system.md](./design-system.md)), `@workspace/eslint-config` (`./base`, `./next-js`), `@workspace/prettier-config` (4 пробела, двойные кавычки, width 100, sorted imports через `@trivago/prettier-plugin-sort-imports`), `@workspace/typescript-config` (`base`, `nextjs`, `react-library`).
 - Корневые скрипты: `pnpm dev`, `build`, `lint`, `typecheck`, `format`, `format:check`, `web` (фильтр), `db:up` / `db:down` (`docker-compose.yml`: PostgreSQL 16).
-- Env приложения: `apps/web/.env.example` — `DATABASE_URL`, `PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL`, `CRON_SECRET`, `PREVIEW_SECRET`; типы в `apps/web/src/environment.d.ts`.
+- Env приложения: `apps/web/.env.example` — `DATABASE_URL`, `PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL`, `CRON_SECRET`, `PREVIEW_SECRET`, `PAYLOAD_DB_PUSH` (только прод, первый деплой без миграций); типы в `apps/web/src/environment.d.ts`.
 
 ### FSD-слои (`apps/web/src/modules`)
 

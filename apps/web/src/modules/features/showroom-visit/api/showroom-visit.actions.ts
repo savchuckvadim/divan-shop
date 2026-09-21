@@ -3,8 +3,9 @@
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
-import { getCurrentCustomer, isVisitTime } from "@/modules/entities/customer";
+import { getCurrentCustomer } from "@/modules/entities/customer";
 import { getPayloadClient } from "@/modules/shared/api";
+import { isVisitTime } from "@/modules/shared/config";
 import { DEFAULT_LOCALE, isLocale, ROUTES } from "@/modules/shared/config";
 
 import type { VisitFormState } from "../type/showroom-visit.type";

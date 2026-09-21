@@ -80,7 +80,7 @@ Persistent mismatches we know about and accept for now. `/docs-sync` removes a l
 - `docs/strategy/targets.md` hero-model table and `research/seo/competitors.md` Market section are empty — owner input (T-001).
 - `docs/ops/crons.md` lists many crons with status `phase0/1/2` whose scripts/skills do not exist yet; only `task-run` and `seo-research` are registered in `scripts/install-schedule.ps1`.
 - `.env.automation.example` is matched by `.gitignore` (`.env.*`) — it is tracked only because of the explicit `!.env.automation.example` exception; keep the exception when editing `.gitignore`.
-- `docs/features/*.md` Planned sections mention "пакет A/B/C" for work in flight outside the task queue; replace with T-IDs when those packages land.
+- Packages A–D (T-022–T-025) merged 2026-09-21; make sure `docs/features/*.md` Implemented sections keep matching the Done section of `tasks/TASKS.md`.
 
 ## Rules
 

@@ -9,11 +9,12 @@
 - Корневой баррель `src/index.ts` реэкспортирует все компоненты и `cn`; в приложении принято импортировать по файлам `@workspace/ui/components/<name>` (CLAUDE.md).
 - Потребитель: `apps/web/src/app/(frontend)/globals.css` импортирует `@workspace/ui/globals.css` и `@plugin "@tailwindcss/typography"`; `postcss.config.js` приложения → `@tailwindcss/postcss`.
 - Линт/типы: `eslint.config.js` на `@workspace/eslint-config`, `tsconfig.json` на `react-library`; `pnpm lint` / `pnpm typecheck` через turbo.
+- **Композиты** (T-022, 2026-09-21, COMMIT_PLACEHOLDER) `src/composites/*`, экспорт `./composites/*` и из корневого барреля: `Card` (`title`/`description`/`media`/`actions`/`footer`/`padding`/`interactive`) + `CardGrid` (`cols` 2/3/4, `as`), `Section` (`title`/`description`/`actions`/`padding`/`contained`/`as`), `PageHeader` (h1, `eyebrow`), `Stack`/`Grid`, `FormField` (Label + child + hint/error + required-маркер) и `FormMessage` (`error`/`success`/`info`), `EmptyState` (`as` h1/h2/h3/p), `KeyValueList`, `Stat`. Правило «composites first» в `packages/ui/README.md`, таблица использования в `src/composites/README.md`, `@source "../composites"` в `globals.css`. В корневом барреле shadcn-примитивы `Card`/`Section` доступны как `CardPrimitive`/`SectionPrimitive`. Приложение переведено: `product-card`, `product-specs` (KeyValueList), `product-page`/`home-fallback` (Section, PageHeader), `catalog-page` (PageHeader), `not-found-page` и пустой каталог (EmptyState), `product-grid` (CardGrid), поля `cms-form` (FormField + `lib/use-field-state.ts`, компонент `Error` удалён в пользу FormMessage).
 
 ## Planned
 
-- Слой **композитов** — обёртка над shadcn с внутренним синтаксисом приложения (например, `Card` с `title` / `description` / `footer` пропсами вместо ручной сборки `CardHeader` + `CardTitle` + …; `Section` с `heading` + `subtitle`; `PageHeader`; `EmptyState`; `PriceTag`; `Field` = `Label` + `Input` + ошибка) в `packages/ui/src/composites/` (или `src/shared/`), экспорт `./composites/*`, документация примеров в `packages/ui/README.md` — **в работе, пакет A**. После — T-ID здесь.
-- Компоненты, которых потребуют ближайшие задачи: `Accordion`/`details`-обёртка для FAQ (T-003), `Dialog`/`Sheet` для мобильного меню и формы заявки (T-002), `Toast` для подтверждений формы, `Tabs` для характеристик, `Table` для размеров, `Tooltip` — заводить по мере задач, каждый как примитив + при необходимости композит.
+- Композиты, которых пока нет: `PriceTag` (сейчас `ProductPrice` в entities), `Dialog`/`Sheet` для мобильного меню, `Toast` — по мере задач.
+- Примитивы под будущие задачи: `Tabs` для характеристик, `Table` для размеров, `Tooltip` — заводить по мере задач, каждый как примитив + при необходимости композит.
 - Тёмная тема: переключатель в UI не реализован; токены готовы. Задачи нет.
 - `hooks/` и `shared/` в пакете пустые (`.gitkeep`) — место для `useMediaQuery`, `useTheme`, общих типов.
 - Storybook / витрина компонентов — не планируется до появления второго потребителя; вместо этого примеры в README пакета.
@@ -23,4 +24,4 @@
 - Цвета только из токенов `globals.css`; в приложении нет hard-coded цветов.
 - Новый примитив = файл `src/components/<name>.tsx` с `data-slot`, `cn`, экспорт `{ Name, nameVariants }` + строка в `src/index.ts`.
 - Композит не дублирует стили примитива — только собирает примитивы и задаёт API пропсов; ломать shadcn-совместимость примитивов нельзя (обновляем через `shadcn add`).
-- Приложение импортирует `@workspace/ui/components/<name>` (и позже `@workspace/ui/composites/<name>`), а не корневой баррель, чтобы не тянуть лишнее в клиентские бандлы.
+- Приложение импортирует сначала `@workspace/ui/composites/<name>`, затем `@workspace/ui/components/<name>`; корневой баррель не используется, чтобы не тянуть лишнее в клиентские бандлы. Деревья `CardHeader`/`CardTitle`/… в коде приложения не собираются.

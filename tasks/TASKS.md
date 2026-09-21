@@ -6,94 +6,6 @@
 
 ## Queue
 
-### T-022 · Обёртка над shadcn: composites в @workspace/ui и рефакторинг приложения
-
-- status: in-progress
-- priority: high
-- area: ui
-- source: chat
-- created: 2026-09-21
-- started: 2026-09-21
-- estimate: M
-
-Слой `packages/ui/src/composites` (Card, CardGrid, Section, PageHeader, Stack, Grid, FormField, FormMessage, EmptyState, KeyValueList, Stat) с простым внутренним синтаксисом поверх shadcn-примитивов; приложение использует composites, а не деревья CardHeader/CardTitle/… Пакет A.
-
-Acceptance:
-
-- экспорт `@workspace/ui/composites/*`, README с правилом «composites first»
-- product-card, product-specs, catalog header, not-found, home-fallback, cms-form fields переведены на composites
-- typecheck/lint/format зелёные
-
-### T-023 · Статьи (blog), FAQ-блок, страницы home/about/contacts, seed, CTA «связаться с менеджером»
-
-- status: in-progress
-- priority: high
-- area: cms
-- source: chat
-- created: 2026-09-21
-- started: 2026-09-21
-- estimate: L
-
-Коллекция `articles` + `/{locale}/blog`, FAQ-блок с FAQPage JSON-LD (закрывает T-003), CMS-страницы home/about/contacts и форма «contact-manager» через `pnpm web seed` (закрывает T-002), CTA на товаре ведёт на контакты. Пакет B.
-
-Acceptance:
-
-- `pnpm web seed` идемпотентно создаёт настройки, навигацию, 9 категорий, 3 страницы, форму, 2 статьи на 4 локалях
-- `/es/blog`, `/es/blog/{slug}`, `/es/about`, `/es/contacts` отвечают 200; sitemap включает статьи
-- FAQ-блок валиден в Rich Results Test
-
-### T-024 · Личный кабинет: регистрация, код скидки, запись в шоурум (ADR-0007)
-
-- status: in-progress
-- priority: high
-- area: cms
-- source: chat
-- created: 2026-09-21
-- started: 2026-09-21
-- estimate: L
-
-Auth-коллекция `customers` с персональным кодом `SHOW-XXXX`, коллекция `showroom-visits`, server actions регистрации/входа/выхода, страницы `/account`, `/account/login`, `/account/register`, форма записи на визит. Пакет C.
-
-Acceptance:
-
-- регистрация создаёт клиента с кодом и согласием, вход ставит httpOnly cookie
-- клиент видит свой код, процент и список визитов; может запросить визит
-- доступы: клиент читает только своё, админ всё; страницы noindex
-
-### T-025 · Подсистема управления проектом через документацию
-
-- status: in-progress
-- priority: high
-- area: dx
-- source: chat
-- created: 2026-09-21
-- started: 2026-09-21
-- estimate: L
-
-`docs/ops/project-management.md`, реестр фич `docs/features/*` (Implemented/Planned по коду), `docs/HISTORY.md`, `docs/ideas/`, скиллы `/idea`, `/docs-sync`, `/project-checkin`, доработка `/task-run` и `/task-add`, зеркало задач в Bitrix24 `scripts/pm/b24-tasks-sync.mjs` (только через env), правила в CLAUDE.md. Пакет D.
-
-Acceptance:
-
-- реестр фич совпадает с кодом на дату проверки
-- `node scripts/pm/b24-tasks-sync.mjs --status` без env завершается с exit 0
-- CLAUDE.md содержит правила «всегда актуализировать доку и задачи», «идеи из чата → /idea»
-
-### T-026 · Интеграция пакетов A–D: слияние, header-ссылки (blog, contacts, ЛК), CTA «код на скидку» на товаре, smoke-тест
-
-- status: ready
-- priority: high
-- area: dx
-- source: chat
-- created: 2026-09-21
-- estimate: M
-
-После слияния веток: регенерировать payload-types и importMap, добавить в header ссылки blog/contacts/account (AccountLink из features/auth), на странице товара второй CTA «Посмотреть в шоуруме и получить код» → ROUTES.account, прогнать seed на dev-базе, curl всех новых страниц, обновить docs/features через /docs-sync.
-
-Acceptance:
-
-- typecheck/lint/format зелёные; dev smoke: /es, /es/catalog, /es/blog, /es/about, /es/contacts, /es/account/login → 200
-- T-002, T-003, T-022–T-025 переведены в Done с коммитами
-
 ### T-027 · Проект «Divan Shop» в Bitrix24 и первичный push задач (владелец + агент)
 
 - status: draft
@@ -163,24 +75,6 @@ Acceptance:
 - `pnpm web generate`, typecheck, lint зелёные
 - ADR-0001 остаётся accepted, в README decisions проставлена дата выполнения
 
-### T-002 · Страница «Контакты» с формой заявки
-
-- status: ready
-- priority: high
-- area: cms
-- source: chat
-- created: 2026-09-21
-- estimate: M
-
-CMS-страница `contacts` из блоков: hero (low impact) с адресом и телефоном из Site Settings, блок `formBlock` с формой «Заявка» (имя, телефон, WhatsApp-согласие, сообщение). Кнопка «Узнать цену и сроки» на товаре ведёт на `/{locale}/contacts#form`, `tel:` остаётся как второй CTA.
-
-Acceptance:
-
-- есть скрипт `pnpm web seed:contacts`, создающий форму и страницу на 4 локалях, либо инструкция в docs
-- `ROUTES.contacts(locale)` добавлен и используется в product-page и header
-- тексты формы во всех 4 локалях в словарях
-- `pnpm typecheck && pnpm lint` зелёные
-
 ### T-005 · Коллекция leads: согласия, UTM, антиспам, авто-подтверждение (ADR-0004)
 
 - status: ready
@@ -231,23 +125,6 @@ Acceptance:
 - Rich Results Test валиден для FurnitureStore и Product
 - одна `@id` на всех локалях, hreflang на страницу
 - ссылка на шоурум в header/footer
-
-### T-003 · FAQ-блок для страниц (SEO: FAQPage schema)
-
-- status: ready
-- priority: high
-- area: seo
-- source: chat
-- created: 2026-09-21
-- estimate: M
-
-Блок `faq` (массив вопрос/ответ, localized) в конструкторе страниц и компонент с `<details>` и JSON-LD `FAQPage`. GBP Q&A закрыт, Ask Maps читает сайт, поэтому FAQ на сайте — замена.
-
-Acceptance:
-
-- `payload/blocks/faq.ts` + `widgets/page-blocks/ui/faq-block.tsx`, зарегистрирован в `render-blocks.tsx` и в `pages` layout
-- JSON-LD FAQPage валиден
-- `pnpm web generate` выполнен
 
 ### T-008 · Категории кластера B и поля товара для фильтров и Merchant
 
@@ -484,3 +361,136 @@ Acceptance:
 ## In progress
 
 ## Done
+
+### T-002 · Страница «Контакты» с формой заявки
+
+- status: done
+- priority: high
+- area: cms
+- source: chat
+- created: 2026-09-21
+- estimate: M
+- done: 2026-09-21
+- commit: COMMIT_PLACEHOLDER
+
+CMS-страница `contacts` из блоков: hero (low impact) с адресом и телефоном из Site Settings, блок `formBlock` с формой «Заявка» (имя, телефон, WhatsApp-согласие, сообщение). Кнопка «Узнать цену и сроки» на товаре ведёт на `/{locale}/contacts#form`, `tel:` остаётся как второй CTA.
+
+Acceptance:
+
+- есть скрипт `pnpm web seed:contacts`, создающий форму и страницу на 4 локалях, либо инструкция в docs
+- `ROUTES.contacts(locale)` добавлен и используется в product-page и header
+- тексты формы во всех 4 локалях в словарях
+- `pnpm typecheck && pnpm lint` зелёные
+
+### T-003 · FAQ-блок для страниц (SEO: FAQPage schema)
+
+- status: done
+- priority: high
+- area: seo
+- source: chat
+- created: 2026-09-21
+- estimate: M
+- done: 2026-09-21
+- commit: COMMIT_PLACEHOLDER
+
+Блок `faq` (массив вопрос/ответ, localized) в конструкторе страниц и компонент с `<details>` и JSON-LD `FAQPage`. GBP Q&A закрыт, Ask Maps читает сайт, поэтому FAQ на сайте — замена.
+
+Acceptance:
+
+- `payload/blocks/faq.ts` + `widgets/page-blocks/ui/faq-block.tsx`, зарегистрирован в `render-blocks.tsx` и в `pages` layout
+- JSON-LD FAQPage валиден
+- `pnpm web generate` выполнен
+
+### T-022 · Обёртка над shadcn: composites в @workspace/ui и рефакторинг приложения
+
+- status: done
+- priority: high
+- area: ui
+- source: chat
+- created: 2026-09-21
+- estimate: M
+- done: 2026-09-21
+- commit: COMMIT_PLACEHOLDER
+
+Слой `packages/ui/src/composites` (Card, CardGrid, Section, PageHeader, Stack, Grid, FormField, FormMessage, EmptyState, KeyValueList, Stat) с простым внутренним синтаксисом поверх shadcn-примитивов; приложение использует composites, а не деревья CardHeader/CardTitle/… Пакет A.
+
+Acceptance:
+
+- экспорт `@workspace/ui/composites/*`, README с правилом «composites first»
+- product-card, product-specs, catalog header, not-found, home-fallback, cms-form fields переведены на composites
+- typecheck/lint/format зелёные
+
+### T-023 · Статьи (blog), FAQ-блок, страницы home/about/contacts, seed, CTA «связаться с менеджером»
+
+- status: done
+- priority: high
+- area: cms
+- source: chat
+- created: 2026-09-21
+- estimate: L
+- done: 2026-09-21
+- commit: COMMIT_PLACEHOLDER
+
+Коллекция `articles` + `/{locale}/blog`, FAQ-блок с FAQPage JSON-LD (закрывает T-003), CMS-страницы home/about/contacts и форма «contact-manager» через `pnpm web seed` (закрывает T-002), CTA на товаре ведёт на контакты. Пакет B.
+
+Acceptance:
+
+- `pnpm web seed` идемпотентно создаёт настройки, навигацию, 9 категорий, 3 страницы, форму, 2 статьи на 4 локалях
+- `/es/blog`, `/es/blog/{slug}`, `/es/about`, `/es/contacts` отвечают 200; sitemap включает статьи
+- FAQ-блок валиден в Rich Results Test
+
+### T-024 · Личный кабинет: регистрация, код скидки, запись в шоурум (ADR-0007)
+
+- status: done
+- priority: high
+- area: cms
+- source: chat
+- created: 2026-09-21
+- estimate: L
+- done: 2026-09-21
+- commit: COMMIT_PLACEHOLDER
+
+Auth-коллекция `customers` с персональным кодом `SHOW-XXXX`, коллекция `showroom-visits`, server actions регистрации/входа/выхода, страницы `/account`, `/account/login`, `/account/register`, форма записи на визит. Пакет C.
+
+Acceptance:
+
+- регистрация создаёт клиента с кодом и согласием, вход ставит httpOnly cookie
+- клиент видит свой код, процент и список визитов; может запросить визит
+- доступы: клиент читает только своё, админ всё; страницы noindex
+
+### T-025 · Подсистема управления проектом через документацию
+
+- status: done
+- priority: high
+- area: dx
+- source: chat
+- created: 2026-09-21
+- estimate: L
+- done: 2026-09-21
+- commit: COMMIT_PLACEHOLDER
+
+`docs/ops/project-management.md`, реестр фич `docs/features/*` (Implemented/Planned по коду), `docs/HISTORY.md`, `docs/ideas/`, скиллы `/idea`, `/docs-sync`, `/project-checkin`, доработка `/task-run` и `/task-add`, зеркало задач в Bitrix24 `scripts/pm/b24-tasks-sync.mjs` (только через env), правила в CLAUDE.md. Пакет D.
+
+Acceptance:
+
+- реестр фич совпадает с кодом на дату проверки
+- `node scripts/pm/b24-tasks-sync.mjs --status` без env завершается с exit 0
+- CLAUDE.md содержит правила «всегда актуализировать доку и задачи», «идеи из чата → /idea»
+
+### T-026 · Интеграция пакетов A–D: слияние, header-ссылки (blog, contacts, ЛК), CTA «код на скидку» на товаре, smoke-тест
+
+- status: done
+- priority: high
+- area: dx
+- source: chat
+- created: 2026-09-21
+- estimate: M
+- done: 2026-09-21
+- commit: COMMIT_PLACEHOLDER
+
+После слияния веток: регенерировать payload-types и importMap, добавить в header ссылки blog/contacts/account (AccountLink из features/auth), на странице товара второй CTA «Посмотреть в шоуруме и получить код» → ROUTES.account, прогнать seed на dev-базе, curl всех новых страниц, обновить docs/features через /docs-sync.
+
+Acceptance:
+
+- typecheck/lint/format зелёные; dev smoke: /es, /es/catalog, /es/blog, /es/about, /es/contacts, /es/account/login → 200
+- T-002, T-003, T-022–T-025 переведены в Done с коммитами

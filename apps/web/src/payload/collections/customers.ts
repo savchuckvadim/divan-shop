@@ -1,4 +1,4 @@
-import type { Access, CollectionBeforeChangeHook, CollectionConfig } from "payload";
+import type { Access, CollectionBeforeChangeHook, CollectionConfig, FieldAccess } from "payload";
 
 import { DEFAULT_LOCALE, LOCALE_LABELS, LOCALES, SITE } from "@/modules/shared/config";
 import { isSecureServerURL } from "@/modules/shared/lib";
@@ -21,6 +21,8 @@ const randomCode = (): string => {
     return code;
 };
 
+const adminOnlyField: FieldAccess = ({ req: { user } }) => isAdminUser(user);
+
 const ownRecordOrAdmin: Access = ({ req: { user } }) => {
     if (isAdminUser(user)) return true;
     if (user && isCustomerUser(user)) return { id: { equals: user.id } };
@@ -28,7 +30,8 @@ const ownRecordOrAdmin: Access = ({ req: { user } }) => {
 };
 
 const generateDiscountCode: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
-    if (operation !== "create" || data.discountCode) return data;
+    if (operation !== "create") return data;
+    if (data.discountCode && isAdminUser(req.user)) return data;
 
     for (let attempt = 0; attempt < CODE_MAX_ATTEMPTS; attempt += 1) {
         const candidate = randomCode();
@@ -50,7 +53,8 @@ const applyDefaultDiscountPercent: CollectionBeforeChangeHook = async ({
     operation,
     req,
 }) => {
-    if (operation !== "create" || typeof data.discountPercent === "number") return data;
+    if (operation !== "create") return data;
+    if (typeof data.discountPercent === "number" && isAdminUser(req.user)) return data;
 
     const settings = await req.payload.findGlobal({
         slug: "site-settings",
@@ -101,6 +105,7 @@ export const Customers: CollectionConfig<"customers"> = {
             type: "text",
             unique: true,
             index: true,
+            access: { create: adminOnlyField, update: adminOnlyField },
             admin: {
                 position: "sidebar",
                 readOnly: true,
@@ -113,12 +118,14 @@ export const Customers: CollectionConfig<"customers"> = {
             min: 0,
             max: 100,
             defaultValue: SITE.showroomDiscountPercent,
+            access: { create: adminOnlyField, update: adminOnlyField },
             admin: { position: "sidebar" },
         },
         {
             name: "consentPrivacyAt",
             type: "date",
             required: true,
+            access: { update: adminOnlyField },
             admin: { date: { pickerAppearance: "dayAndTime" } },
         },
         { name: "consentMarketing", type: "checkbox", defaultValue: false },

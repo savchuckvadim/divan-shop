@@ -138,19 +138,20 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
                                 {dictionary.product.contactManager}
                             </Link>
                         </Button>
-                        {phone && (
-                            <Button
-                                asChild
-                                size="lg"
-                                variant="outline"
-                                className="w-full sm:w-auto"
-                            >
-                                <a href={`tel:${phone.replace(/\s+/g, "")}`}>
-                                    {dictionary.product.requestQuote}
-                                </a>
-                            </Button>
-                        )}
+                        <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+                            <Link href={ROUTES.register(locale, `product-${slug}`)}>
+                                {dictionary.product.showroomCode}
+                            </Link>
+                        </Button>
                     </div>
+                    {phone && (
+                        <a
+                            href={`tel:${phone.replace(/\s+/g, "")}`}
+                            className="text-sm text-muted-foreground underline-offset-4 hover:underline"
+                        >
+                            {dictionary.product.requestQuote}: {phone}
+                        </a>
+                    )}
 
                     <div className="flex flex-col gap-3">
                         <Heading as="h2" size="sm">

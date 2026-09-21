@@ -4,4 +4,5 @@ export * from "./format-price";
 export * from "./lexical-to-plain-text";
 export * from "./media-url";
 export * from "./relation";
+export * from "./static-params";
 export * from "./url";

@@ -10,7 +10,7 @@ import { Button } from "@workspace/ui/components/button";
 import { Container } from "@workspace/ui/components/container";
 import { cn } from "@workspace/ui/lib/utils";
 
-import { LocaleSwitcher } from "@/modules/features";
+import { AccountLink, LocaleSwitcher } from "@/modules/features";
 import { ROUTES } from "@/modules/shared/config";
 import { useI18n } from "@/modules/shared/i18n";
 import { CmsLink, Logo } from "@/modules/shared/ui";
@@ -67,6 +67,7 @@ export const HeaderClient = ({ navItems, siteName, phone }: HeaderClientProps) =
                 </nav>
 
                 <div className="hidden items-center gap-4 md:flex">
+                    <AccountLink />
                     <LocaleSwitcher />
                     {phone && (
                         <Button asChild variant="outline" size="sm">
@@ -99,6 +100,7 @@ export const HeaderClient = ({ navItems, siteName, phone }: HeaderClientProps) =
             >
                 <Container className="flex flex-col gap-4 py-4" onClick={() => setOpen(false)}>
                     {nav}
+                    <AccountLink />
                     <LocaleSwitcher />
                     {phone && (
                         <a href={`tel:${phone.replace(/\s+/g, "")}`} className="font-medium">

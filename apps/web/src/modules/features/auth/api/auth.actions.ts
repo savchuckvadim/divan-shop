@@ -55,8 +55,6 @@ export const register = async (
     if (Object.keys(fieldErrors).length) return { fieldErrors };
 
     const payload = await getPayloadClient();
-    let token: string | undefined;
-    let error: AuthErrorKey | undefined;
 
     try {
         await payload.create({
@@ -72,17 +70,22 @@ export const register = async (
                 consentMarketing,
             },
         });
+    } catch (caught) {
+        payload.logger.warn({ err: caught, msg: "Customer registration failed" });
+        return { error: isEmailTaken(caught) ? "emailTaken" : "generic" };
+    }
+
+    let token: string | undefined;
+    try {
         ({ token } = await payload.login({
             collection: "customers",
             data: { email, password },
         }));
     } catch (caught) {
-        payload.logger.warn({ err: caught, msg: "Customer registration failed" });
-        error = isEmailTaken(caught) ? "emailTaken" : "generic";
+        payload.logger.warn({ err: caught, msg: "Login after registration failed" });
     }
 
-    if (error) return { error };
-    if (!token) return { error: "generic" };
+    if (!token) redirect(ROUTES.login(locale));
 
     await setAuthCookie(token);
     redirect(ROUTES.account(locale));
