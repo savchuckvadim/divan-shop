@@ -2,8 +2,7 @@ import Link from "next/link";
 
 import { Button } from "@workspace/ui/components/button";
 import { Container } from "@workspace/ui/components/container";
-import { Heading } from "@workspace/ui/components/heading";
-import { Text } from "@workspace/ui/components/text";
+import { EmptyState } from "@workspace/ui/composites/empty-state";
 
 import { type Locale, ROUTES } from "@/modules/shared/config";
 import { getDictionary } from "@/modules/shared/i18n";
@@ -12,14 +11,17 @@ export const NotFoundPage = ({ locale }: { locale: Locale }) => {
     const { notFound } = getDictionary(locale);
 
     return (
-        <Container className="flex flex-col items-start gap-4 py-28">
-            <Heading as="h1" size="xl">
-                404 · {notFound.title}
-            </Heading>
-            <Text muted>{notFound.text}</Text>
-            <Button asChild>
-                <Link href={ROUTES.home(locale)}>{notFound.goHome}</Link>
-            </Button>
+        <Container className="py-28">
+            <EmptyState
+                as="h1"
+                title={`404 · ${notFound.title}`}
+                description={notFound.text}
+                action={
+                    <Button asChild>
+                        <Link href={ROUTES.home(locale)}>{notFound.goHome}</Link>
+                    </Button>
+                }
+            />
         </Container>
     );
 };

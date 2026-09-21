@@ -4,6 +4,7 @@ import { draftMode } from "next/headers";
 import { Button } from "@workspace/ui/components/button";
 import { Container } from "@workspace/ui/components/container";
 import { Heading } from "@workspace/ui/components/heading";
+import { Section } from "@workspace/ui/composites/section";
 
 import {
     getCurrency,
@@ -148,21 +149,25 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
             </div>
 
             {product.description && (
-                <section className="mt-16 max-w-[48rem]">
-                    <Heading as="h2" size="md" className="mb-4">
-                        {dictionary.product.description}
-                    </Heading>
+                <Section
+                    contained={false}
+                    padding="sm"
+                    title={dictionary.product.description}
+                    className="mt-8 max-w-[48rem]"
+                >
                     <RichText data={product.description} enableGutter={false} />
-                </section>
+                </Section>
             )}
 
             {related.length > 0 && (
-                <section className="mt-20">
-                    <Heading as="h2" size="md" className="mb-6">
-                        {dictionary.product.related}
-                    </Heading>
+                <Section
+                    contained={false}
+                    padding="sm"
+                    title={dictionary.product.related}
+                    className="mt-4"
+                >
                     <ProductGrid products={related} currency={currency} locale={locale} />
-                </section>
+                </Section>
             )}
         </Container>
     );

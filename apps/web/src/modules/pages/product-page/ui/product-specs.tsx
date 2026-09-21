@@ -1,3 +1,5 @@
+import { type KeyValueItem, KeyValueList } from "@workspace/ui/composites/key-value";
+
 import type { ProductSpecs as ProductSpecsType } from "@/modules/entities";
 import type { Locale } from "@/modules/shared/config";
 import { getDictionary } from "@/modules/shared/i18n";
@@ -29,17 +31,11 @@ export const ProductSpecs = ({ specs, locale }: ProductSpecsProps) => {
         [product.specs.color, specs.color],
     ];
 
-    const filled = rows.filter(([, value]) => Boolean(value));
-    if (!filled.length) return null;
+    const items: KeyValueItem[] = rows
+        .filter(([, value]) => Boolean(value))
+        .map(([label, value]) => ({ key: label, label, value }));
 
-    return (
-        <dl className="divide-y divide-border rounded-xl border border-border">
-            {filled.map(([label, value]) => (
-                <div key={label} className="flex justify-between gap-6 px-4 py-3 text-sm">
-                    <dt className="text-muted-foreground">{label}</dt>
-                    <dd className="text-right font-medium">{value}</dd>
-                </div>
-            ))}
-        </dl>
-    );
+    if (!items.length) return null;
+
+    return <KeyValueList items={items} />;
 };

@@ -4,7 +4,6 @@ import type { SelectField } from "@payloadcms/plugin-form-builder/types";
 import type { Control, FieldErrorsImpl } from "react-hook-form";
 import { Controller } from "react-hook-form";
 
-import { Label } from "@workspace/ui/components/label";
 import {
     Select as SelectComponent,
     SelectContent,
@@ -12,8 +11,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@workspace/ui/components/select";
+import { FormField } from "@workspace/ui/composites/form-field";
 
-import { Error } from "../Error";
+import { useFieldState } from "../../../lib/use-field-state";
 import { Width } from "../Width";
 
 export const Select: React.FC<
@@ -21,47 +21,50 @@ export const Select: React.FC<
         control: Control;
         errors: Partial<FieldErrorsImpl>;
     }
-> = ({ name, control, errors, label, options, required, width, defaultValue }) => {
+> = ({ name, control, label, options, required, width, defaultValue }) => {
+    const { error, requiredLabel } = useFieldState(name);
+
     return (
         <Width width={width}>
-            <Label htmlFor={name}>
-                {label}
-                {required && (
-                    <span className="required">
-                        * <span className="sr-only">(required)</span>
-                    </span>
-                )}
-            </Label>
-            <Controller
-                control={control}
-                defaultValue={defaultValue}
-                name={name}
-                render={({ field: { onChange, value } }) => {
-                    const controlledValue = options.find((t) => t.value === value);
+            <FormField
+                label={label}
+                htmlFor={name}
+                required={required}
+                requiredLabel={requiredLabel}
+                error={error}
+            >
+                <Controller
+                    control={control}
+                    defaultValue={defaultValue}
+                    name={name}
+                    render={({ field: { onChange, value } }) => {
+                        const controlledValue = options.find((t) => t.value === value);
 
-                    return (
-                        <SelectComponent
-                            onValueChange={(val) => onChange(val)}
-                            value={controlledValue?.value}
-                        >
-                            <SelectTrigger className="w-full" id={name}>
-                                <SelectValue placeholder={label} />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {options.map(({ label, value }) => {
-                                    return (
+                        return (
+                            <SelectComponent
+                                onValueChange={(val) => onChange(val)}
+                                value={controlledValue?.value}
+                            >
+                                <SelectTrigger
+                                    className="w-full"
+                                    id={name}
+                                    aria-invalid={Boolean(error)}
+                                >
+                                    <SelectValue placeholder={label} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {options.map(({ label, value }) => (
                                         <SelectItem key={value} value={value}>
                                             {label}
                                         </SelectItem>
-                                    );
-                                })}
-                            </SelectContent>
-                        </SelectComponent>
-                    );
-                }}
-                rules={{ required }}
-            />
-            {errors[name] && <Error name={name} />}
+                                    ))}
+                                </SelectContent>
+                            </SelectComponent>
+                        );
+                    }}
+                    rules={{ required }}
+                />
+            </FormField>
         </Width>
     );
 };

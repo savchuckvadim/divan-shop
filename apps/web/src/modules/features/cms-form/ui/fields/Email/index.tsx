@@ -4,9 +4,9 @@ import type { EmailField } from "@payloadcms/plugin-form-builder/types";
 import type { FieldErrorsImpl, FieldValues, UseFormRegister } from "react-hook-form";
 
 import { Input } from "@workspace/ui/components/input";
-import { Label } from "@workspace/ui/components/label";
+import { FormField } from "@workspace/ui/composites/form-field";
 
-import { Error } from "../Error";
+import { useFieldState } from "../../../lib/use-field-state";
 import { Width } from "../Width";
 
 export const Email: React.FC<
@@ -14,26 +14,26 @@ export const Email: React.FC<
         errors: Partial<FieldErrorsImpl>;
         register: UseFormRegister<FieldValues>;
     }
-> = ({ name, defaultValue, errors, label, register, required, width }) => {
+> = ({ name, defaultValue, label, register, required, width }) => {
+    const { error, requiredLabel } = useFieldState(name);
+
     return (
         <Width width={width}>
-            <Label htmlFor={name}>
-                {label}
-
-                {required && (
-                    <span className="required">
-                        * <span className="sr-only">(required)</span>
-                    </span>
-                )}
-            </Label>
-            <Input
-                defaultValue={defaultValue}
-                id={name}
-                type="text"
-                {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
-            />
-
-            {errors[name] && <Error name={name} />}
+            <FormField
+                label={label}
+                htmlFor={name}
+                required={required}
+                requiredLabel={requiredLabel}
+                error={error}
+            >
+                <Input
+                    defaultValue={defaultValue}
+                    id={name}
+                    type="text"
+                    aria-invalid={Boolean(error)}
+                    {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
+                />
+            </FormField>
         </Width>
     );
 };
