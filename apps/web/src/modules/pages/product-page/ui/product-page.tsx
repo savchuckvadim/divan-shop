@@ -236,7 +236,10 @@ export const generateProductPageMetadata = async ({
     slug,
 }: ProductPageProps): Promise<Metadata> => {
     const { isEnabled: draft } = await draftMode();
-    const product = await getProductBySlug(slug, locale, draft);
+    const [product, settings] = await Promise.all([
+        getProductBySlug(slug, locale, draft),
+        getSiteSettings(locale),
+    ]);
     const { seo } = getDictionary(locale);
 
     if (!product) {
@@ -253,5 +256,10 @@ export const generateProductPageMetadata = async ({
         },
         fallbackTitle: interpolate(seo.productTitle, { title: product.title }),
         fallbackDescription: interpolate(seo.productDescription, { title: product.title }),
+        product: {
+            price: product.price,
+            currency: getCurrency(settings),
+            availability: product.availability,
+        },
     });
 };

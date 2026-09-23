@@ -8,6 +8,7 @@ import {
     FORM,
     HOME,
     NOT_FOUND,
+    OG,
     PRODUCT,
     SEO,
 } from "./dictionaries";
@@ -19,6 +20,7 @@ export const getDictionary = (locale: Locale) => ({
     form: FORM[locale],
     seo: SEO[locale],
     notFound: NOT_FOUND[locale],
+    og: OG[locale],
     blog: BLOG[locale],
     account: ACCOUNT[locale],
     home: HOME[locale],

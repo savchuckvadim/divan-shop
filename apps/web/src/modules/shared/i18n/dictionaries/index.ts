@@ -5,5 +5,6 @@ export * from "./common";
 export * from "./form";
 export * from "./home";
 export * from "./not-found";
+export * from "./og";
 export * from "./product";
 export * from "./seo";

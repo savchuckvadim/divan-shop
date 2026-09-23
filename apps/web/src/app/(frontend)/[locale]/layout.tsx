@@ -57,10 +57,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             className={cn(inter.variable, playfair.variable)}
             suppressHydrationWarning
         >
-            <head>
-                <link href="/favicon.ico" rel="icon" sizes="32x32" />
-                <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-            </head>
             <body className="flex min-h-screen flex-col font-sans antialiased">
                 <I18nProvider locale={locale} dictionary={dictionary}>
                     <JsonLd

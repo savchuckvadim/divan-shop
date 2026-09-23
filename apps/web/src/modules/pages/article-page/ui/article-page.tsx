@@ -65,7 +65,7 @@ export const ArticlePage = async ({ locale, slug }: ArticlePageProps) => {
                         article.excerpt ||
                         lexicalToPlainText(article.content).slice(0, 160),
                     url: absoluteUrl(ROUTES.article(locale, slug)),
-                    image: cover ? getOgImageUrl(cover) : undefined,
+                    image: getOgImageUrl(cover) ?? undefined,
                     datePublished: article.publishedAt,
                     dateModified: article.updatedAt,
                     authorName,
@@ -159,5 +159,10 @@ export const generateArticlePageMetadata = async ({
         },
         fallbackTitle: article.title,
         fallbackDescription: article.excerpt || undefined,
+        article: {
+            publishedTime: article.publishedAt,
+            modifiedTime: article.updatedAt,
+            authors: [getArticleAuthorName(article)],
+        },
     });
 };

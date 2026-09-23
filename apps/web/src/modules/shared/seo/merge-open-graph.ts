@@ -2,8 +2,27 @@ import type { Metadata } from "next";
 
 import { type Locale, LOCALE_OG, SITE } from "@/modules/shared/config";
 import { getDictionary } from "@/modules/shared/i18n";
-import { absoluteUrl } from "@/modules/shared/lib";
 
+export const OG_IMAGE_WIDTH = 1200;
+export const OG_IMAGE_HEIGHT = 630;
+
+export interface OgImageArgs {
+    url: string;
+    alt: string;
+}
+
+export const ogImage = ({ url, alt }: OgImageArgs) => ({
+    url,
+    width: OG_IMAGE_WIDTH,
+    height: OG_IMAGE_HEIGHT,
+    alt,
+});
+
+/**
+ * `images` is deliberately left to the caller: when it stays undefined, Next fills
+ * `og:image` from the route's generated `opengraph-image.tsx` (hashed URL, so it
+ * cannot be constructed by hand).
+ */
 export const mergeOpenGraph = (
     locale: Locale,
     og?: Metadata["openGraph"]
@@ -17,6 +36,17 @@ export const mergeOpenGraph = (
         title: seo.defaultTitle,
         description: seo.defaultDescription,
         ...og,
-        images: og?.images ?? [{ url: absoluteUrl(SITE.defaultOgImage) }],
+    };
+};
+
+/** `twitter.site` / `creator` are only emitted once a handle is configured. */
+export const mergeTwitter = (title: string, description: string): Metadata["twitter"] => {
+    const handle = SITE.twitterHandle.trim();
+
+    return {
+        card: "summary_large_image",
+        title,
+        description,
+        ...(handle ? { site: handle, creator: handle } : {}),
     };
 };
