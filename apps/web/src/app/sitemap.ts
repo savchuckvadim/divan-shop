@@ -10,6 +10,9 @@ import {
 import { type Locale, LOCALES, ROUTES } from "@/modules/shared/config";
 import { absoluteUrl } from "@/modules/shared/lib";
 
+/** Built from CMS data, so it is generated per request (no database during docker build). */
+export const dynamic = "force-dynamic";
+
 type PathBuilder = (locale: Locale) => string;
 
 const entry = (

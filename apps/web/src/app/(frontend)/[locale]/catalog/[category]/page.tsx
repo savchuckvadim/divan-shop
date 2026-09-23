@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCategorySlugs } from "@/modules/entities";
 import { CatalogPage, generateCatalogPageMetadata } from "@/modules/pages";
-import { isLocale, LOCALES } from "@/modules/shared/config";
-import { safeStaticParams } from "@/modules/shared/lib";
+import { isLocale } from "@/modules/shared/config";
+
+/**
+ * Rendered on demand and cached: the Docker image is built without a database
+ * (see docs/HISTORY.md). Payload hooks call revalidatePath on publish.
+ */
+export const dynamic = "force-dynamic";
 
 interface CategoryRouteProps {
     params: Promise<{ locale: string; category: string }>;
@@ -12,12 +16,6 @@ interface CategoryRouteProps {
 }
 
 const parsePage = (value?: string): number => Math.max(1, Number.parseInt(value ?? "1", 10) || 1);
-
-export const generateStaticParams = () =>
-    safeStaticParams(async () => {
-        const slugs = await getCategorySlugs();
-        return LOCALES.flatMap((locale) => slugs.map(({ slug }) => ({ locale, category: slug })));
-    });
 
 export default async function CategoryRoute({ params, searchParams }: CategoryRouteProps) {
     const [{ locale, category }, { page }] = await Promise.all([params, searchParams]);

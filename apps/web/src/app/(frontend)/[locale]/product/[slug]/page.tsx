@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getProductSlugs } from "@/modules/entities";
 import { generateProductPageMetadata, ProductPage } from "@/modules/pages";
-import { isLocale, LOCALES } from "@/modules/shared/config";
-import { safeStaticParams } from "@/modules/shared/lib";
+import { isLocale } from "@/modules/shared/config";
+
+/**
+ * Rendered on demand and cached: the Docker image is built without a database
+ * (see docs/HISTORY.md). Payload hooks call revalidatePath on publish.
+ */
+export const dynamic = "force-dynamic";
 
 interface ProductRouteProps {
     params: Promise<{ locale: string; slug: string }>;
 }
-
-export const generateStaticParams = () =>
-    safeStaticParams(async () => {
-        const slugs = await getProductSlugs();
-        return LOCALES.flatMap((locale) => slugs.map(({ slug }) => ({ locale, slug })));
-    });
 
 export default async function ProductRoute({ params }: ProductRouteProps) {
     const { locale, slug } = await params;

@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getArticleSlugs } from "@/modules/entities";
 import { ArticlePage, generateArticlePageMetadata } from "@/modules/pages";
-import { isLocale, LOCALES } from "@/modules/shared/config";
-import { safeStaticParams } from "@/modules/shared/lib";
+import { isLocale } from "@/modules/shared/config";
+
+/**
+ * Rendered on demand and cached: the Docker image is built without a database
+ * (see docs/HISTORY.md). Payload hooks call revalidatePath on publish.
+ */
+export const dynamic = "force-dynamic";
 
 interface ArticleRouteProps {
     params: Promise<{ locale: string; slug: string }>;
 }
-
-export const generateStaticParams = () =>
-    safeStaticParams(async () => {
-        const slugs = await getArticleSlugs();
-        return LOCALES.flatMap((locale) => slugs.map(({ slug }) => ({ locale, slug })));
-    });
 
 export default async function ArticleRoute({ params }: ArticleRouteProps) {
     const { locale, slug } = await params;

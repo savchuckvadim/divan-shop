@@ -4,6 +4,12 @@ import { notFound } from "next/navigation";
 import { generateLoginPageMetadata, LoginPage } from "@/modules/pages";
 import { isLocale } from "@/modules/shared/config";
 
+/**
+ * Reads the customer session, so it must never be prerendered: the build has no
+ * database and no cookies (see docs/HISTORY.md).
+ */
+export const dynamic = "force-dynamic";
+
 interface LoginRouteProps {
     params: Promise<{ locale: string }>;
 }
