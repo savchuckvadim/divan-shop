@@ -76,7 +76,7 @@ Env: copy `apps/web/.env.example` to `apps/web/.env`.
 
 ## Business context & docs
 
-Showroom in Alicante, market Alicante + Torrevieja + Costa Blanca; audience 52% expats (uk/ru/en) + locals (es). Start with `docs/strategy/operating-model.md`; query clusters in `docs/marketing/query-portfolio.md`; decisions (ADR) in `docs/decisions/` — respect them (default locale es per ADR-0001 once T-004 is done, city pages scheme per ADR-0002, leads source of truth per ADR-0004). Cron registry `docs/ops/crons.md` is the only place to add schedules. Raw research with sources: `research/market/`.
+**No showroom** — online brand with local execution: made-to-order sofas from the Yecla cluster, delivery with assembly, free fabric samples by post (ADR-0009); payment is staged (ADR-0010). Market Alicante + Torrevieja + Costa Blanca; in Torrevieja ru+uk speakers outnumber British 3.5:1, so content order is es → ru → en → uk. Start with `docs/strategy/business-model.md`, then `docs/product/supply-and-delivery.md`; operational rhythm in `docs/strategy/operating-model.md`; query clusters in `docs/marketing/query-portfolio.md`; decisions (ADR) in `docs/decisions/` — respect them (default locale es per ADR-0001 once T-004 is done, city pages scheme per ADR-0002, leads source of truth per ADR-0004). Cron registry `docs/ops/crons.md` is the only place to add schedules. Raw research with sources: `research/market/`.
 
 ## Task workflow & automation
 

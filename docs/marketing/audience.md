@@ -1,6 +1,8 @@
 # Аудитория и персоны
 
-Данные: Olive Press 01.2025, The Leader 09.2026, idealista 02.2026, INE (см. `research/market/2026-09-21/channels-expats.md`, `operating-model.md`).
+Данные: Olive Press 01.2025 и 09.2026, The Leader 09.2026, idealista 02.2026, INE, Alicante Plaza 2026 (см. `research/market/2026-09-21/channels-expats.md` и `research/market/2026-09-30/demand-supply-economics.md` §5).
+
+> Обновлено 2026-09-30: шоурума нет ([ADR-0009](../decisions/0009-online-only-no-showroom.md)), обещания сегментам переписаны под доставку и сборку. Приоритет языков пересмотрен: в Торревьехе ru+uk в 3,5 раза крупнее en.
 
 ## Цифры
 
@@ -20,9 +22,15 @@
 
 ## Сегментные обещания
 
-- es: «Tienda de sofás en Alicante con showroom: entrega e instalación en 48–72 h, financiación, sofás a medida».
-- en: «Sofa shop in Alicante with English-speaking staff. Delivery & assembly across Costa Blanca. Sofa packs for new builds and holiday rentals».
-- ru/uk: «Диваны в Аликанте: шоурум, русскоязычные консультанты, доставка по Коста-Бланке, мебель для новостройки под ключ».
-- B2B: «Sofa module for furniture packs: fixed price, 48 h install, warranty, invoice».
+- es: «Sofás y mobiliario a medida para la Costa Blanca: fabricación en Yecla, entrega e instalación incluidas, muestras de tela gratis».
+- en: «Furnish your Costa Blanca home online: free fabric samples by post, delivery with assembly included, furniture packs for new builds and rentals. We speak English».
+- ru/uk: «Диваны и обстановка на Коста-Бланке: бесплатные образцы тканей почтой, доставка с подъёмом и сборкой, русскоязычная поддержка, мебель для новостройки под ключ».
+- B2B: «Furniture packs with prices online: full item list, fixed price, install date, warranty and invoice. No quote form needed».
 
 Доля лидов по языкам сравнивается с долей населения в недельном отчёте, чтобы видеть недоработанный сегмент.
+
+## Приоритет языков (пересмотрен 2026-09-30)
+
+Торревьеха: 113 000+ жителей, 57,4% иностранцы; украинцы 10 787 + россияне 5 834 = **16 621 против 4 671 британца**. Орихуэла-Коста — наоборот, доминируют британцы. Провинция Аликанте: 497 387 иностранцев (24,5%, первое место в Испании), половина — в пяти муниципалитетах.
+
+Порядок контента: **es → ru → en → uk**. es — рынок и язык Google для провинции; ru/uk — Торревьеха и главный незанятый сегмент (украинского нет ни у одного конкурента в регионе); en — Орихуэла-Коста и новостройки.

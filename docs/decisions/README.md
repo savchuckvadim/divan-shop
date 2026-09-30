@@ -10,5 +10,7 @@
 | [0004](./0004-leads-source-of-truth.md)     | Лид = запись в Payload, зеркалится в Bitrix24                                                 | accepted                                               | 2026-09-21 |
 | [0005](./0005-ads-gate.md)                  | Платная реклама только после 20 отзывов GBP и 30 фото                                         | accepted                                               | 2026-09-21 |
 | [0006](./0006-reviews-schema.md)            | Отзывы: first-party Review на Product с раскрытием метода, без self-serving aggregateRating   | accepted                                               | 2026-09-21 |
-| [0007](./0007-sales-model-leadgen-first.md) | Без оплаты: «связаться с менеджером» + ЛК с кодом скидки; чекаут после подтверждения гипотезы | accepted                                               | 2026-09-21 |
+| [0007](./0007-sales-model-leadgen-first.md) | Без оплаты: «связаться с менеджером» + ЛК с кодом скидки; чекаут после подтверждения гипотезы | **superseded** → 0009, 0010                            | 2026-09-21 |
 | [0008](./0008-automation-layers.md)         | Три слоя кронов: node / claude / b24; лимит Claude-запусков                                   | accepted                                               | 2026-09-21 |
+| [0009](./0009-online-only-no-showroom.md)   | Онлайн-бренд без шоурума: якорь доверия (образцы, размеры, сборка) вместо зала                | accepted                                               | 2026-09-30 |
+| [0010](./0010-payments-staged.md)           | Оплата в три этапа: заявка → Stripe + Bizum → рассрочка, по юридической готовности            | accepted                                               | 2026-09-30 |

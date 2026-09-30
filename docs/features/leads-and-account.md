@@ -14,6 +14,8 @@
 
 ## Planned
 
+- **T-047** · Отмена шоурум-механик: убрать `discountCode` и `showroom-visits`, добавить заказы и заявки на образцы, адреса доставки
+- **T-049** · Анализ `@payloadcms/plugin-ecommerce`: корзина, заказы, Stripe и Bizum, сведение с нашими `products`
 - **T-005** (L → a/b/c/d) · коллекция `leads` через `formSubmissionOverrides`: `locale`, `channel`, `utm_*`, `gclid`, `product_slug`, `page_url`, `source_code`, `consentAt/Text/Email/WhatsApp`, `ip`, `ga_client_id`, `b24LeadId`, `syncStatus`, `syncError`; hidden-поля из cookie первого визита (a); Turnstile + honeypot + rate limit (b); авто-подтверждение на языке лида (Resend/Brevo) + Telegram без ПД (c); хук `afterChange` → Bitrix24 `crm.item.add` с `originatorId='payload'` + `scripts/lead-sync-retry.mjs`, ключи только в `.env.automation` (d).
 - **T-006** · `features/whatsapp-contact`: `WhatsAppButton` (`wa.me/{phone}?text=` локализованная фраза + код `[{locale}-{page}-{productSlug}]`), плавающая на всех страницах и в карточке товара; события `click_whatsapp`, `click_phone`, `click_directions`, `showroom_visit_request`, `view_item` в `dataLayer`; `docs/analytics-events.md`.
 - **T-028** · email-адаптер (Resend/nodemailer): код скидки после регистрации, подтверждение визита, авто-ответ лиду; верификация email и сброс пароля.

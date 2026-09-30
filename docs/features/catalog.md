@@ -27,6 +27,10 @@
 
 ## Planned
 
+- **T-045** · Коллекция `fabrics` и заказ образцов тканей (до 6), виджет на карточке и в корзине
+- **T-046** · Калькулятор доставки и сборки по городу на карточке товара (global `delivery-zones`)
+- **T-050** · Комплекты обстановки с открытой ценой и полным составом
+- **T-051** · Web-native AR через `<model-viewer>` на флагманских моделях
 - **T-008** · поля товара для фильтров и Merchant: `plazas`, `sku`, `condition`, `brand`, `gtin`, `leadTimeDays`, `fabrics[]` (свотчи), `dimensionsImage`; категории: `synonyms`, `metaTemplate`; `pnpm web seed:categories` (9 категорий кластера B на 4 локалях); JSON-LD Product с sku/brand/itemCondition/availability.
 - **T-009** · фиды `/api/feeds/products.xml|csv?locale=&profile=google|meta` из Products, кэш 1 ч + ревалидация.
 - **T-011** · коллекция `locations` и городские страницы `/es/sofas-en-{city}` (ADR-0002): `ROUTES.location`, sitemap, hreflang, JSON-LD FurnitureStore areaServed, seed 6 городов draft.

@@ -2,6 +2,8 @@
 
 Версия 1 · 2026-09-21 · Источники: `research/market/2026-09-21/*` (7 тем + критик, ~300 источников).
 
+> **Внимание, 2026-09-30.** Владелец отменил шоурум. Разделы 1, 2 и 5 этого документа описывают прежнюю модель «сайт + шоурум» и частично устарели. Актуальная рамка, North Star, ассортимент и модель продаж — в [business-model.md](./business-model.md) ([ADR-0009](../decisions/0009-online-only-no-showroom.md), [ADR-0010](../decisions/0010-payments-staged.md)). Разделы 3, 4, 6, 7 и 8 (ритм, обратная связь, инструменты, guardrails, docs-as-code) остаются в силе.
+
 Это главный документ. Остальные раскрывают его части: [портфель запросов](../marketing/query-portfolio.md), [каналы](../marketing/channels.md), [Google-стек](../marketing/google-stack.md), [локальное SEO](../marketing/local-seo.md), [лиды и CRM](../marketing/leads-and-crm.md), [чеклист запуска](../marketing/launch-checklist.md), [реестр кронов](../ops/crons.md), [бюджет времени](../ops/capacity.md), [решения](../decisions/README.md).
 
 ## 1. Цель и рамка

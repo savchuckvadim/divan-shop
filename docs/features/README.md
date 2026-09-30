@@ -10,7 +10,7 @@
 | [catalog.md](./catalog.md)                     | коллекции `products` / `categories`, страницы каталога, категории, товара             |
 | [cms-pages.md](./cms-pages.md)                 | коллекция `pages`, hero, блоки, формы (form-builder), редиректы, live preview         |
 | [design-system.md](./design-system.md)         | `packages/ui`: токены, примитивы, композиты                                           |
-| [leads-and-account.md](./leads-and-account.md) | лиды, формы заявок, WhatsApp/звонок, ЛК с кодом скидки, Bitrix24 CRM                  |
+| [leads-and-account.md](./leads-and-account.md) | лиды, формы заявок, WhatsApp/звонок, личный кабинет, заказы образцов, Bitrix24 CRM    |
 | [automation.md](./automation.md)               | раннер задач, скиллы, скрипты (`scripts/`), расписание, зеркало задач в Bitrix24      |
 | [marketing-ops.md](./marketing-ops.md)         | документы `docs/marketing`, ресёрч, крон-реестр маркетинга, контент-операции          |
 
