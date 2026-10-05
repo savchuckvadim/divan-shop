@@ -1,0 +1,9 @@
+{
+  "name": "divan-qa-tools",
+  "private": true,
+  "type": "module",
+  "description": "Screenshot and audit tooling (not a pnpm workspace package: install with npm i in this folder)",
+  "dependencies": {
+    "puppeteer-core": "^24.43.1"
+  }
+}

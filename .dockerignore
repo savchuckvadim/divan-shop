@@ -14,3 +14,5 @@ apps/web/public/media
 **/.env.*
 !**/.env.example
 *.log
+design
+scripts/qa

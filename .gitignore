@@ -18,3 +18,7 @@ deploy/.env.prod
 backups/
 tasks/.b24-map.json
 **/tsconfig.tsbuildinfo
+
+# design concepts: heavy or generated files
+design/concepts/assets/_orig/
+design/concepts/_shots/
