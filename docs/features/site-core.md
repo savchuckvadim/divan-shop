@@ -2,20 +2,20 @@
 
 Справочник по фундаменту сайта. План — в секции Planned, ловушки — в [docs/HISTORY.md](../HISTORY.md).
 
-## Implemented (проверено по коду 2026-09-23)
+## Implemented (проверено по коду 2026-10-06)
 
 ### Монорепо
 
 - pnpm 10 + Turborepo (`turbo.json`: `dev`, `build`, `lint`, `typecheck`); workspace `apps/*`, `packages/*` (`pnpm-workspace.yaml`).
 - `apps/web` — Next 16.3 (App Router) + Payload 3.90 в одном приложении: сайт на `/`, админка `/admin`, REST `/api`, GraphQL `/api/graphql` (`apps/web/src/app/(payload)/**` — сгенерировано, не редактируется).
-- Пакеты: `@workspace/ui` (дизайн-система, см. [design-system.md](./design-system.md)), `@workspace/eslint-config` (`./base`, `./next-js`), `@workspace/prettier-config` (4 пробела, двойные кавычки, width 100, sorted imports через `@trivago/prettier-plugin-sort-imports`), `@workspace/typescript-config` (`base`, `nextjs`, `react-library`).
+- Пакеты: `@workspace/ui` (дизайн-система, см. [design-system.md](./design-system.md)), `@workspace/themes` (темы витрин поверх токенов ui, `packages/themes/README.md`), `@workspace/eslint-config` (`./base`, `./next-js`), `@workspace/prettier-config` (4 пробела, двойные кавычки, width 100, sorted imports через `@trivago/prettier-plugin-sort-imports`), `@workspace/typescript-config` (`base`, `nextjs`, `react-library`).
 - Корневые скрипты: `pnpm dev`, `build`, `lint`, `typecheck`, `format`, `format:check`, `web` (фильтр), `db:up` / `db:down` (`docker-compose.yml`: PostgreSQL 16).
-- Env приложения: `apps/web/.env.example` — `DATABASE_URL`, `PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL`, `CRON_SECRET`, `PREVIEW_SECRET`, `PAYLOAD_DB_PUSH` (только прод, первый деплой без миграций), `NEXT_PUBLIC_BRAND_NAME` (имя бренда до/после нейминга: `BRAND_NAME` в `shared/config/site.ts`, словари `common.siteName`/`seo.*` и seed берут его; в рантайме приоритет у Site Settings → `siteName`); типы в `apps/web/src/environment.d.ts`.
+- Env приложения: `apps/web/.env.example` — `DATABASE_URL`, `PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL`, `CRON_SECRET`, `PREVIEW_SECRET`, `PAYLOAD_DB_PUSH` (только прод, первый деплой без миграций), `NEXT_PUBLIC_BRAND_NAME` (имя бренда до/после нейминга: `BRAND_NAME` в `shared/config/site.ts`, словари `common.siteName`/`seo.*` и seed берут его; в рантайме приоритет у Site Settings → `siteName`), `NEXT_PUBLIC_STOREFRONT` (`group` | `boutique` | `youth`, по умолчанию `group`; см. «Витрины»); типы в `apps/web/src/environment.d.ts`.
 
 ### FSD-слои (`apps/web/src/modules`)
 
 - Направление импортов `app → pages → widgets → features → entities → shared`; `payload/` импортирует только из `modules/shared`. Каждый слой с публичным `index.ts`.
-- `shared/config`: `locales.ts` (`LOCALES`, `DEFAULT_LOCALE`, `LOCALE_COOKIE = NEXT_LOCALE`, `LOCALE_HEADER = x-locale`, `isLocale`, `LOCALE_LABELS/OG/INTL`), `routes.ts` (`ROUTES.home/page/catalog/category/product`, `stripLocale`, `withLocale`), `site.ts` (`SITE.name/twitterHandle/homeSlug/catalogPageSize=24`, `CURRENCIES`, `DEFAULT_CURRENCY`).
+- `shared/config`: `locales.ts` (`LOCALES`, `DEFAULT_LOCALE`, `LOCALE_COOKIE = NEXT_LOCALE`, `LOCALE_HEADER = x-locale`, `isLocale`, `LOCALE_LABELS/OG/INTL`), `routes.ts` (`ROUTES.home/page/catalog/category/product`, `stripLocale`, `withLocale`), `site.ts` (`SITE.name/twitterHandle/homeSlug/catalogPageSize=24`, `CURRENCIES`, `DEFAULT_CURRENCY`), `storefront.ts` (`STOREFRONT`, `STOREFRONT_PRESET`, `STOREFRONT_INDEXED`, `STOREFRONT_WORDMARK`).
 - `shared/api` (server-only): `payload-client.ts` (`getPayloadClient()` с `import "server-only"`), `globals.api.ts` (`getCachedGlobal(slug, locale)` через `unstable_cache` с тегом `global_<slug>`), `redirects.api.ts` (`getCachedRedirects`, тег `redirects`).
 - `shared/lib`: `url.ts` (`getServerSideURL`, `getClientSideURL`, `absoluteUrl`, `canUseDOM`), `cms-href.ts` (`hrefForDoc`, `resolveCmsHref`), `format-price.ts`, `media-url.ts`, `relation.ts` (`isPopulated`, `relationId`).
 - `shared/ui`: `Media` (image/video), `RichText` (Lexical), `CmsLink`, `Logo`, `AdminBar`, `LivePreviewListener`; `PayloadRedirects` — только по подпути `@/modules/shared/ui/payload-redirects` (не в барреле, см. HISTORY).
@@ -42,13 +42,22 @@
 - `app/sitemap.ts`: home, catalog, pages (кроме home), categories, products × 4 локали с `alternates.languages`; `app/robots.ts`: disallow `/admin`, `/api`, `/next`.
 - Payload `plugin-seo` (`payload/plugins/index.ts`): `generateTitle` = `<title> | SITE.name`, `generateURL` через `ROUTES`.
 - Статическая генерация: `generateStaticParams` в layout (локали) и на страницах; ревалидация хуками `payload/hooks/revalidate.ts` (`createRevalidateHooks` — `revalidatePath` для всех локалей + `revalidateTag`; `createRevalidateGlobalHook`; `revalidateRedirects`), выключается через `req.context.disableRevalidate`.
-- Шрифты `next/font` Inter + Playfair Display (`--font-inter`, `--font-playfair`) в `[locale]/layout.tsx`.
+
+### Витрины (2026-10-06, ADR-0011)
+
+- Один код, сборка на витрину: `NEXT_PUBLIC_STOREFRONT` выбирает набор темы (`STOREFRONT_PRESETS` из `@workspace/themes/presets`) и шрифты. База и админка общие. В Dockerfile это `ARG NEXT_PUBLIC_STOREFRONT=group`; витрина в Dokploy = отдельное приложение из того же репозитория со своими `NEXT_PUBLIC_STOREFRONT`, `NEXT_PUBLIC_SERVER_URL` и общей `DATABASE_URL`.
+- `[locale]/layout.tsx` рендерит на `<html>` `data-storefront` и `themeAttributes(STOREFRONT_PRESET)` (`data-concept`, `data-palette`, `data-theme` кроме авто, `data-shape`), поэтому тема верна с первой отрисовки, без скрипта.
+- Шрифты: `modules/shared/ui/fonts/{group,boutique,youth}.ts`, импорт `@storefront/fonts`. `next.config.ts` подставляет файл витрины через `turbopack.resolveAlias` (и `webpack resolve.alias`), тип в `storefront-fonts.d.ts`. Предзагружается только `latin`, кириллица идёт по `unicode-range` по требованию. group: Source Serif 4 (opsz, курсив) + Source Sans 3; boutique: TikTok Sans (opsz, wdth) + Martian Mono без предзагрузки; youth: Unbounded + Onest + Martian Mono.
+- Вордмарк в шапке и подвале (`shared/ui/logo`): домен витрины из `NEXT_PUBLIC_SERVER_URL`, «divan» + «.group»; на localhost — `siteName`. Арка `LogoMark` удалена (осталась копия в `og-card.tsx`).
+- Индексация: `STOREFRONT_INDEXED` = только `group`. Остальные витрины до T-054 показывают тот же каталог, поэтому `noindex, nofollow` в метаданных layout и в `generateMeta`, пустой `sitemap.xml`, без строки `Sitemap` в robots.
 
 - Подписи переключателя языка — `LOCALE_SHORT` в `modules/shared/config/locales.ts`: RU, EN, ES и **UA** для украинского; код локали остаётся `uk` в URL, `lang` и `hreflang` (2026-10-06).
 
 ## Planned
 
 - **T-053** · вернуть статическую генерацию (ISR) при сборке образа без БД вместо `force-dynamic` на всех контентных роутах
+- Витрины не-group: закрыть `/admin` на их доменах (сейчас админка открывается на любом домене деплоя) — вместе с T-054.
+- OG-карточки (`shared/seo/og`): арка и тёплая палитра → вордмарк домена и цвета темы витрины.
 - **T-054** · две витрины на одном бэкенде: `storefronts`, домашняя витрина документа, sitemap / robots / canonical / hreflang по хосту, ADR (ждёт решения владельца)
 - **T-004** · дефолтная локаль `es`, порядок `["es","en","ru","uk"]`, x-default → es (ADR-0001); обновить упоминания «ru (default)» в CLAUDE.md/README.
 - **T-017** · IndexNow-хук при публикации products/pages/locations (ключ из env, файл ключа в `public/`).

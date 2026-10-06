@@ -23,6 +23,7 @@ apps/
       proxy.ts                   locale routing (Next 16 name for middleware)
 packages/
   ui/                 @workspace/ui — design system: tokens (globals.css), shadcn-style primitives, cn()
+  themes/             @workspace/themes — storefront themes: directions, palettes, modes, shapes, presets
   eslint-config/      @workspace/eslint-config (./base, ./next-js)
   prettier-config/    @workspace/prettier-config
   typescript-config/  @workspace/typescript-config (base, nextjs, react-library)
@@ -39,6 +40,7 @@ pnpm dev                        # turbo dev (web on :3000)
 pnpm web dev                    # only the web app
 pnpm web generate               # regenerate payload-types.ts + admin importMap (after changing payload/)
 pnpm typecheck && pnpm lint     # gate before commit
+pnpm --filter @workspace/themes check:contrast   # WCAG AA for every theme × palette × mode
 pnpm format                     # prettier (4 spaces, double quotes, semi, width 100, sorted imports)
 ```
 
@@ -64,14 +66,15 @@ Env: copy `apps/web/.env.example` to `apps/web/.env`.
 - JSON-LD: Organization (layout), BreadcrumbList (catalog/product), Product (product page).
 - `app/(frontend)/sitemap.ts` and `robots.ts` are generated from Payload data with per-locale alternates.
 - Content routes currently render on demand (`force-dynamic`, since `3758ead`, because the Docker image is built without a database); Payload hooks call `revalidatePath` on publish (`payload/hooks/revalidate.ts`). Restoring static generation (ISR) is T-053 — SEO first.
-- Design directions under evaluation live in `design/concepts/` (prototypes, not app code); screenshots and audits via `scripts/qa/shoot.mjs`.
+- Storefronts (ADR-0011): one codebase, one build per storefront — `NEXT_PUBLIC_STOREFRONT=group|boutique|youth` (default `group`) picks the theme preset and fonts; one shared database and admin. Until T-054 only `group` is indexed (`STOREFRONT_INDEXED`).
+- Design directions: prototypes in `design/concepts/` (not app code); the production version is `packages/themes`. Screenshots and audits via `scripts/qa/shoot.mjs`.
 
 ## Conventions
 
 - TypeScript strict; no `any` without a reason; `// @ts-expect-error <reason>` instead of `@ts-ignore`.
 - Named exports only. Files kebab-case. Suffixes: `*.api.ts`, `*.type.ts`.
 - Import via `@workspace/ui/components/<name>` and `@/modules/<layer>`; never relative paths across layers.
-- Design tokens only from `@workspace/ui/globals.css`; no hard-coded colors in the app.
+- Design tokens only from `@workspace/ui/globals.css` and the active theme (`@workspace/themes`); no hard-coded colors in the app. Components expose `data-slot` hooks, themes style them; corners, fonts and grid density belong to the theme.
 - Data on the server via Payload Local API (`getPayloadClient()`), always passing `locale` and `fallbackLocale`. No client-side fetching for catalog pages.
 - No comments unless the WHY is non-obvious.
 
