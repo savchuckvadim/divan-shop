@@ -30,6 +30,7 @@
 
 ## Planned
 
+- **T-057** · коллекция `projects`: интерьеры с вещами и ценами, страницы `/projects`, JSON-LD ItemList, sitemap
 - **T-007** · страница шоурума `/{locale}/showroom` (slug по локали из `ROUTES`), расширение Site Settings (адрес структурно, geo, openingHours, mapsUrl, sameAs[]), JSON-LD `FurnitureStore` с `@id` и `areaServed`, ссылка в header/footer.
 - **T-011** · городские страницы из коллекции `locations` (ADR-0002) — см. также [catalog.md](./catalog.md).
 - **T-014a** · юридические страницы (Aviso legal, Privacidad, Cookies, Envíos/devoluciones/garantía, Condiciones) как seed на 4 локалях, реквизиты из Site Settings (`razón social`, `NIF`, `Registro Mercantil`), ссылки в футере.

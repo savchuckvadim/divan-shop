@@ -63,7 +63,8 @@ Env: copy `apps/web/.env.example` to `apps/web/.env`.
 - `generateMeta()` in `modules/shared/seo` builds title/description/canonical/hreflang (`alternates.languages` + `x-default`) and OpenGraph for every page.
 - JSON-LD: Organization (layout), BreadcrumbList (catalog/product), Product (product page).
 - `app/(frontend)/sitemap.ts` and `robots.ts` are generated from Payload data with per-locale alternates.
-- Pages/products/categories are statically generated (`generateStaticParams`) and revalidated by Payload hooks on publish (`payload/hooks/revalidate.ts`).
+- Content routes currently render on demand (`force-dynamic`, since `3758ead`, because the Docker image is built without a database); Payload hooks call `revalidatePath` on publish (`payload/hooks/revalidate.ts`). Restoring static generation (ISR) is T-053 — SEO first.
+- Design directions under evaluation live in `design/concepts/` (prototypes, not app code); screenshots and audits via `scripts/qa/shoot.mjs`.
 
 ## Conventions
 
@@ -76,7 +77,7 @@ Env: copy `apps/web/.env.example` to `apps/web/.env`.
 
 ## Business context & docs
 
-**No showroom** — online brand with local execution: made-to-order sofas from the Yecla cluster, delivery with assembly, free fabric samples by post (ADR-0009); payment is staged (ADR-0010). Market Alicante + Torrevieja + Costa Blanca; in Torrevieja ru+uk speakers outnumber British 3.5:1, so content order is es → ru → en → uk. Start with `docs/strategy/business-model.md`, then `docs/product/supply-and-delivery.md`; operational rhythm in `docs/strategy/operating-model.md`; query clusters in `docs/marketing/query-portfolio.md`; decisions (ADR) in `docs/decisions/` — respect them (default locale es per ADR-0001 once T-004 is done, city pages scheme per ADR-0002, leads source of truth per ADR-0004). Cron registry `docs/ops/crons.md` is the only place to add schedules. Raw research with sources: `research/market/`.
+**No showroom** — online brand with local execution: made-to-order sofas from the Yecla cluster, delivery with assembly, free fabric samples by post (ADR-0009); payment is staged (ADR-0010). Market Alicante + Torrevieja + Costa Blanca; in Torrevieja ru+uk speakers outnumber British 3.5:1, so content order is es → ru → en → uk. Two storefronts are planned (divan.group broad store, a .boutique premium site) on one backend, decision pending — see `docs/ideas/2026-10-05-two-storefronts-design-fork.md`. Start with `docs/strategy/business-model.md`, then `docs/product/supply-and-delivery.md`; operational rhythm in `docs/strategy/operating-model.md`; query clusters in `docs/marketing/query-portfolio.md`; decisions (ADR) in `docs/decisions/` — respect them (default locale es per ADR-0001 once T-004 is done, city pages scheme per ADR-0002, leads source of truth per ADR-0004). Cron registry `docs/ops/crons.md` is the only place to add schedules. Raw research with sources: `research/market/`.
 
 ## Task workflow & automation
 

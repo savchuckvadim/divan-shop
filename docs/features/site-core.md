@@ -46,6 +46,8 @@
 
 ## Planned
 
+- **T-053** · вернуть статическую генерацию (ISR) при сборке образа без БД вместо `force-dynamic` на всех контентных роутах
+- **T-054** · две витрины на одном бэкенде: `storefronts`, домашняя витрина документа, sitemap / robots / canonical / hreflang по хосту, ADR (ждёт решения владельца)
 - **T-004** · дефолтная локаль `es`, порядок `["es","en","ru","uk"]`, x-default → es (ADR-0001); обновить упоминания «ru (default)» в CLAUDE.md/README.
 - **T-017** · IndexNow-хук при публикации products/pages/locations (ключ из env, файл ключа в `public/`).
 - **T-014b** · слот CMP через `NEXT_PUBLIC_CMP_*`, Consent Mode v2 default denied, аналитика только после согласия.

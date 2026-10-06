@@ -20,6 +20,7 @@
 
 ## Planned
 
+- **T-056** · единый стиль фото от фабрик: `docs/product/photo-spec.md`, обработка скриптом и сервисом, пометка AI-сцен
 - **T-001** · владелец: секция Market в `competitors.md`, hero-модели и цифры в `targets.md`.
 - **T-010** · нейминг-спринт: скилл `/naming`, `scripts/check-name.mjs`, `research/naming/candidates.md` (50 кандидатов, шортлист 5).
 - **T-016** · `docs/content/content-plan.md` (12 недель кластера F), `docs/content/editorial-policy.md` (E-E-A-T, llms.txt), `content/briefs/_template.md`, скилл `/content-brief`, первая статья «cómo elegir sofá» draft на es; решение articles vs pages закрыто: коллекция `articles` и `/blog` реализованы в T-023 (см. cms-pages.md).
