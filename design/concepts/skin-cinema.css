@@ -1,0 +1,738 @@
+/* CINEMA · "Plano secuencia"
+ * Every sofa stands in one studio; scrolling is the camera. Studio grey is the page, type behaves like
+ * film titles, only the numbers that decide a purchase get big. Accent tints light, never the product. */
+
+:root[data-concept="cinema"] {
+    --font-body: "TikTok Sans", system-ui, sans-serif;
+    --font-display: "TikTok Sans", system-ui, sans-serif;
+    --font-label: "Martian Mono", ui-monospace, monospace;
+    --font-cifra: "TikTok Sans", system-ui, sans-serif;
+
+    --m: clamp(16px, 3.6vw, 124px);
+    --g: clamp(12px, 1.25vw, 40px);
+    --space: clamp(96px, 10vw, 240px);
+    --radius-ui: 2px;
+    --btn-h: 52px;
+    --fs-body: clamp(1.0625rem, 1rem + 0.15vw, 1.25rem);
+    --fs-h1: clamp(2.125rem, 1.4rem + 2.6vw, 5.5rem);
+    --fs-h2: clamp(1.75rem, 1.2rem + 1.6vw, 3.75rem);
+    --fs-cifra: clamp(4.5rem, 1.5rem + 9vw, 18rem);
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+    --ease-dolly: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+    --intro-total: 1.45s;
+
+    --paper-l: #fdfcfc;
+    --stage-l: #eeeeec;
+    --stage2-l: #e4e4e2;
+    --hair-l: #d3d2d0;
+    --edge-l: #81807d;
+    --graphite-l: #61605e;
+    --ink-l: #141412;
+    --paper-d: #1c1c1b;
+    --stage-d: #0f0f0e;
+    --stage2-d: #171716;
+    --hair-d: #2e2e2c;
+    --edge-d: #6f6f6d;
+    --graphite-d: #ababa9;
+    --ink-d: #f0f0ef;
+
+    --acc-l: #98333d;
+    --acc-d: #dc9693;
+    --wash-l: #f6e9e9;
+    --wash-d: #2a1a1b;
+    --partner-l: #477765;
+    --partner-d: #8cbeaa;
+    --night: #200e0f;
+
+    --bg: var(--stage-l);
+    --surface: var(--paper-l);
+    --surface-2: var(--stage2-l);
+    --line: var(--hair-l);
+    --line-strong: var(--edge-l);
+    --ink-2: var(--graphite-l);
+    --ink: var(--ink-l);
+    --accent: var(--acc-l);
+    --accent-soft: var(--wash-l);
+    --partner: var(--partner-l);
+    --on-accent: #ffffff;
+    --sweep: #eeeeec;
+    color-scheme: light;
+}
+
+:root[data-concept="cinema"][data-palette="p2"] {
+    --acc-l: #215da5;
+    --acc-d: #88b4ed;
+    --wash-l: #e7edf6;
+    --wash-d: #16202e;
+    --partner-l: #193358;
+    --partner-d: #c6d9f2;
+    --night: #0a1423;
+}
+
+:root[data-concept="cinema"][data-palette="p3"] {
+    --acc-l: #8b551c;
+    --acc-d: #e8b36f;
+    --wash-l: #f1ece4;
+    --wash-d: #271d14;
+    --partner-l: #426786;
+    --partner-d: #92b6d5;
+    --night: #1b1209;
+}
+
+:root[data-concept="cinema"][data-palette="p4"] {
+    --acc-l: #296948;
+    --acc-d: #88c8a3;
+    --wash-l: #e7f0e8;
+    --wash-d: #15231b;
+    --partner-l: #5e713c;
+    --partner-d: #b2c78f;
+    --night: #08180f;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root[data-concept="cinema"]:not([data-theme="light"]) {
+        --bg: var(--stage-d);
+        --surface: var(--paper-d);
+        --surface-2: var(--stage2-d);
+        --line: var(--hair-d);
+        --line-strong: var(--edge-d);
+        --ink-2: var(--graphite-d);
+        --ink: var(--ink-d);
+        --accent: var(--acc-d);
+        --accent-soft: var(--wash-d);
+        --partner: var(--partner-d);
+        --on-accent: #141412;
+        color-scheme: dark;
+    }
+}
+
+:root[data-concept="cinema"][data-theme="dark"] {
+    --bg: var(--stage-d);
+    --surface: var(--paper-d);
+    --surface-2: var(--stage2-d);
+    --line: var(--hair-d);
+    --line-strong: var(--edge-d);
+    --ink-2: var(--graphite-d);
+    --ink: var(--ink-d);
+    --accent: var(--acc-d);
+    --accent-soft: var(--wash-d);
+    --partner: var(--partner-d);
+    --on-accent: #141412;
+    color-scheme: dark;
+}
+
+[data-concept="cinema"] .controls .dot[data-palette-preview="p1"] span { --swatch: #98333d; }
+[data-concept="cinema"] .controls .dot[data-palette-preview="p2"] span { --swatch: #215da5; }
+[data-concept="cinema"] .controls .dot[data-palette-preview="p3"] span { --swatch: #8b551c; }
+[data-concept="cinema"] .controls .dot[data-palette-preview="p4"] span { --swatch: #296948; }
+
+/* type */
+
+[data-concept="cinema"] body {
+    font-variation-settings: "wdth" 100;
+    letter-spacing: -0.003em;
+}
+
+[data-concept="cinema"] h1,
+[data-concept="cinema"] h2,
+[data-concept="cinema"] h3 {
+    font-weight: 500;
+    letter-spacing: -0.025em;
+}
+
+[data-concept="cinema"] :is(h1, h2, h3):lang(ru) {
+    letter-spacing: -0.015em;
+}
+
+[data-concept="cinema"] .kicker,
+[data-concept="cinema"] .label__lead,
+[data-concept="cinema"] .card__dims,
+[data-concept="cinema"] .project__meta {
+    display: inline-block;
+    justify-self: start;
+    padding: 5px 8px 4px;
+    border: 1px solid var(--line);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+}
+
+[data-concept="cinema"] .btn--primary:hover {
+    background: var(--ink-2);
+    border-color: var(--ink-2);
+    color: var(--bg);
+}
+
+[data-concept="cinema"] a:hover {
+    text-decoration-color: var(--accent);
+}
+
+/* header */
+
+[data-concept="cinema"] .hdr {
+    background: var(--bg);
+    border-bottom-color: transparent;
+}
+
+[data-concept="cinema"] .wordmark {
+    font-family: var(--font-cifra);
+    font-variation-settings: "wdth" 75;
+    font-weight: 400;
+    font-size: 1.75rem;
+    letter-spacing: -0.01em;
+}
+
+[data-concept="cinema"] .hdr__nav a {
+    font-weight: 500;
+}
+
+/* hero: the studio, frame without max width */
+
+[data-concept="cinema"] .hero {
+    position: relative;
+    display: block;
+    padding: 0;
+}
+
+[data-concept="cinema"] .hero__text {
+    position: relative;
+    z-index: 2;
+    padding: clamp(24px, 4vw, 96px) var(--m) 24px;
+    gap: 18px;
+}
+
+[data-concept="cinema"] .hero__title {
+    max-width: 12em;
+    font-weight: 500;
+}
+
+[data-concept="cinema"] .hero__lead {
+    max-width: 30em;
+}
+
+[data-concept="cinema"] .hero__figure {
+    position: relative;
+    gap: 0;
+}
+
+[data-concept="cinema"] .frame--hero {
+    aspect-ratio: 4 / 5;
+    background: var(--sweep);
+}
+
+[data-concept="cinema"] .hero__img {
+    object-position: 50% 62%;
+    mix-blend-mode: multiply;
+}
+
+[data-concept="cinema"] .hero .label {
+    padding: 18px var(--m) 0;
+    gap: 8px 24px;
+    align-items: baseline;
+}
+
+[data-concept="cinema"] .hero .label__name {
+    font-size: var(--fs-h3);
+}
+
+[data-concept="cinema"] .hero .label__price {
+    font-family: var(--font-cifra);
+    font-variation-settings: "wdth" 75;
+    font-weight: 300;
+    font-size: clamp(2rem, 1.4rem + 1.6vw, 3.5rem);
+    line-height: 1;
+}
+
+@media (min-width: 1024px) {
+    [data-concept="cinema"] .hero {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--g);
+        padding-inline-start: var(--m);
+    }
+
+    [data-concept="cinema"] .hero__text {
+        grid-column: 1 / span 5;
+        align-content: center;
+        padding: clamp(40px, 5vw, 120px) 0;
+    }
+
+    [data-concept="cinema"] .hero__figure {
+        grid-column: 6 / -1;
+    }
+
+    [data-concept="cinema"] .frame--hero {
+        aspect-ratio: auto;
+        height: min(calc(100svh - var(--hdr-h) - 88px), 90rem);
+        min-height: 560px;
+    }
+
+    [data-concept="cinema"] .hero__img {
+        object-position: 50% 62%;
+    }
+
+    [data-concept="cinema"] .hero .label {
+        padding-inline: 0 var(--m);
+    }
+}
+
+@media (min-aspect-ratio: 2 / 1) and (min-width: 1024px) {
+    [data-concept="cinema"] .frame--hero {
+        height: auto;
+        aspect-ratio: 2.39 / 1;
+    }
+}
+
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        [data-concept="cinema"] .hero__img {
+            animation: cine-dolly linear both;
+            animation-timeline: view();
+            animation-range: exit 0% exit 100%;
+        }
+    }
+}
+
+@keyframes cine-dolly {
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.intro-run[data-concept="cinema"] .frame--hero {
+    animation: cine-settle 1.2s var(--ease-dolly) 0.5s both;
+}
+
+@keyframes cine-settle {
+    from {
+        transform: scale(1.04);
+    }
+}
+
+/* strip: slates */
+
+[data-concept="cinema"] .strip__list {
+    border: 0;
+    padding-block: clamp(28px, 3vw, 64px) 0;
+}
+
+[data-concept="cinema"] .strip__list strong {
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--ink-2);
+}
+
+[data-concept="cinema"] .strip__list span {
+    color: var(--ink);
+    font-size: var(--fs-body);
+}
+
+/* collection: one sweep, one floor line */
+
+[data-concept="cinema"] .rail__track {
+    --card-w: min(78vw, 460px);
+    align-items: end;
+}
+
+@media (min-width: 1440px) {
+    [data-concept="cinema"] .rail__track {
+        --card-w: calc((100vw - 2 * var(--m) - 3 * var(--g)) / 3.4);
+    }
+}
+
+@media (min-width: 2400px) {
+    [data-concept="cinema"] .rail__track {
+        --card-w: calc((100vw - 2 * var(--m) - 4 * var(--g)) / 4.4);
+    }
+}
+
+[data-concept="cinema"] .rail__progress span {
+    background: var(--accent);
+}
+
+[data-concept="cinema"] .card .frame,
+[data-concept="cinema"] .feature__media .frame {
+    aspect-ratio: 4 / 3;
+    background: var(--sweep);
+}
+
+[data-concept="cinema"] .card .frame img {
+    mix-blend-mode: multiply;
+    transition: transform 700ms var(--ease-dolly);
+}
+
+[data-concept="cinema"] .card__link:hover .frame img {
+    transform: scale(1.03);
+}
+
+[data-concept="cinema"] .card__name {
+    font-weight: 500;
+}
+
+[data-concept="cinema"] .card__dims {
+    margin-block: 4px;
+}
+
+[data-concept="cinema"] .card__club {
+    color: var(--accent);
+}
+
+/* feature: the spec sheet as keynote */
+
+[data-concept="cinema"] .feature__media .frame--tall {
+    aspect-ratio: 4 / 5;
+}
+
+[data-concept="cinema"] .feature__media .frame img {
+    mix-blend-mode: normal;
+}
+
+[data-concept="cinema"] .specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border: 0;
+    gap: 22px var(--g);
+}
+
+[data-concept="cinema"] .specs dd {
+    font-family: var(--font-cifra);
+    font-variation-settings: "wdth" 75;
+    font-weight: 300;
+    font-size: clamp(2.75rem, 1.6rem + 2.6vw, 5.5rem);
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+}
+
+[data-concept="cinema"] .specs dt {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+[data-concept="cinema"] .buy__price {
+    font-family: var(--font-cifra);
+    font-variation-settings: "wdth" 75;
+    font-weight: 300;
+    font-size: clamp(3rem, 2rem + 3vw, 6rem);
+}
+
+[data-concept="cinema"] .fabric input {
+    border-radius: 50%;
+}
+
+[data-concept="cinema"] .sheet {
+    background: var(--surface);
+    border: 0;
+}
+
+[data-concept="cinema"] .drawing__body rect,
+[data-concept="cinema"] .drawing__body path,
+[data-concept="cinema"] .drawing__body line {
+    stroke-width: 1.5;
+}
+
+[data-concept="cinema"] .drawing__dims line {
+    stroke: var(--ink-2);
+}
+
+[data-concept="cinema"] .drawing__dims text {
+    fill: var(--ink);
+    font-family: var(--font-cifra);
+    font-weight: 300;
+    font-size: 15px;
+}
+
+[data-concept="cinema"] .fit {
+    border: 0;
+    background: var(--surface);
+}
+
+[data-concept="cinema"] .fit__result {
+    background: var(--surface-2);
+    border-inline-start: 2px solid var(--accent);
+}
+
+/* window: the camera tilts from the light down to the sofa */
+
+[data-concept="cinema"] .window__frame {
+    height: auto;
+    aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 768px) {
+    [data-concept="cinema"] .window__frame {
+        aspect-ratio: 2.39 / 1;
+    }
+}
+
+[data-concept="cinema"] .window__frame img {
+    height: 150%;
+    transform: none;
+}
+
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        [data-concept="cinema"] .window__frame img {
+            animation: cine-tilt linear both;
+            animation-timeline: view();
+        }
+    }
+}
+
+@keyframes cine-tilt {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-33%);
+    }
+}
+
+[data-concept="cinema"] .window__frame figcaption {
+    background: none;
+    color: #f0f0ef;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.5);
+}
+
+/* gallery: takes */
+
+[data-concept="cinema"] .g a {
+    background: var(--sweep);
+}
+
+[data-concept="cinema"] .gallery__grid {
+    counter-reset: take;
+}
+
+[data-concept="cinema"] .g {
+    position: relative;
+    counter-increment: take;
+}
+
+[data-concept="cinema"] .g::after {
+    content: "T" counter(take, decimal-leading-zero);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    padding: 3px 6px;
+    background: rgb(15 15 14 / 0.62);
+    color: #f0f0ef;
+    font-family: var(--font-label);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    pointer-events: none;
+}
+
+[data-concept="cinema"] .lightbox {
+    background: #0f0f0e;
+    color: #f0f0ef;
+    --ink: #f0f0ef;
+    --ink-2: #ababa9;
+    --surface: #1c1c1b;
+    --line-strong: #6f6f6d;
+}
+
+/* projects: locations and end credits */
+
+[data-concept="cinema"] .project .frame--wide {
+    aspect-ratio: 16 / 9;
+}
+
+@media (min-width: 1024px) {
+    [data-concept="cinema"] .project .frame--wide {
+        aspect-ratio: 2.39 / 1;
+    }
+
+    [data-concept="cinema"] .project__media,
+    [data-concept="cinema"] .project:nth-child(even) .project__media {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    [data-concept="cinema"] .project__body,
+    [data-concept="cinema"] .project:nth-child(even) .project__body {
+        grid-column: 7 / -1;
+        grid-row: 2;
+    }
+}
+
+[data-concept="cinema"] .project__pieces li {
+    font-family: var(--font-label);
+    font-size: 0.8125rem;
+}
+
+/* samples: the one wash panel on the page */
+
+[data-concept="cinema"] .samples {
+    padding-block: clamp(40px, 5vw, 120px);
+    background: var(--accent-soft);
+}
+
+[data-concept="cinema"] .samples .frame {
+    background: var(--sweep);
+}
+
+[data-concept="cinema"] .samples__grid legend {
+    color: var(--accent);
+}
+
+[data-concept="cinema"] .sample {
+    background: var(--surface);
+    border-color: transparent;
+}
+
+/* craft */
+
+[data-concept="cinema"] .step .frame {
+    aspect-ratio: 4 / 3;
+}
+
+/* service: the delivery keynote on the night tint */
+
+[data-concept="cinema"] .delivery {
+    background: var(--night);
+    border: 0;
+    color: #f0f0ef;
+    --ink: #f0f0ef;
+    --ink-2: #c9c8c6;
+    --surface: #1c1c1b;
+    --line-strong: #6f6f6d;
+}
+
+[data-concept="cinema"] .delivery__out {
+    font-family: var(--font-cifra);
+    font-variation-settings: "wdth" 75;
+    font-weight: 300;
+    font-size: clamp(3rem, 2rem + 4vw, 8rem);
+    line-height: 0.9;
+}
+
+[data-concept="cinema"] .delivery select {
+    background: #1c1c1b;
+    color: #f0f0ef;
+}
+
+/* club */
+
+[data-concept="cinema"] .club {
+    background: var(--surface);
+}
+
+[data-concept="cinema"] .club h2 {
+    font-weight: 500;
+}
+
+/* footer: credits on the night tint */
+
+[data-concept="cinema"] .ftr {
+    background: var(--night);
+    color: #f0f0ef;
+    border: 0;
+    --ink: #f0f0ef;
+    --ink-2: #b4b3b0;
+    --line: #3a3a38;
+}
+
+[data-concept="cinema"] .ftr a:hover {
+    text-decoration-color: #f0f0ef;
+}
+
+/* dialogs */
+
+[data-concept="cinema"] .drawer {
+    box-shadow: 0 24px 80px rgb(0 0 0 / 0.18);
+}
+
+[data-concept="cinema"] .drawer__samples {
+    background: var(--accent-soft);
+}
+
+/* intro: two ink bars part from the centre line, a slit of light first */
+
+[data-concept="cinema"] .intro__half {
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: #0f0f0e;
+}
+
+[data-concept="cinema"] .intro__half--a {
+    top: 0;
+    animation: cine-bar-up 700ms var(--ease-dolly) 250ms forwards;
+}
+
+[data-concept="cinema"] .intro__half--b {
+    bottom: 0;
+    animation: cine-bar-down 700ms var(--ease-dolly) 250ms forwards;
+}
+
+[data-concept="cinema"] .intro__line {
+    left: 0;
+    right: 0;
+    top: calc(50% - 1px);
+    height: 2px;
+    background: #f0f0ef;
+    transform: scaleX(0);
+    animation: cine-slit 350ms var(--ease) 60ms forwards;
+}
+
+[data-concept="cinema"] .intro__mark {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -160%);
+    color: #f0f0ef;
+    font-family: var(--font-cifra);
+    font-variation-settings: "wdth" 75;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: cine-mark 900ms var(--ease) forwards;
+}
+
+[data-concept="cinema"] .intro__mark small {
+    font-family: var(--font-label);
+    font-size: 0.7rem;
+    color: #ababa9;
+}
+
+@keyframes cine-bar-up {
+    to {
+        transform: translateY(-101%);
+    }
+}
+
+@keyframes cine-bar-down {
+    to {
+        transform: translateY(101%);
+    }
+}
+
+@keyframes cine-slit {
+    60% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+    to {
+        transform: scaleX(1);
+        opacity: 0;
+    }
+}
+
+@keyframes cine-mark {
+    25% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

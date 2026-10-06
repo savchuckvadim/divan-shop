@@ -1,0 +1,973 @@
+/* BLUEPRINT · "Cota Cero"
+ * Every sofa is published as a drawing set: a sheet with a hairline frame, a ground line at ±0,00,
+ * dimension lines in millimetres and a title block with price, lead time and delivery. Photos are
+ * mounted plates and never move; only line work draws, like a pen plotter. */
+
+:root[data-concept="blueprint"] {
+    --font-body: "IBM Plex Sans", system-ui, sans-serif;
+    --font-display: "IBM Plex Sans", system-ui, sans-serif;
+    --font-mono: "Martian Mono", ui-monospace, monospace;
+    --font-label: "Science Gothic", "IBM Plex Sans", sans-serif;
+
+    --m: 16px;
+    --g: 16px;
+    --space: clamp(96px, 9vw, 240px);
+    --radius-ui: 0px;
+    --btn-h: 48px;
+    --measure: 68ch;
+    --fs-body: clamp(1rem, 0.94rem + 0.18vw, 1.25rem);
+    --fs-h1: clamp(2.5rem, 1.25rem + 3.9vw, 9rem);
+    --fs-h2: clamp(1.75rem, 1rem + 1.9vw, 4.5rem);
+    --fs-meta: clamp(0.6875rem, 0.66rem + 0.08vw, 0.8125rem);
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+    --ease-plot: cubic-bezier(0.65, 0, 0.35, 1);
+    --intro-total: 1.35s;
+
+    --paper-l: #f9fafb;
+    --plate-l: #f1f3f4;
+    --sunk-l: #e5e7ea;
+    --faint-l: #d7d9dc;
+    --line-l: #bbbec1;
+    --strong-l: #7e8084;
+    --ink3-l: #626569;
+    --ink-l: #131519;
+    --paper-d: #0d0e11;
+    --plate-d: #15171a;
+    --sunk-d: #1e2124;
+    --faint-d: #2a2d31;
+    --line-d: #3d4044;
+    --strong-d: #76797e;
+    --ink3-d: #989ca0;
+    --ink-d: #eef0f3;
+
+    --acc-l: #6a5022;
+    --acc-d: #e0c071;
+    --mark: #dfbd69;
+    --wash-l: #f7f2e4;
+    --wash-d: #2a2012;
+
+    --bg: var(--paper-l);
+    --surface: var(--paper-l);
+    --surface-2: var(--plate-l);
+    --sunk: var(--sunk-l);
+    --faint: var(--faint-l);
+    --line: var(--line-l);
+    --line-strong: var(--strong-l);
+    --ink-2: var(--ink3-l);
+    --ink: var(--ink-l);
+    --accent: var(--acc-l);
+    --accent-soft: var(--wash-l);
+    --on-accent: #f9fafb;
+    color-scheme: light;
+}
+
+@media (min-width: 600px) {
+    :root[data-concept="blueprint"] {
+        --m: 20px;
+        --g: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root[data-concept="blueprint"] {
+        --m: 24px;
+        --g: 24px;
+    }
+}
+
+@media (min-width: 1440px) {
+    :root[data-concept="blueprint"] {
+        --m: 32px;
+        --g: 32px;
+        --btn-h: 52px;
+    }
+}
+
+@media (min-width: 2560px) {
+    :root[data-concept="blueprint"] {
+        --m: 40px;
+        --g: 40px;
+        --btn-h: 56px;
+    }
+}
+
+:root[data-concept="blueprint"][data-palette="p2"] {
+    --acc-l: #254c96;
+    --acc-d: #9cc0f5;
+    --mark: #afcef1;
+    --wash-l: #e9f2fc;
+    --wash-d: #172135;
+}
+
+:root[data-concept="blueprint"][data-palette="p3"] {
+    --acc-l: #176145;
+    --acc-d: #8dceaf;
+    --mark: #eeb6bf;
+    --wash-l: #e8f5ee;
+    --wash-d: #10271d;
+}
+
+:root[data-concept="blueprint"][data-palette="p4"] {
+    --acc-l: #912d31;
+    --acc-d: #efa4a1;
+    --mark: #aad6c7;
+    --wash-l: #eaf3f8;
+    --wash-d: #18232a;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root[data-concept="blueprint"]:not([data-theme="light"]) {
+        --bg: var(--paper-d);
+        --surface: var(--paper-d);
+        --surface-2: var(--plate-d);
+        --sunk: var(--sunk-d);
+        --faint: var(--faint-d);
+        --line: var(--line-d);
+        --line-strong: var(--strong-d);
+        --ink-2: var(--ink3-d);
+        --ink: var(--ink-d);
+        --accent: var(--acc-d);
+        --accent-soft: var(--wash-d);
+        --on-accent: #0d0e11;
+        color-scheme: dark;
+    }
+}
+
+:root[data-concept="blueprint"][data-theme="dark"] {
+    --bg: var(--paper-d);
+    --surface: var(--paper-d);
+    --surface-2: var(--plate-d);
+    --sunk: var(--sunk-d);
+    --faint: var(--faint-d);
+    --line: var(--line-d);
+    --line-strong: var(--strong-d);
+    --ink-2: var(--ink3-d);
+    --ink: var(--ink-d);
+    --accent: var(--acc-d);
+    --accent-soft: var(--wash-d);
+    --on-accent: #0d0e11;
+    color-scheme: dark;
+}
+
+[data-concept="blueprint"] .controls .dot[data-palette-preview="p1"] span { --swatch: #6a5022; }
+[data-concept="blueprint"] .controls .dot[data-palette-preview="p2"] span { --swatch: #254c96; }
+[data-concept="blueprint"] .controls .dot[data-palette-preview="p3"] span { --swatch: #176145; }
+[data-concept="blueprint"] .controls .dot[data-palette-preview="p4"] span { --swatch: #912d31; }
+
+/* the sheet: a hairline frame at the margin from 1024 px */
+
+@media (min-width: 1024px) {
+    [data-concept="blueprint"] body {
+        background:
+            linear-gradient(var(--line-strong), var(--line-strong)) calc(var(--m) - 1px) 0 / 1px 100% no-repeat,
+            linear-gradient(var(--line-strong), var(--line-strong)) calc(100% - var(--m) + 1px) 0 / 1px 100% no-repeat,
+            var(--bg);
+    }
+
+    [data-concept="blueprint"] .zones {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        margin-inline: var(--m);
+        border-bottom: 1px solid var(--line-strong);
+        font-family: var(--font-label);
+        font-size: 0.6875rem;
+        color: var(--ink-2);
+    }
+
+    [data-concept="blueprint"] .zones span {
+        height: 22px;
+        display: grid;
+        place-items: center;
+        border-inline-start: 1px solid var(--faint);
+    }
+
+    [data-concept="blueprint"] .zones span:first-child {
+        border-inline-start: 0;
+    }
+}
+
+/* type */
+
+[data-concept="blueprint"] h1,
+[data-concept="blueprint"] h2 {
+    font-weight: 300;
+    letter-spacing: -0.028em;
+    line-height: 1.02;
+}
+
+[data-concept="blueprint"] :is(h1, h2):lang(ru) {
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+}
+
+[data-concept="blueprint"] h3,
+[data-concept="blueprint"] .card__name,
+[data-concept="blueprint"] .label__name {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+[data-concept="blueprint"] .kicker,
+[data-concept="blueprint"] .project__meta,
+[data-concept="blueprint"] .ftr__cols h2,
+[data-concept="blueprint"] .strip__list strong,
+[data-concept="blueprint"] .specs dt,
+[data-concept="blueprint"] .samples__grid legend {
+    font-family: var(--font-label);
+    font-variation-settings: "wdth" 150;
+    font-weight: 400;
+    font-size: var(--fs-meta);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+}
+
+[data-concept="blueprint"] .card__dims,
+[data-concept="blueprint"] .label__dims,
+[data-concept="blueprint"] .specs dd,
+[data-concept="blueprint"] .rail__count,
+[data-concept="blueprint"] .project__pieces span,
+[data-concept="blueprint"] .totals dd,
+[data-concept="blueprint"] .lightbox__count {
+    font-family: var(--font-mono);
+    font-variation-settings: "wdth" 87.5;
+    font-weight: 300;
+    font-size: 0.8125rem;
+    letter-spacing: 0;
+}
+
+[data-concept="blueprint"] a:hover {
+    text-decoration-color: var(--accent);
+}
+
+/* buttons: label left, arrow right */
+
+[data-concept="blueprint"] .btn {
+    justify-content: space-between;
+    min-width: 13rem;
+    gap: 24px;
+    font-weight: 500;
+}
+
+[data-concept="blueprint"] .btn::after {
+    content: "→";
+    font-weight: 300;
+}
+
+[data-concept="blueprint"] .btn--primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+}
+
+[data-concept="blueprint"] .icon-btn {
+    background: transparent;
+    border-color: var(--ink);
+}
+
+/* member price: the mark chip */
+
+[data-concept="blueprint"] .label__club,
+[data-concept="blueprint"] .card__club,
+[data-concept="blueprint"] .buy__club {
+    justify-self: start;
+    display: inline-block;
+    width: fit-content;
+    padding: 2px 8px;
+    background: var(--mark);
+    color: #131519;
+    font-weight: 500;
+    font-size: 0.8125rem;
+}
+
+[data-concept="blueprint"] .buy__club a {
+    color: #131519;
+}
+
+/* header: a title strip */
+
+[data-concept="blueprint"] .hdr {
+    border-bottom: 1px solid var(--line-strong);
+    margin-inline: 0;
+}
+
+[data-concept="blueprint"] .wordmark {
+    font-family: var(--font-label);
+    font-variation-settings: "wdth" 150;
+    font-size: 1.125rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .wordmark__tld {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    margin-inline-start: 6px;
+}
+
+[data-concept="blueprint"] .hdr__nav a {
+    font-weight: 500;
+}
+
+[data-concept="blueprint"] .hdr__cart,
+[data-concept="blueprint"] .hdr__menu {
+    border-color: var(--ink);
+}
+
+/* hero: Alzado 01 */
+
+[data-concept="blueprint"] .hero__text {
+    gap: 22px;
+}
+
+[data-concept="blueprint"] .hero__text::before {
+    content: "01";
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+}
+
+[data-concept="blueprint"] .hero__title {
+    padding-bottom: 18px;
+    border-bottom: 3px solid var(--ink);
+    max-width: 12em;
+}
+
+[data-concept="blueprint"] .frame--hero {
+    background: var(--surface-2);
+    overflow: visible;
+}
+
+[data-concept="blueprint"] .frame--hero img {
+    mix-blend-mode: multiply;
+}
+
+[data-concept="blueprint"] .dim--width {
+    display: block;
+    position: absolute;
+    left: 21%;
+    right: 21%;
+    top: 26%;
+    height: 0;
+    border-top: 1px solid var(--accent);
+    pointer-events: none;
+}
+
+[data-concept="blueprint"] .dim--width::before,
+[data-concept="blueprint"] .dim--width::after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    width: 1px;
+    height: 17px;
+    background: var(--accent);
+}
+
+[data-concept="blueprint"] .dim--width::before {
+    left: 0;
+}
+
+[data-concept="blueprint"] .dim--width::after {
+    right: 0;
+}
+
+[data-concept="blueprint"] .dim--width span {
+    position: absolute;
+    left: 50%;
+    top: -14px;
+    transform: translate(-50%, -50%);
+    padding: 2px 8px;
+    background: var(--bg);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+}
+
+[data-concept="blueprint"] .frame--hero::after {
+    display: none;
+    content: "▽ ±0,00";
+    position: absolute;
+    right: -2px;
+    bottom: 13%;
+    transform: translateX(100%);
+    padding-inline-start: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--ink-2);
+    white-space: nowrap;
+}
+
+/* the title block */
+
+[data-concept="blueprint"] .label {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    border: 1px solid var(--ink);
+    font-size: 0.875rem;
+    color: var(--ink);
+}
+
+[data-concept="blueprint"] .label > span {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--line);
+    border-inline-end: 1px solid var(--line);
+}
+
+[data-concept="blueprint"] .label > span:nth-child(2n) {
+    border-inline-end: 0;
+}
+
+[data-concept="blueprint"] .label > span:nth-last-child(-n + 2) {
+    border-bottom: 0;
+}
+
+[data-concept="blueprint"] .label__price {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+[data-concept="blueprint"] .label__club {
+    margin: 8px 12px;
+    padding: 2px 8px !important;
+}
+
+@media (max-width: 599px) {
+    [data-concept="blueprint"] .wordmark {
+        letter-spacing: 0.08em;
+    }
+
+    [data-concept="blueprint"] .wordmark__tld {
+        display: none;
+    }
+
+    [data-concept="blueprint"] .btn {
+        min-width: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    [data-concept="blueprint"] .frame--hero::after {
+        display: block;
+    }
+
+    [data-concept="blueprint"] .hero {
+        align-items: start;
+        padding-top: clamp(40px, 4vw, 96px);
+    }
+
+    [data-concept="blueprint"] .hero__text {
+        grid-column: 1 / span 4;
+        padding-block-end: 0;
+    }
+
+    [data-concept="blueprint"] .hero__figure {
+        grid-column: 5 / -1;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
+        column-gap: var(--g);
+        row-gap: var(--g);
+        padding-inline-end: 72px;
+    }
+
+    [data-concept="blueprint"] .hero__figure .frame {
+        grid-column: 1 / -1;
+    }
+
+    [data-concept="blueprint"] .hero .label {
+        grid-column: 2;
+    }
+}
+
+/* strip: a schedule */
+
+[data-concept="blueprint"] .strip__list {
+    gap: 0;
+    padding: 0;
+    border: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .strip__list li {
+    padding: 14px 16px;
+    border-inline-end: 1px solid var(--line);
+}
+
+[data-concept="blueprint"] .strip__list li:last-child {
+    border-inline-end: 0;
+}
+
+[data-concept="blueprint"] .strip__list span {
+    color: var(--ink);
+}
+
+/* collection: the elevation of the collection, every width dimensioned */
+
+[data-concept="blueprint"] .rail__track {
+    --card-w: min(80vw, 420px);
+}
+
+@media (min-width: 1440px) {
+    [data-concept="blueprint"] .rail__track {
+        --card-w: calc((100vw - 2 * var(--m) - 3 * var(--g)) / 3.3);
+    }
+}
+
+@media (min-width: 2400px) {
+    [data-concept="blueprint"] .rail__track {
+        --card-w: calc((100vw - 2 * var(--m) - 4 * var(--g)) / 4.3);
+    }
+}
+
+[data-concept="blueprint"] .rail__progress span {
+    background: var(--accent);
+}
+
+[data-concept="blueprint"] .card {
+    counter-reset: dim var(--w);
+}
+
+[data-concept="blueprint"] .card .frame {
+    aspect-ratio: 3 / 2;
+    background: var(--surface-2);
+    overflow: visible;
+    margin-top: 28px;
+}
+
+[data-concept="blueprint"] .card .frame img {
+    mix-blend-mode: multiply;
+}
+
+[data-concept="blueprint"] .card .frame::before {
+    content: counter(dim) "0";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -22px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--accent);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    transform-origin: center;
+    transition: transform 480ms var(--ease-plot);
+}
+
+[data-concept="blueprint"] .card__link:hover .frame::before {
+    transform: scaleX(1.02);
+}
+
+/* feature: the drawing set */
+
+[data-concept="blueprint"] .feature__media .frame {
+    background: var(--surface-2);
+}
+
+[data-concept="blueprint"] .specs {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+    border: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .specs div {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+}
+
+[data-concept="blueprint"] .specs div:last-child {
+    border-bottom: 0;
+}
+
+[data-concept="blueprint"] .specs dd {
+    font-size: 0.9375rem;
+}
+
+[data-concept="blueprint"] .fabric input {
+    border-radius: 0;
+    width: 40px;
+    height: 40px;
+}
+
+[data-concept="blueprint"] .fabric {
+    width: 48px;
+    height: 48px;
+}
+
+[data-concept="blueprint"] .fabric input:checked {
+    box-shadow:
+        inset 0 0 0 1px rgb(0 0 0 / 0.2),
+        0 0 0 3px var(--bg),
+        0 0 0 4px var(--accent);
+}
+
+[data-concept="blueprint"] .buy__price {
+    font-weight: 300;
+}
+
+[data-concept="blueprint"] .sheet {
+    background: var(--accent-soft);
+    border: 1px solid var(--ink);
+    position: relative;
+}
+
+[data-concept="blueprint"] .drawing__body rect,
+[data-concept="blueprint"] .drawing__body path,
+[data-concept="blueprint"] .drawing__body line {
+    stroke-width: 1.5;
+}
+
+[data-concept="blueprint"] .drawing__labels text {
+    font-family: var(--font-label);
+    font-variation-settings: "wdth" 150;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+[data-concept="blueprint"] .drawing__dims text {
+    font-family: var(--font-mono);
+}
+
+[data-concept="blueprint"] .sheet__caption {
+    border-top: 3px solid var(--ink);
+    padding-top: 10px;
+}
+
+[data-concept="blueprint"] .fit {
+    border: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .fit__result {
+    background: transparent;
+    border: 1px solid var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+}
+
+/* pen-plotter reveal: line work only, never text */
+
+[data-concept="blueprint"].js-anim .sheet.rv:not(.is-in) {
+    opacity: 1;
+    transform: none;
+}
+
+[data-concept="blueprint"].js-anim .sheet.rv .drawing__body :is(rect, path, line):not(.d-soft) {
+    stroke-dasharray: 2400;
+    stroke-dashoffset: 2400;
+    transition: stroke-dashoffset 1600ms var(--ease-plot);
+}
+
+[data-concept="blueprint"].js-anim .sheet.rv.is-in .drawing__body :is(rect, path, line):not(.d-soft) {
+    stroke-dashoffset: 0;
+}
+
+/* window: photographs never move; the plate stays inside the frame */
+
+[data-concept="blueprint"] .window {
+    padding-inline: var(--m) !important;
+}
+
+[data-concept="blueprint"] .window__frame {
+    height: auto;
+    aspect-ratio: 3 / 2;
+}
+
+@media (min-width: 1024px) {
+    [data-concept="blueprint"] .window__frame {
+        aspect-ratio: 21 / 9;
+    }
+}
+
+[data-concept="blueprint"] .window__frame img {
+    height: 100%;
+    animation: none !important;
+    transform: none;
+}
+
+[data-concept="blueprint"] .window__frame figcaption {
+    font-family: var(--font-mono);
+    background: var(--bg);
+    border: 1px solid var(--ink);
+}
+
+/* gallery: numbered plates with crop marks */
+
+[data-concept="blueprint"] .gallery__grid {
+    counter-reset: plate;
+}
+
+[data-concept="blueprint"] .g {
+    position: relative;
+    counter-increment: plate;
+    padding: 10px;
+    background:
+        linear-gradient(var(--ink), var(--ink)) 0 0 / 14px 1px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) 0 0 / 1px 14px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) 100% 0 / 14px 1px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) 100% 0 / 1px 14px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) 0 100% / 14px 1px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) 0 100% / 1px 14px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) 100% 100% / 14px 1px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) 100% 100% / 1px 14px no-repeat;
+}
+
+[data-concept="blueprint"] .g::after {
+    content: "L-" counter(plate, decimal-leading-zero);
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    padding: 2px 6px;
+    background: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    pointer-events: none;
+}
+
+[data-concept="blueprint"] .g a:hover img {
+    transform: none;
+}
+
+/* projects: plate beside the schedule */
+
+[data-concept="blueprint"] .project__pieces {
+    border: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .project__pieces li {
+    padding-inline: 12px;
+    border-color: var(--line);
+}
+
+[data-concept="blueprint"] .project__pieces li:last-child {
+    border-bottom: 0;
+}
+
+[data-concept="blueprint"] .project__total {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+}
+
+/* samples: the parts list */
+
+[data-concept="blueprint"] .samples {
+    padding-block: clamp(32px, 4vw, 96px);
+    border-block: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .sample {
+    border-color: var(--line);
+}
+
+[data-concept="blueprint"] .sample::before {
+    width: 40px;
+    height: 40px;
+}
+
+[data-concept="blueprint"] .sample:has(input:checked) {
+    border-color: var(--accent);
+}
+
+/* craft */
+
+[data-concept="blueprint"] .step h3::before {
+    content: counter(step, decimal-leading-zero);
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-inline-end: 10px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--ink);
+}
+
+/* service: title block */
+
+[data-concept="blueprint"] .delivery {
+    background: var(--surface);
+    border: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .delivery__out {
+    font-weight: 300;
+}
+
+[data-concept="blueprint"] .promises {
+    border: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .promises li {
+    padding-inline: 16px;
+}
+
+[data-concept="blueprint"] .promises li:last-child {
+    border-bottom: 0;
+}
+
+/* club */
+
+[data-concept="blueprint"] .club {
+    background: var(--surface-2);
+    border: 1px solid var(--ink);
+    margin-inline: var(--m);
+    padding-inline: clamp(16px, 3vw, 64px) !important;
+}
+
+/* footer: the sheet title block */
+
+[data-concept="blueprint"] .ftr {
+    margin-inline: var(--m);
+    padding-inline: 0;
+    border: 1px solid var(--ink);
+    gap: 0;
+    padding-block: 0;
+}
+
+[data-concept="blueprint"] .ftr > * {
+    padding: 20px clamp(16px, 2vw, 32px);
+    border-bottom: 1px solid var(--line);
+}
+
+[data-concept="blueprint"] .ftr > *:last-child {
+    border-bottom: 0;
+}
+
+[data-concept="blueprint"] .ftr__legal {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+}
+
+/* dialogs */
+
+[data-concept="blueprint"] .drawer {
+    border-inline-start: 1px solid var(--ink);
+}
+
+[data-concept="blueprint"] .totals {
+    border: 1px solid var(--ink);
+    gap: 0;
+}
+
+[data-concept="blueprint"] .totals div {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--line);
+}
+
+[data-concept="blueprint"] .totals div:last-child {
+    border-bottom: 0;
+}
+
+[data-concept="blueprint"] .totals__club dd {
+    color: var(--accent);
+}
+
+/* intro: cut A-A, the paper opens along the line */
+
+[data-concept="blueprint"] .intro__half {
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: var(--bg);
+}
+
+[data-concept="blueprint"] .intro__half--a {
+    top: 0;
+    border-bottom: 1px solid var(--faint);
+    animation: bp-open-up 400ms var(--ease-plot) 900ms forwards;
+}
+
+[data-concept="blueprint"] .intro__half--b {
+    bottom: 0;
+    animation: bp-open-down 400ms var(--ease-plot) 900ms forwards;
+}
+
+[data-concept="blueprint"] .intro__line {
+    left: var(--m);
+    right: var(--m);
+    top: 50%;
+    height: 0;
+    border-top: 2px dashed var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation:
+        bp-cut 550ms var(--ease-plot) 150ms forwards,
+        bp-fade 300ms linear 1000ms forwards;
+}
+
+[data-concept="blueprint"] .intro__line::before,
+[data-concept="blueprint"] .intro__line::after {
+    content: "A";
+    position: absolute;
+    top: -18px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    background: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+}
+
+[data-concept="blueprint"] .intro__line::before {
+    left: -2px;
+}
+
+[data-concept="blueprint"] .intro__line::after {
+    right: -2px;
+}
+
+[data-concept="blueprint"] .intro__mark {
+    left: var(--m);
+    top: calc(50% - 64px);
+    font-family: var(--font-label);
+    font-variation-settings: "wdth" 150;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    animation: bp-fade 300ms linear 900ms forwards;
+}
+
+[data-concept="blueprint"] .intro__mark small {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+@keyframes bp-cut {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes bp-open-up {
+    to {
+        transform: translateY(-101%);
+    }
+}
+
+@keyframes bp-open-down {
+    to {
+        transform: translateY(101%);
+    }
+}
+
+@keyframes bp-fade {
+    to {
+        opacity: 0;
+    }
+}

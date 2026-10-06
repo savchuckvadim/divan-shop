@@ -157,9 +157,16 @@ for (const width of widths) {
     if (htmlAttrs.length > 0) {
         await page.evaluateOnNewDocument((pairs) => {
             const apply = () => {
+                if (!document.documentElement) return;
                 for (const [key, value] of pairs) document.documentElement.setAttribute(key, value);
             };
             apply();
+            new MutationObserver((records, observer) => {
+                if (document.documentElement) {
+                    apply();
+                    observer.disconnect();
+                }
+            }).observe(document, { childList: true });
             document.addEventListener("DOMContentLoaded", apply);
         }, htmlAttrs);
     }
@@ -232,6 +239,11 @@ for (const width of widths) {
             await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
         }
         await sleep(settle);
+
+        run.vitalsAtLoad = await page
+            .evaluate(() => (window.__vitals ? { ...window.__vitals } : null))
+            .catch(() => null);
+        if (run.vitalsAtLoad) run.vitalsAtLoad.cls = Number(run.vitalsAtLoad.cls.toFixed(4));
 
         if (clickSelector) {
             await page.click(clickSelector).catch((error) => {

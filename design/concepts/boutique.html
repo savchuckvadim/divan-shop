@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="es" data-brand="boutique" data-concept="cinema" data-palette="p1">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <title>Sofás hechos en Yecla para la Costa Blanca | divan.boutique</title>
+        <meta
+            name="description"
+            content="Sofás de autor fabricados bajo pedido en talleres de Yecla, entregados y montados en tu casa de la Costa Blanca. Muestras de tela gratis, plano de cada modelo y precio club."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wdth,wght@12..36,75..100,300..700&family=Martian+Mono:wdth,wght@87.5..100,300..500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..500;1,8..60,400&family=Source+Sans+3:wght@400..600&family=IBM+Plex+Sans:wdth,wght@85..100,300..600&family=Science+Gothic:wdth,wght@150,400&display=swap"
+        />
+        <link rel="stylesheet" href="base.css" />
+        <link rel="stylesheet" href="skin-cinema.css" />
+        <link rel="stylesheet" href="skin-atelier.css" />
+        <link rel="stylesheet" href="skin-blueprint.css" />
+        <script>
+            (function () {
+                var d = document.documentElement;
+                var read = function (store, key) {
+                    try {
+                        return window[store].getItem(key);
+                    } catch (e) {
+                        return null;
+                    }
+                };
+                var concept = read("localStorage", "dv.concept");
+                if (/^(cinema|atelier|blueprint)$/.test(concept || "")) d.setAttribute("data-concept", concept);
+                var palette = read("localStorage", "dv.palette");
+                if (/^p[1-4]$/.test(palette || "")) d.setAttribute("data-palette", palette);
+                var theme = read("localStorage", "dv.theme");
+                if (theme === "light" || theme === "dark") d.setAttribute("data-theme", theme);
+                var lang = read("localStorage", "dv.lang");
+                if (!lang) lang = /^ru/i.test(navigator.language || "") ? "ru" : "es";
+                d.setAttribute("data-lang-wanted", lang);
+                if (window.innerWidth < 768) d.classList.add("controls-collapsed");
+                var motion = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+                if (!motion) return;
+                d.classList.add("js-anim");
+                setTimeout(function () {
+                    if (!window.__dvReady) d.classList.remove("js-anim");
+                }, 3000);
+                if (!read("sessionStorage", "dv.intro")) {
+                    d.classList.add("intro-run");
+                    try {
+                        sessionStorage.setItem("dv.intro", "1");
+                    } catch (e) {}
+                }
+            })();
+        </script>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "OnlineStore",
+                "name": "divan.boutique",
+                "url": "https://divan.boutique/es",
+                "areaServed": ["Alicante", "Torrevieja", "Orihuela Costa", "Benidorm", "Calpe"],
+                "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "applicableCountry": "ES",
+                    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                    "merchantReturnDays": 14
+                }
+            }
+        </script>
+    </head>
+    <body id="top">
+        <div class="intro" aria-hidden="true">
+            <span class="intro__half intro__half--a"></span>
+            <span class="intro__half intro__half--b"></span>
+            <span class="intro__line"></span>
+            <span class="intro__mark">divan<small>.boutique</small></span>
+        </div>
+
+        <a class="skip" href="#main">Saltar al contenido</a>
+
+        <header class="hdr">
+            <a class="hdr__brand" href="#top" aria-label="divan.boutique, inicio">
+                <span class="wordmark">divan</span><span class="wordmark__tld">.boutique</span>
+            </a>
+            <nav class="hdr__nav" aria-label="Principal">
+                <ul>
+                    <li><a href="#coleccion">Colecciones</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#muestras">Tejidos</a></li>
+                    <li><a href="#servicio">Servicio</a></li>
+                    <li><a href="#club">Club</a></li>
+                </ul>
+            </nav>
+            <div class="hdr__tools">
+                <div class="langs" role="group" aria-label="Idioma">
+                    <button type="button" data-lang="es" data-qa="lang-es" lang="es">ES</button>
+                    <button type="button" data-lang="ru" data-qa="lang-ru" lang="ru">RU</button>
+                    <a href="#idiomas" hreflang="en" lang="en" data-qa="lang-en">EN</a>
+                    <a href="#idiomas" hreflang="uk" lang="uk" data-qa="lang-uk">UK</a>
+                </div>
+                <a class="hdr__link" href="#club">Mi cuenta</a>
+                <button class="hdr__cart" type="button" data-qa="cart-open" aria-haspopup="dialog" aria-controls="cart">
+                    <span>Cesta</span> <span class="count" aria-label="2 artículos">2</span>
+                </button>
+                <button class="hdr__menu" type="button" data-qa="menu-open" aria-haspopup="dialog" aria-controls="menu">
+                    Menú
+                </button>
+            </div>
+        </header>
+        <div class="zones" aria-hidden="true">
+            <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span>
+        </div>
+
+        <main id="main">
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="hero__text">
+                    <p class="kicker">Fabricado bajo pedido en Yecla · Entregado en la Costa Blanca</p>
+                    <h1 id="hero-title" class="hero__title">Sofás hechos a 90 minutos de tu salón</h1>
+                    <p class="hero__lead">
+                        Cada pieza se fabrica bajo pedido en talleres de Yecla y llega a tu casa de la Costa Blanca: la
+                        subimos, la montamos y nos llevamos el embalaje.
+                    </p>
+                    <p class="hero__actions">
+                        <a class="btn btn--primary" href="#coleccion">Ver la colección</a>
+                        <a class="btn btn--ghost" href="#muestras">Pedir muestras gratis</a>
+                    </p>
+                </div>
+                <figure class="hero__figure">
+                    <div class="frame frame--hero">
+                        <img
+                            class="hero__img"
+                            src="assets/product-07.webp"
+                            srcset="assets/product-07-sm.webp 1100w, assets/product-07.webp 2560w"
+                            sizes="(min-width: 1024px) 72vw, 100vw"
+                            width="2560"
+                            height="1707"
+                            alt="Sofá Montgó tapizado en terciopelo negro, de frente, sobre un suelo de madera clara"
+                            fetchpriority="high"
+                            decoding="async"
+                        />
+                        <span class="dim dim--width" aria-hidden="true"><span>2520</span></span>
+                    </div>
+                    <figcaption class="label">
+                        <span class="label__name">Montgó</span>
+                        <span class="label__type">Sofá lounge · 3,5 plazas</span>
+                        <span class="label__dims">252 × 112 × 70 cm</span>
+                        <span class="label__lead">Bajo pedido · 3–4 semanas</span>
+                        <span class="label__price">desde 3.450 €</span>
+                        <span class="label__club">Precio club 3.278 €</span>
+                    </figcaption>
+                </figure>
+            </section>
+
+            <section class="strip" aria-label="Cómo trabajamos">
+                <ul class="strip__list">
+                    <li><strong>Talleres locales</strong> <span>Yecla y Valencia, a 90 minutos</span></li>
+                    <li><strong>Bajo pedido</strong> <span>3–4 semanas de fabricación</span></li>
+                    <li><strong>Entrega y montaje</strong> <span>desde 39 € en tu municipio</span></li>
+                    <li><strong>Muestras de tela</strong> <span>gratis, hasta 6 en casa</span></li>
+                </ul>
+            </section>
+
+            <section class="collection" id="coleccion" aria-labelledby="col-title">
+                <div class="section-head">
+                    <p class="kicker">Colección 2026 · 8 piezas</p>
+                    <h2 id="col-title">La colección</h2>
+                    <p class="section-head__lead">
+                        Ocho modelos, cada uno fabricado a mano y presentado con el mismo encuadre para que compares
+                        de verdad.
+                    </p>
+                </div>
+                <div class="rail" data-rail>
+                    <div class="rail__bar">
+                        <p class="rail__count" aria-live="polite"><span data-rail-index>1</span> / 8</p>
+                        <div class="rail__progress" aria-hidden="true"><span></span></div>
+                        <div class="rail__nav">
+                            <button type="button" class="icon-btn" data-rail-prev aria-label="Anterior">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+                            </button>
+                            <button type="button" class="icon-btn" data-rail-next aria-label="Siguiente">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="rail__track" tabindex="0" aria-label="Modelos de la colección">
+                        <li class="card" style="--w: 292">
+                            <a class="card__link" href="#tabarca">
+                                <span class="frame frame--product"
+                                    ><img src="assets/interior-09-sm.webp" width="825" height="1100" alt="Sofá modular Tabarca en bouclé marfil junto a un ventanal" loading="lazy" decoding="async"
+                                /></span>
+                                <span class="card__name">Tabarca</span>
+                                <span class="card__type">Sofá modular · 3 módulos</span>
+                                <span class="card__dims">292 × 104 × 72 cm</span>
+                                <span class="card__price">desde 2.890 €</span>
+                                <span class="card__club">Precio club 2.746 €</span>
+                                <span class="swatches" aria-label="Tres telas disponibles"
+                                    ><i style="--c: #ede8de"></i><i style="--c: #4a4b4d"></i><i style="--c: #6b6f4e"></i
+                                ></span>
+                            </a>
+                        </li>
+                        <li class="card" style="--w: 252">
+                            <a class="card__link" href="#coleccion">
+                                <span class="frame frame--product"
+                                    ><img src="assets/product-07-sm.webp" width="1100" height="733" alt="Sofá Montgó en terciopelo negro" loading="lazy" decoding="async"
+                                /></span>
+                                <span class="card__name">Montgó</span>
+                                <span class="card__type">Sofá lounge · 3,5 plazas</span>
+                                <span class="card__dims">252 × 112 × 70 cm</span>
+                                <span class="card__price">desde 3.450 €</span>
+                                <span class="card__club">Precio club 3.278 €</span>
+                                <span class="swatches" aria-label="Tres telas disponibles"
+                                    ><i style="--c: #2b2b2d"></i><i style="--c: #b9bdc0"></i><i style="--c: #d8cdb8"></i
+                                ></span>
+                            </a>
+                        </li>
+                        <li class="card" style="--w: 342">
+                            <a class="card__link" href="#coleccion">
+                                <span class="frame frame--product"
+                                    ><img src="assets/product-08-sm.webp" width="825" height="1100" alt="Rinconera modular Bèrnia en chenilla verde oliva" loading="lazy" decoding="async"
+                                /></span>
+                                <span class="card__name">Bèrnia</span>
+                                <span class="card__type">Rinconera modular XL</span>
+                                <span class="card__dims">342 × 246 × 74 cm</span>
+                                <span class="card__price">desde 4.600 €</span>
+                                <span class="card__club">Precio club 4.370 €</span>
+                                <span class="swatches" aria-label="Tres telas disponibles"
+                                    ><i style="--c: #6b6f4e"></i><i style="--c: #4a4b4d"></i><i style="--c: #ede8de"></i
+                                ></span>
+                            </a>
+                        </li>
+                        <li class="card" style="--w: 222">
+                            <a class="card__link" href="#coleccion">
+                                <span class="frame frame--product"
+                                    ><img src="assets/product-11-sm.webp" width="1100" height="825" alt="Sofá Benissa de piel coñac a la luz de la tarde" loading="lazy" decoding="async"
+                                /></span>
+                                <span class="card__name">Benissa</span>
+                                <span class="card__type">Sofá de piel · 3 plazas</span>
+                                <span class="card__dims">222 × 94 × 76 cm</span>
+                                <span class="card__price">desde 3.980 €</span>
+                                <span class="card__club">Precio club 3.781 €</span>
+                                <span class="swatches" aria-label="Dos pieles disponibles"
+                                    ><i style="--c: #9a5b33"></i><i style="--c: #2b2b2d"></i
+                                ></span>
+                            </a>
+                        </li>
+                        <li class="card" style="--w: 286">
+                            <a class="card__link" href="#coleccion">
+                                <span class="frame frame--product"
+                                    ><img src="assets/interior-03-sm.webp" width="1100" height="733" alt="Rinconera Ifach gris con chaise en un salón luminoso" loading="lazy" decoding="async"
+                                /></span>
+                                <span class="card__name">Ifach</span>
+                                <span class="card__type">Rinconera con chaise</span>
+                                <span class="card__dims">286 × 168 × 82 cm</span>
+                                <span class="card__price">desde 2.240 €</span>
+                                <span class="card__club">Precio club 2.128 €</span>
+                                <span class="swatches" aria-label="Tres telas disponibles"
+                                    ><i style="--c: #b9bdc0"></i><i style="--c: #d8cdb8"></i><i style="--c: #4a4b4d"></i
+                                ></span>
+                            </a>
+                        </li>
+                        <li class="card" style="--w: 78">
+                            <a class="card__link" href="#coleccion">
+                                <span class="frame frame--product"
+                                    ><img src="assets/product-01-sm.webp" width="880" height="1100" alt="Butaca giratoria Mariola en bouclé marfil" loading="lazy" decoding="async"
+                                /></span>
+                                <span class="card__name">Mariola</span>
+                                <span class="card__type">Butaca giratoria</span>
+                                <span class="card__dims">78 × 80 × 74 cm</span>
+                                <span class="card__price">desde 890 €</span>
+                                <span class="card__club">Precio club 846 €</span>
+                                <span class="swatches" aria-label="Tres telas disponibles"
+                                    ><i style="--c: #ede8de"></i><i style="--c: #2b2b2d"></i><i style="--c: #6b6f4e"></i
+                                ></span>
+                            </a>
+                        </li>
+                        <li class="card" style="--w: 182">
+                            <a class="card__link" href="#coleccion">
+                                <span class="frame frame--product"
+                                    ><img src="assets/product-05-sm.webp" width="734" height="1100" alt="Diván Guadalest de líneas curvas en tela arena" loading="lazy" decoding="async"
+                                /></span>
+                                <span class="card__name">Guadalest</span>
+                                <span class="card__type">Diván chaise</span>
+                                <span class="card__dims">182 × 86 × 68 cm</span>
+                                <span class="card__price">desde 1.150 €</span>
+                                <span class="card__club">Precio club 1.093 €</span>
+                                <span class="swatches" aria-label="Dos telas disponibles"
+                                    ><i style="--c: #d8cdb8"></i><i style="--c: #f2f0ea"></i
+                                ></span>
+                            </a>
+                        </li>
+                        <li class="card" style="--w: 84">
+                            <a class="card__link" href="#coleccion">
+                                <span class="frame frame--product"
+                                    ><img src="assets/product-12-sm.webp" width="619" height="1100" alt="Butaca Moraira de piel coñac en un interior oscuro" loading="lazy" decoding="async"
+                                /></span>
+                                <span class="card__name">Moraira</span>
+                                <span class="card__type">Butaca de piel</span>
+                                <span class="card__dims">84 × 88 × 76 cm</span>
+                                <span class="card__price">desde 690 €</span>
+                                <span class="card__club">Precio club 656 €</span>
+                                <span class="swatches" aria-label="Dos pieles disponibles"
+                                    ><i style="--c: #9a5b33"></i><i style="--c: #2b2b2d"></i
+                                ></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="feature" id="tabarca" aria-labelledby="tabarca-title">
+                <div class="feature__top">
+                <div class="feature__media">
+                    <figure class="feature__main">
+                        <span class="frame frame--tall"
+                            ><img
+                                src="assets/interior-09-sm.webp"
+                                srcset="assets/interior-09-sm.webp 825w, assets/interior-09.webp 1920w"
+                                sizes="(min-width: 1024px) 45vw, 100vw"
+                                width="1920"
+                                height="2560"
+                                alt="Tabarca en bouclé marfil, tres módulos en línea bajo un ventanal"
+                                loading="lazy"
+                                decoding="async"
+                        /></span>
+                    </figure>
+                    <figure class="feature__detail">
+                        <span class="frame frame--square"
+                            ><img src="assets/detail-01-sm.webp" width="880" height="1100" alt="Detalle del bouclé marfil y la costura del brazo" loading="lazy" decoding="async"
+                        /></span>
+                    </figure>
+                    <figure class="feature__detail">
+                        <span class="frame frame--square"
+                            ><img src="assets/detail-02-sm.webp" width="804" height="1100" alt="Esquina del módulo con pata de madera de haya" loading="lazy" decoding="async"
+                        /></span>
+                    </figure>
+                </div>
+
+                <div class="feature__body">
+                    <p class="kicker">Pieza destacada · Nº 01</p>
+                    <h2 id="tabarca-title">Tabarca</h2>
+                    <p class="feature__type">Sofá modular de tres módulos</p>
+                    <p>
+                        Tres módulos que se ordenan como quieras: en línea, en ángulo o separados. Asiento de 62 cm de
+                        fondo para sentarse de verdad, estructura de haya y bouclé con tratamiento antimanchas.
+                    </p>
+
+                    <dl class="specs">
+                        <div><dt>Ancho</dt><dd>292 cm</dd></div>
+                        <div><dt>Fondo</dt><dd>104 cm</dd></div>
+                        <div><dt>Alto</dt><dd>72 cm</dd></div>
+                        <div><dt>Altura de asiento</dt><dd>42 cm</dd></div>
+                        <div><dt>Fondo de asiento</dt><dd>62 cm</dd></div>
+                    </dl>
+
+                    <fieldset class="fabrics">
+                        <legend>Tela: <span data-fabric-name>Bouclé Marfil</span></legend>
+                        <label class="fabric" style="--c: #ede8de"><input type="radio" name="fabric" value="Bouclé Marfil" checked /><span>Bouclé Marfil</span></label>
+                        <label class="fabric" style="--c: #d8cdb8"><input type="radio" name="fabric" value="Lino Arena" /><span>Lino Arena</span></label>
+                        <label class="fabric" style="--c: #f2f0ea"><input type="radio" name="fabric" value="Algodón Tiza" /><span>Algodón Tiza</span></label>
+                        <label class="fabric" style="--c: #4a4b4d"><input type="radio" name="fabric" value="Chenilla Grafito" /><span>Chenilla Grafito</span></label>
+                        <label class="fabric" style="--c: #2b2b2d"><input type="radio" name="fabric" value="Lana Carbón" /><span>Lana Carbón</span></label>
+                        <label class="fabric" style="--c: #6b6f4e"><input type="radio" name="fabric" value="Terciopelo Oliva" /><span>Terciopelo Oliva</span></label>
+                        <label class="fabric" style="--c: #b9bdc0"><input type="radio" name="fabric" value="Aquaclean Niebla" /><span>Aquaclean Niebla</span></label>
+                        <label class="fabric" style="--c: #9a5b33"><input type="radio" name="fabric" value="Piel Coñac" /><span>Piel Coñac</span></label>
+                    </fieldset>
+
+                    <div class="buy">
+                        <p class="buy__price">2.890 €</p>
+                        <p class="buy__club">Precio club 2.746 € · <a href="#club">Hazte socio gratis</a></p>
+                        <p class="buy__meta">Bajo pedido · 3–4 semanas · IVA incluido</p>
+                        <p class="buy__actions">
+                            <button type="button" class="btn btn--primary" data-qa="add-to-cart" data-add="Tabarca">
+                                Añadir a la cesta
+                            </button>
+                            <a class="btn btn--ghost" href="#muestras">Pedir muestras de esta tela</a>
+                        </p>
+                    </div>
+                </div>
+                </div>
+
+                <div class="feature__drawing">
+                    <figure class="sheet">
+                        <svg class="drawing" viewBox="-26 0 526 300" role="img" aria-labelledby="drawing-title">
+                            <title id="drawing-title">Plano de Tabarca: alzado frontal, planta y perfil con medidas en centímetros</title>
+                            <g class="drawing__body">
+                                <rect x="20" y="112" width="292" height="8" class="d-base" />
+                                <rect x="21" y="48" width="95.3" height="30" rx="5" />
+                                <rect x="118.3" y="48" width="95.3" height="30" rx="5" />
+                                <rect x="215.7" y="48" width="95.3" height="30" rx="5" />
+                                <rect x="21" y="78" width="95.3" height="34" rx="6" />
+                                <rect x="118.3" y="78" width="95.3" height="34" rx="6" />
+                                <rect x="215.7" y="78" width="95.3" height="34" rx="6" />
+                                <rect x="20" y="170" width="292" height="104" />
+                                <line x1="20" y1="200" x2="312" y2="200" />
+                                <line x1="117.3" y1="170" x2="117.3" y2="274" />
+                                <line x1="214.7" y1="170" x2="214.7" y2="274" />
+                                <rect x="24" y="204" width="89.3" height="62" rx="6" class="d-soft" />
+                                <rect x="121.3" y="204" width="89.3" height="62" rx="6" class="d-soft" />
+                                <rect x="218.7" y="204" width="89.3" height="62" rx="6" class="d-soft" />
+                                <path d="M380 120 L380 48 L410 48 L410 78 L484 78 L484 120 Z" />
+                                <line x1="380" y1="112" x2="484" y2="112" class="d-base-line" />
+                            </g>
+                            <g class="drawing__dims">
+                                <line x1="20" y1="34" x2="312" y2="34" />
+                                <line x1="20" y1="29" x2="20" y2="39" /><line x1="312" y1="29" x2="312" y2="39" />
+                                <text x="166" y="28" text-anchor="middle">292</text>
+                                <line x1="326" y1="48" x2="326" y2="120" />
+                                <line x1="321" y1="48" x2="331" y2="48" /><line x1="321" y1="120" x2="331" y2="120" />
+                                <text x="338" y="88">72</text>
+                                <line x1="8" y1="78" x2="8" y2="120" />
+                                <line x1="3" y1="78" x2="13" y2="78" /><line x1="3" y1="120" x2="13" y2="120" />
+                                <text x="0" y="103" text-anchor="end">42</text>
+                                <line x1="326" y1="170" x2="326" y2="274" />
+                                <line x1="321" y1="170" x2="331" y2="170" /><line x1="321" y1="274" x2="331" y2="274" />
+                                <text x="338" y="226">104</text>
+                                <line x1="380" y1="136" x2="484" y2="136" />
+                                <line x1="380" y1="131" x2="380" y2="141" /><line x1="484" y1="131" x2="484" y2="141" />
+                                <text x="432" y="152" text-anchor="middle">104</text>
+                                <line x1="410" y1="64" x2="484" y2="64" class="d-thin" />
+                                <text x="447" y="60" text-anchor="middle" class="d-small">62</text>
+                            </g>
+                            <g class="drawing__labels">
+                                <text x="20" y="140">Alzado frontal</text>
+                                <text x="20" y="292">Planta</text>
+                                <text x="380" y="168">Perfil</text>
+                                <text x="484" y="292" text-anchor="end" class="d-small">Escala 1:20 · cm</text>
+                            </g>
+                        </svg>
+                        <figcaption class="sheet__caption">
+                            <span>Plano de Tabarca</span>
+                            <span>Medidas reales en centímetros · tolerancia ±2 cm, hecho a mano</span>
+                            <a href="#tabarca">Descargar el plano en PDF</a>
+                        </figcaption>
+                    </figure>
+
+                    <form class="fit" data-fit data-module="97,104,72" action="#tabarca">
+                        <h3>¿Cabe por tu puerta?</h3>
+                        <p class="fit__note">Cada módulo viaja por separado: 97 × 104 × 72 cm.</p>
+                        <div class="fit__fields">
+                            <label for="fit-door">Ancho de la puerta <span class="unit">cm</span></label>
+                            <input id="fit-door" name="door" type="number" inputmode="numeric" min="50" max="200" value="78" />
+                            <label for="fit-lift-w">Ascensor: ancho <span class="unit">cm</span></label>
+                            <input id="fit-lift-w" name="liftw" type="number" inputmode="numeric" min="50" max="250" value="100" />
+                            <label for="fit-lift-d">Ascensor: fondo <span class="unit">cm</span></label>
+                            <input id="fit-lift-d" name="liftd" type="number" inputmode="numeric" min="50" max="250" value="130" />
+                        </div>
+                        <button type="submit" class="btn btn--ghost">Comprobar</button>
+                        <output class="fit__result" for="fit-door fit-lift-w fit-lift-d" aria-live="polite"
+                            >Pasa por una puerta de 78 cm y por un ascensor de 100 × 130 cm.</output
+                        >
+                    </form>
+                </div>
+            </section>
+
+            <section class="window" aria-label="Tabarca en una casa de Altea">
+                <figure class="window__frame">
+                    <img
+                        src="assets/interior-04-sm.webp"
+                        srcset="assets/interior-04-sm.webp 1100w, assets/interior-04.webp 2560w"
+                        sizes="100vw"
+                        width="2560"
+                        height="1707"
+                        alt="Módulos de bouclé en un salón cálido con alfombra de lana y silla de madera"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <figcaption>Tabarca en bouclé marfil · Altea, 2026</figcaption>
+                </figure>
+            </section>
+
+            <section class="gallery" id="galeria" aria-labelledby="gal-title">
+                <div class="section-head">
+                    <p class="kicker">Galería</p>
+                    <h2 id="gal-title">Luz de la Costa Blanca</h2>
+                    <p class="section-head__lead">Fotografiamos cada pieza con la misma luz y el mismo encuadre.</p>
+                </div>
+                <ul class="gallery__grid" data-gallery>
+                    <li class="g g--1">
+                        <a href="assets/interior-01.webp" data-qa="lightbox-open" data-lightbox data-caption="Casa de pueblo en Altea: sofá de obra y nichos de cal"
+                            ><img src="assets/interior-01-sm.webp" width="1100" height="733" alt="Salón con sofá de obra, nichos encalados y mesa redonda de madera" loading="lazy" decoding="async"
+                        /></a>
+                    </li>
+                    <li class="g g--2">
+                        <a href="assets/interior-07.webp" data-lightbox data-caption="Apartamento en Torrevieja: sofá blanco junto a la ventana"
+                            ><img src="assets/interior-07-sm.webp" width="733" height="1100" alt="Sofá blanco con cojín azul junto a una cortina de lino" loading="lazy" decoding="async"
+                        /></a>
+                    </li>
+                    <li class="g g--3">
+                        <a href="assets/detail-03.webp" data-lightbox data-caption="Brazo tapizado en terciopelo a contraluz"
+                            ><img src="assets/detail-03-sm.webp" width="1100" height="799" alt="Detalle en blanco y negro del brazo tapizado de un sofá" loading="lazy" decoding="async"
+                        /></a>
+                    </li>
+                    <li class="g g--4">
+                        <a href="assets/interior-05.webp" data-lightbox data-caption="Sofá curvo de obra en tonos arena"
+                            ><img src="assets/interior-05-sm.webp" width="1100" height="802" alt="Sofá curvo con cojines blancos y paredes de tierra" loading="lazy" decoding="async"
+                        /></a>
+                    </li>
+                    <li class="g g--5">
+                        <a href="assets/detail-05.webp" data-lightbox data-caption="Chenilla oliva sobre alfombra de lana"
+                            ><img src="assets/detail-05-sm.webp" width="619" height="1100" alt="Esquina de un sofá en chenilla verde oliva" loading="lazy" decoding="async"
+                        /></a>
+                    </li>
+                    <li class="g g--6">
+                        <a href="assets/interior-10.webp" data-lightbox data-caption="Diván bajo una ventana al atardecer"
+                            ><img src="assets/interior-10-sm.webp" width="1100" height="733" alt="Diván con cojines de lino en una habitación en penumbra" loading="lazy" decoding="async"
+                        /></a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="projects" id="proyectos" aria-labelledby="proj-title">
+                <div class="section-head">
+                    <p class="kicker">Proyectos</p>
+                    <h2 id="proj-title">Casas reales, piezas reales</h2>
+                    <p class="section-head__lead">Cada proyecto muestra qué piezas hay en la sala y cuánto cuestan.</p>
+                </div>
+                <ol class="projects__list">
+                    <li class="project">
+                        <figure class="project__media">
+                            <span class="frame frame--wide"
+                                ><img src="assets/interior-03-sm.webp" width="1100" height="733" alt="Salón de un ático con rinconera gris y mesa de madera clara" loading="lazy" decoding="async"
+                            /></span>
+                        </figure>
+                        <div class="project__body">
+                            <h3>Ático en Playa de San Juan</h3>
+                            <p class="project__meta">Alicante · 96 m² · 7.ª planta · 2026</p>
+                            <ul class="project__pieces">
+                                <li><a href="#coleccion">Rinconera Ifach, Aquaclean Niebla</a> <span>2.240 €</span></li>
+                                <li><a href="#coleccion">Butaca Mariola, Bouclé Marfil</a> <span>890 €</span></li>
+                            </ul>
+                            <p class="project__total">En esta sala: 3.130 €</p>
+                        </div>
+                    </li>
+                    <li class="project">
+                        <figure class="project__media">
+                            <span class="frame frame--wide"
+                                ><img src="assets/interior-02-sm.webp" width="1100" height="733" alt="Entrada luminosa de una vivienda nueva con sofá curvo" loading="lazy" decoding="async"
+                            /></span>
+                        </figure>
+                        <div class="project__body">
+                            <h3>Obra nueva en Orihuela Costa</h3>
+                            <p class="project__meta">Orihuela Costa · 88 m² · planta baja · 2026</p>
+                            <ul class="project__pieces">
+                                <li><a href="#coleccion">Diván Guadalest, Algodón Tiza</a> <span>1.150 €</span></li>
+                                <li><a href="#coleccion">Butaca Moraira, Piel Coñac</a> <span>690 €</span></li>
+                            </ul>
+                            <p class="project__total">En esta sala: 1.840 €</p>
+                        </div>
+                    </li>
+                    <li class="project">
+                        <figure class="project__media">
+                            <span class="frame frame--wide"
+                                ><img src="assets/interior-06-sm.webp" width="1100" height="733" alt="Sofá de piel oscura junto a un ventanal sobre el jardín, con luz de tarde" loading="lazy" decoding="async"
+                            /></span>
+                        </figure>
+                        <div class="project__body">
+                            <h3>Villa en Jávea</h3>
+                            <p class="project__meta">Jávea · 210 m² · doble altura · 2025</p>
+                            <ul class="project__pieces">
+                                <li><a href="#coleccion">Sofá Benissa, Piel Coñac</a> <span>3.980 €</span></li>
+                                <li><a href="#coleccion">Butaca Moraira, Piel Coñac</a> <span>690 €</span></li>
+                            </ul>
+                            <p class="project__total">En esta sala: 4.670 €</p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="samples" id="muestras" aria-labelledby="samples-title">
+                <figure class="samples__media">
+                    <span class="frame frame--wide"
+                        ><img src="assets/detail-07-sm.webp" width="1100" height="733" alt="Muestras de tela recortadas sobre una mesa de mármol" loading="lazy" decoding="async"
+                    /></span>
+                </figure>
+                <form class="samples__form" data-samples action="#muestras">
+                    <p class="kicker">Caja de muestras</p>
+                    <h2 id="samples-title">Toca la tela antes de elegir</h2>
+                    <p>
+                        Elige hasta seis telas. Un mensajero te las lleva a casa en 48–72 horas, gratis y sin compromiso.
+                    </p>
+                    <fieldset class="samples__grid">
+                        <legend><span data-samples-count>0</span> de 6 elegidas</legend>
+                        <label class="sample" style="--c: #ede8de"><input type="checkbox" name="s" value="Bouclé Marfil" /><span>Bouclé Marfil</span></label>
+                        <label class="sample" style="--c: #d8cdb8"><input type="checkbox" name="s" value="Lino Arena" /><span>Lino Arena</span></label>
+                        <label class="sample" style="--c: #f2f0ea"><input type="checkbox" name="s" value="Algodón Tiza" /><span>Algodón Tiza</span></label>
+                        <label class="sample" style="--c: #4a4b4d"><input type="checkbox" name="s" value="Chenilla Grafito" /><span>Chenilla Grafito</span></label>
+                        <label class="sample" style="--c: #2b2b2d"><input type="checkbox" name="s" value="Lana Carbón" /><span>Lana Carbón</span></label>
+                        <label class="sample" style="--c: #6b6f4e"><input type="checkbox" name="s" value="Terciopelo Oliva" /><span>Terciopelo Oliva</span></label>
+                        <label class="sample" style="--c: #b9bdc0"><input type="checkbox" name="s" value="Aquaclean Niebla" /><span>Aquaclean Niebla</span></label>
+                        <label class="sample" style="--c: #9a5b33"><input type="checkbox" name="s" value="Piel Coñac" /><span>Piel Coñac</span></label>
+                    </fieldset>
+                    <button type="submit" class="btn btn--primary">Pedir la caja de muestras</button>
+                    <p class="samples__note" aria-live="polite" data-samples-note>Sin registro. Solo necesitamos tu dirección.</p>
+                </form>
+            </section>
+
+            <section class="craft" aria-labelledby="craft-title">
+                <div class="section-head">
+                    <p class="kicker">Cómo se hace</p>
+                    <h2 id="craft-title">De tu pedido a tu salón</h2>
+                </div>
+                <ol class="craft__steps">
+                    <li class="step">
+                        <h3>Pedido</h3>
+                        <p>Eliges modelo, medida y tela. Te confirmamos plazo y precio final por escrito.</p>
+                    </li>
+                    <li class="step">
+                        <span class="frame frame--step"
+                            ><img src="assets/craft-03-sm.webp" width="1100" height="733" alt="Manos marcando con lápiz un listón de madera" loading="lazy" decoding="async"
+                        /></span>
+                        <h3>Estructura</h3>
+                        <p>Bastidor de madera de haya, encolado y atornillado en el taller.</p>
+                    </li>
+                    <li class="step">
+                        <span class="frame frame--step"
+                            ><img src="assets/craft-01-sm.webp" width="1100" height="738" alt="Tapicero ajustando la tela con un mazo de madera" loading="lazy" decoding="async"
+                        /></span>
+                        <h3>Tapizado</h3>
+                        <p>Espuma, guata y tela cortadas para tu pieza.</p>
+                    </li>
+                    <li class="step">
+                        <span class="frame frame--step"
+                            ><img src="assets/craft-02-sm.webp" width="1100" height="733" alt="Máquina de coser industrial cosiendo piel coñac" loading="lazy" decoding="async"
+                        /></span>
+                        <h3>Control</h3>
+                        <p>Antes de salir del taller te enviamos fotos de tu sofá terminado.</p>
+                    </li>
+                    <li class="step">
+                        <span class="frame frame--step"
+                            ><img src="assets/place-02-sm.webp" width="745" height="1100" alt="Calle encalada de Altea con el mar al fondo" loading="lazy" decoding="async"
+                        /></span>
+                        <h3>Entrega y montaje</h3>
+                        <p>Lo subimos, lo montamos y retiramos el embalaje.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="service" id="servicio" aria-labelledby="service-title">
+                <div class="section-head">
+                    <p class="kicker">Servicio</p>
+                    <h2 id="service-title">Todo incluido, todo por escrito</h2>
+                </div>
+                <div class="service__grid">
+                    <form class="delivery" data-delivery action="#servicio">
+                        <label for="town">Entrega y montaje en</label>
+                        <select id="town" name="town">
+                            <option value="39|3–4 semanas">Alicante</option>
+                            <option value="39|3–4 semanas" selected>Torrevieja</option>
+                            <option value="45|3–4 semanas">Orihuela Costa</option>
+                            <option value="45|3–4 semanas">Guardamar del Segura</option>
+                            <option value="59|4 semanas">Benidorm</option>
+                            <option value="69|4 semanas">Calpe</option>
+                        </select>
+                        <output class="delivery__out" for="town" aria-live="polite"><span data-delivery-price>39 €</span> · <span data-delivery-lead>3–4 semanas</span></output>
+                        <p class="delivery__note">Incluye subida, montaje y retirada del embalaje.</p>
+                    </form>
+                    <ul class="promises">
+                        <li><strong>Garantía de 3 años</strong> <span>La garantía legal, sin letra pequeña.</span></li>
+                        <li><strong>14 días para devolver</strong> <span>En los modelos de catálogo.</span></li>
+                        <li><strong>Pago a tu manera</strong> <span>Tarjeta, Bizum, transferencia o a plazos.</span></li>
+                        <li><strong>Videoconsulta</strong> <span>Por WhatsApp, con las muestras en la mano: +34 600 000 000.</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="club" id="club" aria-labelledby="club-title">
+                <div class="club__text">
+                    <p class="kicker">Club</p>
+                    <h2 id="club-title">Precio club: un 5 % menos en cada pieza</h2>
+                    <ul class="club__benefits">
+                        <li>Precio club en toda la colección</li>
+                        <li>Configuraciones guardadas</li>
+                        <li>Seguimiento de tu pedido</li>
+                    </ul>
+                </div>
+                <form class="club__form" action="#club" data-club>
+                    <label for="club-email">Correo electrónico</label>
+                    <input id="club-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.es" required />
+                    <label class="check"
+                        ><input id="club-consent" type="checkbox" name="consent" required />
+                        <span>Acepto la política de privacidad.</span></label
+                    >
+                    <button type="submit" class="btn btn--primary">Unirme al club</button>
+                    <p class="club__note" aria-live="polite" data-club-note></p>
+                </form>
+            </section>
+        </main>
+
+        <footer class="ftr">
+            <div class="ftr__sibling">
+                <p>La selección premium vive aquí. El catálogo completo, en <a href="https://divan.group/es">divan.group</a>.</p>
+            </div>
+            <nav class="ftr__cols" aria-label="Pie de página">
+                <div>
+                    <h2>Colección</h2>
+                    <ul>
+                        <li><a href="#coleccion">Sofás</a></li>
+                        <li><a href="#coleccion">Rinconeras</a></li>
+                        <li><a href="#coleccion">Butacas</a></li>
+                        <li><a href="#muestras">Tejidos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Servicio</h2>
+                    <ul>
+                        <li><a href="#servicio">Entrega y montaje</a></li>
+                        <li><a href="#servicio">Devoluciones</a></li>
+                        <li><a href="#servicio">Garantía</a></li>
+                        <li><a href="#servicio">Formas de pago</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Empresa</h2>
+                    <ul>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#club">Club</a></li>
+                        <li><a href="#top">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Legal</h2>
+                    <ul>
+                        <li><a href="#top">Aviso legal</a></li>
+                        <li><a href="#top">Privacidad</a></li>
+                        <li><a href="#top">Cookies</a></li>
+                        <li><a href="#top">Condiciones de venta</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <p class="ftr__contact">WhatsApp +34 600 000 000 · hola@divan.group</p>
+            <p class="ftr__legal" id="idiomas">© 2026 divan.boutique · Español · Русский · English · Українська</p>
+            <p class="ftr__legal">Prototipo de diseño: modelos, precios y proyectos son datos de ejemplo. Fotos: Unsplash y Pexels.</p>
+        </footer>
+
+        <dialog class="drawer" id="cart" aria-labelledby="cart-title">
+            <div class="drawer__head">
+                <h2 id="cart-title">Tu cesta</h2>
+                <button type="button" class="icon-btn" data-close aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                </button>
+            </div>
+            <ul class="lines">
+                <li class="line">
+                    <img src="assets/interior-09-sm.webp" width="825" height="1100" alt="" loading="lazy" decoding="async" />
+                    <div>
+                        <p class="line__name">Tabarca · 3 módulos</p>
+                        <p class="line__meta">Bouclé Marfil · bajo pedido</p>
+                    </div>
+                    <p class="line__price">2.890 €</p>
+                </li>
+                <li class="line">
+                    <img src="assets/product-01-sm.webp" width="880" height="1100" alt="" loading="lazy" decoding="async" />
+                    <div>
+                        <p class="line__name">Mariola · butaca giratoria</p>
+                        <p class="line__meta">Lana Carbón · bajo pedido</p>
+                    </div>
+                    <p class="line__price">890 €</p>
+                </li>
+            </ul>
+            <p class="drawer__samples">Caja de muestras: 3 de 6 · gratis</p>
+            <dl class="totals">
+                <div><dt>Subtotal</dt><dd>3.780 €</dd></div>
+                <div class="totals__club"><dt>Precio club (−5 %)</dt><dd>−189 €</dd></div>
+                <div><dt>Entrega y montaje · Torrevieja</dt><dd>39 €</dd></div>
+                <div class="totals__sum"><dt>Total</dt><dd>3.630 €</dd></div>
+            </dl>
+            <a class="btn btn--primary btn--block" href="#cart">Tramitar pedido</a>
+            <p class="drawer__legal">
+                Fabricación 3–4 semanas · 14 días de desistimiento en modelos de catálogo · garantía de 3 años. En el
+                último paso, el botón dice «Pedido con obligación de pago».
+            </p>
+        </dialog>
+
+        <dialog class="lightbox" id="lightbox" aria-label="Galería">
+            <figure class="lightbox__figure">
+                <img data-lightbox-img src="assets/interior-01-sm.webp" width="1100" height="733" alt="" />
+                <figcaption><span data-lightbox-caption></span> <span class="lightbox__count" data-lightbox-count></span></figcaption>
+            </figure>
+            <button type="button" class="icon-btn lightbox__prev" data-lightbox-prev aria-label="Anterior">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+            </button>
+            <button type="button" class="icon-btn lightbox__next" data-lightbox-next aria-label="Siguiente">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <button type="button" class="icon-btn lightbox__close" data-close aria-label="Cerrar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
+        </dialog>
+
+        <dialog class="menu" id="menu" aria-label="Menú">
+            <button type="button" class="icon-btn menu__close" data-close aria-label="Cerrar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
+            <nav aria-label="Menú móvil">
+                <ul>
+                    <li><a href="#coleccion" data-close>Colecciones</a></li>
+                    <li><a href="#proyectos" data-close>Proyectos</a></li>
+                    <li><a href="#muestras" data-close>Tejidos</a></li>
+                    <li><a href="#servicio" data-close>Servicio</a></li>
+                    <li><a href="#club" data-close>Club</a></li>
+                </ul>
+            </nav>
+        </dialog>
+
+        <aside class="controls" aria-label="Controles de diseño" data-controls>
+            <button type="button" class="controls__toggle" aria-expanded="true" data-controls-toggle>Diseño</button>
+            <div class="controls__body">
+                <div class="controls__row" role="group" aria-label="Dirección">
+                    <button type="button" data-set-concept="cinema" data-qa="concept-cinema">Cine</button>
+                    <button type="button" data-set-concept="atelier" data-qa="concept-atelier">Galería</button>
+                    <button type="button" data-set-concept="blueprint" data-qa="concept-blueprint">Plano</button>
+                </div>
+                <div class="controls__row" role="group" aria-label="Paleta">
+                    <button type="button" class="dot" data-set-palette="p1" data-qa="palette-p1"><span>1</span></button>
+                    <button type="button" class="dot" data-set-palette="p2" data-qa="palette-p2"><span>2</span></button>
+                    <button type="button" class="dot" data-set-palette="p3" data-qa="palette-p3"><span>3</span></button>
+                    <button type="button" class="dot" data-set-palette="p4" data-qa="palette-p4"><span>4</span></button>
+                    <span class="controls__palette" data-palette-name></span>
+                </div>
+                <div class="controls__row" role="group" aria-label="Modo">
+                    <button type="button" data-set-theme="light" data-qa="mode-light">Claro</button>
+                    <button type="button" data-set-theme="dark" data-qa="mode-toggle">Oscuro</button>
+                    <button type="button" data-set-theme="auto">Auto</button>
+                </div>
+            </div>
+        </aside>
+
+        <script src="engine.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,964 @@
+[
+  {
+    "id": "product-01",
+    "file": "product-01.webp",
+    "fileSm": "product-01-sm.webp",
+    "width": 2049,
+    "height": 2560,
+    "widthSm": 880,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "portrait",
+    "description": "a white couch sitting on top of a white floor",
+    "background": "light",
+    "borderColor": "#e1dcd3",
+    "dominantColors": [
+      "#e1dcd3",
+      "#d5c7b7",
+      "#c9b9a7"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Kevin Shek",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-white-couch-sitting-on-top-of-a-white-floor-kcxZ-YUZ8VE"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "product-02",
+    "file": "product-02.webp",
+    "fileSm": "product-02-sm.webp",
+    "width": 1707,
+    "height": 2560,
+    "widthSm": 733,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "portrait",
+    "description": "a chair with a blanket on it next to a vase with flowers",
+    "background": "scene",
+    "borderColor": "#a1a19d",
+    "dominantColors": [
+      "#dadad9",
+      "#a6a59e",
+      "#727266"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Olena Bohovyk",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-chair-with-a-blanket-on-it-next-to-a-vase-with-flowers-_ITQJtPxkJk"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "product-03",
+    "file": "product-03.webp",
+    "fileSm": "product-03-sm.webp",
+    "width": 2560,
+    "height": 2560,
+    "widthSm": 1100,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "square",
+    "description": "",
+    "background": "light",
+    "borderColor": "#e4e3e6",
+    "dominantColors": [
+      "#ebeaed",
+      "#aa9c92",
+      "#98887a"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Ksenia Chernaya",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/11112731/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "product-04",
+    "file": "product-04.webp",
+    "fileSm": "product-04-sm.webp",
+    "width": 1707,
+    "height": 2560,
+    "widthSm": 733,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "portrait",
+    "description": "a red couch sitting in a white room",
+    "background": "light",
+    "borderColor": "#ced5d7",
+    "dominantColors": [
+      "#dde2e3",
+      "#bbc4c6",
+      "#90371e"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Keith Tanner",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-red-couch-sitting-in-a-white-room-3l2UKximisM"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "product-05",
+    "file": "product-05.webp",
+    "fileSm": "product-05-sm.webp",
+    "width": 1709,
+    "height": 2560,
+    "widthSm": 734,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "portrait",
+    "description": "",
+    "background": "light",
+    "borderColor": "#cbc2bf",
+    "dominantColors": [
+      "#d7cecc",
+      "#c7b9b1",
+      "#b1a096"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Ksenia Chernaya",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/8987432/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "product-06",
+    "file": "product-06.webp",
+    "fileSm": "product-06-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "product",
+    "orientation": "landscape",
+    "description": "green fabric sofa",
+    "background": "light",
+    "borderColor": "#d9cbc3",
+    "dominantColors": [
+      "#e1dcda",
+      "#31534f",
+      "#cbb09b"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Phillip Goldsberry",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/green-fabric-sofa-fZuleEfeA1Q"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "product-07",
+    "file": "product-07.webp",
+    "fileSm": "product-07-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "product",
+    "orientation": "landscape",
+    "description": "A black sofa with wooden legs against a white wall",
+    "background": "light",
+    "borderColor": "#cec2b5",
+    "dominantColors": [
+      "#dedfdb",
+      "#151412",
+      "#af8d6f"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Oluwafunto Akintoye",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-black-sofa-with-wooden-legs-against-a-white-wall-bAFeDXWXL90"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "product-08",
+    "file": "product-08.webp",
+    "fileSm": "product-08-sm.webp",
+    "width": 1920,
+    "height": 2560,
+    "widthSm": 825,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "portrait",
+    "description": "",
+    "background": "scene",
+    "borderColor": "#aaa9a3",
+    "dominantColors": [
+      "#a9a8a3",
+      "#d5d5d4",
+      "#6b6c5d"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Dmitry Zvolskiy",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/15545368/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "product-09",
+    "file": "product-09.webp",
+    "fileSm": "product-09-sm.webp",
+    "width": 1920,
+    "height": 2560,
+    "widthSm": 825,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "portrait",
+    "description": "",
+    "background": "scene",
+    "borderColor": "#a99181",
+    "dominantColors": [
+      "#b19c92",
+      "#212a2a",
+      "#c7b0a6"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Dmitry Zvolskiy",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/5662652/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "product-10",
+    "file": "product-10.webp",
+    "fileSm": "product-10-sm.webp",
+    "width": 1879,
+    "height": 2560,
+    "widthSm": 808,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "portrait",
+    "description": "A modern peach sofa with pillows in a room",
+    "background": "scene",
+    "borderColor": "#908889",
+    "dominantColors": [
+      "#a29da1",
+      "#645859",
+      "#d2d1d7"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Caroline Badran",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-modern-peach-sofa-with-pillows-in-a-room-in2D_wh4sq8"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "product-11",
+    "file": "product-11.webp",
+    "fileSm": "product-11-sm.webp",
+    "width": 2560,
+    "height": 1920,
+    "widthSm": 1100,
+    "heightSm": 825,
+    "category": "product",
+    "orientation": "landscape",
+    "description": "brown leather 2-seat sofa",
+    "background": "scene",
+    "borderColor": "#968f82",
+    "dominantColors": [
+      "#eee3e0",
+      "#b5ada2",
+      "#c7b9af"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Martin Péchy",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/brown-leather-2-seat-sofa-bpg-ngqrPc8"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "product-12",
+    "file": "product-12.webp",
+    "fileSm": "product-12-sm.webp",
+    "width": 1440,
+    "height": 2560,
+    "widthSm": 619,
+    "heightSm": 1100,
+    "category": "product",
+    "orientation": "portrait",
+    "description": "Modern tan leather sofa in a minimalist room",
+    "background": "dark",
+    "borderColor": "#3e3124",
+    "dominantColors": [
+      "#252320",
+      "#52504d",
+      "#67492c"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Aliaksei Liohenki",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/modern-tan-leather-sofa-in-a-minimalist-room-gsZ5nKQI0EE"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "interior-01",
+    "file": "interior-01.webp",
+    "fileSm": "interior-01-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "interior",
+    "orientation": "landscape",
+    "description": "a living room with a couch and a table",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#a9a899",
+      "#908776",
+      "#857a68"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Andre Portolesi",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-table-AMIqdp54tJA"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "interior-02",
+    "file": "interior-02.webp",
+    "fileSm": "interior-02-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "interior",
+    "orientation": "landscape",
+    "description": "A modern sectional sofa with grey pillows in a sunlit living room",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#6d6861",
+      "#a39f94",
+      "#e6e7e2"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Franco Debartolo",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/modern-sectional-sofa-in-living-room-gcDlzsTXJJA"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "interior-03",
+    "file": "interior-03.webp",
+    "fileSm": "interior-03-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "interior",
+    "orientation": "landscape",
+    "description": "A living room filled with furniture and a large window",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#aca69e",
+      "#988974",
+      "#6e6657"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Alex Tyson",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-large-window-5KpGdlXZZ70"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "interior-04",
+    "file": "interior-04.webp",
+    "fileSm": "interior-04-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "interior",
+    "orientation": "landscape",
+    "description": "",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#d8b295",
+      "#b58b6b",
+      "#9e7251"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Wendy Wei",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/20337842/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "interior-05",
+    "file": "interior-05.webp",
+    "fileSm": "interior-05-sm.webp",
+    "width": 2560,
+    "height": 1866,
+    "widthSm": 1100,
+    "heightSm": 802,
+    "category": "interior",
+    "orientation": "landscape",
+    "description": "a curved couch sitting in a living room next to a lamp",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#cdb2a0",
+      "#ded3ce",
+      "#b68c6b"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Joel Severino",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-curved-couch-sitting-in-a-living-room-next-to-a-lamp-tXsWBcHHYpA"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "interior-06",
+    "file": "interior-06.webp",
+    "fileSm": "interior-06-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "interior",
+    "orientation": "landscape",
+    "description": "brown leather sofa",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#15130b",
+      "#5d5132",
+      "#4b3820"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Tarik Haiga",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/brown-leather-sofa-P7Zb-sF62x0"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "interior-07",
+    "file": "interior-07.webp",
+    "fileSm": "interior-07-sm.webp",
+    "width": 1707,
+    "height": 2560,
+    "widthSm": 733,
+    "heightSm": 1100,
+    "category": "interior",
+    "orientation": "portrait",
+    "description": "A modern living room with a white sectional sofa",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#a9a69a",
+      "#6a5f51",
+      "#d1d3cf"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Aleksandra Dementeva",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-modern-living-room-with-a-white-sectional-sofa-nEt7ytkTq90"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "interior-08",
+    "file": "interior-08.webp",
+    "fileSm": "interior-08-sm.webp",
+    "width": 1709,
+    "height": 2560,
+    "widthSm": 734,
+    "heightSm": 1100,
+    "category": "interior",
+    "orientation": "portrait",
+    "description": "a living room with a couch and a table",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#a6a895",
+      "#5d6154",
+      "#252a24"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Fito García",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-table-TlPgK9K5iuI"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "interior-09",
+    "file": "interior-09.webp",
+    "fileSm": "interior-09-sm.webp",
+    "width": 1920,
+    "height": 2560,
+    "widthSm": 825,
+    "heightSm": 1100,
+    "category": "interior",
+    "orientation": "portrait",
+    "description": "",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#6c6059",
+      "#949090",
+      "#201c17"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "tiago alves",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/19650953/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "interior-10",
+    "file": "interior-10.webp",
+    "fileSm": "interior-10-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "interior",
+    "orientation": "landscape",
+    "description": "a living room with a couch and a window",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#34281d",
+      "#473628",
+      "#564535"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Max Harlynking",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-window-wcS0Bsky5yU"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "detail-01",
+    "file": "detail-01.webp",
+    "fileSm": "detail-01-sm.webp",
+    "width": 2049,
+    "height": 2560,
+    "widthSm": 880,
+    "heightSm": 1100,
+    "category": "detail",
+    "orientation": "portrait",
+    "description": "a close up of a chair with a white background",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#e3dfd8",
+      "#c7b6a3",
+      "#b8a48e"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Kevin Shek",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-close-up-of-a-chair-with-a-white-background-NWHf40nJ1J4"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "detail-02",
+    "file": "detail-02.webp",
+    "fileSm": "detail-02-sm.webp",
+    "width": 1871,
+    "height": 2560,
+    "widthSm": 804,
+    "heightSm": 1100,
+    "category": "detail",
+    "orientation": "portrait",
+    "description": "Close-up of a textured beige sofa with wooden legs",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#8c6f5e",
+      "#ad958a",
+      "#151110"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Caroline Badran",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/close-up-of-a-textured-beige-sofa-with-wooden-legs-Gkig1kUYl4c"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "detail-03",
+    "file": "detail-03.webp",
+    "fileSm": "detail-03-sm.webp",
+    "width": 2560,
+    "height": 1860,
+    "widthSm": 1100,
+    "heightSm": 799,
+    "category": "detail",
+    "orientation": "landscape",
+    "description": "Close-up of a textured armchair with dramatic light and shadow",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#161616",
+      "#d8d8d8",
+      "#a1a1a1"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Jonathan Cosens Photography",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/close-up-of-a-textured-armchair-with-dramatic-light-and-shadow-fvyoMXUNr38"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "detail-04",
+    "file": "detail-04.webp",
+    "fileSm": "detail-04-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "detail",
+    "orientation": "landscape",
+    "description": "brown textile in close up photography",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#201210",
+      "#694f1e",
+      "#4e350c"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Marc Rentschler",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/brown-textile-in-close-up-photography-HtvfxfJg1TY"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "detail-05",
+    "file": "detail-05.webp",
+    "fileSm": "detail-05-sm.webp",
+    "width": 1440,
+    "height": 2560,
+    "widthSm": 619,
+    "heightSm": 1100,
+    "category": "detail",
+    "orientation": "portrait",
+    "description": "",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#2f2009",
+      "#dadad4",
+      "#6a4f33"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Natalia S",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/31751142/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "detail-06",
+    "file": "detail-06.webp",
+    "fileSm": "detail-06-sm.webp",
+    "width": 2560,
+    "height": 1708,
+    "widthSm": 1100,
+    "heightSm": 734,
+    "category": "detail",
+    "orientation": "landscape",
+    "description": "Sunlight casts dramatic shadows on a brown leather sofa",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#18110a",
+      "#4b2913",
+      "#f7cc94"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Jason Leung",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/sunlight-casts-dramatic-shadows-on-a-brown-leather-sofa-YlHBR2xY5WU"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "detail-07",
+    "file": "detail-07.webp",
+    "fileSm": "detail-07-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "detail",
+    "orientation": "landscape",
+    "description": "",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#cfd1d5",
+      "#c8b8aa",
+      "#95928f"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Karolina Grabowska (Kaboompics)",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/4968683/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "craft-01",
+    "file": "craft-01.webp",
+    "fileSm": "craft-01-sm.webp",
+    "width": 2560,
+    "height": 1718,
+    "widthSm": 1100,
+    "heightSm": 738,
+    "category": "craft",
+    "orientation": "landscape",
+    "description": "",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#1a1719",
+      "#5a261c",
+      "#626966"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "rakhmat suwandi",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/37232406/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "craft-02",
+    "file": "craft-02.webp",
+    "fileSm": "craft-02-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "craft",
+    "orientation": "landscape",
+    "description": "",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#d3d6e0",
+      "#a1a0a8",
+      "#6b6465"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "cottonbro studio",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/6660957/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "craft-03",
+    "file": "craft-03.webp",
+    "fileSm": "craft-03-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "craft",
+    "orientation": "landscape",
+    "description": "A person marking a line on a wooden board with a pencil",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#ebe3d3",
+      "#cea26e",
+      "#d5b28e"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Craft Kitties",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/person-marking-wooden-board-with-pencil-GfYA6q5ESLI"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "craft-04",
+    "file": "craft-04.webp",
+    "fileSm": "craft-04-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "craft",
+    "orientation": "landscape",
+    "description": "",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#211c16",
+      "#5c5955",
+      "#a8a49a"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "cottonbro studio",
+      "source": "Pexels",
+      "pageUrl": "https://www.pexels.com/photo/4614236/"
+    },
+    "license": "Pexels License"
+  },
+  {
+    "id": "place-01",
+    "file": "place-01.webp",
+    "fileSm": "place-01-sm.webp",
+    "width": 2560,
+    "height": 1440,
+    "widthSm": 1100,
+    "heightSm": 619,
+    "category": "place",
+    "orientation": "landscape",
+    "description": "a view of a city next to a body of water",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#557596",
+      "#645e5a",
+      "#6886a8"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Damian Ochrymowicz",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-view-of-a-city-next-to-a-body-of-water-Ald0fn-8RQc"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "place-02",
+    "file": "place-02.webp",
+    "fileSm": "place-02-sm.webp",
+    "width": 1733,
+    "height": 2560,
+    "widthSm": 745,
+    "heightSm": 1100,
+    "category": "place",
+    "orientation": "portrait",
+    "description": "a narrow alley leading to a white building with a blue ocean in the background",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#d9d8da",
+      "#aba5a3",
+      "#695e59"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Damian Ochrymowicz",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/a-narrow-alley-leading-to-a-white-building-with-a-blue-ocean-in-the-background-BtUrwHqvvXU"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "place-03",
+    "file": "place-03.webp",
+    "fileSm": "place-03-sm.webp",
+    "width": 1707,
+    "height": 2560,
+    "widthSm": 733,
+    "heightSm": 1100,
+    "category": "place",
+    "orientation": "portrait",
+    "description": "Sea views framed by architectural elements",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#6d6457",
+      "#8f6f4e",
+      "#684f35"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Mushvig Niftaliyev",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/sea-views-framed-by-architectural-elements-GBik5O58V7I"
+    },
+    "license": "Unsplash License"
+  },
+  {
+    "id": "place-04",
+    "file": "place-04.webp",
+    "fileSm": "place-04-sm.webp",
+    "width": 2560,
+    "height": 1707,
+    "widthSm": 1100,
+    "heightSm": 733,
+    "category": "place",
+    "orientation": "landscape",
+    "description": "Sailboat sailing on the blue ocean near a rocky beach",
+    "background": "scene",
+    "borderColor": null,
+    "dominantColors": [
+      "#9bd1fb",
+      "#68b0e2",
+      "#adafa8"
+    ],
+    "heroSuitable": false,
+    "credit": {
+      "author": "Mateo Krossler",
+      "source": "Unsplash",
+      "pageUrl": "https://unsplash.com/photos/sailboat-sailing-on-the-blue-ocean-near-a-rocky-beach-5LysnS4akQU"
+    },
+    "license": "Unsplash License"
+  }
+]
