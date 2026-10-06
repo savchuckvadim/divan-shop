@@ -12,16 +12,23 @@ import type { SiteSetting, Storefront } from "@/payload-types";
 
 const findStorefront = async (locale: Locale): Promise<Storefront | null> => {
     const payload = await getPayloadClient();
-    const { docs } = await payload.find({
-        collection: "storefronts",
-        where: { key: { equals: STOREFRONT } },
-        locale,
-        fallbackLocale: DEFAULT_LOCALE,
-        depth: 1,
-        limit: 1,
-        pagination: false,
-    });
-    return docs[0] ?? null;
+    try {
+        const { docs } = await payload.find({
+            collection: "storefronts",
+            where: { key: { equals: STOREFRONT } },
+            locale,
+            fallbackLocale: DEFAULT_LOCALE,
+            depth: 1,
+            limit: 1,
+            pagination: false,
+        });
+        return docs[0] ?? null;
+    } catch (error) {
+        // Every page reads this; until the schema has the table, fall back to Site Settings and the
+        // page hero instead of failing the whole site.
+        payload.logger.error({ err: error, msg: "storefronts: read failed, using fallbacks" });
+        return null;
+    }
 };
 
 /** CMS content of the storefront this build serves (NEXT_PUBLIC_STOREFRONT); null until it exists. */
