@@ -597,7 +597,7 @@
 
 /* service: the delivery keynote on the night tint */
 
-[data-concept="cinema"] .delivery {
+[data-concept="cinema"] .service .delivery {
     background: var(--night);
     border: 0;
     color: #f0f0ef;
@@ -607,7 +607,7 @@
     --line-strong: #6f6f6d;
 }
 
-[data-concept="cinema"] .delivery__out {
+[data-concept="cinema"] .service .delivery__out {
     font-family: var(--font-cifra);
     font-variation-settings: "wdth" 75;
     font-weight: 300;
@@ -615,7 +615,7 @@
     line-height: 0.9;
 }
 
-[data-concept="cinema"] .delivery select {
+[data-concept="cinema"] .service .delivery select {
     background: #1c1c1b;
     color: #f0f0ef;
 }

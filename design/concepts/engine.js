@@ -249,6 +249,7 @@
         [/^Precio club (.+)$/, "Цена клуба $1"],
         [/^En esta sala: (.+)$/, "В этой комнате: $1"],
         [/^(\d+) productos$/, "$1 товаров"],
+        [/^Añadir (.+) a la cesta$/, "Добавить $1 в корзину"],
     ];
 
     var EXTRA = {}; // pages may register more strings: window.DV_I18N = {...}
@@ -391,7 +392,7 @@
         } else if (target.hasAttribute("data-set-palette")) {
             var palette = target.getAttribute("data-set-palette");
             doc.setAttribute("data-palette", palette);
-            store.set("dv.palette", palette);
+            store.set(doc.getAttribute("data-brand") === "store" ? "dv.palette.store" : "dv.palette", palette);
         } else if (target.hasAttribute("data-set-theme")) {
             var theme = target.getAttribute("data-set-theme");
             if (theme === "auto") doc.removeAttribute("data-theme");

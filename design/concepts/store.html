@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="es" data-brand="store" data-concept="cinema" data-palette="p2">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <title>Sofás y muebles con entrega y montaje en la Costa Blanca | divan.group</title>
+        <meta
+            name="description"
+            content="Sofás de 2 y 3 plazas, rinconeras, chaise longue y sofás cama fabricados bajo pedido. Precio con entrega y montaje en tu municipio, muestras de tela gratis y plano de cada modelo."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wdth,wght@12..36,75..100,300..700&family=Martian+Mono:wdth,wght@87.5..100,300..500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..500;1,8..60,400&family=Source+Sans+3:wght@400..600&family=IBM+Plex+Sans:wdth,wght@85..100,300..600&family=Science+Gothic:wdth,wght@150,400&display=swap"
+        />
+        <link rel="stylesheet" href="base.css" />
+        <link rel="stylesheet" href="store.css" />
+        <link rel="stylesheet" href="skin-cinema.css" />
+        <link rel="stylesheet" href="skin-atelier.css" />
+        <link rel="stylesheet" href="skin-blueprint.css" />
+        <script>
+            (function () {
+                var d = document.documentElement;
+                var read = function (key) {
+                    try {
+                        return localStorage.getItem(key);
+                    } catch (e) {
+                        return null;
+                    }
+                };
+                var concept = read("dv.concept");
+                if (/^(cinema|atelier|blueprint)$/.test(concept || "")) d.setAttribute("data-concept", concept);
+                var palette = read("dv.palette.store");
+                if (/^p[1-4]$/.test(palette || "")) d.setAttribute("data-palette", palette);
+                var theme = read("dv.theme");
+                if (theme === "light" || theme === "dark") d.setAttribute("data-theme", theme);
+                var lang = read("dv.lang");
+                if (!lang) lang = /^ru/i.test(navigator.language || "") ? "ru" : "es";
+                d.setAttribute("data-lang-wanted", lang);
+                if (window.innerWidth < 768) d.classList.add("controls-collapsed");
+                var motion = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+                if (!motion) return;
+                d.classList.add("js-anim");
+                setTimeout(function () {
+                    if (!window.__dvReady) d.classList.remove("js-anim");
+                }, 3000);
+            })();
+        </script>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://divan.group/es" },
+                            { "@type": "ListItem", "position": 2, "name": "Sofás", "item": "https://divan.group/es/catalog/sofas" }
+                        ]
+                    },
+                    {
+                        "@type": "Product",
+                        "name": "Sofá Aitana 3 plazas",
+                        "sku": "DV-AIT-3P",
+                        "brand": { "@type": "Brand", "name": "divan.group" },
+                        "image": "https://divan.group/media/aitana-3-plazas.webp",
+                        "description": "Sofá de tres plazas fabricado bajo pedido en la Comunidad Valenciana, 228 × 96 × 78 cm, tela a elegir entre ocho.",
+                        "width": { "@type": "QuantitativeValue", "value": 228, "unitCode": "CMT" },
+                        "depth": { "@type": "QuantitativeValue", "value": 96, "unitCode": "CMT" },
+                        "height": { "@type": "QuantitativeValue", "value": 78, "unitCode": "CMT" },
+                        "offers": {
+                            "@type": "Offer",
+                            "price": 1690,
+                            "priceCurrency": "EUR",
+                            "availability": "https://schema.org/MadeToOrder",
+                            "url": "https://divan.group/es/product/aitana-3-plazas",
+                            "priceSpecification": [
+                                { "@type": "UnitPriceSpecification", "price": 1690, "priceCurrency": "EUR" },
+                                { "@type": "UnitPriceSpecification", "price": 1606, "priceCurrency": "EUR", "validForMemberTier": { "@type": "MemberProgramTier", "name": "Club" } }
+                            ],
+                            "shippingDetails": {
+                                "@type": "OfferShippingDetails",
+                                "shippingRate": { "@type": "MonetaryAmount", "value": 39, "currency": "EUR" },
+                                "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "ES", "addressRegion": "Alicante" },
+                                "deliveryTime": {
+                                    "@type": "ShippingDeliveryTime",
+                                    "handlingTime": { "@type": "QuantitativeValue", "minValue": 21, "maxValue": 28, "unitCode": "DAY" },
+                                    "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "DAY" }
+                                }
+                            },
+                            "hasMerchantReturnPolicy": {
+                                "@type": "MerchantReturnPolicy",
+                                "applicableCountry": "ES",
+                                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                                "merchantReturnDays": 14
+                            }
+                        }
+                    }
+                ]
+            }
+        </script>
+    </head>
+    <body id="top">
+        <a class="skip" href="#main">Saltar al contenido</a>
+
+        <p class="utility">
+            <span>Entrega y montaje en toda la Costa Blanca</span>
+            <span>Muestras de tela gratis</span>
+            <span>Te atendemos en español, русский, English, українська</span>
+        </p>
+
+        <header class="hdr hdr--store">
+            <a class="hdr__brand" href="#top" aria-label="divan.group, inicio">
+                <span class="wordmark">divan</span><span class="wordmark__tld">.group</span>
+            </a>
+            <details class="mega">
+                <summary data-qa="menu-open">Catálogo</summary>
+                <div class="mega__panel">
+                    <nav class="mega__cols" aria-label="Catálogo">
+                        <div>
+                            <h2><a href="#main">Sofás</a></h2>
+                            <ul>
+                                <li><a href="#main">2 plazas</a></li>
+                                <li><a href="#main">3 plazas</a></li>
+                                <li><a href="#main">Chaise longue</a></li>
+                                <li><a href="#main">Rinconeras</a></li>
+                                <li><a href="#main">Modulares</a></li>
+                                <li><a href="#main">Sofás cama</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2><a href="#main">Sillones</a></h2>
+                            <ul>
+                                <li><a href="#main">Butacas</a></li>
+                                <li><a href="#main">Giratorias</a></li>
+                                <li><a href="#main">Relax</a></li>
+                                <li><a href="#main">Pufs</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2><a href="#main">Dormitorio</a></h2>
+                            <ul>
+                                <li><a href="#main">Camas</a></li>
+                                <li><a href="#main">Colchones</a></li>
+                                <li><a href="#main">Mesitas</a></li>
+                            </ul>
+                            <h2><a href="#main">Comedor</a></h2>
+                            <ul>
+                                <li><a href="#main">Mesas</a></li>
+                                <li><a href="#main">Sillas</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2><a href="#main">Casa</a></h2>
+                            <ul>
+                                <li><a href="#main">Almacenaje</a></li>
+                                <li><a href="#main">Iluminación</a></li>
+                                <li><a href="#main">Alfombras</a></li>
+                                <li><a href="#main">Decoración</a></li>
+                                <li><a href="#main">Exterior</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <a class="mega__feature" href="boutique.html">
+                        <span class="frame frame--wide"
+                            ><img src="assets/interior-04-sm.webp" width="1100" height="733" alt="Módulos de bouclé en un salón cálido" loading="lazy" decoding="async"
+                        /></span>
+                        <span>La selección premium, en divan.boutique</span>
+                    </a>
+                </div>
+            </details>
+            <form class="search" role="search" action="#main">
+                <label class="visually-hidden" for="q">Buscar en el catálogo</label>
+                <input id="q" name="q" type="search" placeholder="Buscar: sofá cama, rinconera, Aquaclean…" />
+            </form>
+            <div class="hdr__tools">
+                <div class="langs" role="group" aria-label="Idioma">
+                    <button type="button" data-lang="es" data-qa="lang-es" lang="es">ES</button>
+                    <button type="button" data-lang="ru" data-qa="lang-ru" lang="ru">RU</button>
+                    <a href="#idiomas" hreflang="en" lang="en" data-qa="lang-en">EN</a>
+                    <a href="#idiomas" hreflang="uk" lang="uk" data-qa="lang-uk">UK</a>
+                </div>
+                <a class="hdr__link" href="#club">Mi cuenta</a>
+                <button class="hdr__cart" type="button" data-qa="cart-open" aria-haspopup="dialog" aria-controls="cart">
+                    <span>Cesta</span> <span class="count" aria-label="2 artículos">2</span>
+                </button>
+                <button class="hdr__menu" type="button" aria-haspopup="dialog" aria-controls="menu">Menú</button>
+            </div>
+        </header>
+
+        <main id="main" class="store">
+            <nav class="crumbs" aria-label="Ruta">
+                <ol>
+                    <li><a href="#top">Inicio</a></li>
+                    <li><a href="#main" aria-current="page">Sofás</a></li>
+                </ol>
+            </nav>
+
+            <header class="cat-head">
+                <h1>Sofás</h1>
+                <p class="cat-head__count">148 productos</p>
+                <p class="cat-head__intro">
+                    Sofás de dos y tres plazas, rinconeras, chaise longue y sofás cama fabricados bajo pedido en la
+                    Comunidad Valenciana, con entrega y montaje en toda la Costa Blanca.
+                </p>
+            </header>
+
+            <ul class="chips" aria-label="Tipos de sofá">
+                <li><a href="#main">2 plazas <span>32</span></a></li>
+                <li><a href="#main">3 plazas <span>41</span></a></li>
+                <li><a href="#main">Chaise longue <span>24</span></a></li>
+                <li><a href="#main">Rinconeras <span>19</span></a></li>
+                <li><a href="#main">Modulares <span>14</span></a></li>
+                <li><a href="#main">Sofás cama <span>18</span></a></li>
+            </ul>
+
+            <div class="shop">
+                <form class="filters" data-filters action="#main" aria-label="Filtros">
+                    <fieldset>
+                        <legend>Tipo de tela</legend>
+                        <label><input type="checkbox" name="tela" value="boucle" /> Bouclé</label>
+                        <label><input type="checkbox" name="tela" value="lino" /> Lino</label>
+                        <label><input type="checkbox" name="tela" value="chenilla" /> Chenilla</label>
+                        <label><input type="checkbox" name="tela" value="terciopelo" /> Terciopelo</label>
+                        <label><input type="checkbox" name="tela" value="aquaclean" checked /> Aquaclean</label>
+                        <label><input type="checkbox" name="tela" value="piel" /> Piel</label>
+                    </fieldset>
+                    <fieldset class="filters__colors">
+                        <legend>Color</legend>
+                        <label style="--c: #ede8de"><input type="checkbox" name="color" value="marfil" /><span>Marfil</span></label>
+                        <label style="--c: #d8cdb8"><input type="checkbox" name="color" value="arena" /><span>Arena</span></label>
+                        <label style="--c: #b9bdc0"><input type="checkbox" name="color" value="niebla" /><span>Niebla</span></label>
+                        <label style="--c: #4a4b4d"><input type="checkbox" name="color" value="grafito" /><span>Grafito</span></label>
+                        <label style="--c: #6b6f4e"><input type="checkbox" name="color" value="oliva" /><span>Oliva</span></label>
+                        <label style="--c: #9a5b33"><input type="checkbox" name="color" value="conac" /><span>Coñac</span></label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Ancho</legend>
+                        <label><input type="radio" name="ancho" value="180" /> Hasta 180 cm</label>
+                        <label><input type="radio" name="ancho" value="240" checked /> 180–240 cm</label>
+                        <label><input type="radio" name="ancho" value="300" /> 240–300 cm</label>
+                        <label><input type="radio" name="ancho" value="301" /> Más de 300 cm</label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Plazo de entrega</legend>
+                        <label><input type="radio" name="plazo" value="1" /> En 1 semana</label>
+                        <label><input type="radio" name="plazo" value="4" checked /> Bajo pedido, 3–4 semanas</label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Cabe por una puerta de</legend>
+                        <label class="filters__inline"><input type="number" name="puerta" min="50" max="200" value="80" /> cm</label>
+                    </fieldset>
+                    <label class="filters__club"><input type="checkbox" name="club" /> Ver precio club</label>
+                    <button type="submit" class="btn btn--primary btn--block">Mostrar 41 sofás</button>
+                </form>
+
+                <section class="results" aria-labelledby="results-title">
+                    <h2 id="results-title" class="visually-hidden">Resultados</h2>
+                    <div class="toolbar">
+                        <ul class="toolbar__active" aria-label="Filtros activos">
+                            <li><a href="#main">Aquaclean ×</a></li>
+                            <li><a href="#main">180–240 cm ×</a></li>
+                        </ul>
+                        <label class="toolbar__sort">Ordenar
+                            <select name="orden">
+                                <option>Relevancia</option>
+                                <option>Precio: de menor a mayor</option>
+                                <option>Precio: de mayor a menor</option>
+                                <option>Novedades</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <ul class="grid">
+                        <li class="grid-card" style="--w: 228">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-06-sm.webp" width="1100" height="733" alt="Sofá Aitana de terciopelo verde azulado" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Aitana · 3 plazas</span>
+                                <span class="grid-card__meta">228 × 96 × 78 cm</span>
+                                <span class="grid-card__price">1.690 €</span>
+                                <span class="card__club">Precio club 1.606 €</span>
+                                <span class="tag">Bajo pedido · 3–4 semanas</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Aitana" aria-label="Añadir Aitana a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 252">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-07-sm.webp" width="1100" height="733" alt="Sofá Montgó en terciopelo negro" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Montgó · 3,5 plazas</span>
+                                <span class="grid-card__meta">252 × 112 × 70 cm</span>
+                                <span class="grid-card__price">3.450 €</span>
+                                <span class="card__club">Precio club 3.278 €</span>
+                                <span class="tag">Boutique</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Montgó" aria-label="Añadir Montgó a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 214">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-03-sm.webp" width="1100" height="1100" alt="Sofá cama Serella capitoné en tela taupe" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Serella · sofá cama</span>
+                                <span class="grid-card__meta">214 × 98 × 86 cm · cama 160 × 200</span>
+                                <span class="grid-card__price">1.890 €</span>
+                                <span class="card__club">Precio club 1.796 €</span>
+                                <span class="tag">En 1 semana</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Serella" aria-label="Añadir Serella a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 176">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-09-sm.webp" width="825" height="1100" alt="Sofá curvo Altea de terciopelo azul petróleo" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Altea · 2 plazas</span>
+                                <span class="grid-card__meta">176 × 92 × 80 cm</span>
+                                <span class="grid-card__price">1.290 €</span>
+                                <span class="card__club">Precio club 1.226 €</span>
+                                <span class="tag">Bajo pedido · 3–4 semanas</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Altea" aria-label="Añadir Altea a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 286">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/interior-03-sm.webp" width="1100" height="733" alt="Rinconera Ifach gris con chaise" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Ifach · rinconera con chaise</span>
+                                <span class="grid-card__meta">286 × 168 × 82 cm</span>
+                                <span class="grid-card__price">2.240 €</span>
+                                <span class="card__club">Precio club 2.128 €</span>
+                                <span class="tag">Bajo pedido · 3–4 semanas</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Ifach" aria-label="Añadir Ifach a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 290">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-10-sm.webp" width="808" height="1100" alt="Sofá modular curvo Polop en tela rosa arcilla" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Polop · modular curvo</span>
+                                <span class="grid-card__meta">290 × 110 × 74 cm</span>
+                                <span class="grid-card__price">2.650 €</span>
+                                <span class="card__club">Precio club 2.518 €</span>
+                                <span class="tag">Bajo pedido · 3–4 semanas</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Polop" aria-label="Añadir Polop a la cesta">+</button>
+                        </li>
+                        <li class="editorial">
+                            <a href="boutique.html">
+                                <span class="frame frame--wide"><img src="assets/interior-05-sm.webp" width="1100" height="802" alt="Sofá curvo de obra en tonos arena" loading="lazy" decoding="async" /></span>
+                                <span class="editorial__text">
+                                    <span class="kicker">divan.boutique</span>
+                                    <span class="editorial__title">Piezas de autor, en tiradas cortas</span>
+                                    <span class="editorial__more">Ver la selección premium</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="grid-card" style="--w: 222">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-11-sm.webp" width="1100" height="825" alt="Sofá Benissa de piel coñac" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Benissa · piel, 3 plazas</span>
+                                <span class="grid-card__meta">222 × 94 × 76 cm</span>
+                                <span class="grid-card__price">3.980 €</span>
+                                <span class="card__club">Precio club 3.781 €</span>
+                                <span class="tag">Boutique</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Benissa" aria-label="Añadir Benissa a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 182">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-05-sm.webp" width="734" height="1100" alt="Diván Guadalest en tela arena" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Guadalest · diván</span>
+                                <span class="grid-card__meta">182 × 86 × 68 cm</span>
+                                <span class="grid-card__price">1.150 €</span>
+                                <span class="card__club">Precio club 1.093 €</span>
+                                <span class="tag">En 1 semana</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Guadalest" aria-label="Añadir Guadalest a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 160">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-04-sm.webp" width="733" height="1100" alt="Sofá Finestrat de dos plazas en tela teja" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Finestrat · 2 plazas</span>
+                                <span class="grid-card__meta">160 × 88 × 78 cm</span>
+                                <span class="grid-card__price">990 €</span>
+                                <span class="card__club">Precio club 941 €</span>
+                                <span class="tag">En 1 semana</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Finestrat" aria-label="Añadir Finestrat a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 78">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-01-sm.webp" width="880" height="1100" alt="Butaca giratoria Mariola en bouclé marfil" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Mariola · butaca giratoria</span>
+                                <span class="grid-card__meta">78 × 80 × 74 cm</span>
+                                <span class="grid-card__price">890 €</span>
+                                <span class="card__club">Precio club 846 €</span>
+                                <span class="tag">Bajo pedido · 3–4 semanas</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Mariola" aria-label="Añadir Mariola a la cesta">+</button>
+                        </li>
+                        <li class="grid-card" style="--w: 74">
+                            <a href="#producto" class="grid-card__link">
+                                <span class="frame frame--card"><img src="assets/product-02-sm.webp" width="733" height="1100" alt="Butaca Calp en bouclé con manta verde" loading="lazy" decoding="async" /></span>
+                                <span class="grid-card__name">Calp · butaca</span>
+                                <span class="grid-card__meta">74 × 80 × 82 cm</span>
+                                <span class="grid-card__price">590 €</span>
+                                <span class="card__club">Precio club 561 €</span>
+                                <span class="tag">En 1 semana</span>
+                            </a>
+                            <button type="button" class="grid-card__add" data-add="Calp" aria-label="Añadir Calp a la cesta">+</button>
+                        </li>
+                    </ul>
+
+                    <nav class="pager" aria-label="Paginación">
+                        <ol>
+                            <li><a href="#main" aria-current="page">1</a></li>
+                            <li><a href="#main">2</a></li>
+                            <li><a href="#main">3</a></li>
+                            <li><span>…</span></li>
+                            <li><a href="#main">13</a></li>
+                            <li><a href="#main" rel="next">Siguiente</a></li>
+                        </ol>
+                    </nav>
+                </section>
+            </div>
+
+            <section class="pdp" id="producto" aria-labelledby="pdp-title">
+                <p class="pdp__crumb">Así se ve la ficha de cada producto</p>
+                <div class="pdp__grid">
+                    <div class="pdp__gallery">
+                        <a class="pdp__main" href="assets/product-06.webp" data-lightbox data-qa="lightbox-open" data-caption="Aitana en terciopelo verde azulado, vista frontal"
+                            ><span class="frame frame--wide"><img src="assets/product-06-sm.webp" srcset="assets/product-06-sm.webp 1100w, assets/product-06.webp 2560w" sizes="(min-width: 1024px) 55vw, 100vw" width="2560" height="1707" alt="Sofá Aitana de terciopelo verde azulado, vista frontal" loading="lazy" decoding="async" /></span
+                        ></a>
+                        <ul class="pdp__thumbs">
+                            <li><a href="assets/detail-04.webp" data-lightbox data-caption="Tejido de punto grueso en color mostaza"><img src="assets/detail-04-sm.webp" width="1100" height="733" alt="Detalle de un tejido de punto grueso" loading="lazy" decoding="async" /></a></li>
+                            <li><a href="assets/detail-06.webp" data-lightbox data-caption="Sofá de piel coñac con luz de tarde"><img src="assets/detail-06-sm.webp" width="1100" height="734" alt="Sofá de piel coñac en penumbra" loading="lazy" decoding="async" /></a></li>
+                            <li><a href="assets/interior-02.webp" data-lightbox data-caption="Aitana en una vivienda de obra nueva"><img src="assets/interior-02-sm.webp" width="1100" height="733" alt="Salón luminoso de una vivienda nueva" loading="lazy" decoding="async" /></a></li>
+                            <li><a href="assets/craft-04.webp" data-lightbox data-caption="Rollos de tela en el taller"><img src="assets/craft-04-sm.webp" width="1100" height="733" alt="Rollos de tela y piel en el taller" loading="lazy" decoding="async" /></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="pdp__buy">
+                        <h2 id="pdp-title">Sofá Aitana · 3 plazas</h2>
+                        <p class="pdp__sku">Ref. DV-AIT-3P · 228 × 96 × 78 cm</p>
+                        <p class="buy__price">1.690 €</p>
+                        <p class="buy__club">Precio club 1.606 € · <a href="#club">Hazte socio gratis</a></p>
+                        <fieldset class="fabrics">
+                            <legend>Tela: <span data-fabric-name>Aquaclean Niebla</span></legend>
+                            <label class="fabric" style="--c: #b9bdc0"><input type="radio" name="fabric" value="Aquaclean Niebla" checked /><span>Aquaclean Niebla</span></label>
+                            <label class="fabric" style="--c: #ede8de"><input type="radio" name="fabric" value="Bouclé Marfil" /><span>Bouclé Marfil</span></label>
+                            <label class="fabric" style="--c: #d8cdb8"><input type="radio" name="fabric" value="Lino Arena" /><span>Lino Arena</span></label>
+                            <label class="fabric" style="--c: #4a4b4d"><input type="radio" name="fabric" value="Chenilla Grafito" /><span>Chenilla Grafito</span></label>
+                            <label class="fabric" style="--c: #6b6f4e"><input type="radio" name="fabric" value="Terciopelo Oliva" /><span>Terciopelo Oliva</span></label>
+                        </fieldset>
+                        <label class="pdp__field" for="config">Configuración</label>
+                        <select id="config" name="config">
+                            <option>3 plazas</option>
+                            <option>3 plazas con chaise a la izquierda</option>
+                            <option>3 plazas con chaise a la derecha</option>
+                        </select>
+                        <form class="delivery delivery--inline" data-delivery action="#producto">
+                            <label for="town">Entrega y montaje en</label>
+                            <select id="town" name="town">
+                                <option value="39|3–4 semanas">Alicante</option>
+                                <option value="39|3–4 semanas" selected>Torrevieja</option>
+                                <option value="45|3–4 semanas">Orihuela Costa</option>
+                                <option value="45|3–4 semanas">Guardamar del Segura</option>
+                                <option value="59|4 semanas">Benidorm</option>
+                                <option value="69|4 semanas">Calpe</option>
+                            </select>
+                            <output class="delivery__out" for="town" aria-live="polite"><span data-delivery-price>39 €</span> · <span data-delivery-lead>3–4 semanas</span></output>
+                        </form>
+                        <p class="buy__actions">
+                            <button type="button" class="btn btn--primary" data-qa="add-to-cart" data-add="Aitana">Añadir a la cesta</button>
+                            <a class="btn btn--ghost" href="boutique.html#muestras">Pedir muestras gratis</a>
+                        </p>
+                        <p class="pdp__pay">Tarjeta, Bizum, transferencia o a plazos. IVA incluido.</p>
+                    </div>
+                </div>
+
+                <div class="pdp__info">
+                    <details open>
+                        <summary>Descripción</summary>
+                        <p>
+                            Aitana es un sofá de tres plazas de líneas rectas, con asiento firme de espuma HR y cojines
+                            de respaldo con fibra. Se fabrica bajo pedido en la tela que elijas, con estructura de pino
+                            macizo y patas de haya.
+                        </p>
+                    </details>
+                    <details open>
+                        <summary>Medidas y plano</summary>
+                        <dl class="spec-table">
+                            <div><dt>Ancho</dt><dd>228 cm</dd></div>
+                            <div><dt>Fondo</dt><dd>96 cm</dd></div>
+                            <div><dt>Alto</dt><dd>78 cm</dd></div>
+                            <div><dt>Altura de asiento</dt><dd>44 cm</dd></div>
+                            <div><dt>Fondo de asiento</dt><dd>56 cm</dd></div>
+                            <div><dt>Paso mínimo de puerta</dt><dd>80 cm</dd></div>
+                        </dl>
+                    </details>
+                    <details>
+                        <summary>Materiales y cuidado</summary>
+                        <p>Aquaclean: las manchas de agua, vino o café salen con agua y un paño. Funda no extraíble.</p>
+                    </details>
+                    <details>
+                        <summary>Entrega y montaje</summary>
+                        <p>Lo subimos a cualquier planta, lo montamos y retiramos el embalaje. Te avisamos el día antes.</p>
+                    </details>
+                    <details>
+                        <summary>Devoluciones y garantía</summary>
+                        <p>Garantía legal de 3 años. 14 días para devolver los modelos de catálogo.</p>
+                    </details>
+                </div>
+            </section>
+
+            <section class="collection related" aria-labelledby="related-title">
+                <div class="section-head">
+                    <h2 id="related-title">Combina con</h2>
+                </div>
+                <div class="rail" data-rail>
+                    <div class="rail__bar">
+                        <p class="rail__count" aria-live="polite"><span data-rail-index>1</span> / 4</p>
+                        <div class="rail__progress" aria-hidden="true"><span></span></div>
+                        <div class="rail__nav">
+                            <button type="button" class="icon-btn" data-rail-prev aria-label="Anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+                            <button type="button" class="icon-btn" data-rail-next aria-label="Siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+                        </div>
+                    </div>
+                    <ul class="rail__track rail__track--small" tabindex="0" aria-label="Productos que combinan">
+                        <li class="card"><a class="card__link" href="#producto"><span class="frame frame--product"><img src="assets/product-12-sm.webp" width="619" height="1100" alt="Butaca Moraira de piel coñac" loading="lazy" decoding="async" /></span><span class="card__name">Moraira</span><span class="card__price">desde 690 €</span></a></li>
+                        <li class="card"><a class="card__link" href="#producto"><span class="frame frame--product"><img src="assets/product-01-sm.webp" width="880" height="1100" alt="Butaca giratoria Mariola" loading="lazy" decoding="async" /></span><span class="card__name">Mariola</span><span class="card__price">desde 890 €</span></a></li>
+                        <li class="card"><a class="card__link" href="#producto"><span class="frame frame--product"><img src="assets/product-02-sm.webp" width="733" height="1100" alt="Butaca Calp con manta verde" loading="lazy" decoding="async" /></span><span class="card__name">Calp</span><span class="card__price">desde 590 €</span></a></li>
+                        <li class="card"><a class="card__link" href="#producto"><span class="frame frame--product"><img src="assets/product-05-sm.webp" width="734" height="1100" alt="Diván Guadalest" loading="lazy" decoding="async" /></span><span class="card__name">Guadalest</span><span class="card__price">desde 1.150 €</span></a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="banners" aria-label="Servicios">
+                <a class="banner" href="boutique.html#muestras">
+                    <span class="frame frame--wide"><img src="assets/detail-07-sm.webp" width="1100" height="733" alt="Muestras de tela sobre mármol" loading="lazy" decoding="async" /></span>
+                    <span class="banner__title">Caja de muestras gratis</span>
+                    <span class="banner__text">Hasta 6 telas en tu casa en 48–72 horas.</span>
+                </a>
+                <a class="banner" href="boutique.html#proyectos">
+                    <span class="frame frame--wide"><img src="assets/interior-01-sm.webp" width="1100" height="733" alt="Salón con sofá de obra y nichos encalados" loading="lazy" decoding="async" /></span>
+                    <span class="banner__title">Proyectos en casas reales</span>
+                    <span class="banner__text">Qué piezas hay en cada sala y cuánto cuestan.</span>
+                </a>
+            </section>
+
+            <section class="seo" aria-labelledby="seo-title">
+                <h2 id="seo-title">Sofás con entrega y montaje en la Costa Blanca</h2>
+                <div class="seo__cols">
+                    <p>
+                        Todos nuestros sofás se fabrican bajo pedido en talleres de la Comunidad Valenciana y llegan a
+                        tu casa montados. El precio que ves ya incluye el IVA; la entrega y el montaje dependen de tu
+                        municipio y los ves antes de pagar, en la propia ficha. Si dudas del tamaño, cada modelo tiene
+                        su plano con medidas en centímetros y el paso mínimo de puerta.
+                    </p>
+                    <p>
+                        Para pisos turísticos recomendamos telas
+                        <a href="#main">Aquaclean</a> y <a href="#main">sofás cama</a> con colchón de 14 cm; para
+                        salones pequeños, los <a href="#main">sofás de 2 plazas</a> desde 160 cm de ancho. Las
+                        <a href="#main">rinconeras</a> y los <a href="#main">modulares</a> se entregan por módulos
+                        para que pasen por puertas estrechas y ascensores pequeños.
+                    </p>
+                </div>
+                <div class="faq">
+                    <details>
+                        <summary>¿Cuánto cuesta la entrega en Torrevieja?</summary>
+                        <p>39 €, con subida, montaje y retirada del embalaje incluidos.</p>
+                    </details>
+                    <details>
+                        <summary>¿Cuánto tarda un sofá bajo pedido?</summary>
+                        <p>Entre 3 y 4 semanas de fabricación. Los modelos marcados «En 1 semana» están listos antes.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo ver la tela antes de comprar?</summary>
+                        <p>Sí. Te enviamos hasta seis muestras gratis a casa, sin compromiso.</p>
+                    </details>
+                    <details>
+                        <summary>¿Y si el sofá no pasa por mi puerta?</summary>
+                        <p>Cada ficha indica el paso mínimo de puerta. Las rinconeras y modulares viajan por módulos.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo pagar a plazos?</summary>
+                        <p>Sí, además de tarjeta, Bizum y transferencia. Las condiciones se muestran antes de pagar.</p>
+                    </details>
+                </div>
+            </section>
+        </main>
+
+        <footer class="ftr">
+            <div class="ftr__sibling">
+                <p>Piezas de autor y tiradas cortas, en <a href="boutique.html">divan.boutique</a>.</p>
+            </div>
+            <nav class="ftr__cols" aria-label="Pie de página">
+                <div>
+                    <h2>Catálogo</h2>
+                    <ul>
+                        <li><a href="#main">Sofás</a></li>
+                        <li><a href="#main">Sillones</a></li>
+                        <li><a href="#main">Dormitorio</a></li>
+                        <li><a href="#main">Comedor</a></li>
+                        <li><a href="#main">Exterior</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Servicio</h2>
+                    <ul>
+                        <li><a href="#producto">Entrega y montaje</a></li>
+                        <li><a href="#producto">Devoluciones</a></li>
+                        <li><a href="#producto">Garantía</a></li>
+                        <li><a href="#producto">Formas de pago</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Empresa</h2>
+                    <ul>
+                        <li><a href="boutique.html#proyectos">Proyectos</a></li>
+                        <li><a href="boutique.html#club">Club</a></li>
+                        <li><a href="#top">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Legal</h2>
+                    <ul>
+                        <li><a href="#top">Aviso legal</a></li>
+                        <li><a href="#top">Privacidad</a></li>
+                        <li><a href="#top">Cookies</a></li>
+                        <li><a href="#top">Condiciones de venta</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <p class="ftr__contact">Pago con tarjeta, Bizum, transferencia o a plazos · WhatsApp +34 600 000 000 · hola@divan.group</p>
+            <p class="ftr__legal" id="idiomas">© 2026 divan.group · Español · Русский · English · Українська</p>
+            <p class="ftr__legal">Prototipo de diseño: modelos, precios y proyectos son datos de ejemplo. Fotos: Unsplash y Pexels.</p>
+        </footer>
+
+        <dialog class="drawer" id="cart" aria-labelledby="cart-title">
+            <div class="drawer__head">
+                <h2 id="cart-title">Tu cesta</h2>
+                <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+            </div>
+            <ul class="lines">
+                <li class="line">
+                    <img src="assets/product-06-sm.webp" width="1100" height="733" alt="" loading="lazy" decoding="async" />
+                    <div><p class="line__name">Aitana · 3 plazas</p><p class="line__meta">Aquaclean Niebla · bajo pedido</p></div>
+                    <p class="line__price">1.690 €</p>
+                </li>
+                <li class="line">
+                    <img src="assets/product-12-sm.webp" width="619" height="1100" alt="" loading="lazy" decoding="async" />
+                    <div><p class="line__name">Moraira · butaca de piel</p><p class="line__meta">Piel Coñac · bajo pedido</p></div>
+                    <p class="line__price">690 €</p>
+                </li>
+            </ul>
+            <dl class="totals">
+                <div><dt>Subtotal</dt><dd>2.380 €</dd></div>
+                <div class="totals__club"><dt>Precio club (−5 %)</dt><dd>−119 €</dd></div>
+                <div><dt>Entrega y montaje · Torrevieja</dt><dd>39 €</dd></div>
+                <div class="totals__sum"><dt>Total</dt><dd>2.300 €</dd></div>
+            </dl>
+            <a class="btn btn--primary btn--block" href="#cart">Tramitar pedido</a>
+            <p class="drawer__legal">Fabricación 3–4 semanas · 14 días de desistimiento en modelos de catálogo · garantía de 3 años. En el último paso, el botón dice «Pedido con obligación de pago».</p>
+        </dialog>
+
+        <dialog class="lightbox" id="lightbox" aria-label="Galería">
+            <figure class="lightbox__figure">
+                <img data-lightbox-img src="assets/product-06-sm.webp" width="1100" height="733" alt="" />
+                <figcaption><span data-lightbox-caption></span> <span class="lightbox__count" data-lightbox-count></span></figcaption>
+            </figure>
+            <button type="button" class="icon-btn lightbox__prev" data-lightbox-prev aria-label="Anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+            <button type="button" class="icon-btn lightbox__next" data-lightbox-next aria-label="Siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+            <button type="button" class="icon-btn lightbox__close" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+        </dialog>
+
+        <dialog class="menu" id="menu" aria-label="Menú">
+            <button type="button" class="icon-btn menu__close" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+            <nav aria-label="Menú móvil">
+                <ul>
+                    <li><a href="#main" data-close>Sofás</a></li>
+                    <li><a href="#main" data-close>Sillones</a></li>
+                    <li><a href="#main" data-close>Dormitorio</a></li>
+                    <li><a href="#main" data-close>Comedor</a></li>
+                    <li><a href="#main" data-close>Casa</a></li>
+                    <li><a href="boutique.html" data-close>Boutique</a></li>
+                </ul>
+            </nav>
+        </dialog>
+
+        <aside class="controls" aria-label="Controles de diseño" data-controls>
+            <button type="button" class="controls__toggle" aria-expanded="true" data-controls-toggle>Diseño</button>
+            <div class="controls__body">
+                <div class="controls__row" role="group" aria-label="Dirección">
+                    <button type="button" data-set-concept="cinema" data-qa="concept-cinema">Cine</button>
+                    <button type="button" data-set-concept="atelier" data-qa="concept-atelier">Galería</button>
+                    <button type="button" data-set-concept="blueprint" data-qa="concept-blueprint">Plano</button>
+                </div>
+                <div class="controls__row" role="group" aria-label="Paleta">
+                    <button type="button" class="dot" data-set-palette="p1" data-qa="palette-p1"><span>1</span></button>
+                    <button type="button" class="dot" data-set-palette="p2" data-qa="palette-p2"><span>2</span></button>
+                    <button type="button" class="dot" data-set-palette="p3" data-qa="palette-p3"><span>3</span></button>
+                    <button type="button" class="dot" data-set-palette="p4" data-qa="palette-p4"><span>4</span></button>
+                    <span class="controls__palette" data-palette-name></span>
+                </div>
+                <div class="controls__row" role="group" aria-label="Modo">
+                    <button type="button" data-set-theme="light" data-qa="mode-light">Claro</button>
+                    <button type="button" data-set-theme="dark" data-qa="mode-toggle">Oscuro</button>
+                    <button type="button" data-set-theme="auto">Auto</button>
+                </div>
+                <p class="controls__link"><a href="boutique.html">divan.boutique</a> · <a href="store.html">divan.group</a></p>
+            </div>
+        </aside>
+
+        <script src="store.i18n.js"></script>
+        <script src="engine.js" defer></script>
+    </body>
+</html>

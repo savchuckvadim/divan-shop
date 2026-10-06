@@ -932,11 +932,11 @@ select {
         grid-template-columns: repeat(12, minmax(0, 1fr));
     }
 
-    .sheet {
+    .feature__drawing > .sheet {
         grid-column: 1 / span 8;
     }
 
-    .fit {
+    .feature__drawing > .fit {
         grid-column: 9 / -1;
     }
 }
@@ -1336,11 +1336,11 @@ select {
         grid-template-columns: repeat(12, minmax(0, 1fr));
     }
 
-    .delivery {
+    .service__grid > .delivery {
         grid-column: 1 / span 5;
     }
 
-    .promises {
+    .service__grid > .promises {
         grid-column: 7 / -1;
     }
 }
