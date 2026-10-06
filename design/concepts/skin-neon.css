@@ -1,0 +1,799 @@
+@font-face {
+    font-family: "Unbounded Fallback";
+    src: local("Arial Black"), local("Arial Bold"), local("Arial");
+    size-adjust: 104%;
+    ascent-override: 92%;
+    descent-override: 24%;
+    line-gap-override: 0%;
+}
+
+/* NEON · "Sofá Club"
+ * Zoomer direction for a young, well-off audience (reference: growthejungle.com, owner 2026-10-06).
+ * Dark-first, colour-blocked product frames (the white studio wall multiplies into the accent),
+ * chunky extended type, pills, stickers and one marquee. Every rule of the SEO-first system holds. */
+
+:root[data-concept="neon"] {
+    --font-body: "Onest", system-ui, sans-serif;
+    --font-display: "Unbounded", "Unbounded Fallback", "Onest", system-ui, sans-serif;
+    --font-label: "Martian Mono", ui-monospace, monospace;
+
+    --m: clamp(16px, 3.4vw, 112px);
+    --g: clamp(12px, 1.4vw, 36px);
+    --space: clamp(88px, 9vw, 200px);
+    --radius-ui: 999px;
+    --r-panel: clamp(18px, 1.8vw, 36px);
+    --btn-h: 52px;
+    --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.25rem);
+    --fs-h1: clamp(2.375rem, 1.3rem + 4.4vw, 8.5rem);
+    --fs-h2: clamp(1.75rem, 1.1rem + 2.6vw, 5.25rem);
+    --fs-h3: clamp(1.125rem, 1rem + 0.5vw, 1.625rem);
+    --intro-total: 1.4s;
+
+    --a: #ff3d8b;
+    --b: #c6ff3d;
+    --on-a: #0b0b0c;
+    --on-b: #0b0b0c;
+
+    --bg: #0b0b0c;
+    --surface: #151517;
+    --surface-2: #1f1f22;
+    --line: #2c2c30;
+    --line-strong: #5d5d64;
+    --ink-2: #b4b4bc;
+    --ink: #f6f6f1;
+    --accent: var(--a);
+    --accent-soft: color-mix(in oklab, var(--a) 18%, var(--bg));
+    --on-accent: var(--on-a);
+    color-scheme: dark;
+}
+
+:root[data-concept="neon"][data-palette="p2"] {
+    --a: #c6ff3d;
+    --b: #ff3d8b;
+}
+
+:root[data-concept="neon"][data-palette="p3"] {
+    --a: #3d6bff;
+    --b: #ff8a1f;
+    --on-a: #ffffff;
+}
+
+:root[data-concept="neon"][data-palette="p4"] {
+    --a: #ffe03d;
+    --b: #9b5cff;
+    --on-b: #ffffff;
+}
+
+/* dark-first on purpose: light only when chosen explicitly */
+:root[data-concept="neon"][data-theme="light"] {
+    --bg: #f6f5f0;
+    --surface: #ffffff;
+    --surface-2: #ecebe6;
+    --line: #d9d8d2;
+    --line-strong: #8a8982;
+    --ink-2: #4f4e49;
+    --ink: #0b0b0c;
+    --accent-soft: color-mix(in oklab, var(--a) 22%, #ffffff);
+    color-scheme: light;
+}
+
+[data-concept="neon"] .controls .dot[data-palette-preview="p1"] span { --swatch: #ff3d8b; }
+[data-concept="neon"] .controls .dot[data-palette-preview="p2"] span { --swatch: #c6ff3d; }
+[data-concept="neon"] .controls .dot[data-palette-preview="p3"] span { --swatch: #3d6bff; }
+[data-concept="neon"] .controls .dot[data-palette-preview="p4"] span { --swatch: #ffe03d; }
+
+/* type */
+
+[data-concept="neon"] h1,
+[data-concept="neon"] h2 {
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+}
+
+[data-concept="neon"] :is(h1, h2):lang(ru) {
+    letter-spacing: -0.025em;
+}
+
+[data-concept="neon"] h3,
+[data-concept="neon"] .card__name,
+[data-concept="neon"] .grid-card__name,
+[data-concept="neon"] .label__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+[data-concept="neon"] .kicker,
+[data-concept="neon"] .project__meta,
+[data-concept="neon"] .tag {
+    display: inline-block;
+    justify-self: start;
+    width: fit-content;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--b);
+    color: var(--on-b);
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+[data-concept="neon"] a:hover {
+    text-decoration-color: var(--a);
+}
+
+/* the club price is a sticker in both modes, so accent never carries small text on its own */
+
+[data-concept="neon"] .label__club,
+[data-concept="neon"] .card__club,
+[data-concept="neon"] .buy__club,
+[data-concept="neon"] .totals__club {
+    justify-self: start;
+    width: fit-content;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--a);
+    color: var(--on-a);
+    font-weight: 600;
+}
+
+[data-concept="neon"] .buy__club a {
+    color: var(--on-a);
+}
+
+/* buttons: pills */
+
+[data-concept="neon"] .btn {
+    padding-inline: 26px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+[data-concept="neon"] .btn--primary {
+    background: var(--b);
+    border-color: var(--b);
+    color: var(--on-b);
+}
+
+[data-concept="neon"] .btn--primary:hover {
+    background: var(--a);
+    border-color: var(--a);
+    color: var(--on-a);
+}
+
+[data-concept="neon"] .btn--ghost {
+    border-color: var(--ink);
+}
+
+[data-concept="neon"] .icon-btn {
+    border-radius: 999px;
+    background: transparent;
+    border-color: var(--line-strong);
+}
+
+/* header */
+
+[data-concept="neon"] .hdr {
+    background: var(--bg);
+    border-bottom-color: var(--line);
+}
+
+[data-concept="neon"] .wordmark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.625rem;
+    letter-spacing: -0.04em;
+}
+
+[data-concept="neon"] .wordmark__tld {
+    color: var(--a);
+    font-weight: 500;
+}
+
+[data-concept="neon"] .hdr__cart {
+    border-color: var(--b);
+}
+
+[data-concept="neon"] .count {
+    background: var(--a);
+    color: var(--on-a);
+}
+
+/* hero: colour-blocked studio and a sticker */
+
+[data-concept="neon"] .hero__title {
+    max-width: 11em;
+}
+
+[data-concept="neon"] .hero__figure {
+    position: relative;
+}
+
+[data-concept="neon"] .frame--hero {
+    border-radius: var(--r-panel);
+    background: var(--a);
+}
+
+[data-concept="neon"] .hero__img {
+    mix-blend-mode: multiply;
+    object-position: 50% 62%;
+}
+
+[data-concept="neon"] .hero__figure::before {
+    content: "−5 %";
+    position: absolute;
+    z-index: 2;
+    right: clamp(12px, 2vw, 40px);
+    top: clamp(12px, 2vw, 40px);
+    display: grid;
+    place-items: center;
+    width: clamp(84px, 8vw, 150px);
+    aspect-ratio: 1;
+    background: var(--b);
+    color: var(--on-b);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.125rem, 0.8rem + 1vw, 2rem);
+    clip-path: polygon(50% 0%, 61% 15%, 79% 9%, 82% 27%, 100% 32%, 90% 50%, 100% 68%, 82% 73%, 79% 91%, 61% 85%, 50% 100%, 39% 85%, 21% 91%, 18% 73%, 0% 68%, 10% 50%, 0% 32%, 18% 27%, 21% 9%, 39% 15%);
+    transform: rotate(-10deg);
+}
+
+[data-concept="neon"] .hero .label {
+    align-items: center;
+}
+
+[data-concept="neon"] .hero .label__price {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.5rem);
+}
+
+@media (min-width: 1024px) {
+    [data-concept="neon"] .hero__text {
+        grid-column: 1 / span 6;
+    }
+
+    [data-concept="neon"] .hero__figure {
+        grid-column: 7 / -1;
+    }
+
+    [data-concept="neon"] .frame--hero {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+/* strip: the marquee (engine clones the list; the original stays the content) */
+
+[data-concept="neon"] .strip {
+    padding-inline: 0 !important;
+    overflow: hidden;
+    background: var(--b);
+    color: var(--on-b);
+}
+
+[data-concept="neon"] .strip__track {
+    display: flex;
+    width: max-content;
+}
+
+[data-concept="neon"] .strip__list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: 16px 0;
+    border: 0;
+}
+
+[data-concept="neon"] .strip__list li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-inline: 28px;
+    white-space: nowrap;
+}
+
+[data-concept="neon"] .strip__list li::after {
+    content: "✦";
+    margin-inline-start: 28px;
+}
+
+[data-concept="neon"] .strip__list strong {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.125rem, 0.9rem + 0.8vw, 1.75rem);
+    text-transform: uppercase;
+}
+
+[data-concept="neon"] .strip__list span {
+    color: inherit;
+    opacity: 0.8;
+}
+
+[data-concept="neon"] .strip__clone {
+    display: flex !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    [data-concept="neon"] .strip__track {
+        animation: neon-marquee 36s linear infinite;
+    }
+}
+
+@keyframes neon-marquee {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* collection and grid: colour-blocked frames */
+
+[data-concept="neon"] .rail__track {
+    --card-w: min(76vw, 420px);
+}
+
+@media (min-width: 1440px) {
+    [data-concept="neon"] .rail__track {
+        --card-w: calc((100vw - 2 * var(--m) - 3 * var(--g)) / 3.4);
+    }
+}
+
+[data-concept="neon"] .rail__progress span {
+    background: var(--a);
+}
+
+[data-concept="neon"] .card .frame,
+[data-concept="neon"] .grid-card .frame {
+    border-radius: var(--r-panel);
+    background: var(--a);
+}
+
+[data-concept="neon"] .card:nth-child(3n + 2) .frame,
+[data-concept="neon"] .grid-card:nth-child(3n + 2) .frame {
+    background: var(--b);
+}
+
+[data-concept="neon"] .card:nth-child(3n) .frame,
+[data-concept="neon"] .grid-card:nth-child(3n) .frame {
+    background: #f6f6f1;
+}
+
+[data-concept="neon"] .card .frame img,
+[data-concept="neon"] .grid-card .frame img {
+    transition: transform 500ms var(--ease-reveal);
+}
+
+/* product colour is sacred (44% of returns cite colour): the accent is a thick rounded border, never a tint */
+[data-concept="neon"] :is(.card, .grid-card) .frame {
+    padding: 8px;
+}
+
+[data-concept="neon"] :is(.card, .grid-card) .frame img {
+    mix-blend-mode: normal;
+    border-radius: calc(var(--r-panel) - 8px);
+}
+
+[data-concept="neon"] .card__link:hover .frame img,
+[data-concept="neon"] .grid-card__link:hover .frame img {
+    transform: scale(1.05) rotate(-1deg);
+}
+
+[data-concept="neon"] .card__price,
+[data-concept="neon"] .grid-card__price {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+[data-concept="neon"] .grid-card .tag {
+    padding: 4px 9px;
+    font-size: 0.625rem;
+}
+
+[data-concept="neon"] .grid-card__add {
+    background: var(--b);
+    color: var(--on-b);
+}
+
+/* feature */
+
+[data-concept="neon"] .feature__media .frame {
+    border-radius: var(--r-panel);
+}
+
+[data-concept="neon"] .specs {
+    border: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+[data-concept="neon"] .specs dd {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.625rem, 1.1rem + 1.5vw, 3.25rem);
+    line-height: 0.95;
+    white-space: nowrap;
+    color: var(--b);
+}
+
+:root[data-concept="neon"][data-theme="light"] .specs dd {
+    color: var(--ink);
+}
+
+[data-concept="neon"] .buy__price {
+    font-family: var(--font-display);
+    font-weight: 800;
+}
+
+[data-concept="neon"] .sheet,
+[data-concept="neon"] .fit,
+[data-concept="neon"] .delivery,
+[data-concept="neon"] .promises li,
+[data-concept="neon"] .mega__panel,
+[data-concept="neon"] .editorial a {
+    border-radius: var(--r-panel);
+}
+
+[data-concept="neon"] .sheet {
+    background: var(--surface);
+    border: 0;
+}
+
+[data-concept="neon"] .drawing__body rect,
+[data-concept="neon"] .drawing__body path,
+[data-concept="neon"] .drawing__body line {
+    stroke: var(--b);
+    stroke-width: 1.5;
+}
+
+[data-concept="neon"] .drawing__body .d-base {
+    fill: var(--b);
+}
+
+[data-concept="neon"] .drawing__dims line {
+    stroke: var(--a);
+}
+
+[data-concept="neon"] .drawing__dims text {
+    fill: var(--a);
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+[data-concept="neon"] .fit {
+    border: 0;
+    background: var(--surface);
+}
+
+[data-concept="neon"] .fit__result {
+    border-radius: 16px;
+    background: var(--b);
+    color: var(--on-b);
+}
+
+[data-concept="neon"] input[type="number"],
+[data-concept="neon"] input[type="email"],
+[data-concept="neon"] input[type="search"],
+[data-concept="neon"] select {
+    border-radius: 14px;
+    background: var(--surface-2);
+    border-color: var(--line-strong);
+}
+
+/* window */
+
+[data-concept="neon"] .window {
+    padding-inline: var(--m) !important;
+}
+
+[data-concept="neon"] .window__frame {
+    border-radius: var(--r-panel);
+}
+
+[data-concept="neon"] .window__frame figcaption {
+    left: 20px;
+    bottom: 20px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--a);
+    color: var(--on-a);
+    font-weight: 600;
+}
+
+/* gallery */
+
+[data-concept="neon"] .g a {
+    border-radius: var(--r-panel);
+    transition: transform 500ms var(--ease-reveal);
+}
+
+[data-concept="neon"] .g:nth-child(odd) a:hover {
+    transform: rotate(-1.2deg) scale(1.01);
+}
+
+[data-concept="neon"] .g:nth-child(even) a:hover {
+    transform: rotate(1.2deg) scale(1.01);
+}
+
+[data-concept="neon"] .lightbox {
+    background: #0b0b0c;
+    color: #f6f6f1;
+    --ink: #f6f6f1;
+    --ink-2: #b4b4bc;
+}
+
+/* projects */
+
+[data-concept="neon"] .project .frame {
+    border-radius: var(--r-panel);
+}
+
+[data-concept="neon"] .project__pieces {
+    border: 0;
+    gap: 8px;
+}
+
+[data-concept="neon"] .project__pieces li {
+    padding: 12px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+}
+
+[data-concept="neon"] .project__total {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+/* samples: the accent room */
+
+[data-concept="neon"] .samples {
+    margin-inline: var(--m);
+    padding: clamp(20px, 3vw, 64px) !important;
+    border-radius: var(--r-panel);
+    background: var(--a);
+    color: var(--on-a);
+    --ink: var(--on-a);
+    --ink-2: color-mix(in oklab, var(--on-a) 72%, transparent);
+    --line: color-mix(in oklab, var(--on-a) 22%, transparent);
+    --surface: color-mix(in oklab, #ffffff 30%, var(--a));
+}
+
+[data-concept="neon"] .samples .frame {
+    border-radius: calc(var(--r-panel) - 6px);
+}
+
+[data-concept="neon"] .samples .kicker {
+    background: var(--on-a);
+    color: var(--a);
+}
+
+[data-concept="neon"] .samples .btn--primary {
+    background: var(--on-a);
+    border-color: var(--on-a);
+    color: var(--a);
+}
+
+[data-concept="neon"] .sample {
+    border-radius: 999px;
+    border-color: var(--line);
+    background: var(--surface);
+}
+
+[data-concept="neon"] .sample::before {
+    border-radius: 50%;
+}
+
+[data-concept="neon"] .sample:has(input:checked) {
+    border-color: var(--on-a);
+    background: color-mix(in oklab, #ffffff 55%, var(--a));
+}
+
+/* craft: outline step numbers */
+
+[data-concept="neon"] .step .frame {
+    border-radius: var(--r-panel);
+}
+
+[data-concept="neon"] .step h3::before {
+    content: counter(step, decimal-leading-zero);
+    display: block;
+    margin-block-end: 6px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 2rem + 2vw, 4.5rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--a);
+}
+
+/* service */
+
+[data-concept="neon"] .service .delivery {
+    background: var(--b);
+    color: var(--on-b);
+    border: 0;
+    --ink: var(--on-b);
+    --ink-2: color-mix(in oklab, var(--on-b) 70%, transparent);
+    --surface: #ffffff;
+}
+
+[data-concept="neon"] .service .delivery select {
+    background: #ffffff;
+    color: #0b0b0c;
+}
+
+[data-concept="neon"] .delivery__out {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.625rem, 1.1rem + 1.6vw, 3rem);
+    overflow-wrap: anywhere;
+}
+
+[data-concept="neon"] .promises {
+    border: 0;
+    gap: 10px;
+}
+
+[data-concept="neon"] .promises li {
+    padding: 18px 22px;
+    border: 1px solid var(--line);
+}
+
+/* club */
+
+[data-concept="neon"] .club {
+    margin-inline: var(--m);
+    padding-inline: clamp(20px, 3vw, 64px) !important;
+    border-radius: var(--r-panel);
+    background: var(--surface);
+}
+
+[data-concept="neon"] .club__benefits li::before {
+    content: "✦ ";
+    color: var(--a);
+}
+
+/* footer: the accent block */
+
+[data-concept="neon"] .ftr {
+    background: var(--a);
+    color: var(--on-a);
+    border: 0;
+    border-radius: var(--r-panel) var(--r-panel) 0 0;
+    --ink: var(--on-a);
+    --ink-2: color-mix(in oklab, var(--on-a) 75%, transparent);
+    --line: color-mix(in oklab, var(--on-a) 25%, transparent);
+}
+
+[data-concept="neon"] .ftr__sibling p {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* store bits */
+
+[data-concept="neon"] .utility {
+    background: var(--a);
+    color: var(--on-a);
+    font-weight: 600;
+}
+
+[data-concept="neon"] .mega summary {
+    border-radius: 999px;
+    background: var(--b);
+    border-color: var(--b);
+    color: var(--on-b);
+}
+
+[data-concept="neon"] .chips a,
+[data-concept="neon"] .toolbar__active a,
+[data-concept="neon"] .pager a,
+[data-concept="neon"] .pager span {
+    border-radius: 999px;
+}
+
+[data-concept="neon"] .pager [aria-current="page"] {
+    background: var(--a);
+    border-color: var(--a);
+    color: var(--on-a);
+}
+
+[data-concept="neon"] .editorial a {
+    background: var(--b);
+    color: var(--on-b);
+    overflow: hidden;
+}
+
+[data-concept="neon"] .editorial .kicker {
+    background: var(--on-b);
+    color: var(--b);
+}
+
+[data-concept="neon"] .pdp__thumbs a,
+[data-concept="neon"] .banner .frame {
+    border-radius: var(--r-panel);
+}
+
+/* dialogs */
+
+[data-concept="neon"] .drawer {
+    border-radius: var(--r-panel) 0 0 var(--r-panel);
+}
+
+[data-concept="neon"] .drawer__samples {
+    border-radius: 999px;
+    background: var(--b);
+    color: var(--on-b);
+}
+
+/* intro: two colour bars wipe off a black screen */
+
+[data-concept="neon"] .intro__half {
+    left: 0;
+    right: 0;
+    height: 50%;
+}
+
+[data-concept="neon"] .intro__half--a {
+    top: 0;
+    background: var(--a);
+    animation: neon-wipe-left 520ms cubic-bezier(0.7, 0, 0.2, 1) 620ms forwards;
+}
+
+[data-concept="neon"] .intro__half--b {
+    bottom: 0;
+    background: var(--b);
+    animation: neon-wipe-right 520ms cubic-bezier(0.7, 0, 0.2, 1) 720ms forwards;
+}
+
+[data-concept="neon"] .intro__line {
+    display: none;
+}
+
+[data-concept="neon"] .intro__mark {
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: #0b0b0c;
+    color: #f6f6f1;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 1rem + 2vw, 3rem);
+    transform: translate(-50%, -50%) scale(0.6);
+    animation:
+        neon-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1) 60ms forwards,
+        neon-fade 260ms linear 900ms forwards;
+}
+
+[data-concept="neon"] .intro__mark small {
+    color: var(--a);
+    font-weight: 500;
+    font-size: 0.5em;
+}
+
+@keyframes neon-wipe-left {
+    to {
+        transform: translateX(-101%);
+    }
+}
+
+@keyframes neon-wipe-right {
+    to {
+        transform: translateX(101%);
+    }
+}
+
+@keyframes neon-pop {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes neon-fade {
+    to {
+        opacity: 0;
+    }
+}

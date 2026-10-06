@@ -1,0 +1,170 @@
+/* Shape layer: html[data-shape="round"] turns any direction into a softer, shadcn-like variant
+ * (rounded frames and panels, pill buttons, contained cards with a hairline and a soft shadow).
+ * Loaded after the skins; neon is already round and is left alone. */
+
+:root[data-shape="round"]:not([data-concept="neon"]) {
+    --r-frame: clamp(12px, 1.1vw, 24px);
+    --r-panel: clamp(16px, 1.4vw, 28px);
+    --r-input: 12px;
+    --radius-ui: 999px;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) :is(
+        .frame,
+        .g a,
+        .pdp__thumbs a,
+        .window__frame,
+        .line img,
+        .lightbox__figure img
+    ) {
+    border-radius: var(--r-frame);
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .frame img {
+    border-radius: inherit;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) :is(
+        .sheet,
+        .fit,
+        .delivery,
+        .club,
+        .samples,
+        .controls,
+        .mega__panel,
+        .editorial a,
+        .strip__list,
+        .specs,
+        .label,
+        .project__pieces,
+        .promises,
+        .totals,
+        .ftr
+    ) {
+    border-radius: var(--r-panel);
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) :is(
+        .btn,
+        .hdr__cart,
+        .hdr__menu,
+        .icon-btn,
+        .chips a,
+        .toolbar__active a,
+        .pager a,
+        .pager span,
+        .mega summary,
+        .tag,
+        .drawer__samples,
+        .fit__result,
+        .label__club,
+        .card__club,
+        .buy__club
+    ) {
+    border-radius: 999px;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) :is(input[type="number"], input[type="email"], input[type="search"], select) {
+    border-radius: var(--r-input);
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .sample {
+    border-radius: 14px;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .swatches i {
+    border-radius: 50%;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .fabric input {
+    border-radius: 50%;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .sample::before {
+    border-radius: 50%;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .drawer {
+    border-radius: var(--r-panel) 0 0 var(--r-panel);
+}
+
+/* contained cards: the shadcn signature */
+
+:root[data-shape="round"]:not([data-concept="neon"]) :is(.rail__track > .card, .grid-card) {
+    padding: 10px 10px 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-panel);
+    background: var(--surface);
+    box-shadow:
+        0 1px 2px rgb(0 0 0 / 0.04),
+        0 8px 24px -12px rgb(0 0 0 / 0.12);
+    transition:
+        box-shadow 240ms var(--ease),
+        transform 240ms var(--ease);
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) :is(.rail__track > .card, .grid-card):hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 1px 2px rgb(0 0 0 / 0.05),
+        0 16px 36px -14px rgb(0 0 0 / 0.2);
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) :is(.rail__track > .card, .grid-card) .frame {
+    border-radius: calc(var(--r-panel) - 6px);
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .card__link,
+:root[data-shape="round"]:not([data-concept="neon"]) .grid-card__link {
+    padding-inline: 4px;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .card__link .frame,
+:root[data-shape="round"]:not([data-concept="neon"]) .grid-card__link .frame {
+    margin-inline: -4px;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .grid-card__add {
+    top: 18px;
+    right: 18px;
+}
+
+/* the hero plate and feature panels get a soft lift too */
+
+:root[data-shape="round"]:not([data-concept="neon"]) :is(.sheet, .fit, .club, .delivery) {
+    box-shadow:
+        0 1px 2px rgb(0 0 0 / 0.04),
+        0 12px 32px -16px rgb(0 0 0 / 0.14);
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .club {
+    margin-inline: var(--m);
+    padding-inline: clamp(20px, 3vw, 64px) !important;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .samples {
+    margin-inline: var(--m);
+}
+
+:root[data-shape="round"][data-concept="cinema"] .samples {
+    padding-inline: clamp(20px, 3vw, 64px) !important;
+}
+
+:root[data-shape="round"]:not([data-concept="neon"]) .window {
+    padding-inline: var(--m) !important;
+}
+
+:root[data-shape="round"][data-concept="cinema"] .hero__figure .frame--hero {
+    border-radius: var(--r-panel) 0 0 var(--r-panel);
+}
+
+@media (max-width: 1023px) {
+    :root[data-shape="round"][data-concept="cinema"] .hero__figure .frame--hero {
+        border-radius: 0;
+    }
+}
+
+:root[data-shape="round"][data-concept="cinema"] .ftr,
+:root[data-shape="round"][data-concept="atelier"] .ftr {
+    border-radius: var(--r-panel) var(--r-panel) 0 0;
+}

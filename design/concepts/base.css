@@ -508,6 +508,14 @@ main > section:first-child {
 
 /* strip */
 
+.strip__track {
+    display: contents;
+}
+
+.strip__clone {
+    display: none !important;
+}
+
 .strip__list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
@@ -1754,7 +1762,8 @@ dialog::backdrop {
         transform 1000ms var(--ease-reveal);
 }
 
-.js-anim .rv:not(.is-in) {
+/* the drawing sheet carries text (captions, dimensions): it never hides, only line work may animate */
+.js-anim .rv:not(.is-in):not(.sheet) {
     opacity: 0;
     transform: translateY(28px);
 }

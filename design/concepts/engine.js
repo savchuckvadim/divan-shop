@@ -242,6 +242,10 @@
         Claro: "Светлая",
         Oscuro: "Тёмная",
         Auto: "Авто",
+        "Neón": "Неон",
+        Formas: "Формы",
+        Rectas: "Строгие",
+        Redondeadas: "Скруглённые",
     };
 
     var PATTERNS = [
@@ -340,7 +344,8 @@
     /* ---------------- design controls ---------------- */
 
     var PALETTES = {
-        cinema: { p1: "Granate", p2: "Hora azul", p3: "Tungsteno", p4: "Pinar" },
+        cinema: { p1: "Tungsteno", p2: "Hora azul", p3: "Granate", p4: "Pinar" },
+        neon: { p1: "Chicle", p2: "Lima", p3: "Voltio", p4: "Ácido" },
         atelier: { p1: "Lacre", p2: "Tinta", p3: "Pátina", p4: "Esparto" },
         blueprint: { p1: "Latón", p2: "Cianotipo", p3: "Tablero", p4: "Lacre" },
     };
@@ -356,6 +361,10 @@
         "Latón": "Латунь",
         Cianotipo: "Цианотипия",
         Tablero: "Чертёжная доска",
+        Chicle: "Жвачка",
+        Lima: "Лайм",
+        Voltio: "Вольт",
+        "Ácido": "Кислота",
     };
 
     var syncControls = function () {
@@ -372,6 +381,10 @@
             button.setAttribute("aria-label", lang === "ru" ? PALETTES_RU[name] || name : name);
             button.setAttribute("data-palette-preview", key);
         });
+        var shapeNow = doc.getAttribute("data-shape") === "round" ? "round" : "sharp";
+        document.querySelectorAll("[data-set-shape]").forEach(function (button) {
+            button.setAttribute("aria-pressed", String(button.getAttribute("data-set-shape") === shapeNow));
+        });
         document.querySelectorAll("[data-set-theme]").forEach(function (button) {
             button.setAttribute("aria-pressed", String(button.getAttribute("data-set-theme") === theme));
         });
@@ -383,7 +396,7 @@
     };
 
     document.addEventListener("click", function (event) {
-        var target = event.target.closest("[data-set-concept],[data-set-palette],[data-set-theme],[data-lang],[data-controls-toggle]");
+        var target = event.target.closest("[data-set-concept],[data-set-palette],[data-set-theme],[data-set-shape],[data-lang],[data-controls-toggle]");
         if (!target) return;
         if (target.hasAttribute("data-set-concept")) {
             var concept = target.getAttribute("data-set-concept");
@@ -398,6 +411,11 @@
             if (theme === "auto") doc.removeAttribute("data-theme");
             else doc.setAttribute("data-theme", theme);
             store.set("dv.theme", theme === "auto" ? null : theme);
+        } else if (target.hasAttribute("data-set-shape")) {
+            var shape = target.getAttribute("data-set-shape");
+            if (shape === "round") doc.setAttribute("data-shape", "round");
+            else doc.removeAttribute("data-shape");
+            store.set("dv.shape", shape === "round" ? "round" : null);
         } else if (target.hasAttribute("data-lang")) {
             var next = target.getAttribute("data-lang");
             store.set("dv.lang", next);
@@ -521,6 +539,19 @@
             },
             { passive: true }
         );
+    });
+
+    /* ---------------- marquee: neon shows the strip twice, the clone is decorative ---------------- */
+
+    document.querySelectorAll(".strip__list").forEach(function (list) {
+        var track = document.createElement("div");
+        track.className = "strip__track";
+        list.parentNode.insertBefore(track, list);
+        track.appendChild(list);
+        var clone = list.cloneNode(true);
+        clone.classList.add("strip__clone");
+        clone.setAttribute("aria-hidden", "true");
+        track.appendChild(clone);
     });
 
     /* ---------------- fit check ---------------- */
