@@ -63,7 +63,7 @@ docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml logs -f we
 **2. group** (существующее приложение):
 
 - Build-time arguments: `NEXT_PUBLIC_STOREFRONT=group`, `NEXT_PUBLIC_SERVER_URL=https://divan.group`, `NEXT_PUBLIC_BRAND_NAME=divan.group`.
-- Environment: без изменений; `PAYLOAD_DB_PUSH=true` оставить: на старте Payload создаст таблицы новой коллекции `storefronts` (только новые таблицы, ничего не удаляется).
+- Environment: проверить `PAYLOAD_DB_PUSH`. Миграций в репозитории пока нет, поэтому на этот деплой нужен `true`: на старте Payload создаст таблицы новой коллекции `storefronts` (только новые таблицы, ничего не удаляется). Если таблицы не появятся, сайт не упадёт: шапка и главная возьмут Site Settings и hero страницы, а в логе будет `storefronts: read failed`.
 - Deploy. Проверить `https://divan.group/es` и `/admin`: в меню админки появилась коллекция Storefronts.
 
 **3. Демо-контент** (разово, приложение-инструмент):
