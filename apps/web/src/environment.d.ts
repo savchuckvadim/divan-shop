@@ -5,6 +5,8 @@ declare global {
             DATABASE_URL: string;
             NEXT_PUBLIC_SERVER_URL: string;
             NEXT_PUBLIC_BRAND_NAME?: string;
+            /** group | boutique | youth; picked at build time (ADR-0011). */
+            NEXT_PUBLIC_STOREFRONT?: string;
             VERCEL_PROJECT_PRODUCTION_URL: string;
         }
     }

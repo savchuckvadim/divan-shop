@@ -6,14 +6,13 @@ import { getDictionary } from "@/modules/shared/i18n";
 import { OgCard, type OgCardProps } from "./og-card";
 import { OG_SIZE } from "./og-theme";
 
-/** Site-level card: brand wordmark, tagline and city line. Also the fallback for every route. */
+/** Site-level card: the tagline as the headline, the storefront wordmark and the city underneath. Also
+ * the fallback for every route. */
 export const siteOgCard = (locale: Locale): OgCardProps => {
     const { common } = getDictionary(locale);
 
     return {
-        eyebrow: common.cityLine,
-        title: common.siteName || SITE.name,
-        subtitle: common.tagline,
+        title: common.tagline,
         brandName: common.siteName || SITE.name,
         cityLine: common.cityLine,
     };

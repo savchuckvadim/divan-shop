@@ -1,5 +1,7 @@
 import { unstable_cache } from "next/cache";
 
+import { CMS_CACHE_SECONDS } from "@/modules/shared/config";
+
 import { getPayloadClient } from "./payload-client";
 
 export const REDIRECTS_CACHE_TAG = "redirects";
@@ -16,4 +18,7 @@ const getRedirects = async (depth = 1) => {
 };
 
 export const getCachedRedirects = () =>
-    unstable_cache(() => getRedirects(), [REDIRECTS_CACHE_TAG], { tags: [REDIRECTS_CACHE_TAG] });
+    unstable_cache(() => getRedirects(), [REDIRECTS_CACHE_TAG], {
+        tags: [REDIRECTS_CACHE_TAG],
+        revalidate: CMS_CACHE_SECONDS,
+    });

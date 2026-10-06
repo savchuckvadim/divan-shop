@@ -1,6 +1,8 @@
 import type { ReactElement } from "react";
 
-import { OG_COLORS, OG_FONT_SANS, OG_FONT_SERIF, OG_SIZE, OG_SURFACE } from "./og-theme";
+import { STOREFRONT_WORDMARK } from "@/modules/shared/config";
+
+import { OG_COLORS, OG_FONT_SANS, OG_FONT_SERIF, OG_PILL_RADIUS, OG_SIZE } from "./og-theme";
 
 export interface OgCardProps {
     /** Small uppercase line above the title: section or category name. */
@@ -21,29 +23,19 @@ const titleFontSize = (title: string): number => {
     return 86;
 };
 
-/** CSS-only arch that mirrors `LogoMark`: a showroom doorway reading as a sofa back. */
-const LogoMark = (): ReactElement => (
-    <div
-        style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-            width: 56,
-            height: 56,
-            borderRadius: "28px 28px 8px 8px",
-            backgroundColor: OG_COLORS.primary,
-        }}
-    >
+/** The storefront signs with its domain, as in the site header: divan + .group. */
+const Wordmark = ({ brandName }: { brandName: string }): ReactElement => (
+    <div style={{ display: "flex", alignItems: "baseline" }}>
         <div
-            style={{
-                display: "flex",
-                width: 26,
-                height: 4,
-                marginBottom: 10,
-                borderRadius: 2,
-                backgroundColor: OG_COLORS.primaryForeground,
-            }}
-        />
+            style={{ display: "flex", fontFamily: OG_FONT_SERIF, fontSize: 44, letterSpacing: -1 }}
+        >
+            {STOREFRONT_WORDMARK?.name ?? brandName}
+        </div>
+        {STOREFRONT_WORDMARK ? (
+            <div style={{ display: "flex", fontSize: 26, color: OG_COLORS.brand }}>
+                {STOREFRONT_WORDMARK.tld}
+            </div>
+        ) : null}
     </div>
 );
 
@@ -64,7 +56,6 @@ export const OgCard = ({
             height: OG_SIZE.height,
             padding: "72px 80px",
             backgroundColor: OG_COLORS.background,
-            backgroundImage: OG_SURFACE,
             color: OG_COLORS.foreground,
             fontFamily: OG_FONT_SANS,
         }}
@@ -77,7 +68,7 @@ export const OgCard = ({
                         fontSize: 26,
                         letterSpacing: 6,
                         textTransform: "uppercase",
-                        color: OG_COLORS.primary,
+                        color: OG_COLORS.brand,
                     }}
                 >
                     {eyebrow}
@@ -114,7 +105,7 @@ export const OgCard = ({
                         display: "flex",
                         alignSelf: "flex-start",
                         padding: "14px 32px",
-                        borderRadius: 999,
+                        borderRadius: OG_PILL_RADIUS,
                         backgroundColor: OG_COLORS.primary,
                         color: OG_COLORS.primaryForeground,
                         fontSize: 40,
@@ -131,7 +122,7 @@ export const OgCard = ({
                     display: "flex",
                     width: "100%",
                     height: 2,
-                    backgroundColor: OG_COLORS.border,
+                    background: OG_COLORS.rule,
                 }}
             />
             <div
@@ -141,19 +132,7 @@ export const OgCard = ({
                     justifyContent: "space-between",
                 }}
             >
-                <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                    <LogoMark />
-                    <div
-                        style={{
-                            display: "flex",
-                            fontFamily: OG_FONT_SERIF,
-                            fontSize: 38,
-                            letterSpacing: -0.5,
-                        }}
-                    >
-                        {brandName}
-                    </div>
-                </div>
+                <Wordmark brandName={brandName} />
                 <div
                     style={{
                         display: "flex",

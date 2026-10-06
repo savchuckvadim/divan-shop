@@ -12,6 +12,12 @@ export const STOREFRONT_PRESET = STOREFRONT_PRESETS[STOREFRONT];
  */
 export const STOREFRONT_INDEXED = STOREFRONT === "group";
 
+/**
+ * Editors publish through one app; its revalidateTag never reaches the other storefront apps, so
+ * cached CMS data there also expires by time.
+ */
+export const CMS_CACHE_SECONDS = 300;
+
 const host = (() => {
     try {
         return new URL(process.env.NEXT_PUBLIC_SERVER_URL ?? "").hostname.replace(/^www\./, "");

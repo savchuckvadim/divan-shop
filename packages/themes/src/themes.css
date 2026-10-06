@@ -1,6 +1,7 @@
 /* All directions and the shape layer. Each storefront activates one of them through attributes on
  * <html> (see presets.ts); fonts for the active direction are loaded by the app with next/font.
- * Rules here are unlayered on purpose: they must win over Tailwind utilities of the defaults. */
+ * Rules here are unlayered on purpose: they must win over Tailwind utilities of the defaults. Generic
+ * hooks sit under :where() so a direction's own rule for the same slot always wins, whatever the order. */
 @import "./concepts/atelier.css";
 @import "./concepts/cinema.css";
 @import "./concepts/blueprint.css";
@@ -8,17 +9,29 @@
 @import "./shape.css";
 
 /* wide layouts: margins grow with the screen, no small column lost on a 2560 px display */
-[data-concept] .container {
+:where([data-concept]) .container {
     max-width: var(--container-max);
     padding-inline: var(--page-margin);
 }
 
-[data-concept] body {
+/* status colours come from @workspace/ui, which flips them only for an explicit data-theme="dark";
+ * a theme in auto mode on a dark system needs the same dark values */
+@media (prefers-color-scheme: dark) {
+    :root[data-concept]:not([data-theme]) {
+        --success: oklch(30% 0.09 205deg);
+        --warning: oklch(35% 0.08 70deg);
+        --error: oklch(45% 0.1 25deg);
+        --destructive: oklch(42% 0.15 26deg);
+        --destructive-foreground: oklch(97% 0.008 80deg);
+    }
+}
+
+:where([data-concept]) body {
     font-family: var(--dv-font-body);
 }
 
 /* display type: every direction tunes the same hooks through tokens */
-[data-concept] [data-slot="heading"] {
+:where([data-concept]) [data-slot="heading"] {
     font-family: var(--dv-font-display);
     font-weight: var(--display-weight);
     letter-spacing: var(--display-tracking);
@@ -27,45 +40,52 @@
 }
 
 /* CMS rich text headings speak the same display voice as Heading */
-[data-concept] .prose :is(h1, h2) {
+:where([data-concept]) .prose :is(h1, h2) {
     font-family: var(--dv-font-display);
     font-weight: var(--display-weight);
     letter-spacing: var(--display-tracking);
     font-variation-settings: var(--display-optical);
 }
 
-[data-concept] :is([data-slot="kicker"], [data-eyebrow="true"], [data-slot="card-eyebrow"]) {
+:where([data-concept])
+    :is([data-slot="kicker"], [data-eyebrow="true"], [data-slot="card-eyebrow"]) {
     font-family: var(--dv-font-label);
     text-transform: var(--label-transform);
     letter-spacing: var(--label-tracking);
 }
 
-[data-concept] [data-slot="product-title"] {
+:where([data-concept]) [data-slot="product-title"] {
     font-family: var(--dv-font-title, var(--dv-font-display));
 }
 
 /* controls take the direction's corner; shape.css turns them into pills */
-[data-concept] :is([data-slot="button"], [data-slot="chip"]) {
+:where([data-concept]) :is([data-slot="button"], [data-slot="chip"], [data-slot="badge"]) {
     border-radius: var(--radius);
 }
 
-[data-concept] [data-slot="price-club"] {
+:where([data-concept]) [data-slot="price-club"] {
     color: var(--brand);
 }
 
-[data-concept] [data-slot="stage"] {
+/* "in stock" wears the accent wash instead of a status hue foreign to the palette */
+:where([data-concept]) [data-slot="badge"][data-variant="success"] {
+    background: var(--brand-soft);
+    color: var(--brand);
+}
+
+:where([data-concept]) [data-slot="stage"] {
     background: var(--stage);
 }
 
 /* catalog density: phones get --grid-phone-cols, wider screens fill with cards of at least
  * --card-min, so a 2560 px monitor shows more sofas rather than bigger ones */
-[data-concept] [data-slot="product-grid"] {
+:where([data-concept]) [data-slot="product-grid"] {
     grid-template-columns: repeat(var(--grid-phone-cols, 2), minmax(0, 1fr));
     gap: var(--grid-gap, 2.5rem 1rem);
 }
 
 @media (width >= 48rem) {
-    [data-concept] [data-slot="product-grid"] {
+    :where([data-concept]) [data-slot="product-grid"] {
         grid-template-columns: repeat(auto-fill, minmax(var(--card-min, 16rem), 1fr));
     }
 }

@@ -163,6 +163,13 @@
     background: var(--muted-foreground);
 }
 
+/* stock is a quiet ink tag: the wine accent on a status would read as a warning */
+[data-concept="cinema"] [data-slot="badge"][data-variant="success"] {
+    background: transparent;
+    color: var(--foreground);
+    box-shadow: inset 0 0 0 1px var(--foreground);
+}
+
 /* keynote numerals: the cifra cut of the same family */
 [data-concept="cinema"] [data-slot="cifra"] {
     font-variation-settings: "wdth" 75;

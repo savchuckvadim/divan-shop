@@ -2,7 +2,7 @@ import { unstable_cache } from "next/cache";
 
 import type { DataFromGlobalSlug } from "payload";
 
-import { DEFAULT_LOCALE, type Locale } from "@/modules/shared/config";
+import { CMS_CACHE_SECONDS, DEFAULT_LOCALE, type Locale } from "@/modules/shared/config";
 import type { Config } from "@/payload-types";
 
 import { getPayloadClient } from "./payload-client";
@@ -23,4 +23,5 @@ const getGlobal = async <T extends GlobalSlug>(
 export const getCachedGlobal = <T extends GlobalSlug>(slug: T, locale: Locale, depth = 1) =>
     unstable_cache(() => getGlobal(slug, locale, depth), [slug, locale, String(depth)], {
         tags: [globalCacheTag(slug)],
+        revalidate: CMS_CACHE_SECONDS,
     });

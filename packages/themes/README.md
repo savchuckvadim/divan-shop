@@ -21,7 +21,7 @@
 
 Компоненты не знают про конкретную тему: они ставят хуки `data-slot`, а `src/themes.css` их стилизует:
 `heading`, `kicker` (и `data-eyebrow`), `product-card`, `product-title`, `stage`, `product-grid`,
-`price-club`, `cifra`, `button`, `chip`. Правила `themes.css` без слоя намеренно: они перекрывают
+`price-club`, `cifra`, `button`, `chip`, `badge`. Правила `themes.css` без слоя намеренно: они перекрывают
 утилиты Tailwind.
 
 ## Наборы витрин
@@ -72,4 +72,5 @@ import { STOREFRONT_PRESETS, themeAttributes } from "@workspace/themes/presets";
 
 - Цвет товара не тонируем: акцент обрамляет фото, а не накладывается на него. `multiply` на `stage`
   допустим только на светлом фоне сцены, поэтому сцена остаётся светлой и в тёмном режиме.
+- Общий хук в `src/themes.css` пишется под `:where([data-concept])`, правило направления — с `[data-concept="<имя>"]`: так направление всегда перекрывает общий хук, независимо от порядка импорта.
 - Прототипы и обоснование направлений: `design/concepts/` (README, `briefs/`).

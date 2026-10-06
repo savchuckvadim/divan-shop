@@ -26,6 +26,7 @@ const PAIRS = [
     ["button", "--primary-foreground", "--primary", 4.5],
     ["accent fill", "--brand-foreground", "--brand", 4.5],
     ["accent text", "--brand", "--background", 4.5],
+    ["stock badge", "--brand", "--brand-soft", 4.5],
     ["input border", "--input", "--background", 3],
 ];
 
