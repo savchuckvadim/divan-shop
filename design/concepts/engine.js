@@ -246,6 +246,8 @@
         Formas: "Формы",
         Rectas: "Строгие",
         Redondeadas: "Скруглённые",
+        Conjunto: "Набор",
+        Juvenil: "Молодёжный",
     };
 
     var PATTERNS = [
@@ -344,7 +346,7 @@
     /* ---------------- design controls ---------------- */
 
     var PALETTES = {
-        cinema: { p1: "Tungsteno", p2: "Hora azul", p3: "Granate", p4: "Pinar" },
+        cinema: { p1: "Granate", p2: "Hora azul", p3: "Tungsteno", p4: "Pinar" },
         neon: { p1: "Chicle", p2: "Lima", p3: "Voltio", p4: "Ácido" },
         atelier: { p1: "Lacre", p2: "Tinta", p3: "Pátina", p4: "Esparto" },
         blueprint: { p1: "Latón", p2: "Cianotipo", p3: "Tablero", p4: "Lacre" },
@@ -367,6 +369,34 @@
         "Ácido": "Кислота",
     };
 
+    var PRESETS = {
+        group: { page: "store", concept: "atelier", palette: "p4", theme: "auto", shape: "round" },
+        boutique: { page: "boutique", concept: "cinema", palette: "p1", theme: "light", shape: "sharp" },
+        youth: { page: "boutique", concept: "neon", palette: "p2", theme: "dark", shape: "round" },
+    };
+    var currentPage = doc.getAttribute("data-brand") === "store" ? "store" : "boutique";
+    var paletteKey = function (page) {
+        return "dv2.palette." + (page || currentPage);
+    };
+    var applyPreset = function (name) {
+        var preset = PRESETS[name];
+        if (!preset) return;
+        store.set("dv2.concept", preset.concept);
+        store.set(paletteKey(preset.page), preset.palette);
+        store.set("dv2.theme", preset.theme);
+        store.set("dv2.shape", preset.shape);
+        if (preset.page !== currentPage) {
+            location.href = preset.page + ".html";
+            return;
+        }
+        doc.setAttribute("data-concept", preset.concept);
+        doc.setAttribute("data-palette", preset.palette);
+        if (preset.theme === "auto") doc.removeAttribute("data-theme");
+        else doc.setAttribute("data-theme", preset.theme);
+        if (preset.shape === "round") doc.setAttribute("data-shape", "round");
+        else doc.removeAttribute("data-shape");
+    };
+
     var syncControls = function () {
         var concept = doc.getAttribute("data-concept") || "cinema";
         var palette = doc.getAttribute("data-palette") || "p1";
@@ -382,6 +412,12 @@
             button.setAttribute("data-palette-preview", key);
         });
         var shapeNow = doc.getAttribute("data-shape") === "round" ? "round" : "sharp";
+        var themeNow = doc.getAttribute("data-theme") || "auto";
+        document.querySelectorAll("[data-set-preset]").forEach(function (button) {
+            var preset = PRESETS[button.getAttribute("data-set-preset")];
+            var active = preset && preset.page === currentPage && preset.concept === concept && preset.palette === palette && preset.theme === themeNow && preset.shape === shapeNow;
+            button.setAttribute("aria-pressed", String(Boolean(active)));
+        });
         document.querySelectorAll("[data-set-shape]").forEach(function (button) {
             button.setAttribute("aria-pressed", String(button.getAttribute("data-set-shape") === shapeNow));
         });
@@ -396,29 +432,31 @@
     };
 
     document.addEventListener("click", function (event) {
-        var target = event.target.closest("[data-set-concept],[data-set-palette],[data-set-theme],[data-set-shape],[data-lang],[data-controls-toggle]");
+        var target = event.target.closest("[data-set-concept],[data-set-palette],[data-set-theme],[data-set-shape],[data-set-preset],[data-lang],[data-controls-toggle]");
         if (!target) return;
         if (target.hasAttribute("data-set-concept")) {
             var concept = target.getAttribute("data-set-concept");
             doc.setAttribute("data-concept", concept);
-            store.set("dv.concept", concept);
+            store.set("dv2.concept", concept);
         } else if (target.hasAttribute("data-set-palette")) {
             var palette = target.getAttribute("data-set-palette");
             doc.setAttribute("data-palette", palette);
-            store.set(doc.getAttribute("data-brand") === "store" ? "dv.palette.store" : "dv.palette", palette);
+            store.set(paletteKey(), palette);
         } else if (target.hasAttribute("data-set-theme")) {
             var theme = target.getAttribute("data-set-theme");
             if (theme === "auto") doc.removeAttribute("data-theme");
             else doc.setAttribute("data-theme", theme);
-            store.set("dv.theme", theme === "auto" ? null : theme);
+            store.set("dv2.theme", theme);
+        } else if (target.hasAttribute("data-set-preset")) {
+            applyPreset(target.getAttribute("data-set-preset"));
         } else if (target.hasAttribute("data-set-shape")) {
             var shape = target.getAttribute("data-set-shape");
             if (shape === "round") doc.setAttribute("data-shape", "round");
             else doc.removeAttribute("data-shape");
-            store.set("dv.shape", shape === "round" ? "round" : null);
+            store.set("dv2.shape", shape === "round" ? "round" : "sharp");
         } else if (target.hasAttribute("data-lang")) {
             var next = target.getAttribute("data-lang");
-            store.set("dv.lang", next);
+            store.set("dv2.lang", next);
             applyLang(next);
         } else if (target.hasAttribute("data-controls-toggle")) {
             var panel = target.closest("[data-controls]");

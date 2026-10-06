@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-brand="boutique" data-concept="cinema" data-palette="p1">
+<html lang="es" data-brand="boutique" data-concept="cinema" data-palette="p1" data-theme="light">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -31,14 +31,28 @@
                         return null;
                     }
                 };
-                var concept = read("localStorage", "dv.concept");
-                if (/^(cinema|atelier|blueprint|neon)$/.test(concept || "")) d.setAttribute("data-concept", concept);
-                var palette = read("localStorage", "dv.palette");
-                if (/^p[1-4]$/.test(palette || "")) d.setAttribute("data-palette", palette);
-                var theme = read("localStorage", "dv.theme");
-                if (theme === "light" || theme === "dark") d.setAttribute("data-theme", theme);
-                if (read("localStorage", "dv.shape") === "round") d.setAttribute("data-shape", "round");
-                var lang = read("localStorage", "dv.lang");
+                var set = function (name, value) {
+                    if (value === null) d.removeAttribute(name);
+                    else d.setAttribute(name, value);
+                };
+                if (location.hash === "#youth") {
+                    set("data-concept", "neon");
+                    set("data-palette", "p2");
+                    set("data-theme", "dark");
+                    set("data-shape", "round");
+                } else {
+                    var concept = read("localStorage", "dv2.concept");
+                    if (/^(cinema|atelier|blueprint|neon)$/.test(concept || "")) set("data-concept", concept);
+                    var palette = read("localStorage", "dv2.palette.boutique");
+                    if (/^p[1-4]$/.test(palette || "")) set("data-palette", palette);
+                    var theme = read("localStorage", "dv2.theme");
+                    if (theme === "light" || theme === "dark") set("data-theme", theme);
+                    if (theme === "auto") set("data-theme", null);
+                    var shape = read("localStorage", "dv2.shape");
+                    if (shape === "round") set("data-shape", "round");
+                    if (shape === "sharp") set("data-shape", null);
+                }
+                var lang = read("localStorage", "dv2.lang");
                 if (!lang) lang = /^ru/i.test(navigator.language || "") ? "ru" : "es";
                 d.setAttribute("data-lang-wanted", lang);
                 if (window.innerWidth < 768) d.classList.add("controls-collapsed");
@@ -48,10 +62,10 @@
                 setTimeout(function () {
                     if (!window.__dvReady) d.classList.remove("js-anim");
                 }, 3000);
-                if (!read("sessionStorage", "dv.intro")) {
+                if (!read("sessionStorage", "dv2.intro")) {
                     d.classList.add("intro-run");
                     try {
-                        sessionStorage.setItem("dv.intro", "1");
+                        sessionStorage.setItem("dv2.intro", "1");
                     } catch (e) {}
                 }
             })();
@@ -100,7 +114,7 @@
                     <button type="button" data-lang="es" data-qa="lang-es" lang="es">ES</button>
                     <button type="button" data-lang="ru" data-qa="lang-ru" lang="ru">RU</button>
                     <a href="#idiomas" hreflang="en" lang="en" data-qa="lang-en">EN</a>
-                    <a href="#idiomas" hreflang="uk" lang="uk" data-qa="lang-uk">UK</a>
+                    <a href="#idiomas" hreflang="uk" lang="uk" data-qa="lang-uk">UA</a>
                 </div>
                 <a class="hdr__link" href="#club">Mi cuenta</a>
                 <button class="hdr__cart" type="button" data-qa="cart-open" aria-haspopup="dialog" aria-controls="cart">
@@ -809,6 +823,11 @@
         <aside class="controls" aria-label="Controles de diseño" data-controls>
             <button type="button" class="controls__toggle" aria-expanded="true" data-controls-toggle>Diseño</button>
             <div class="controls__body">
+                <div class="controls__row" role="group" aria-label="Conjunto">
+                    <button type="button" data-set-preset="group" data-qa="preset-group">divan.group</button>
+                    <button type="button" data-set-preset="boutique" data-qa="preset-boutique">divan.boutique</button>
+                    <button type="button" data-set-preset="youth" data-qa="preset-youth">Juvenil</button>
+                </div>
                 <div class="controls__row" role="group" aria-label="Dirección">
                     <button type="button" data-set-concept="cinema" data-qa="concept-cinema">Cine</button>
                     <button type="button" data-set-concept="atelier" data-qa="concept-atelier">Galería</button>
