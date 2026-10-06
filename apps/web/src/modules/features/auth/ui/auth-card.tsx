@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Card } from "@workspace/ui/composites/card";
 
-import { LogoMark } from "@/modules/shared/ui";
+import { Logo } from "@/modules/shared/ui";
 
 interface AuthCardProps {
     title: ReactNode;
@@ -14,8 +14,8 @@ export const AuthCard = ({ title, description, children }: AuthCardProps) => (
     <Card
         className="mx-auto w-full max-w-md"
         media={
-            <div className="flex items-center justify-center bg-hero py-7">
-                <LogoMark className="size-11" />
+            <div data-slot="stage" className="flex items-center justify-center py-8">
+                <Logo size="lg" />
             </div>
         }
         title={title}

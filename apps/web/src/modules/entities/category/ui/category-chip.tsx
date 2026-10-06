@@ -10,6 +10,7 @@ interface CategoryChipProps {
 
 export const CategoryChip = ({ href, label, active }: CategoryChipProps) => (
     <Link
+        data-slot="chip"
         href={href}
         aria-current={active ? "page" : undefined}
         className={cn(

@@ -96,7 +96,10 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
 
             <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-14">
                 <div className="flex flex-col gap-3">
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted shadow-card">
+                    <div
+                        data-slot="stage"
+                        className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted"
+                    >
                         {cover ? (
                             <Media
                                 resource={cover}
@@ -108,7 +111,7 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
                         ) : (
                             <span
                                 aria-hidden
-                                className="flex h-full items-center justify-center bg-hero font-serif text-7xl italic text-primary/40"
+                                className="flex h-full items-center justify-center font-display text-7xl text-muted-foreground/40"
                             >
                                 {product.title.charAt(0)}
                             </span>
@@ -151,7 +154,7 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-wrap items-center gap-3">
                             {category && (
-                                <Text as="span" eyebrow className="text-primary">
+                                <Text as="span" eyebrow className="text-muted-foreground">
                                     <Link
                                         href={ROUTES.category(locale, category.slug ?? "")}
                                         className="underline-offset-4 hover:underline"
@@ -174,7 +177,7 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
                     </div>
 
                     <Stack gap="sm">
-                        <Button asChild size="lg" shape="pill" className="w-full">
+                        <Button asChild size="lg" className="w-full">
                             <Link href={ROUTES.contacts(locale, slug)}>
                                 {dictionary.product.contactManager}
                             </Link>
@@ -183,7 +186,6 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
                             asChild
                             size="lg"
                             variant="outline"
-                            shape="pill"
                             className="h-auto min-h-12 w-full whitespace-normal py-3 text-center"
                         >
                             <Link href={ROUTES.register(locale, `product-${slug}`)}>

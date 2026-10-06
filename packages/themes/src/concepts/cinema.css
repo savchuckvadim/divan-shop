@@ -1,0 +1,171 @@
+/* CINEMA · "Plano secuencia" — every sofa in one studio; scrolling is the camera. Studio grey is the
+ * page, type behaves like film titles, only purchase numbers get big. Storefront: divan.boutique. */
+
+:root[data-concept="cinema"] {
+    --dv-font-body: var(--font-tiktok, "TikTok Sans"), system-ui, sans-serif;
+    --dv-font-display: var(--font-tiktok, "TikTok Sans"), system-ui, sans-serif;
+    --dv-font-label: var(--font-martian, "Martian Mono"), ui-monospace, monospace;
+    --dv-font-mono: var(--font-martian, "Martian Mono"), ui-monospace, monospace;
+    --display-weight: 500;
+    --display-tracking: -0.025em;
+    --display-leading: 1.04;
+    --display-optical: normal;
+    --label-transform: uppercase;
+    --label-tracking: 0.04em;
+    --page-margin: clamp(16px, 3.6vw, 124px);
+    --container-max: 215rem;
+    --radius: 2px;
+    --card-min: clamp(20rem, 22vw, 34rem);
+    --grid-phone-cols: 1;
+    --grid-gap: clamp(3rem, 4.5vw, 7rem) clamp(1rem, 2vw, 3rem);
+
+    --acc-l: #98333d;
+    --acc-d: #dc9693;
+    --wash-l: #f6e9e9;
+    --wash-d: #2a1a1b;
+    --partner-l: #477765;
+    --partner-d: #8cbeaa;
+    --night: #200e0f;
+
+    --background: #eeeeec;
+    --foreground: #141412;
+    --card: #fdfcfc;
+    --card-foreground: #141412;
+    --popover: #fdfcfc;
+    --popover-foreground: #141412;
+    --primary: #141412;
+    --primary-foreground: #eeeeec;
+    --secondary: #e4e4e2;
+    --secondary-foreground: #141412;
+    --muted: #e4e4e2;
+    --muted-foreground: #61605e;
+    --accent: #e4e4e2;
+    --accent-foreground: #141412;
+    --border: #d3d2d0;
+    --input: #81807d;
+    --ring: #141412;
+    --stage: #eeeeec;
+    --brand: var(--acc-l);
+    --brand-foreground: #ffffff;
+    --brand-soft: var(--wash-l);
+    --brand-deep: var(--night);
+    --partner: var(--partner-l);
+    --hero-surface: none;
+    --horizon-line: linear-gradient(
+        90deg,
+        transparent,
+        var(--border) 15%,
+        var(--border) 85%,
+        transparent
+    );
+    color-scheme: light;
+}
+
+:root[data-concept="cinema"][data-palette="p2"] {
+    --acc-l: #215da5;
+    --acc-d: #88b4ed;
+    --wash-l: #e7edf6;
+    --wash-d: #16202e;
+    --partner-l: #193358;
+    --partner-d: #c6d9f2;
+    --night: #0a1423;
+}
+
+:root[data-concept="cinema"][data-palette="p3"] {
+    --acc-l: #8b551c;
+    --acc-d: #e8b36f;
+    --wash-l: #f1ece4;
+    --wash-d: #271d14;
+    --partner-l: #426786;
+    --partner-d: #92b6d5;
+    --night: #1b1209;
+}
+
+:root[data-concept="cinema"][data-palette="p4"] {
+    --acc-l: #296948;
+    --acc-d: #88c8a3;
+    --wash-l: #e7f0e8;
+    --wash-d: #15231b;
+    --partner-l: #5e713c;
+    --partner-d: #b2c78f;
+    --night: #08180f;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root[data-concept="cinema"]:not([data-theme="light"]) {
+        --background: #0f0f0e;
+        --foreground: #f0f0ef;
+        --card: #1c1c1b;
+        --card-foreground: #f0f0ef;
+        --popover: #1c1c1b;
+        --popover-foreground: #f0f0ef;
+        --primary: #f0f0ef;
+        --primary-foreground: #141412;
+        --secondary: #171716;
+        --secondary-foreground: #f0f0ef;
+        --muted: #171716;
+        --muted-foreground: #ababa9;
+        --accent: #171716;
+        --accent-foreground: #f0f0ef;
+        --border: #2e2e2c;
+        --input: #6f6f6d;
+        --ring: #f0f0ef;
+        --brand: var(--acc-d);
+        --brand-foreground: #141412;
+        --brand-soft: var(--wash-d);
+        --partner: var(--partner-d);
+        color-scheme: dark;
+    }
+}
+
+/* the root in dark mode, and any section marked dark (a hero over a photo) */
+:root[data-concept="cinema"][data-theme="dark"],
+[data-concept="cinema"] [data-theme="dark"] {
+    --background: #0f0f0e;
+    --foreground: #f0f0ef;
+    --card: #1c1c1b;
+    --card-foreground: #f0f0ef;
+    --popover: #1c1c1b;
+    --popover-foreground: #f0f0ef;
+    --primary: #f0f0ef;
+    --primary-foreground: #141412;
+    --secondary: #171716;
+    --secondary-foreground: #f0f0ef;
+    --muted: #171716;
+    --muted-foreground: #ababa9;
+    --accent: #171716;
+    --accent-foreground: #f0f0ef;
+    --border: #2e2e2c;
+    --input: #6f6f6d;
+    --ring: #f0f0ef;
+    --brand: var(--acc-d);
+    --brand-foreground: #141412;
+    --brand-soft: var(--wash-d);
+    --partner: var(--partner-d);
+    --hero-surface: none;
+    --horizon-line: linear-gradient(
+        90deg,
+        transparent,
+        var(--border) 15%,
+        var(--border) 85%,
+        transparent
+    );
+    color-scheme: dark;
+}
+
+/* the sweep is the page: white studio walls multiply into it; in dark mode frames stay lit */
+[data-concept="cinema"] [data-slot="stage"] img {
+    mix-blend-mode: multiply;
+}
+
+/* buttons never wear the accent */
+[data-concept="cinema"] [data-slot="button"][data-variant="default"]:hover {
+    background: var(--muted-foreground);
+}
+
+/* keynote numerals: the cifra cut of the same family */
+[data-concept="cinema"] [data-slot="cifra"] {
+    font-variation-settings: "wdth" 75;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}

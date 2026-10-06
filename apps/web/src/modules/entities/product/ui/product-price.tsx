@@ -27,11 +27,12 @@ export const ProductPrice = ({
     return (
         <p className={cn("flex flex-wrap items-baseline gap-x-3 gap-y-1", className)}>
             <span
+                data-slot={size === "lg" ? "cifra" : undefined}
                 className={cn(
                     "tabular-nums tracking-tight",
                     size === "lg"
-                        ? "font-serif text-4xl font-medium md:text-5xl"
-                        : "text-lg font-semibold"
+                        ? "font-display text-[clamp(2.25rem,1.6rem+1.6vw,4rem)] font-medium leading-none"
+                        : "text-base font-medium"
                 )}
             >
                 <span className="sr-only">{dictionary.product.price}: </span>
@@ -40,7 +41,7 @@ export const ProductPrice = ({
             {showOld && (
                 <span
                     className={cn(
-                        "tabular-nums text-muted-foreground line-through decoration-primary/60",
+                        "tabular-nums text-muted-foreground line-through decoration-brand/60",
                         size === "lg" ? "text-lg" : "text-sm"
                     )}
                 >

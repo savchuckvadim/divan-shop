@@ -54,7 +54,7 @@ export const BlogPage = async ({ locale, page = 1 }: BlogPageProps) => {
                     aria-label={pageLabel}
                 >
                     {articles.hasPrevPage && articles.prevPage && (
-                        <Button asChild variant="outline" size="icon" shape="pill">
+                        <Button asChild variant="outline" size="icon">
                             <Link
                                 href={pageHref(basePath, articles.prevPage)}
                                 rel="prev"
@@ -66,7 +66,7 @@ export const BlogPage = async ({ locale, page = 1 }: BlogPageProps) => {
                     )}
                     <span className="text-sm tabular-nums text-muted-foreground">{pageLabel}</span>
                     {articles.hasNextPage && articles.nextPage && (
-                        <Button asChild variant="outline" size="icon" shape="pill">
+                        <Button asChild variant="outline" size="icon">
                             <Link
                                 href={pageHref(basePath, articles.nextPage)}
                                 rel="next"

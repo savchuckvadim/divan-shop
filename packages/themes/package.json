@@ -1,0 +1,26 @@
+{
+  "name": "@workspace/themes",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "check:contrast": "node scripts/check-contrast.mjs"
+  },
+  "exports": {
+    "./themes.css": "./src/themes.css",
+    "./concepts/*": "./src/concepts/*.css",
+    "./shape.css": "./src/shape.css",
+    "./presets": "./src/presets.ts"
+  },
+  "devDependencies": {
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "eslint": "^9.39.5",
+    "typescript": "5.7.3"
+  }
+}

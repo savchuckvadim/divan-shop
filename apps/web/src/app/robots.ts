@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { STOREFRONT_INDEXED } from "@/modules/shared/config";
 import { absoluteUrl, getServerSideURL } from "@/modules/shared/lib";
 
 /** Built from CMS data, so it is generated per request (no database during docker build). */
@@ -10,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: [
             { userAgent: "*", allow: "/", disallow: ["/admin", "/api", "/next", "/*/account"] },
         ],
-        sitemap: absoluteUrl("/sitemap.xml"),
+        ...(STOREFRONT_INDEXED ? { sitemap: absoluteUrl("/sitemap.xml") } : {}),
         host: getServerSideURL(),
     };
 }

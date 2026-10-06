@@ -23,7 +23,6 @@ export const AccountLink = ({ className, showLabel = false }: AccountLinkProps) 
             asChild
             variant="ghost"
             size="sm"
-            shape="pill"
             className={cn("text-foreground/80 hover:text-foreground", className)}
         >
             <Link href={ROUTES.account(locale)} aria-label={dictionary.account.title}>

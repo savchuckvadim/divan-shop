@@ -5,7 +5,17 @@
 @source "../composites";
 @source "../shared";
 
-@custom-variant dark (&:is([data-theme='dark'] *));
+/* dark = an explicit data-theme="dark", or a themed page in auto mode on a dark system */
+@custom-variant dark {
+    &:is([data-theme="dark"] *) {
+        @slot;
+    }
+    @media (prefers-color-scheme: dark) {
+        &:is([data-concept]:not([data-theme]) *) {
+            @slot;
+        }
+    }
+}
 @custom-variant sm (@media (width >= theme(--breakpoint-sm)));
 @custom-variant md (@media (width >= theme(--breakpoint-md)));
 @custom-variant lg (@media (width >= theme(--breakpoint-lg)));
@@ -35,8 +45,14 @@
     --breakpoint-lg: 64rem;
     --breakpoint-xl: 80rem;
     --breakpoint-2xl: 86rem;
-    --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-    --font-serif: var(--font-playfair), ui-serif, Georgia, "Times New Roman", serif;
+    /* a direction from @workspace/themes sets --dv-font-*; without one the defaults stay */
+    --font-sans:
+        var(--dv-font-body, var(--font-inter, ui-sans-serif)), ui-sans-serif, system-ui, sans-serif;
+    --font-serif: var(--dv-font-display, var(--font-playfair, ui-serif)), ui-serif, Georgia, serif;
+    --font-display:
+        var(--dv-font-display, var(--font-playfair, ui-serif)), ui-serif, Georgia, serif;
+    --font-label: var(--dv-font-label, ui-monospace), ui-monospace, monospace;
+    --font-mono: var(--dv-font-mono, ui-monospace), ui-monospace, monospace;
 
     /* Espresso-tinted shadow scale: neutral black shadows read cold on linen. */
     --shadow-xs: 0 1px 2px oklch(24% 0.02 50deg / 6%);
@@ -104,6 +120,13 @@
 }
 
 :root {
+    /* brand tokens: a direction from @workspace/themes overrides them */
+    --brand: var(--primary);
+    --brand-foreground: var(--primary-foreground);
+    --brand-soft: var(--secondary);
+    --brand-deep: var(--foreground);
+    --partner: var(--accent);
+    --stage: var(--muted);
     --background: oklch(97.6% 0.009 84deg);
     --foreground: oklch(24% 0.018 52deg);
     --card: oklch(99.2% 0.005 86deg);
@@ -237,12 +260,13 @@
     --color-chart-3: var(--chart-3);
     --color-chart-4: var(--chart-4);
     --color-chart-5: var(--chart-5);
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
+    /* proportional, so a sharp theme (--radius: 0) stays sharp at every size; same values at 0.75rem */
+    --radius-sm: calc(var(--radius) * 0.667);
+    --radius-md: calc(var(--radius) * 0.833);
     --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 4px);
-    --radius-2xl: calc(var(--radius) + 12px);
-    --radius-3xl: calc(var(--radius) + 20px);
+    --radius-xl: calc(var(--radius) * 1.333);
+    --radius-2xl: calc(var(--radius) * 2);
+    --radius-3xl: calc(var(--radius) * 2.667);
     --color-sidebar: var(--sidebar);
     --color-sidebar-foreground: var(--sidebar-foreground);
     --color-sidebar-primary: var(--sidebar-primary);
@@ -254,6 +278,12 @@
     --color-success: var(--success);
     --color-warning: var(--warning);
     --color-error: var(--error);
+    --color-brand: var(--brand);
+    --color-brand-foreground: var(--brand-foreground);
+    --color-brand-soft: var(--brand-soft);
+    --color-brand-deep: var(--brand-deep);
+    --color-partner: var(--partner);
+    --color-stage: var(--stage);
 }
 
 @layer base {

@@ -7,7 +7,7 @@ import {
     getProductSlugs,
     isHomeSlug,
 } from "@/modules/entities";
-import { type Locale, LOCALES, ROUTES } from "@/modules/shared/config";
+import { type Locale, LOCALES, ROUTES, STOREFRONT_INDEXED } from "@/modules/shared/config";
 import { absoluteUrl } from "@/modules/shared/lib";
 
 /** Built from CMS data, so it is generated per request (no database during docker build). */
@@ -30,6 +30,8 @@ const entry = (
     }));
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+    if (!STOREFRONT_INDEXED) return [];
+
     const [pages, categories, products, articles] = await Promise.all([
         getPageSlugs(),
         getCategorySlugs(),

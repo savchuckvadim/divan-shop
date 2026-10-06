@@ -1,0 +1,71 @@
+/* All directions and the shape layer. Each storefront activates one of them through attributes on
+ * <html> (see presets.ts); fonts for the active direction are loaded by the app with next/font.
+ * Rules here are unlayered on purpose: they must win over Tailwind utilities of the defaults. */
+@import "./concepts/atelier.css";
+@import "./concepts/cinema.css";
+@import "./concepts/blueprint.css";
+@import "./concepts/neon.css";
+@import "./shape.css";
+
+/* wide layouts: margins grow with the screen, no small column lost on a 2560 px display */
+[data-concept] .container {
+    max-width: var(--container-max);
+    padding-inline: var(--page-margin);
+}
+
+[data-concept] body {
+    font-family: var(--dv-font-body);
+}
+
+/* display type: every direction tunes the same hooks through tokens */
+[data-concept] [data-slot="heading"] {
+    font-family: var(--dv-font-display);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+    line-height: var(--display-leading);
+    font-variation-settings: var(--display-optical);
+}
+
+/* CMS rich text headings speak the same display voice as Heading */
+[data-concept] .prose :is(h1, h2) {
+    font-family: var(--dv-font-display);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+    font-variation-settings: var(--display-optical);
+}
+
+[data-concept] :is([data-slot="kicker"], [data-eyebrow="true"], [data-slot="card-eyebrow"]) {
+    font-family: var(--dv-font-label);
+    text-transform: var(--label-transform);
+    letter-spacing: var(--label-tracking);
+}
+
+[data-concept] [data-slot="product-title"] {
+    font-family: var(--dv-font-title, var(--dv-font-display));
+}
+
+/* controls take the direction's corner; shape.css turns them into pills */
+[data-concept] :is([data-slot="button"], [data-slot="chip"]) {
+    border-radius: var(--radius);
+}
+
+[data-concept] [data-slot="price-club"] {
+    color: var(--brand);
+}
+
+[data-concept] [data-slot="stage"] {
+    background: var(--stage);
+}
+
+/* catalog density: phones get --grid-phone-cols, wider screens fill with cards of at least
+ * --card-min, so a 2560 px monitor shows more sofas rather than bigger ones */
+[data-concept] [data-slot="product-grid"] {
+    grid-template-columns: repeat(var(--grid-phone-cols, 2), minmax(0, 1fr));
+    gap: var(--grid-gap, 2.5rem 1rem);
+}
+
+@media (width >= 48rem) {
+    [data-concept] [data-slot="product-grid"] {
+        grid-template-columns: repeat(auto-fill, minmax(var(--card-min, 16rem), 1fr));
+    }
+}

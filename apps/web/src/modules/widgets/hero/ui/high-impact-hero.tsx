@@ -34,7 +34,7 @@ export const HighImpactHero = ({ links, media, richText, locale }: HighImpactHer
             />
             <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-px bg-horizon" />
             <Container className="relative pb-16 pt-40 md:pb-24 md:pt-56">
-                <div className="max-w-[46rem] animate-in fade-in slide-in-from-bottom-4 duration-700 ease-soft fill-mode-both">
+                <div className="max-w-[clamp(36rem,52vw,84rem)] animate-in fade-in slide-in-from-bottom-4 duration-700 ease-soft fill-mode-both">
                     <Text as="span" eyebrow className="text-primary">
                         {common.cityLine}
                     </Text>
@@ -49,7 +49,7 @@ export const HighImpactHero = ({ links, media, richText, locale }: HighImpactHer
                         <ul className="mt-9 flex flex-wrap gap-3">
                             {links.map(({ link }, index) => (
                                 <li key={index}>
-                                    <CmsLink {...link} size="lg" className="rounded-full" />
+                                    <CmsLink {...link} size="lg" />
                                 </li>
                             ))}
                         </ul>

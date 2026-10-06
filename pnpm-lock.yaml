@@ -53,6 +53,9 @@ importers:
       '@payloadcms/ui':
         specifier: 3.90.1
         version: 3.90.1(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.3.3(@types/node@22.19.9)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.90.1(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)
+      '@workspace/themes':
+        specifier: workspace:*
+        version: link:../../packages/themes
       '@workspace/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -170,6 +173,21 @@ importers:
       prettier:
         specifier: ^3.9.8
         version: 3.9.8
+
+  packages/themes:
+    devDependencies:
+      '@workspace/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@workspace/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      eslint:
+        specifier: ^9.39.5
+        version: 9.39.5(jiti@2.7.0)
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
 
   packages/typescript-config: {}
 

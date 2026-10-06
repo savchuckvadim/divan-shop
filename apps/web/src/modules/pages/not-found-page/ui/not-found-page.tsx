@@ -20,7 +20,7 @@ export const NotFoundPage = ({ locale }: { locale: Locale }) => {
                 title={`404 · ${notFound.title}`}
                 description={notFound.text}
                 action={
-                    <Button asChild shape="pill">
+                    <Button asChild>
                         <Link href={ROUTES.home(locale)}>{notFound.goHome}</Link>
                     </Button>
                 }

@@ -16,7 +16,7 @@ import { CmsLink, Logo } from "@/modules/shared/ui";
 const FOOTER_LINK = "w-fit text-sm text-muted-foreground transition-colors hover:text-foreground";
 
 const CONTACT_ROW =
-    "flex items-start gap-2.5 text-sm text-foreground/85 [&_svg]:mt-0.5 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-primary";
+    "flex items-start gap-2.5 text-sm text-foreground/85 [&_svg]:mt-0.5 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-brand";
 
 export const Footer = async ({ locale }: { locale: Locale }) => {
     const [footer, settings] = await Promise.all([
@@ -33,12 +33,12 @@ export const Footer = async ({ locale }: { locale: Locale }) => {
             <Container className="grid gap-12 py-14 md:grid-cols-2 md:py-16 lg:grid-cols-[1.5fr_1fr_1.2fr_1fr] lg:gap-10">
                 <div className="flex flex-col gap-5">
                     <Link href={ROUTES.home(locale)} className="w-fit rounded-md">
-                        <Logo name={settings.siteName} caption={common.cityLine} size="lg" />
+                        <Logo name={settings.siteName} size="lg" />
                     </Link>
-                    <Text className="max-w-[30ch] font-serif text-lg italic leading-snug text-foreground/80">
+                    <Text className="max-w-[30ch] font-display text-lg italic leading-snug text-foreground/80">
                         {common.tagline}
                     </Text>
-                    <Button asChild shape="pill" className="w-fit">
+                    <Button asChild className="w-fit">
                         <Link href={ROUTES.account(locale)}>{home.ctaVisit}</Link>
                     </Button>
                 </div>

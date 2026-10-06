@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { type Locale, SITE } from "@/modules/shared/config";
+import { type Locale, SITE, STOREFRONT_INDEXED } from "@/modules/shared/config";
 import { getDictionary, interpolate } from "@/modules/shared/i18n";
 import { absoluteUrl, isPopulated } from "@/modules/shared/lib";
 import type { Media } from "@/payload-types";
@@ -80,7 +80,7 @@ export const generateMeta = ({
         title,
         description,
         alternates,
-        robots: noIndex ? { index: false, follow: false } : undefined,
+        robots: noIndex || !STOREFRONT_INDEXED ? { index: false, follow: false } : undefined,
         twitter: mergeTwitter(title, description),
         openGraph: mergeOpenGraph(locale, {
             ...(article

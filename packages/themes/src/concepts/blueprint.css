@@ -1,0 +1,145 @@
+/* BLUEPRINT · "Cota Cero" — every sofa published as a drawing set: hairline sheet, dimension lines,
+ * title blocks. Photos never move; only line work draws. Kept for forks and future storefronts. */
+
+:root[data-concept="blueprint"] {
+    --dv-font-body: var(--font-plex, "IBM Plex Sans"), system-ui, sans-serif;
+    --dv-font-display: var(--font-plex, "IBM Plex Sans"), system-ui, sans-serif;
+    --dv-font-label:
+        var(--font-science, "Science Gothic"), var(--font-plex, "IBM Plex Sans"), sans-serif;
+    --dv-font-mono: var(--font-martian, "Martian Mono"), ui-monospace, monospace;
+    --dv-font-title: var(--font-plex, "IBM Plex Sans"), system-ui, sans-serif;
+    --display-weight: 300;
+    --display-tracking: -0.028em;
+    --display-leading: 1.02;
+    --display-optical: normal;
+    --label-transform: uppercase;
+    --label-tracking: 0.08em;
+    --page-margin: clamp(16px, 2vw, 40px);
+    --container-max: 215rem;
+    --radius: 0px;
+    --card-min: clamp(14rem, 13vw, 22rem);
+    --grid-phone-cols: 2;
+    --grid-gap: clamp(2rem, 2.6vw, 3.5rem) clamp(0.75rem, 1.4vw, 2rem);
+
+    --acc-l: #6a5022;
+    --acc-d: #e0c071;
+    --mark: #dfbd69;
+    --wash-l: #f7f2e4;
+    --wash-d: #2a2012;
+
+    --background: #f9fafb;
+    --foreground: #131519;
+    --card: #ffffff;
+    --card-foreground: #131519;
+    --popover: #ffffff;
+    --popover-foreground: #131519;
+    --primary: #131519;
+    --primary-foreground: #f9fafb;
+    --secondary: #f1f3f4;
+    --secondary-foreground: #131519;
+    --muted: #e5e7ea;
+    --muted-foreground: #626569;
+    --accent: #f1f3f4;
+    --accent-foreground: #131519;
+    --border: #bbbec1;
+    --input: #7e8084;
+    --ring: #131519;
+    --stage: #f1f3f4;
+    --brand: var(--acc-l);
+    --brand-foreground: #f9fafb;
+    --brand-soft: var(--wash-l);
+    --brand-deep: #131519;
+    --partner: var(--mark);
+    --hero-surface: none;
+    --horizon-line: linear-gradient(var(--border), var(--border));
+    color-scheme: light;
+}
+
+:root[data-concept="blueprint"][data-palette="p2"] {
+    --acc-l: #254c96;
+    --acc-d: #9cc0f5;
+    --mark: #afcef1;
+    --wash-l: #e9f2fc;
+    --wash-d: #172135;
+}
+
+:root[data-concept="blueprint"][data-palette="p3"] {
+    --acc-l: #176145;
+    --acc-d: #8dceaf;
+    --mark: #eeb6bf;
+    --wash-l: #e8f5ee;
+    --wash-d: #10271d;
+}
+
+:root[data-concept="blueprint"][data-palette="p4"] {
+    --acc-l: #912d31;
+    --acc-d: #efa4a1;
+    --mark: #aad6c7;
+    --wash-l: #eaf3f8;
+    --wash-d: #18232a;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root[data-concept="blueprint"]:not([data-theme="light"]) {
+        --background: #0d0e11;
+        --foreground: #eef0f3;
+        --card: #15171a;
+        --card-foreground: #eef0f3;
+        --popover: #15171a;
+        --popover-foreground: #eef0f3;
+        --primary: #eef0f3;
+        --primary-foreground: #0d0e11;
+        --secondary: #15171a;
+        --secondary-foreground: #eef0f3;
+        --muted: #1e2124;
+        --muted-foreground: #989ca0;
+        --accent: #1e2124;
+        --accent-foreground: #eef0f3;
+        --border: #3d4044;
+        --input: #76797e;
+        --ring: #eef0f3;
+        --brand: var(--acc-d);
+        --brand-foreground: #0d0e11;
+        --brand-soft: var(--wash-d);
+        color-scheme: dark;
+    }
+}
+
+/* the root in dark mode, and any section marked dark (a hero over a photo) */
+:root[data-concept="blueprint"][data-theme="dark"],
+[data-concept="blueprint"] [data-theme="dark"] {
+    --background: #0d0e11;
+    --foreground: #eef0f3;
+    --card: #15171a;
+    --card-foreground: #eef0f3;
+    --popover: #15171a;
+    --popover-foreground: #eef0f3;
+    --primary: #eef0f3;
+    --primary-foreground: #0d0e11;
+    --secondary: #15171a;
+    --secondary-foreground: #eef0f3;
+    --muted: #1e2124;
+    --muted-foreground: #989ca0;
+    --accent: #1e2124;
+    --accent-foreground: #eef0f3;
+    --border: #3d4044;
+    --input: #76797e;
+    --ring: #eef0f3;
+    --brand: var(--acc-d);
+    --brand-foreground: #0d0e11;
+    --brand-soft: var(--wash-d);
+    --hero-surface: none;
+    --horizon-line: linear-gradient(var(--border), var(--border));
+    color-scheme: dark;
+}
+
+/* the sheet stays lit in dark mode too, so studio white still multiplies into it */
+[data-concept="blueprint"] [data-slot="stage"] img {
+    mix-blend-mode: multiply;
+}
+
+[data-concept="blueprint"] [data-slot="price-club"] {
+    padding: 2px 8px;
+    background: var(--partner);
+    color: #131519;
+}

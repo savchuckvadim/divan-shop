@@ -23,10 +23,10 @@ interface HeaderClientProps {
 }
 
 const NAV_LINK =
-    "relative py-1 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-soft hover:after:scale-x-100 focus-visible:after:scale-x-100";
+    "relative py-1 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-brand after:transition-transform after:duration-300 after:ease-soft hover:after:scale-x-100 focus-visible:after:scale-x-100";
 
 const MOBILE_LINK =
-    "block py-4 font-serif text-2xl font-medium tracking-[-0.01em] text-foreground transition-colors hover:text-primary";
+    "block py-4 font-display text-2xl tracking-[-0.01em] text-foreground transition-colors hover:text-brand";
 
 export const HeaderClient = ({ navItems, siteName, phone }: HeaderClientProps) => {
     const { locale, dictionary } = useI18n();
@@ -67,7 +67,7 @@ export const HeaderClient = ({ navItems, siteName, phone }: HeaderClientProps) =
                     aria-label={dictionary.common.home}
                     className="shrink-0 rounded-md"
                 >
-                    <Logo name={siteName} caption={dictionary.common.cityLine} />
+                    <Logo name={siteName} />
                 </Link>
 
                 <nav
@@ -85,7 +85,6 @@ export const HeaderClient = ({ navItems, siteName, phone }: HeaderClientProps) =
                             asChild
                             variant="outline"
                             size="sm"
-                            shape="pill"
                             className="ml-1 hidden lg:inline-flex"
                         >
                             <a href={tel}>
@@ -100,7 +99,6 @@ export const HeaderClient = ({ navItems, siteName, phone }: HeaderClientProps) =
                     type="button"
                     variant="ghost"
                     size="icon"
-                    shape="pill"
                     className="md:hidden"
                     aria-expanded={open}
                     aria-controls="mobile-nav"
@@ -137,7 +135,7 @@ export const HeaderClient = ({ navItems, siteName, phone }: HeaderClientProps) =
                         <LocaleSwitcher />
                     </div>
                     {tel && (
-                        <Button asChild size="lg" shape="pill" className="mt-5 w-full">
+                        <Button asChild size="lg" className="mt-5 w-full">
                             <a href={tel}>
                                 <PhoneIcon aria-hidden />
                                 {phone}

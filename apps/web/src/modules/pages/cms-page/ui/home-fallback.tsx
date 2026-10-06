@@ -46,10 +46,10 @@ export const HomeFallback = async ({ locale }: { locale: Locale }) => {
                         description={home.heroText}
                     >
                         <Stack direction="row" gap="sm" wrap className="mt-4">
-                            <Button asChild size="lg" shape="pill">
+                            <Button asChild size="lg">
                                 <Link href={ROUTES.catalog(locale)}>{home.ctaCatalog}</Link>
                             </Button>
-                            <Button asChild size="lg" variant="outline" shape="pill">
+                            <Button asChild size="lg" variant="outline">
                                 <Link href={ROUTES.account(locale)}>{home.ctaVisit}</Link>
                             </Button>
                         </Stack>

@@ -1,14 +1,22 @@
 import type { ReactNode } from "react";
 
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
-import { cn } from "@workspace/ui/lib/utils";
+import { fontVariables } from "@storefront/fonts";
+
+import { themeAttributes } from "@workspace/themes/presets";
 
 import { getSiteSettings } from "@/modules/entities";
-import { isLocale, LOCALES, SITE } from "@/modules/shared/config";
+import {
+    isLocale,
+    LOCALES,
+    SITE,
+    STOREFRONT,
+    STOREFRONT_INDEXED,
+    STOREFRONT_PRESET,
+} from "@/modules/shared/config";
 import { getDictionary, I18nProvider } from "@/modules/shared/i18n";
 import { getServerSideURL } from "@/modules/shared/lib";
 import { JsonLd, organizationJsonLd } from "@/modules/shared/seo";
@@ -16,18 +24,6 @@ import { AdminBar } from "@/modules/shared/ui";
 import { Footer, Header } from "@/modules/widgets";
 
 import "../globals.css";
-
-const inter = Inter({
-    subsets: ["latin", "cyrillic"],
-    variable: "--font-inter",
-    display: "swap",
-});
-
-const playfair = Playfair_Display({
-    subsets: ["latin", "cyrillic"],
-    variable: "--font-playfair",
-    display: "swap",
-});
 
 interface LocaleLayoutProps {
     children: ReactNode;
@@ -39,6 +35,7 @@ export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));
 export const metadata: Metadata = {
     metadataBase: new URL(getServerSideURL()),
     twitter: { card: "summary_large_image" },
+    ...(STOREFRONT_INDEXED ? {} : { robots: { index: false, follow: false } }),
 };
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
@@ -54,7 +51,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     return (
         <html
             lang={locale}
-            className={cn(inter.variable, playfair.variable)}
+            data-storefront={STOREFRONT}
+            {...themeAttributes(STOREFRONT_PRESET)}
+            className={fontVariables}
             suppressHydrationWarning
         >
             <body className="flex min-h-screen flex-col font-sans antialiased">

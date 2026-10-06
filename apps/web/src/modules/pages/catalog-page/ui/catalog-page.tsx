@@ -92,14 +92,15 @@ export const CatalogPage = async ({ locale, categorySlug, page = 1 }: CatalogPag
             </nav>
 
             <ProductGrid
-                className="mt-8"
+                className="mt-8 md:mt-12"
+                titleAs="h2"
                 products={products.docs}
                 currency={getCurrency(settings)}
                 locale={locale}
                 emptyDescription={catalog.emptyHint}
                 emptyAction={
                     category && (
-                        <Button asChild variant="outline" shape="pill">
+                        <Button asChild variant="outline">
                             <Link href={ROUTES.catalog(locale)}>{catalog.allCategories}</Link>
                         </Button>
                     )
@@ -112,7 +113,7 @@ export const CatalogPage = async ({ locale, categorySlug, page = 1 }: CatalogPag
                     aria-label={pageLabel}
                 >
                     {products.hasPrevPage && products.prevPage && (
-                        <Button asChild variant="outline" size="icon" shape="pill">
+                        <Button asChild variant="outline" size="icon">
                             <Link
                                 href={pageHref(basePath, products.prevPage)}
                                 rel="prev"
@@ -124,7 +125,7 @@ export const CatalogPage = async ({ locale, categorySlug, page = 1 }: CatalogPag
                     )}
                     <span className="text-sm tabular-nums text-muted-foreground">{pageLabel}</span>
                     {products.hasNextPage && products.nextPage && (
-                        <Button asChild variant="outline" size="icon" shape="pill">
+                        <Button asChild variant="outline" size="icon">
                             <Link
                                 href={pageHref(basePath, products.nextPage)}
                                 rel="next"

@@ -12,6 +12,7 @@ WORKDIR /repo
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json .npmrc ./
 COPY apps/web/package.json apps/web/
 COPY packages/ui/package.json packages/ui/
+COPY packages/themes/package.json packages/themes/
 COPY packages/eslint-config/package.json packages/eslint-config/
 COPY packages/prettier-config/package.json packages/prettier-config/
 COPY packages/typescript-config/package.json packages/typescript-config/
@@ -25,7 +26,10 @@ COPY --from=deps /repo/packages/ui/node_modules ./packages/ui/node_modules
 COPY . .
 ARG NEXT_PUBLIC_SERVER_URL=http://localhost:3000
 ARG NEXT_PUBLIC_BRAND_NAME="Divan Shop"
+# group | boutique | youth: one image per storefront, same code and database (ADR-0011)
+ARG NEXT_PUBLIC_STOREFRONT=group
 ENV NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL NEXT_PUBLIC_BRAND_NAME=$NEXT_PUBLIC_BRAND_NAME
+ENV NEXT_PUBLIC_STOREFRONT=$NEXT_PUBLIC_STOREFRONT
 # Build does not need the database: generateStaticParams fall back to [] when it is unreachable.
 ENV PAYLOAD_SECRET=build-time-placeholder DATABASE_URL=postgres://build:build@localhost:5432/build
 RUN pnpm --filter web build
