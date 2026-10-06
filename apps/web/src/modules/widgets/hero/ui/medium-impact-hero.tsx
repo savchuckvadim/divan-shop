@@ -34,7 +34,7 @@ export const MediumImpactHero = ({ links, media, richText, locale }: MediumImpac
                         <ul className="mt-2 flex flex-wrap gap-3">
                             {links.map(({ link }, index) => (
                                 <li key={index}>
-                                    <CmsLink {...link} size="lg" className="rounded-full" />
+                                    <CmsLink {...link} size="lg" />
                                 </li>
                             ))}
                         </ul>
@@ -44,13 +44,13 @@ export const MediumImpactHero = ({ links, media, richText, locale }: MediumImpac
                     <div className="relative">
                         <div
                             aria-hidden
-                            className="absolute -inset-x-3 -bottom-3 top-8 -z-10 rounded-[2rem] bg-secondary"
+                            className="absolute -inset-x-3 -bottom-3 top-8 -z-10 rounded-3xl bg-secondary"
                         />
                         <Media
                             priority
                             resource={mediaDoc}
                             sizes="(max-width: 1024px) 100vw, 50vw"
-                            imgClassName="w-full rounded-[1.5rem] object-cover shadow-lift"
+                            imgClassName="w-full rounded-2xl object-cover shadow-lift"
                         />
                     </div>
                 )}

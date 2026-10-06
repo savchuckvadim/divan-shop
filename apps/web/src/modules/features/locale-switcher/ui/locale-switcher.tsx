@@ -29,7 +29,7 @@ export const LocaleSwitcher = ({ className }: { className?: string }) => {
         <nav
             aria-label={dictionary.common.language}
             className={cn(
-                "inline-flex items-center gap-0.5 rounded-full border border-border/80 bg-muted/60 p-0.5",
+                "inline-flex items-center gap-0.5 rounded-lg border border-border/80 bg-muted/60 p-0.5",
                 className
             )}
         >
@@ -43,7 +43,7 @@ export const LocaleSwitcher = ({ className }: { className?: string }) => {
                     onClick={() => rememberLocale(locale)}
                     title={LOCALE_LABELS[locale]}
                     className={cn(
-                        "rounded-full px-2.5 py-1 text-[0.7rem] font-medium uppercase tracking-[0.12em] transition-colors",
+                        "rounded-md px-2.5 py-1 text-[0.7rem] font-medium uppercase tracking-[0.12em] transition-colors",
                         locale === current
                             ? "bg-background text-foreground shadow-xs"
                             : "text-muted-foreground hover:text-foreground"

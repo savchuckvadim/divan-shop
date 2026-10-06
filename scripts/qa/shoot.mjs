@@ -410,5 +410,8 @@ for (const width of widths) {
     await page.close();
 }
 
-await browser.close();
 console.log(JSON.stringify(summary, null, 2));
+// Chrome on Windows sometimes never acknowledges close (seen on pages with lazy images in a
+// horizontal rail); the results are already printed, so do not wait for it forever.
+await Promise.race([browser.close(), sleep(5000)]);
+process.exit(0);
