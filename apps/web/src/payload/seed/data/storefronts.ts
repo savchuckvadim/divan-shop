@@ -64,7 +64,7 @@ export const STOREFRONTS_SEED: StorefrontSeed[] = [
     },
     {
         key: "youth",
-        domain: "youth (домен не выбран)",
+        domain: "plof.club",
         slides: ["product-10", "product-08", "product-09", "interior-07"],
         cta: "catalog",
         slogan: {

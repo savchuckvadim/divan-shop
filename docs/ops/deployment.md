@@ -30,11 +30,11 @@ docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml logs -f we
 
 Сайт сейчас живёт в Dokploy (deploy из `main`). Каждая витрина — отдельное приложение Dokploy из того же репозитория и ветки: Dockerfile `apps/web/Dockerfile`, контекст сборки — корень репозитория.
 
-| Приложение | Домен             | build-arg `NEXT_PUBLIC_STOREFRONT` | Индексация         |
-| ---------- | ----------------- | ---------------------------------- | ------------------ |
-| group      | divan.group       | `group` (по умолчанию)             | да                 |
-| boutique   | divan.boutique    | `boutique`                         | `noindex` до T-054 |
-| youth      | (домен не выбран) | `youth`                            | `noindex` до T-054 |
+| Приложение | Домен          | build-arg `NEXT_PUBLIC_STOREFRONT` | Индексация         |
+| ---------- | -------------- | ---------------------------------- | ------------------ |
+| group      | divan.group    | `group` (по умолчанию)             | да                 |
+| boutique   | divan.boutique | `boutique`                         | `noindex` до T-054 |
+| youth      | plof.club      | `youth`                            | `noindex` до T-054 |
 
 - **Build-args** у каждой: `NEXT_PUBLIC_STOREFRONT`, `NEXT_PUBLIC_SERVER_URL=https://<домен витрины>` (от него canonical, hreflang, sitemap и вордмарк в шапке), `NEXT_PUBLIC_BRAND_NAME` — имя в `<title>` и OG, например `divan.group` / `divan.boutique` (без него остаётся заглушка «Divan Shop», как сейчас на проде).
 - **Runtime env:** `DATABASE_URL` и `PAYLOAD_SECRET` — общие для всех витрин (одна база, одна админка); `NEXT_PUBLIC_SERVER_URL` — свой; `PREVIEW_SECRET`, `CRON_SECRET` — как у group.
@@ -83,7 +83,7 @@ docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml logs -f we
 - Domains: `divan.boutique`, порт контейнера 3000, HTTPS (Let's Encrypt). У регистратора: A-запись `divan.boutique` → IP сервера (и `www`, если нужен). Порты наружу не публиковать.
 - Deploy и проверка по списку выше.
 
-**5. youth** (`divan-youth`): как boutique, но `NEXT_PUBLIC_STOREFRONT=youth`, свой домен. Пока домена нет, можно поддомен вроде `youth.divan.group` (A-запись), он тоже закрыт `noindex`.
+**5. youth** (`divan-youth`): как boutique, но `NEXT_PUBLIC_STOREFRONT=youth`, `NEXT_PUBLIC_SERVER_URL=https://plof.club`, `NEXT_PUBLIC_BRAND_NAME=plof.club`, домен `plof.club` (A-запись на IP сервера).
 
 **6. После всех трёх:**
 
