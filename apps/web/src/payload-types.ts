@@ -73,6 +73,7 @@ export interface Config {
     pages: Page;
     articles: Article;
     media: Media;
+    storefronts: Storefront;
     users: User;
     customers: Customer;
     'showroom-visits': ShowroomVisit;
@@ -97,6 +98,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    storefronts: StorefrontsSelect<false> | StorefrontsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     customers: CustomersSelect<false> | CustomersSelect<true>;
     'showroom-visits': ShowroomVisitsSelect<false> | ShowroomVisitsSelect<true>;
@@ -888,6 +890,44 @@ export interface FaqBlock {
   blockType: 'faq';
 }
 /**
+ * Home hero, slogan and contacts of each storefront. Empty contacts fall back to Site Settings.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "storefronts".
+ */
+export interface Storefront {
+  id: number;
+  /**
+   * Matches NEXT_PUBLIC_STOREFRONT of the build
+   */
+  key: 'group' | 'boutique' | 'youth';
+  /**
+   * e.g. divan.group
+   */
+  domain: string;
+  slogan?: string | null;
+  hero?: {
+    heading?: string | null;
+    text?: string | null;
+    /**
+     * Carousel images. The first one loads with priority (LCP): keep it the best and lightest.
+     */
+    slides?:
+      | {
+          image: number | Media;
+          id?: string | null;
+        }[]
+      | null;
+    cta?: ('catalog' | 'contacts') | null;
+  };
+  contacts?: {
+    phone?: string | null;
+    email?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "customers".
  */
@@ -1128,6 +1168,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'storefronts';
+        value: number | Storefront;
       } | null)
     | ({
         relationTo: 'users';
@@ -1542,6 +1586,36 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "storefronts_select".
+ */
+export interface StorefrontsSelect<T extends boolean = true> {
+  key?: T;
+  domain?: T;
+  slogan?: T;
+  hero?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
+        slides?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
+        cta?: T;
+      };
+  contacts?:
+    | T
+    | {
+        phone?: T;
+        email?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

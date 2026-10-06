@@ -1,3 +1,5 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import type { CollectionSlug, Payload, RequiredDataFromCollectionSlug } from "payload";
 
 import { DEFAULT_LOCALE, type Locale, LOCALES } from "@/modules/shared/config";
@@ -7,12 +9,21 @@ import { articleLocaleData, ARTICLES_SEED } from "./data/articles";
 import { CATEGORIES_SEED } from "./data/categories";
 import { CONTACT_FORM_TITLE, contactFormData } from "./data/form";
 import { aboutPageData, contactsPageData, homePageData, type PageLocaleData } from "./data/pages";
-import { NAV_LABELS, SITE_SEED } from "./data/site";
+import { productDescription, PRODUCTS_SEED } from "./data/products";
+import { type Localized, NAV_LABELS, SITE_SEED } from "./data/site";
+import { ARTICLE_COVERS, DETAIL_ALT, SCENE_ALT, STOREFRONTS_SEED } from "./data/storefronts";
+import { richText } from "./lexical";
 
 /** Hooks call `next/cache`, which is unavailable outside the Next runtime. */
 const context = { disableRevalidate: true };
 
 const OTHER_LOCALES: Locale[] = LOCALES.filter((locale) => locale !== DEFAULT_LOCALE);
+
+/** Demo photos from the design prototypes; in Docker the tools image includes them (.dockerignore). */
+const ASSETS_DIR = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "../../../../../design/concepts/assets"
+);
 
 type NavItem = NonNullable<Header["navItems"]>[number];
 
@@ -213,12 +224,139 @@ const seedArticles = async (payload: Payload, log: SeedLogger) => {
     log.info(`articles: created ${created}, skipped ${ARTICLES_SEED.length - created}`);
 };
 
+const mediaIds = new Map<string, number>();
+
+/** Uploads design/concepts/assets/<asset>.webp once (matched by filename) with a localized alt. */
+const seedImage = async (payload: Payload, asset: string, alt: Localized<string>) => {
+    const known = mediaIds.get(asset);
+    if (known) return known;
+    const filename = `${asset}.webp`;
+    const { docs } = await payload.find({
+        collection: "media",
+        where: { filename: { equals: filename } },
+        limit: 1,
+        depth: 0,
+        pagination: false,
+    });
+    let id = docs[0]?.id;
+    if (!id) {
+        const created = await payload.create({
+            collection: "media",
+            locale: DEFAULT_LOCALE,
+            context,
+            data: { alt: alt[DEFAULT_LOCALE] },
+            filePath: path.join(ASSETS_DIR, filename),
+        });
+        id = created.id;
+        for (const locale of OTHER_LOCALES) {
+            await payload.update({
+                collection: "media",
+                id,
+                locale,
+                context,
+                data: { alt: alt[locale] },
+            });
+        }
+    }
+    mediaIds.set(asset, id);
+    return id;
+};
+
+const seedProducts = async (payload: Payload, log: SeedLogger) => {
+    let created = 0;
+    for (const product of PRODUCTS_SEED) {
+        if (await findBySlug(payload, "products", product.slug)) continue;
+        const category = await findBySlug(payload, "categories", product.category);
+        if (!category) {
+            log.info(`products: no category "${product.category}", skipped ${product.slug}`);
+            continue;
+        }
+        const gallery: { image: number }[] = [];
+        for (const [index, asset] of product.images.entries()) {
+            const alt =
+                index === 0 ? product.title : asset.startsWith("detail") ? DETAIL_ALT : SCENE_ALT;
+            gallery.push({ image: await seedImage(payload, asset, alt) });
+        }
+        const description = productDescription(product);
+        await createLocalized(
+            payload,
+            "products",
+            {
+                slug: product.slug,
+                category: category.id,
+                price: product.price,
+                oldPrice: product.oldPrice,
+                availability: product.availability,
+                featured: product.featured ?? false,
+                gallery,
+                _status: "published",
+            },
+            (locale) => ({
+                title: product.title[locale],
+                description: richText(...description[locale]),
+                specs: { ...product.specs, color: product.color[locale] },
+                meta: { title: product.title[locale], description: description[locale][0] },
+            })
+        );
+        created += 1;
+    }
+    log.info(`products: created ${created}, skipped ${PRODUCTS_SEED.length - created}`);
+};
+
+const seedStorefronts = async (payload: Payload, log: SeedLogger) => {
+    let created = 0;
+    for (const storefront of STOREFRONTS_SEED) {
+        const { docs } = await payload.find({
+            collection: "storefronts",
+            where: { key: { equals: storefront.key } },
+            limit: 1,
+            depth: 0,
+            pagination: false,
+        });
+        if (docs[0]) continue;
+        const slides: { image: number }[] = [];
+        for (const asset of storefront.slides) {
+            slides.push({ image: await seedImage(payload, asset, SCENE_ALT) });
+        }
+        await createLocalized(
+            payload,
+            "storefronts",
+            { key: storefront.key, domain: storefront.domain },
+            (locale) => ({
+                slogan: storefront.slogan[locale],
+                hero: {
+                    heading: storefront.heading[locale],
+                    text: storefront.text[locale],
+                    slides,
+                    cta: storefront.cta,
+                },
+            })
+        );
+        created += 1;
+    }
+    log.info(`storefronts: created ${created}, skipped ${STOREFRONTS_SEED.length - created}`);
+};
+
+const seedArticleCovers = async (payload: Payload, log: SeedLogger) => {
+    let updated = 0;
+    for (const [slug, asset] of Object.entries(ARTICLE_COVERS)) {
+        const article = await findBySlug(payload, "articles", slug);
+        if (!article || article.cover) continue;
+        const cover = await seedImage(payload, asset, SCENE_ALT);
+        await payload.update({ collection: "articles", id: article.id, context, data: { cover } });
+        updated += 1;
+    }
+    log.info(`articles: covers set ${updated}`);
+};
+
 export const seed = async (payload: Payload): Promise<void> => {
     const log: SeedLogger = { info: (message) => payload.logger.info(`[seed] ${message}`) };
 
     await seedSiteSettings(payload, log);
     const formId = await seedContactForm(payload, log);
     await seedCategories(payload, log);
+    await seedProducts(payload, log);
+    await seedStorefronts(payload, log);
 
     const contactsPageId = await seedPage(payload, log, "contacts", (locale) =>
         contactsPageData(locale, { formId })
@@ -230,4 +368,5 @@ export const seed = async (payload: Payload): Promise<void> => {
     await seedNav(payload, log, "footer", aboutPageId);
 
     await seedArticles(payload, log);
+    await seedArticleCovers(payload, log);
 };

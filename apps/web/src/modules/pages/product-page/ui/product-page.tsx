@@ -21,8 +21,10 @@ import {
     getProductImages,
     getProducts,
     getSiteSettings,
+    getStorefrontContent,
     ProductAvailabilityBadge,
     ProductPrice,
+    resolveContacts,
 } from "@/modules/entities";
 import { type Locale, ROUTES, SITE } from "@/modules/shared/config";
 import { getDictionary, interpolate } from "@/modules/shared/i18n";
@@ -41,9 +43,10 @@ interface ProductPageProps {
 
 export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
     const { isEnabled: draft } = await draftMode();
-    const [product, settings] = await Promise.all([
+    const [product, settings, storefront] = await Promise.all([
         getProductBySlug(slug, locale, draft),
         getSiteSettings(locale),
+        getStorefrontContent(locale),
     ]);
 
     if (!product) {
@@ -56,7 +59,7 @@ export const ProductPage = async ({ locale, slug }: ProductPageProps) => {
     const images = getProductImages(product);
     const cover = images[0];
     const discount = getDiscountPercent(product);
-    const phone = settings.contacts?.phone;
+    const phone = resolveContacts(settings, storefront).phone;
 
     const related = category
         ? (await getProducts({ locale, categoryIds: [category.id], limit: 5 })).docs

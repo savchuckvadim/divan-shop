@@ -28,6 +28,8 @@
 - **Блог** (T-023): `entities/article` (`getArticles` с `draft`/`overrideAccess`, `getArticleBySlug`, `getArticleSlugs`, `ArticleCard`), `widgets/article-list`, `pages/blog-page` (пагинация, noindex для page>1) и `pages/article-page` (обложка, автор/дата, RichText, JSON-LD `Article`, 3 связанных), роуты `/[locale]/blog` и `/[locale]/blog/[slug]`, sitemap; словарь `blog`; ссылки «Блог», «Контакты» в header/footer из словаря `common`; `ROUTES.blog/article/about/contacts(locale, productSlug?)`.
 - `generateStaticParams` всех динамических роутов обёрнуты в `safeStaticParams` (`shared/lib/static-params.ts`): без БД (Docker build) возвращают `[]`.
 
+- **Витрины и демо-контент** (2026-10-06, ветка `feature/storefronts-themes`). Коллекция `storefronts` (`payload/collections/storefronts.ts`): документ на витрину сборки (`key` = `NEXT_PUBLIC_STOREFRONT`, уникальный), `domain`, localized `slogan`, вкладка Hero (`heading`, `text` localized; `slides` — массив картинок, первая грузится с приоритетом; `cta` — каталог или контакты), вкладка Contacts (`phone`, `email` — пусто = Site Settings). Чтение публичное, правка — админы; после изменения `revalidateTag("storefronts")` и главные всех локалей. Фронт: `entities/storefront` (`getStorefrontContent` через `unstable_cache`, тег + 5 минут; `resolveContacts`), `widgets/storefront-hero` (текст в HTML, затем лента фото на `scroll-snap` без скрипта). Главная показывает героя витрины, если у неё есть `heading`, иначе hero страницы `home`; шапка, подвал, JSON-LD Organization и страница товара берут контакты витрины. Seed дополнен: 12 демо-товаров по категориям кластера с фото из `design/concepts/assets` (Unsplash, `CREDITS.md`), описания и цвета на 4 локалях; 3 документа витрин со слайдами; обложки двух статей; картинки грузятся один раз (по имени файла) с localized `alt`. В Docker tools-образ попадают только `design/concepts/assets/*.webp` и `manifest.json` (исключение в `.dockerignore`).
+
 ## Planned
 
 - **T-057** · коллекция `projects`: интерьеры с вещами и ценами, страницы `/projects`, JSON-LD ItemList, sitemap
@@ -35,7 +37,7 @@
 - **T-011** · городские страницы из коллекции `locations` (ADR-0002) — см. также [catalog.md](./catalog.md).
 - **T-014a** · юридические страницы (Aviso legal, Privacidad, Cookies, Envíos/devoluciones/garantía, Condiciones) как seed на 4 локалях, реквизиты из Site Settings (`razón social`, `NIF`, `Registro Mercantil`), ссылки в футере.
 - **T-016** · контент-операции поверх готового блога: `docs/content/content-plan.md`, `editorial-policy.md`, шаблон брифа, скилл `/content-brief`, `llms.txt`.
-- Медиа для seed (обложки статей, hero, OG) — загружает редактор; seed медиа не создаёт.
+- Демо-фото в seed — стоковые (Unsplash) и не являются товарами фабрик: до запуска продаж заменить своими съёмками по единому стилю (T-056).
 - **T-021** · партнёрская страница `/en/partners-real-estate` + коллекция `partners` (draft, ждёт решения о комиссии).
 
 ## Договорённости

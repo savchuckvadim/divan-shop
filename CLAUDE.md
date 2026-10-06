@@ -48,7 +48,7 @@ Env: copy `apps/web/.env.example` to `apps/web/.env`.
 
 ## Content model
 
-- Collections: `products` (localized title/description/color, price, oldPrice, availability, gallery, specs, category, featured, SEO tab, drafts), `categories` (localized title/description, order, SEO), `pages` (hero + block layout, SEO tab, drafts, live preview), `media`, `users`.
+- Collections: `products` (localized title/description/color, price, oldPrice, availability, gallery, specs, category, featured, SEO tab, drafts), `categories` (localized title/description, order, SEO), `pages` (hero + block layout, SEO tab, drafts, live preview), `storefronts` (one doc per storefront build: key, domain, localized slogan, hero heading/text, slides, CTA, phone/email overrides), `media`, `users`.
 - Globals: `header`, `footer` (nav links), `site-settings` (site name, currency, contacts, socials, OG image).
 - Blocks in page layout: `content`, `cta`, `mediaBlock`, `productArchive`, `formBlock` (form-builder plugin). Block config lives in `src/payload/blocks/*`, React component in `modules/widgets/page-blocks/ui/*`. Add both when adding a block and register in `render-blocks.tsx`.
 - Plugins: seo, redirects, form-builder.

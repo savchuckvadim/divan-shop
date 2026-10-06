@@ -6,6 +6,10 @@ export const STOREFRONT: Storefront = isStorefront(fromEnv) ? fromEnv : "group";
 
 export const STOREFRONT_PRESET = STOREFRONT_PRESETS[STOREFRONT];
 
+export { STOREFRONTS } from "@workspace/themes/presets";
+
+export const STOREFRONTS_CACHE_TAG = "storefronts";
+
 /**
  * Only the main storefront is indexed until products get a main storefront (T-054): until then the
  * others show the same catalog and would compete with it as duplicates.

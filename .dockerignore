@@ -15,4 +15,7 @@ apps/web/public/media
 !**/.env.example
 *.log
 design
+# demo photos for `pnpm seed` in the tools image (only the webp files and the manifest)
+!design/concepts/assets/*.webp
+!design/concepts/assets/manifest.json
 scripts/qa

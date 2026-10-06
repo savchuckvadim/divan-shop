@@ -14,6 +14,7 @@ import {
     Pages,
     Products,
     ShowroomVisits,
+    Storefronts,
     Users,
 } from "./payload/collections";
 import { defaultLexical } from "./payload/fields";
@@ -42,7 +43,17 @@ export default buildConfig({
         // Dev pushes the schema automatically; production uses migrations unless PAYLOAD_DB_PUSH=true.
         push: process.env.PAYLOAD_DB_PUSH ? process.env.PAYLOAD_DB_PUSH === "true" : undefined,
     }),
-    collections: [Products, Categories, Pages, Articles, Media, Users, Customers, ShowroomVisits],
+    collections: [
+        Products,
+        Categories,
+        Pages,
+        Articles,
+        Media,
+        Storefronts,
+        Users,
+        Customers,
+        ShowroomVisits,
+    ],
     globals: [Header, Footer, SiteSettings],
     cors: [getServerSideURL()].filter(Boolean),
     plugins,

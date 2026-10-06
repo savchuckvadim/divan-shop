@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 
-import { getPageBySlug, isHomeSlug } from "@/modules/entities";
+import { getPageBySlug, getStorefrontContent, isHomeSlug } from "@/modules/entities";
 import { type Locale, ROUTES, SITE } from "@/modules/shared/config";
 import { getDictionary } from "@/modules/shared/i18n";
 import { generateMeta } from "@/modules/shared/seo";
 import { LivePreviewListener } from "@/modules/shared/ui";
 import { PayloadRedirects } from "@/modules/shared/ui/payload-redirects";
-import { RenderBlocks, RenderHero } from "@/modules/widgets";
+import { RenderBlocks, RenderHero, StorefrontHero } from "@/modules/widgets";
 
 import { HomeFallback } from "./home-fallback";
 
@@ -18,7 +18,10 @@ interface CmsPageProps {
 
 export const CmsPage = async ({ locale, slug = SITE.homeSlug }: CmsPageProps) => {
     const { isEnabled: draft } = await draftMode();
-    const page = await getPageBySlug(slug, locale, draft);
+    const [page, storefront] = await Promise.all([
+        getPageBySlug(slug, locale, draft),
+        isHomeSlug(slug) ? getStorefrontContent(locale) : null,
+    ]);
     const url = isHomeSlug(slug) ? "/" : `/${slug}`;
 
     if (!page && isHomeSlug(slug)) {
@@ -33,7 +36,11 @@ export const CmsPage = async ({ locale, slug = SITE.homeSlug }: CmsPageProps) =>
         <article className="pb-16 md:pb-24">
             <PayloadRedirects disableNotFound url={url} locale={locale} />
             {draft && <LivePreviewListener />}
-            <RenderHero {...page.hero} locale={locale} />
+            {storefront?.hero?.heading ? (
+                <StorefrontHero content={storefront} locale={locale} />
+            ) : (
+                <RenderHero {...page.hero} locale={locale} />
+            )}
             <RenderBlocks blocks={page.layout} locale={locale} />
         </article>
     );

@@ -8,7 +8,7 @@ import { fontVariables } from "@storefront/fonts";
 
 import { themeAttributes } from "@workspace/themes/presets";
 
-import { getSiteSettings } from "@/modules/entities";
+import { getSiteSettings, getStorefrontContent, resolveContacts } from "@/modules/entities";
 import {
     isLocale,
     LOCALES,
@@ -42,10 +42,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     const { locale } = await params;
     if (!isLocale(locale)) notFound();
 
-    const [{ isEnabled: preview }, settings] = await Promise.all([
+    const [{ isEnabled: preview }, settings, storefront] = await Promise.all([
         draftMode(),
         getSiteSettings(locale),
+        getStorefrontContent(locale),
     ]);
+    const contacts = resolveContacts(settings, storefront);
     const dictionary = getDictionary(locale);
 
     return (
@@ -62,9 +64,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                         data={organizationJsonLd({
                             name: settings.siteName || SITE.name,
                             url: getServerSideURL(),
-                            phone: settings.contacts?.phone,
-                            email: settings.contacts?.email,
-                            sameAs: settings.contacts?.socials?.map((social) => social.url),
+                            phone: contacts.phone,
+                            email: contacts.email,
+                            sameAs: contacts.socials?.map((social) => social.url),
                         })}
                     />
                     <AdminBar adminBarProps={{ preview }} />

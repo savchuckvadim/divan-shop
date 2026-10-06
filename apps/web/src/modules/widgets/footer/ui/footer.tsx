@@ -6,7 +6,7 @@ import { Button } from "@workspace/ui/components/button";
 import { Container } from "@workspace/ui/components/container";
 import { Text } from "@workspace/ui/components/text";
 
-import { getSiteSettings } from "@/modules/entities";
+import { getSiteSettings, getStorefrontContent, resolveContacts } from "@/modules/entities";
 import { LocaleSwitcher } from "@/modules/features";
 import { getCachedGlobal } from "@/modules/shared/api";
 import { type Locale, ROUTES } from "@/modules/shared/config";
@@ -19,12 +19,13 @@ const CONTACT_ROW =
     "flex items-start gap-2.5 text-sm text-foreground/85 [&_svg]:mt-0.5 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-brand";
 
 export const Footer = async ({ locale }: { locale: Locale }) => {
-    const [footer, settings] = await Promise.all([
+    const [footer, settings, storefront] = await Promise.all([
         getCachedGlobal("footer", locale, 1)(),
         getSiteSettings(locale),
+        getStorefrontContent(locale),
     ]);
     const { common, home } = getDictionary(locale);
-    const contacts = settings.contacts;
+    const contacts = resolveContacts(settings, storefront);
     const year = new Date().getFullYear();
 
     return (

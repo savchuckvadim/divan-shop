@@ -36,6 +36,11 @@ const nextConfig: NextConfig = {
             },
         ],
     },
+    // One database, one admin: editors work on the group domain, other storefronts do not expose it.
+    redirects: async () =>
+        storefront === "group"
+            ? []
+            : [{ source: "/admin/:path*", destination: "/", permanent: false }],
     webpack: (webpackConfig) => {
         webpackConfig.resolve.extensionAlias = {
             ".cjs": [".cts", ".cjs"],

@@ -39,8 +39,8 @@ docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml logs -f we
 - **Build-args** у каждой: `NEXT_PUBLIC_STOREFRONT`, `NEXT_PUBLIC_SERVER_URL=https://<домен витрины>` (от него canonical, hreflang, sitemap и вордмарк в шапке), `NEXT_PUBLIC_BRAND_NAME` — имя в `<title>` и OG, например `divan.group` / `divan.boutique` (без него остаётся заглушка «Divan Shop», как сейчас на проде).
 - **Runtime env:** `DATABASE_URL` и `PAYLOAD_SECRET` — общие для всех витрин (одна база, одна админка); `NEXT_PUBLIC_SERVER_URL` — свой; `PREVIEW_SECRET`, `CRON_SECRET` — как у group.
 - **Медиа общие.** Файлы, загруженные через админку group, должны отдаваться и другими витринами. Пока медиа на диске: один каталог хоста смонтирован во все приложения в `/app/apps/web/public/media` (bind mount в Dokploy → Advanced → Volumes). Цель — S3-совместимое хранилище (`@payloadcms/storage-s3`), тогда монтирование не нужно.
-- **Миграции** запускает только group: схема одна на всех.
-- **Админка** работает на домене любой витрины (общая база); редакторам — только `divan.group/admin`. Закрыть `/admin` на остальных доменах — вместе с T-054.
+- **Схему базы меняет только group.** Миграций пока нет, прод живёт на `PAYLOAD_DB_PUSH=true`: у group так и оставить, у boutique и youth — `PAYLOAD_DB_PUSH=false`, иначе несколько приложений одновременно правят схему при старте.
+- **Админка** только на `divan.group/admin`: сборки boutique и youth перенаправляют `/admin` на главную (`redirects` в `next.config.ts`), `/api` (формы) работает везде.
 - **Кэш:** `revalidateTag` срабатывает только в приложении, где редактор нажал «Опубликовать». Остальные витрины подхватывают изменения шапки, подвала, Site Settings и редиректов по времени (`CMS_CACHE_SECONDS` = 5 минут в `modules/shared/config/storefront.ts`). Страницы сейчас `force-dynamic`; при возврате ISR (T-053) нужна та же схема или веб-хук ревалидации на все витрины.
 - **Порт 3000 наружу не публиковать** ни у одного приложения: только домен через Traefik Dokploy (прошлый взлом сервера был именно через открытый порт).
 
@@ -51,6 +51,45 @@ docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml logs -f we
 - `/sitemap.xml` пустой, в `/robots.txt` нет строки `Sitemap`;
 - фото товаров открываются (общий каталог медиа);
 - в шапке вордмарк «divan .boutique».
+
+## Первый деплой трёх витрин, по шагам
+
+Порядок важен: сначала group (он создаёт новые таблицы), потом демо-контент, потом остальные витрины. `/srv/divan/media` ниже — пример каталога на сервере; подставь свой.
+
+**0. Код.** Ветка `feature/storefronts-themes` влита в `main` и запушена (`git push`). Dokploy собирает из `main`.
+
+**1. Медиа на общий диск** (один раз). В приложении group: Advanced → Volumes. Если медиа ещё не смонтированы, добавить bind mount `/srv/divan/media` → `/app/apps/web/public/media`. Без монтирования загруженные картинки живут внутри контейнера и пропадают при следующем деплое, а другие витрины их не видят. Уже загруженные файлы перед этим скопировать из контейнера в `/srv/divan/media`.
+
+**2. group** (существующее приложение):
+
+- Build-time arguments: `NEXT_PUBLIC_STOREFRONT=group`, `NEXT_PUBLIC_SERVER_URL=https://divan.group`, `NEXT_PUBLIC_BRAND_NAME=divan.group`.
+- Environment: без изменений; `PAYLOAD_DB_PUSH=true` оставить: на старте Payload создаст таблицы новой коллекции `storefronts` (только новые таблицы, ничего не удаляется).
+- Deploy. Проверить `https://divan.group/es` и `/admin`: в меню админки появилась коллекция Storefronts.
+
+**3. Демо-контент** (разово, приложение-инструмент):
+
+- Create Application `divan-tools`: тот же репозиторий и ветка, Build Type `Dockerfile`, Dockerfile `apps/web/Dockerfile`, Context `.`, **Build Stage `tools`**.
+- Environment: скопировать у group (`DATABASE_URL`, `PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL=https://divan.group`).
+- Volumes: тот же `/srv/divan/media` → **`/repo/apps/web/public/media`** (в этом образе другой путь).
+- Command: `pnpm seed`. Deploy, в логах дождаться `[seed] done`, затем остановить или удалить приложение. Домен и порт ему не нужны.
+- Seed идемпотентный: существующее (по slug, ключу витрины, имени файла) пропускает, так что повторный запуск безопасен. Создаёт 12 демо-товаров с фото, 3 документа витрин (hero, слоган, слайды) на четырёх языках, обложки статей; Site Settings, страницы и меню — только если их ещё нет.
+
+**4. boutique** (новое приложение `divan-boutique`):
+
+- Тот же репозиторий и ветка, Dockerfile `apps/web/Dockerfile`, Context `.`, Build Stage по умолчанию (`runner`).
+- Build-time arguments: `NEXT_PUBLIC_STOREFRONT=boutique`, `NEXT_PUBLIC_SERVER_URL=https://divan.boutique`, `NEXT_PUBLIC_BRAND_NAME=divan.boutique`.
+- Environment: `DATABASE_URL`, `PAYLOAD_SECRET`, `PREVIEW_SECRET`, `CRON_SECRET` — как у group; `NEXT_PUBLIC_SERVER_URL=https://divan.boutique`; **`PAYLOAD_DB_PUSH=false`**.
+- Volumes: `/srv/divan/media` → `/app/apps/web/public/media`.
+- Domains: `divan.boutique`, порт контейнера 3000, HTTPS (Let's Encrypt). У регистратора: A-запись `divan.boutique` → IP сервера (и `www`, если нужен). Порты наружу не публиковать.
+- Deploy и проверка по списку выше.
+
+**5. youth** (`divan-youth`): как boutique, но `NEXT_PUBLIC_STOREFRONT=youth`, свой домен. Пока домена нет, можно поддомен вроде `youth.divan.group` (A-запись), он тоже закрыт `noindex`.
+
+**6. После всех трёх:**
+
+- в админке group → Storefronts: поправить тексты и слайды каждой витрины, при желании свои телефон и email (пусто = Site Settings);
+- проверить карточку товара и каталог на каждом домене, OG-превью ссылки (например, в Telegram);
+- откат: Dokploy → Deployments → Redeploy предыдущего деплоя (схема только расширилась, откат кода безопасен).
 
 ## Бэкапы и мониторинг
 
