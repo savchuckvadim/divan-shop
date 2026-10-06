@@ -26,6 +26,32 @@ docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml logs -f we
 
 Обновление: `git pull && docker compose … up -d --build web` (Caddy и Postgres не трогаются). Откат: `git checkout <hash>` и та же команда.
 
+## Витрины: приложение Dokploy на витрину (ADR-0011)
+
+Сайт сейчас живёт в Dokploy (deploy из `main`). Каждая витрина — отдельное приложение Dokploy из того же репозитория и ветки: Dockerfile `apps/web/Dockerfile`, контекст сборки — корень репозитория.
+
+| Приложение | Домен             | build-arg `NEXT_PUBLIC_STOREFRONT` | Индексация         |
+| ---------- | ----------------- | ---------------------------------- | ------------------ |
+| group      | divan.group       | `group` (по умолчанию)             | да                 |
+| boutique   | divan.boutique    | `boutique`                         | `noindex` до T-054 |
+| youth      | (домен не выбран) | `youth`                            | `noindex` до T-054 |
+
+- **Build-args** у каждой: `NEXT_PUBLIC_STOREFRONT`, `NEXT_PUBLIC_SERVER_URL=https://<домен витрины>` (от него canonical, hreflang, sitemap и вордмарк в шапке), `NEXT_PUBLIC_BRAND_NAME` — имя в `<title>` и OG, например `divan.group` / `divan.boutique` (без него остаётся заглушка «Divan Shop», как сейчас на проде).
+- **Runtime env:** `DATABASE_URL` и `PAYLOAD_SECRET` — общие для всех витрин (одна база, одна админка); `NEXT_PUBLIC_SERVER_URL` — свой; `PREVIEW_SECRET`, `CRON_SECRET` — как у group.
+- **Медиа общие.** Файлы, загруженные через админку group, должны отдаваться и другими витринами. Пока медиа на диске: один каталог хоста смонтирован во все приложения в `/app/apps/web/public/media` (bind mount в Dokploy → Advanced → Volumes). Цель — S3-совместимое хранилище (`@payloadcms/storage-s3`), тогда монтирование не нужно.
+- **Миграции** запускает только group: схема одна на всех.
+- **Админка** работает на домене любой витрины (общая база); редакторам — только `divan.group/admin`. Закрыть `/admin` на остальных доменах — вместе с T-054.
+- **Кэш:** `revalidateTag` срабатывает только в приложении, где редактор нажал «Опубликовать». Остальные витрины подхватывают изменения шапки, подвала, Site Settings и редиректов по времени (`CMS_CACHE_SECONDS` = 5 минут в `modules/shared/config/storefront.ts`). Страницы сейчас `force-dynamic`; при возврате ISR (T-053) нужна та же схема или веб-хук ревалидации на все витрины.
+- **Порт 3000 наружу не публиковать** ни у одного приложения: только домен через Traefik Dokploy (прошлый взлом сервера был именно через открытый порт).
+
+Проверка витрины после деплоя:
+
+- `<html>` содержит `data-storefront="boutique" data-concept="cinema" data-palette="p1" data-theme="light"`;
+- в `<head>` `robots: noindex, nofollow`;
+- `/sitemap.xml` пустой, в `/robots.txt` нет строки `Sitemap`;
+- фото товаров открываются (общий каталог медиа);
+- в шапке вордмарк «divan .boutique».
+
 ## Бэкапы и мониторинг
 
 - `scripts/ops/backup.sh` в cron сервера 03:00: дамп БД + медиа в `backups/`, 14 дней; off-site через `rclone` в Backblaze B2 (~1 €/мес). Восстановление проверять раз в квартал (`gunzip -c … | docker compose exec -T postgres psql -U postgres divan`).

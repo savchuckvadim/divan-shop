@@ -1029,7 +1029,7 @@ Acceptance:
 
 Владелец: «задел под темы», «в темах гармоничные палитры альтернативных дополнительных цветов», ЧБ-основа. Нужны четыре направления (Кино, Галерея, Чертёж, Неон), палитры, режимы и слой форм (строгие / скруглённые); витрина хранит свой набор (ADR-0011). Перенести механику прототипов в `packages/ui`: тема = набор токенов (нейтрали светлые и тёмные, шрифты, шкала размеров до 3440 px, отступы, радиусы, движение), палитра = акцентные токены (`--accent`, `--accent-soft`, `--on-accent`, партнёрский тон) с проверенным контрастом AA, бренд = `data-brand` (boutique / store). Атрибуты на `<html>` выставляются на сервере до первой отрисовки; Tailwind 4 читает токены через `@theme inline`. Композиты не знают про конкретную тему.
 
-Сделано: пакет `@workspace/themes` (ui | themes по решению владельца), атрибуты на `<html>` из набора витрины, хуки `data-slot` в `themes.css`, `check:contrast` (256 пар AA). `data-brand` заменён на `data-storefront`. Подробности: `packages/themes/README.md`, docs/features/design-system.md.
+Сделано: пакет `@workspace/themes` (ui | themes по решению владельца), атрибуты на `<html>` из набора витрины, хуки `data-slot` в `themes.css`, `check:contrast` (280 пар AA). `data-brand` заменён на `data-storefront`. Подробности: `packages/themes/README.md`, docs/features/design-system.md.
 
 Acceptance:
 
