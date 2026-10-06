@@ -44,6 +44,8 @@
 - Статическая генерация: `generateStaticParams` в layout (локали) и на страницах; ревалидация хуками `payload/hooks/revalidate.ts` (`createRevalidateHooks` — `revalidatePath` для всех локалей + `revalidateTag`; `createRevalidateGlobalHook`; `revalidateRedirects`), выключается через `req.context.disableRevalidate`.
 - Шрифты `next/font` Inter + Playfair Display (`--font-inter`, `--font-playfair`) в `[locale]/layout.tsx`.
 
+- Подписи переключателя языка — `LOCALE_SHORT` в `modules/shared/config/locales.ts`: RU, EN, ES и **UA** для украинского; код локали остаётся `uk` в URL, `lang` и `hreflang` (2026-10-06).
+
 ## Planned
 
 - **T-053** · вернуть статическую генерацию (ISR) при сборке образа без БД вместо `force-dynamic` на всех контентных роутах

@@ -53,7 +53,7 @@ Env: copy `apps/web/.env.example` to `apps/web/.env`.
 
 ## i18n
 
-- Locales: `ru` (default), `en`, `es`, `uk` — single source of truth `modules/shared/config/locales.ts`. Payload localization reads the same tuple.
+- Locales: `ru` (default), `en`, `es`, `uk` — single source of truth `modules/shared/config/locales.ts`. Payload localization reads the same tuple. The switcher shows `LOCALE_SHORT` labels (Ukrainian = "UA"), but the code stays ISO 639-1 `uk` in URLs, `html lang` and `hreflang` (`ua` is a country code; Google ignores `hreflang="ua"`).
 - CMS content: Payload `localized: true` fields, admin has a locale switcher. Slugs are NOT localized (one URL per doc per locale).
 - UI strings: typed constants in `modules/shared/i18n/dictionaries/*.ts`, each `Record<Locale, XDictionary>`. Adding a key = TS error until every locale has it. Server components call `getDictionary(locale)`; client components use `useI18n()`.
 - Routing: every URL is prefixed `/{locale}/…`; `proxy.ts` redirects bare paths using cookie → Accept-Language → default. Routes are built only through `ROUTES.*` from `modules/shared/config/routes.ts`.

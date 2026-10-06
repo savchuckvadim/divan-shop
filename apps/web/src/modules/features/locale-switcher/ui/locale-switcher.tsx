@@ -9,6 +9,7 @@ import {
     type Locale,
     LOCALE_COOKIE,
     LOCALE_LABELS,
+    LOCALE_SHORT,
     LOCALES,
     stripLocale,
     withLocale,
@@ -48,7 +49,7 @@ export const LocaleSwitcher = ({ className }: { className?: string }) => {
                             : "text-muted-foreground hover:text-foreground"
                     )}
                 >
-                    {locale}
+                    {LOCALE_SHORT[locale]}
                 </Link>
             ))}
         </nav>

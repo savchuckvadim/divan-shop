@@ -18,6 +18,17 @@ export const LOCALE_LABELS: Record<Locale, string> = {
     uk: "Українська",
 };
 
+/**
+ * Short switcher labels. Ukrainian shows "UA" as people in Ukraine expect, while the
+ * language code stays ISO 639-1 `uk` everywhere it matters (URLs, html lang, hreflang).
+ */
+export const LOCALE_SHORT: Record<Locale, string> = {
+    ru: "RU",
+    en: "EN",
+    es: "ES",
+    uk: "UA",
+};
+
 export const LOCALE_OG: Record<Locale, string> = {
     ru: "ru_RU",
     en: "en_US",
