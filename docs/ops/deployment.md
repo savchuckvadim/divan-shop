@@ -69,7 +69,7 @@ docker compose --env-file deploy/.env.prod -f docker-compose.prod.yml logs -f we
 **3. Демо-контент** (разово, приложение-инструмент):
 
 - Create Application `divan-tools`: тот же репозиторий и ветка, Build Type `Dockerfile`, Dockerfile `apps/web/Dockerfile`, Context `.`, **Build Stage `tools`**.
-- Environment: скопировать у group (`DATABASE_URL`, `PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL=https://divan.group`).
+- Environment: скопировать у group (`DATABASE_URL`, `PAYLOAD_SECRET`, `NEXT_PUBLIC_SERVER_URL=https://divan.group`) и добавить **`PAYLOAD_DB_PUSH=false`**: схему уже создал group на шаге 2, а без этого флага tools-образ (не production по `NODE_ENV`) сам начнёт синхронизировать схему и может зависнуть на интерактивном вопросе drizzle (см. HISTORY).
 - Volumes: тот же `/srv/divan/media` → **`/repo/apps/web/public/media`** (в этом образе другой путь).
 - Command: `pnpm seed`. Deploy, в логах дождаться `[seed] done`, затем остановить или удалить приложение. Домен и порт ему не нужны.
 - Seed идемпотентный: существующее (по slug, ключу витрины, имени файла) пропускает, так что повторный запуск безопасен. Создаёт 12 демо-товаров с фото, 3 документа витрин (hero, слоган, слайды) на четырёх языках, обложки статей; Site Settings, страницы и меню — только если их ещё нет.
